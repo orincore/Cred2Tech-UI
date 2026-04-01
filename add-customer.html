@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Customer — Cred2Tech MSME Platform</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 25%, #2563eb 50%, #1d4ed8 75%, #1e40af 100%);
+        }
+        
+        .step-indicator {
+            transition: all 0.5s ease;
+        }
+        
+        .step-indicator.active {
+            background: #3b82f6;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .step-indicator.completed {
+            background: #10b981;
+            color: white;
+        }
+        
+        .form-section {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .form-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .floating-label {
+            position: relative;
+        }
+        
+        .floating-label input:focus + label,
+        .floating-label input:not(:placeholder-shown) + label {
+            transform: translateY(-1.5rem) scale(0.875);
+            color: #3b82f6;
+        }
+        
+        .floating-label label {
+            position: absolute;
+            left: 0.75rem;
+            top: 0.75rem;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            color: #6b7280;
+        }
+        
+        .co-applicant-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #bbf7d0;
+            transition: all 0.3s ease;
+        }
+        
+        .co-applicant-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-body">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="w-64 gradient-bg text-white flex flex-col shadow-2xl relative z-10">
+            <!-- Brand -->
+            <div class="p-6 border-b border-white/20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                        <span class="text-white font-bold text-lg">C2T</span>
+                    </div>
+                    <div>
+                        <h2 class="font-headline font-bold text-lg">Cred2Tech</h2>
+                        <p class="text-white/70 text-sm">MSME Platform</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="flex-1 p-4 space-y-2">
+                <div class="sidebar-item px-4 py-3 rounded-lg hover:bg-white/10 cursor-pointer" onclick="window.location.href='dashboard.html'">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span class="font-medium">Dashboard</span>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <p class="text-white/50 text-xs uppercase tracking-wider px-4 mb-3">Customers</p>
+                    <div class="sidebar-item px-4 py-3 rounded-lg hover:bg-white/10 cursor-pointer" onclick="window.location.href='pipeline.html'">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined">list_alt</span>
+                            <span class="font-medium">My Pipeline</span>
+                        </div>
+                    </div>
+                    <div class="sidebar-item active px-4 py-3 rounded-lg bg-white/10 cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined">person_add</span>
+                            <span class="font-medium">Add Customer</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Bar -->
+            <header class="bg-white/80 backdrop-blur-sm border-b border-gray-200 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-headline font-bold text-gray-900">Add New Customer</h1>
+                        <p class="text-gray-600 text-sm">Step 1 of 3 — Business Entity & Co-Applicants</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="pulse-dot w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span class="text-sm text-green-600 font-medium">Auto-saved</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Add Customer Content -->
+            <main class="flex-1 overflow-y-auto p-6">
+                <!-- Progress Steps -->
+                <div class="flex items-center justify-center mb-8">
+                    <div class="flex items-center space-x-8">
+                        <div class="flex items-center">
+                            <div class="step-indicator active w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm">
+                                1
+                            </div>
+                            <span class="ml-3 text-sm font-medium text-blue-600">PAN & Contacts</span>
+                        </div>
+                        <div class="w-16 h-1 bg-gray-300 rounded"></div>
+                        <div class="flex items-center">
+                            <div class="step-indicator w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-bold text-sm text-gray-600">
+                                2
+                            </div>
+                            <span class="ml-3 text-sm font-medium text-gray-500">GST / ITR / Bank</span>
+                        </div>
+                        <div class="w-16 h-1 bg-gray-300 rounded"></div>
+                        <div class="flex items-center">
+                            <div class="step-indicator w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-bold text-sm text-gray-600">
+                                3
+                            </div>
+                            <span class="ml-3 text-sm font-medium text-gray-500">Product & Property</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- De-dupe Banner (hidden by default) -->
+                <div id="dedupe-banner" class="hidden bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6 mb-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
+                                <span class="material-symbols-outlined text-yellow-600">search</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-yellow-800">Existing customer found: Rajesh Enterprises</h3>
+                                <p class="text-sm text-yellow-700 mt-1">PAN AABCE1234F was previously added by you on 10 Mar 2026. Bureau & financial data already available.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="px-4 py-2 border border-yellow-300 text-yellow-700 rounded-lg hover:bg-yellow-100 transition-colors">
+                                View Existing Profile
+                            </button>
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onclick="hideDedupeBanner()">
+                                Continue as New Case →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Business Entity Form -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6 form-section active">
+                    <div class="border-b border-gray-200 pb-4 mb-6">
+                        <h3 class="text-lg font-headline font-bold text-gray-900">Business Entity</h3>
+                        <p class="text-sm text-gray-600 mt-1">Enter PAN — bureau & profile fetched automatically in the background</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="floating-label">
+                            <input type="text" 
+                                   id="pan-input"
+                                   placeholder=" " 
+                                   class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all uppercase"
+                                   maxlength="10"
+                                   value="AABCE1234F">
+                            <label class="text-sm font-medium">PAN Number *</label>
+                            <button class="absolute right-3 top-3 px-3 py-1 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors" onclick="verifyPAN()">
+                                Verify →
+                            </button>
+                        </div>
+                        
+                        <div class="floating-label">
+                            <input type="tel" 
+                                   placeholder=" " 
+                                   class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                   value="9820012345">
+                            <label class="text-sm font-medium">Mobile Number *</label>
+                        </div>
+                        
+                        <div class="floating-label">
+                            <input type="email" 
+                                   placeholder=" " 
+                                   class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                   value="rajesh@rajeshenterprises.in">
+                            <label class="text-sm font-medium">Email Address *</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-blue-600 mt-0.5">info</span>
+                            <p class="text-sm text-blue-800">
+                                <strong>📌 PAN, mobile and email are the only inputs needed here.</strong> All other details (entity name, GST, date of incorporation, bureau) are fetched automatically and stored in the backend. These will appear in subsequent steps once verified.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Co-Applicants Section -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6 form-section active">
+                    <div class="border-b border-gray-200 pb-4 mb-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-headline font-bold text-gray-900">Co-Applicants</h3>
+                                <p class="text-sm text-gray-600 mt-1">Add each co-applicant's PAN, mobile and email. Bureau is pulled via OTP consent on their mobile.</p>
+                            </div>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">2 Added</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Existing Co-applicants -->
+                    <div class="space-y-4 mb-6">
+                        <div class="co-applicant-card rounded-xl p-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
+                                        SK
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900">Sunita Kumar</h4>
+                                        <p class="text-sm text-gray-600">PAN: XYZPQ8765D · Mobile: 9812345670 · sunita@example.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">✓ OTP Verified</span>
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Bureau Fetched</span>
+                                    <button class="text-red-500 hover:text-red-700 transition-colors">
+                                        <span class="material-symbols-outlined">close</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="co-applicant-card rounded-xl p-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+                                        RK
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900">Ramesh Kumar</h4>
+                                        <p class="text-sm text-gray-600">PAN: BCDEF2345G · Mobile: 9745632100 · ramesh@example.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">✓ OTP Verified</span>
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Bureau Fetched</span>
+                                    <button class="text-red-500 hover:text-red-700 transition-colors">
+                                        <span class="material-symbols-outlined">close</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add New Co-applicant -->
+                    <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 bg-gray-50">
+                        <h4 class="font-bold text-gray-700 mb-4">Add Co-Applicant</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                            <div class="floating-label">
+                                <input type="text" 
+                                       placeholder=" " 
+                                       class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all uppercase">
+                                <label class="text-sm font-medium">PAN *</label>
+                            </div>
+                            <div class="floating-label">
+                                <input type="tel" 
+                                       placeholder=" " 
+                                       class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                                <label class="text-sm font-medium">Mobile *</label>
+                            </div>
+                            <div class="floating-label">
+                                <input type="email" 
+                                       placeholder=" " 
+                                       class="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                                <label class="text-sm font-medium">Email</label>
+                            </div>
+                            <button class="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                                + Add & Send OTP
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-blue-600 mt-0.5">lightbulb</span>
+                            <p class="text-sm text-blue-800">
+                                OTP is sent to the co-applicant's registered mobile for bureau pull consent. Relationship type (Spouse / Partner / Guarantor) will be assigned in the final data entry step.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="flex justify-end">
+                    <button class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg" onclick="nextStep()">
+                        Next: GST / ITR / Bank Statement →
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate form sections
+            gsap.fromTo('.form-section.active', 
+                { opacity: 0, y: 30 },
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.8, 
+                    stagger: 0.2,
+                    ease: "power2.out"
+                }
+            );
+            
+            // Animate co-applicant cards
+            gsap.fromTo('.co-applicant-card', 
+                { opacity: 0, x: -30 },
+                { 
+                    opacity: 1, 
+                    x: 0, 
+                    duration: 0.6, 
+                    stagger: 0.1,
+                    delay: 0.3,
+                    ease: "power2.out"
+                }
+            );
+        });
+        
+        // PAN verification
+        function verifyPAN() {
+            const panInput = document.getElementById('pan-input');
+            const button = event.target;
+            
+            // Show loading state
+            button.textContent = 'Verifying...';
+            button.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Show dedupe banner
+                document.getElementById('dedupe-banner').classList.remove('hidden');
+                
+                // Animate banner appearance
+                gsap.fromTo('#dedupe-banner', 
+                    { opacity: 0, y: -20 },
+                    { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+                );
+                
+                button.textContent = 'Verified ✓';
+                button.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                button.classList.add('bg-green-600', 'hover:bg-green-700');
+            }, 2000);
+        }
+        
+        // Hide dedupe banner
+        function hideDedupeBanner() {
+            gsap.to('#dedupe-banner', {
+                opacity: 0,
+                y: -20,
+                duration: 0.3,
+                ease: "power2.in",
+                onComplete: () => {
+                    document.getElementById('dedupe-banner').classList.add('hidden');
+                }
+            });
+        }
+        
+        // Next step navigation
+        function nextStep() {
+            // Animate current step completion
+            const currentStep = document.querySelector('.step-indicator.active');
+            currentStep.classList.remove('active');
+            currentStep.classList.add('completed');
+            currentStep.innerHTML = '✓';
+            
+            // For demo purposes, just show success message
+            gsap.to('main', {
+                opacity: 0.5,
+                duration: 0.3,
+                onComplete: () => {
+                    alert('Step 1 completed! In the full implementation, this would navigate to Step 2: GST / ITR / Bank Statement');
+                    gsap.to('main', { opacity: 1, duration: 0.3 });
+                }
+            });
+        }
+        
+        // Floating label animations
+        document.querySelectorAll('.floating-label input').forEach(input => {
+            input.addEventListener('focus', () => {
+                gsap.to(input.nextElementSibling, {
+                    y: -24,
+                    scale: 0.875,
+                    color: '#3b82f6',
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    gsap.to(input.nextElementSibling, {
+                        y: 0,
+                        scale: 1,
+                        color: '#6b7280',
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

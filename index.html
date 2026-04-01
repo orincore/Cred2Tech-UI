@@ -186,7 +186,7 @@
         #header-nav { height: 60px !important; padding: 0 16px; }
         
         /* Make Log In and Get Started buttons smaller on mobile */
-        #header-nav .flex.items-center.gap-2 > button:not(#mobile-menu-btn) { 
+        #header-nav .flex.items-center.gap-2 > a:not(#mobile-menu-btn) { 
           padding: 6px 12px !important; 
           font-size: 11px !important; 
         }
@@ -380,14 +380,14 @@
 
       <!-- Actions -->
       <div class="flex items-center gap-2">
-        <button class="px-4 py-2 text-[13px] font-semibold font-label text-[#424751] hover:text-[#003f7d] rounded-xl hover:bg-[#003f7d]/[0.05] transition-all duration-150">
+        <a href="login.html" class="px-4 py-2 text-[13px] font-semibold font-label text-[#424751] hover:text-[#003f7d] rounded-xl hover:bg-[#003f7d]/[0.05] transition-all duration-150">
           Log In
-        </button>
-        <button class="relative px-5 py-2 rounded-xl text-[13px] font-bold font-label text-white overflow-hidden
+        </a>
+        <a href="login.html" class="relative px-5 py-2 rounded-xl text-[13px] font-bold font-label text-white overflow-hidden
           bg-[#003f7d] hover:bg-[#0056a7] transition-colors duration-200
           shadow-[0_1px_3px_rgba(0,63,125,0.3)]">
           Get Started
-        </button>
+        </a>
         <!-- Mobile -->
         <button class="md:hidden p-2 rounded-xl hover:bg-[#003f7d]/[0.05] transition-all" id="mobile-menu-btn">
           <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
@@ -405,8 +405,8 @@
     <a href="#platform">Platform</a>
     <a href="#pricing">Pricing</a>
     <div style="height:1px;background:rgba(0,63,125,0.08);margin:8px 0;"></div>
-    <a href="#" style="color:#003f7d;font-weight:700;">Log In</a>
-    <a href="#" style="background:#003f7d;color:#fff;border-radius:10px;margin-top:4px;text-align:center;">Get Started</a>
+    <a href="login.html" style="color:#003f7d;font-weight:700;">Log In</a>
+    <a href="login.html" style="background:#003f7d;color:#fff;border-radius:10px;margin-top:4px;text-align:center;">Get Started</a>
   </div>
 </header>
 
@@ -497,8 +497,8 @@
             The sovereign infrastructure for digital lending. Automate the friction out of MSME financing with precise verification and instant prequalification.
           </p>
           <div class="flex flex-wrap gap-4">
-            <button class="bg-[#1dff9b] text-[#001233] px-8 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_30px_rgba(29,255,155,0.4)] transition-all">Start Verifying</button>
-            <button class="border-2 border-white/20 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/5 transition-all">View Pricing</button>
+            <a href="login.html" class="bg-[#1dff9b] text-[#001233] px-8 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_30px_rgba(29,255,155,0.4)] transition-all">Start Verifying</a>
+            <a href="#pricing" class="border-2 border-white/20 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/5 transition-all">View Pricing</a>
           </div>
         </div>
         <div class="relative flex items-center justify-center" id="card-scene">
@@ -1378,8 +1378,8 @@
 </div>
 <h2 class="font-headline font-bold text-5xl text-primary mb-8 relative z-10">Ready to Build the Future of <span class="text-secondary">Digital Credit</span>?</h2>
 <div class="flex flex-col sm:flex-row justify-center gap-6 relative z-10">
-<button class="px-12 py-5 bg-secondary-container text-on-secondary-container font-black rounded-lg text-xl hover:scale-105 transition-transform shadow-xl">Deploy Cred2Tech</button>
-<button class="px-12 py-5 text-on-primary font-bold rounded-lg text-xl hover:bg-primary-container transition-all" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 25%, #2563eb 50%, #1d4ed8 75%, #1e40af 100%);">Schedule Demo</button>
+<a href="login.html" class="px-12 py-5 bg-secondary-container text-on-secondary-container font-black rounded-lg text-xl hover:scale-105 transition-transform shadow-xl">Deploy Cred2Tech</a>
+<a href="login.html" class="px-12 py-5 text-on-primary font-bold rounded-lg text-xl hover:bg-primary-container transition-all" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 25%, #2563eb 50%, #1d4ed8 75%, #1e40af 100%);">Schedule Demo</a>
 </div>
 <p class="mt-10 text-on-surface-variant font-label text-sm tracking-wide">TRUSTED BY 14+ NBFCs AND TOP 5 PRIVATE BANKS</p>
 <!-- CTA card landing target -->
