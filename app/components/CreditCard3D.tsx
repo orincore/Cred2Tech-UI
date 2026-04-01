@@ -32,6 +32,7 @@ interface CreditCard3DProps {
   streakId?: string;
   glowId?: string;
   particlesId?: string;
+  sceneId?: string;
 }
 
 export default function CreditCard3D({
@@ -46,11 +47,18 @@ export default function CreditCard3D({
   streakId = 'card-streak',
   glowId = 'card-glow',
   particlesId = 'card-particles',
+  sceneId = 'card-scene',
 }: CreditCard3DProps) {
   return (
-    <div className="relative flex items-center justify-center" id="card-scene">
+    <div className="relative flex items-center justify-center" id={sceneId}>
       {/* Perspective wrapper */}
-      <div id={wrapId} style={{ perspective: '1200px', width: '380px', height: '240px' }}>
+      <div 
+        id={wrapId} 
+        className="w-[320px] h-[200px] sm:w-[380px] sm:h-[240px] transition-all duration-500"
+        style={{ 
+          perspective: '1200px',
+        }}
+      >
         <div
           id={cardId}
           style={{

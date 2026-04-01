@@ -78,10 +78,10 @@ export default function Header() {
               </div>
             </div>
             <div className="flex flex-col leading-none">
-              <span className="font-(family-name:--font-outfit) font-bold text-[1.4rem] tracking-tight text-[#003f7d] leading-none">
+              <span className="font-(family-name:--font-outfit) font-bold text-[1.1rem] sm:text-[1.4rem] tracking-tight text-[#003f7d] leading-none transition-all">
                 Cred<span className="text-[#006d3f]">2</span>Tech
               </span>
-              <span className="text-[9px] font-(family-name:--font-inter) font-bold tracking-[0.2em] uppercase text-[#003f7d]/50 mt-0.5">
+              <span className="text-[8px] sm:text-[9px] font-(family-name:--font-inter) font-bold tracking-[0.2em] uppercase text-[#003f7d]/50 mt-0.5">
                 Fintech Platform
               </span>
             </div>

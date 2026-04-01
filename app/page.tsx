@@ -89,19 +89,19 @@ export default function HomePage() {
           <div className="px-orb w-[200px] h-[200px] bg-[#00aaff] absolute top-[30%] left-[40%] z-0" id="orb-h3" />
           <div className="px-grid z-0" id="hero-grid" />
           <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-            <div>
-              <h1 className="font-(family-name:--font-outfit) font-extrabold text-6xl md:text-7xl leading-[1.1] tracking-tighter text-white mb-6">
+            <div className="text-center lg:text-left mt-20 lg:mt-0">
+              <h1 className="font-(family-name:--font-outfit) font-extrabold text-4xl sm:text-5xl md:text-7xl leading-[1.1] tracking-tighter text-white mb-6">
                 Fast-Track Your <span className="text-[#1dff9b]">MSME Business Growth</span>
               </h1>
-              <p className="text-xl text-white/70 max-w-xl mb-10 leading-relaxed">
+              <p className="text-lg sm:text-xl text-white/70 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed">
                 Empowering India's businesses and financial partners. Whether you're an MSME seeking direct capital or a Direct Selling Agent (DSA) managing client portfolios, get instant approvals and seamless disbursements.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/login" className="bg-[#1dff9b] text-[#001233] px-8 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_30px_rgba(29,255,155,0.4)] transition-all">Apply for Loan</Link>
-                <Link href="/login" className="border-2 border-white/20 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/5 transition-all">Partner as DSA</Link>
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                <Link href="/login" className="bg-[#1dff9b] text-[#001233] px-8 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_30px_rgba(29,255,155,0.4)] transition-all text-center">Apply for Loan</Link>
+                <Link href="/login" className="border-2 border-white/20 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/5 transition-all text-center">Partner as DSA</Link>
               </div>
             </div>
-            <div className="relative flex items-center justify-center">
+            <div className="relative hidden lg:flex items-center justify-center">
               <CreditCard3D
                 brandName="Cred2Tech"
                 cardHolder="INDIA MSME CORP."
@@ -119,7 +119,7 @@ export default function HomePage() {
           <div className="absolute bottom-24 left-16 w-10 h-10 border-2 border-[#1dff9b]/20 rounded-full px-layer z-0" id="shape-s2" />
           <div className="absolute top-1/2 right-[8%] w-6 h-6 bg-[#1dff9b]/10 rounded-sm rotate-45 px-layer z-0" id="shape-s3" />
           <div className="max-w-7xl mx-auto px-6 pt-24 pb-16 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 sm:mb-20">
               {/* Left: ghost placeholder — fixed size container, ghost centered via margin auto */}
               <div id="card-landing-slot" className="relative hidden lg:flex items-center justify-center" style={{ minHeight: '280px' }}>
                 <div id="card-ghost" style={{
@@ -134,71 +134,71 @@ export default function HomePage() {
                   pointerEvents: 'none'
                 }} />
               </div>
-              <div className="flex flex-col justify-center">
-                <h2 className="font-(family-name:--font-outfit) font-bold text-4xl text-[#003f7d] mb-4">Frictionless Lending & Partner Portals</h2>
-                <p className="text-lg text-[#424751] mb-6">Experience a fully digitized loan journey with minimal documentation, built-in analytics, and 24/7 dedicated support for both direct borrowers and channel partners.</p>
-                <span className="px-4 py-2 bg-[#e5e2e1] rounded-full text-xs font-bold font-(family-name:--font-jb-mono) text-[#003f7d] w-fit">OMNICHANNEL PORTAL</span>
+              <div className="flex flex-col justify-center text-center lg:text-left items-center lg:items-start">
+                <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl text-[#003f7d] mb-4">Frictionless Lending & Partner Portals</h2>
+                <p className="text-base sm:text-lg text-[#424751] mb-6">Experience a fully digitized loan journey with minimal documentation, built-in analytics, and 24/7 dedicated support for both direct borrowers and channel partners.</p>
+                <span className="px-4 py-2 bg-[#e5e2e1] rounded-full text-[10px] sm:text-xs font-bold font-(family-name:--font-jb-mono) text-[#003f7d] w-fit">OMNICHANNEL PORTAL</span>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
               {/* ITR */}
-              <div className="md:col-span-4 bg-white p-8 rounded-xl group hover:bg-[#003f7d] transition-all duration-500">
+               <div className="md:col-span-4 bg-white p-6 sm:p-8 rounded-xl group hover:bg-[#003f7d] transition-all duration-500">
                 <div className="w-12 h-12 rounded-lg bg-[#0056a7]/20 flex items-center justify-center mb-6 group-hover:bg-white/20">
                   <span className="material-symbols-outlined text-[#003f7d] group-hover:text-white">speed</span>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) text-2xl font-bold mb-3 group-hover:text-white">Instant Approvals</h3>
-                <p className="text-[#424751] group-hover:text-white/80 mb-6">Digital onboarding powered by instant ITR and Bank Statement analysis ensures you get a decision in minutes.</p>
+                <h3 className="font-(family-name:--font-outfit) text-xl sm:text-2xl font-bold mb-3 group-hover:text-white">Instant Approvals</h3>
+                <p className="text-[#424751] text-sm sm:text-base group-hover:text-white/80 mb-6">Digital onboarding powered by instant ITR and Bank Statement analysis ensures you get a decision in minutes.</p>
                 <div className="flex items-center justify-between mt-auto">
-                  <span className="font-(family-name:--font-jb-mono) text-sm font-bold text-[#006d3f] group-hover:text-[#58ffa5]">MINIMAL PAPERWORK</span>
+                  <span className="font-(family-name:--font-jb-mono) text-[11px] sm:text-sm font-bold text-[#006d3f] group-hover:text-[#58ffa5]">MINIMAL PAPERWORK</span>
                 </div>
               </div>
               {/* GST */}
-              <div className="md:col-span-8 text-white p-8 rounded-xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#1e3a8a 0%,#3b82f6 25%,#2563eb 50%,#1d4ed8 75%,#1e40af 100%)' }}>
+               <div className="md:col-span-8 text-white p-6 sm:p-8 rounded-xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#1e3a8a 0%,#3b82f6 25%,#2563eb 50%,#1d4ed8 75%,#1e40af 100%)' }}>
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   <div>
-                    <h3 className="font-(family-name:--font-outfit) text-3xl font-bold mb-4">Exclusive DSA Dashboard</h3>
-                    <p className="text-[#b3ceff] text-lg max-w-md">Manage your entire client portfolio, track real-time loan statuses, and automate your commission payouts in one centralized, powerful hub.</p>
+                    <h3 className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-bold mb-4">Exclusive DSA Dashboard</h3>
+                    <p className="text-[#b3ceff] text-base sm:text-lg max-w-md">Manage your entire client portfolio, track real-time loan statuses, and automate your commission payouts in one centralized, powerful hub.</p>
                   </div>
-                  <div className="mt-12 flex items-center gap-6">
-                    <div className="px-6 py-3 bg-[#1dff9b] text-[#00210f] rounded-lg font-bold">Track Leads Instantly</div>
-                    <div className="flex -space-x-3">
+                  <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row sm:items-center gap-6">
+                    <div className="px-6 py-3 bg-[#1dff9b] text-[#00210f] rounded-lg font-bold text-center">Track Leads Instantly</div>
+                    <div className="flex -space-x-3 justify-center">
                       {['11', '32', '47'].map(n => <img key={n} src={`https://i.pravatar.cc/40?img=${n}`} alt="User" className="w-10 h-10 rounded-full border-2 border-[#003f7d] object-cover" />)}
                       <div className="w-10 h-10 rounded-full border-2 border-[#003f7d] bg-[#0056a7] flex items-center justify-center text-[11px] font-bold text-white">4k+</div>
                     </div>
                   </div>
                 </div>
-                <div className="absolute right-0 bottom-0 opacity-10 scale-150 rotate-12">
+                <div className="absolute right-0 bottom-0 opacity-10 scale-150 rotate-12 hidden sm:block">
                   <span className="material-symbols-outlined text-[200px]">handshake</span>
                 </div>
               </div>
               {/* Bureau */}
-              <div className="md:col-span-7 bg-white p-8 rounded-xl border border-[#c2c6d3]/10">
-                <div className="flex justify-between items-start mb-8">
+               <div className="md:col-span-7 bg-white p-6 sm:p-8 rounded-xl border border-[#c2c6d3]/10">
+                <div className="flex flex-col sm:flex-row justify-between items-start mb-8 gap-4">
                   <div>
-                    <h3 className="font-(family-name:--font-outfit) text-2xl font-bold text-[#003f7d] mb-2">Flexible Credit Options</h3>
-                    <p className="text-[#424751]">Tailored loan structures designed specifically for MSME working capital gaps and expansion.</p>
+                    <h3 className="font-(family-name:--font-outfit) text-xl sm:text-2xl font-bold text-[#003f7d] mb-2">Flexible Credit Options</h3>
+                    <p className="text-[#424751] text-sm sm:text-base">Tailored loan structures designed specifically for MSME working capital gaps and expansion.</p>
                   </div>
-                  <div className="text-3xl font-bold font-(family-name:--font-jb-mono) text-[#003f7d]">₹50L+</div>
+                  <div className="text-2xl sm:text-3xl font-bold font-(family-name:--font-jb-mono) text-[#003f7d]">₹50L+</div>
                 </div>
                 <div className="space-y-4">
                   {['Unsecured Term Loans & Bill Discounting', 'Collateral-free working capital lines up to ₹50L'].map(item => (
                     <div key={item} className="flex items-center gap-4 p-4 bg-[#f0eded] rounded-lg">
-                      <span className="material-symbols-outlined text-[#006d3f]">monetization_on</span>
-                      <span className="font-(family-name:--font-jb-mono) text-sm font-semibold">{item}</span>
+                      <span className="material-symbols-outlined text-[#006d3f] shrink-0">monetization_on</span>
+                      <span className="font-(family-name:--font-jb-mono) text-[11px] sm:text-sm font-semibold">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
               {/* Bank */}
-              <div className="md:col-span-5 bg-[#443b54] text-white p-8 rounded-xl relative overflow-hidden">
+               <div className="md:col-span-5 bg-[#443b54] text-white p-6 sm:p-8 rounded-xl relative overflow-hidden">
                 <div className="absolute inset-0 opacity-30" style={{ background: 'linear-gradient(135deg,#003f7d 0%,#0056a7 50%,#1dff9b 100%)', maskImage: 'radial-gradient(circle at center,black,transparent 80%)' }} />
                 <div className="relative z-10 h-full flex flex-col justify-between">
-                  <span className="material-symbols-outlined text-4xl mb-6">workspace_premium</span>
+                  <span className="material-symbols-outlined text-3xl sm:text-4xl mb-6">workspace_premium</span>
                   <div>
-                    <h3 className="font-(family-name:--font-outfit) text-2xl font-bold mb-2">High Commission Structures for DSAs</h3>
-                    <p className="text-[#d4c7e6]">Earn industry-leading payouts converted directly to your mapped bank accounts instantly.</p>
+                    <h3 className="font-(family-name:--font-outfit) text-xl sm:text-2xl font-bold mb-2">High Commission Structures for DSAs</h3>
+                    <p className="text-[#d4c7e6] text-sm sm:text-base">Earn industry-leading payouts converted directly to your mapped bank accounts instantly.</p>
                   </div>
-                  <button className="mt-8 text-[#58ffa5] font-bold flex items-center gap-2 hover:gap-4 transition-all bg-transparent border-0 cursor-pointer">
+                  <button className="mt-8 text-[#58ffa5] font-bold flex items-center gap-2 hover:gap-4 transition-all bg-transparent border-0 cursor-pointer text-sm sm:text-base">
                     View Partner Benefits <span className="material-symbols-outlined">trending_flat</span>
                   </button>
                 </div>
@@ -218,17 +218,17 @@ export default function HomePage() {
             <div className="marquee-wrap border-y border-[#003f7d]/10 py-6 bg-[#f6f3f2]/50">
               <div className="marquee-track" id="finance-marquee" style={{ animation: 'marquee-scroll 35s linear infinite' }}>
                 {[0, 1].map(set => (
-                  <div key={set} className="flex items-center gap-16 shrink-0">
+                  <div key={set} className="flex items-center gap-8 sm:gap-16 shrink-0">
                     {[
-                      { src: '/banks%20logo/HDFC_Bank_Logo.svg.png', name: 'HDFC Bank', h: 36 },
-                      { src: '/banks%20logo/axis%20bank.jpg', name: 'Axis Bank', h: 36 },
-                      { src: '/banks%20logo/Kotak_Mahindra_Bank_logo.png', name: 'Kotak Mahindra', h: 32 },
-                      { src: '/banks%20logo/Yes-Bank-New-Logo-Vector.svg-.png', name: 'Yes Bank', h: 34 },
-                      { src: '/banks%20logo/Logo_of_IDFC_First_Bank.svg.png', name: 'IDFC First', h: 34 },
-                      { src: '/banks%20logo/BankOfBarodaLogo.svg', name: 'Bank of Baroda', h: 38 },
+                      { src: '/banks%20logo/HDFC_Bank_Logo.svg.png', name: 'HDFC Bank', h: 32, mh: 24 },
+                      { src: '/banks%20logo/axis%20bank.jpg', name: 'Axis Bank', h: 32, mh: 24 },
+                      { src: '/banks%20logo/Kotak_Mahindra_Bank_logo.png', name: 'Kotak Mahindra', h: 28, mh: 20 },
+                      { src: '/banks%20logo/Yes-Bank-New-Logo-Vector.svg-.png', name: 'Yes Bank', h: 30, mh: 22 },
+                      { src: '/banks%20logo/Logo_of_IDFC_First_Bank.svg.png', name: 'IDFC First', h: 30, mh: 22 },
+                      { src: '/banks%20logo/BankOfBarodaLogo.svg', name: 'Bank of Baroda', h: 32, mh: 24 },
                     ].map((bank, i) => (
                       <div key={i} className="shrink-0 transition-opacity duration-300">
-                        <img src={bank.src} alt={bank.name} style={{ height: `${bank.h}px`, width: 'auto', objectFit: 'contain' }} />
+                        <img src={bank.src} alt={bank.name} className="h-[24px] sm:h-[32px] w-auto object-contain" />
                       </div>
                     ))}
                     <div className="w-1.5 h-1.5 rounded-full bg-[#003f7d]/20 shrink-0" />
@@ -237,7 +237,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="flex justify-center items-center gap-8 mt-8 text-sm text-[#424751]">
+            <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 mt-8 text-[11px] sm:text-sm text-[#424751]">
               {[['bg-[#006d3f]', 'RBI Approved'], ['bg-[#003f7d]', 'DPDP Compliant'], ['bg-[#006d3f]', 'ISO 27001 Certified']].map(([bg, label]) => (
                 <div key={label} className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${bg} animate-pulse`} />
@@ -255,23 +255,23 @@ export default function HomePage() {
           <div className="absolute top-20 right-[15%] w-20 h-20 border border-[#003f7d]/8 rounded-full px-layer z-0" id="shape-p1" />
           <div className="absolute bottom-32 left-[12%] w-12 h-12 border border-[#1dff9b]/15 rotate-45 px-layer z-0" id="shape-p2" />
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <div className="order-2 lg:order-1">
                 <div className="relative">
-                  <div id="platform-dashboard" className="bg-[#fcf9f8] rounded-2xl shadow-2xl overflow-hidden border border-[#c2c6d3]/20">
+                  <div id="platform-dashboard" className="bg-[#fcf9f8] rounded-2xl shadow-2xl overflow-hidden border border-[#c2c6d3]/20 mx-auto max-w-lg lg:max-w-none">
                     <div className="p-4 flex items-center gap-2" style={{ background: 'linear-gradient(135deg,#1e3a8a 0%,#3b82f6 25%,#2563eb 50%,#1d4ed8 75%,#1e40af 100%)' }}>
                       <div className="w-3 h-3 rounded-full bg-[#ba1a1a]" />
                       <div className="w-3 h-3 rounded-full bg-[#006d3f]" />
                       <div className="w-3 h-3 rounded-full bg-[#d6e3ff]" />
-                      <span className="ml-4 text-xs font-(family-name:--font-jb-mono) text-white/60">cred2tech_dashboard_v4.app</span>
+                      <span className="ml-4 text-[10px] font-(family-name:--font-jb-mono) text-white/60 truncate">cred2tech_dashboard_v4.app</span>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center justify-between mb-4">
+                    <div className="p-4 sm:p-6">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-[#006d3f] animate-pulse" />
-                          <span className="text-xs font-bold font-(family-name:--font-jb-mono) text-[#424751] uppercase tracking-widest">Live Verification Feed</span>
+                          <span className="text-[10px] font-bold font-(family-name:--font-jb-mono) text-[#424751] uppercase tracking-widest">Live Verification Feed</span>
                         </div>
-                        <span className="text-xs font-(family-name:--font-jb-mono) text-[#424751]" id="dash-count">0 processed</span>
+                        <span className="text-[10px] font-(family-name:--font-jb-mono) text-[#424751]" id="dash-count">0 processed</span>
                       </div>
                       <div className="space-y-2.5 overflow-hidden" id="dash-feed" style={{ maxHeight: '260px' }} />
                       <div className="mt-4 pt-4 border-t border-[#c2c6d3]/20">
@@ -289,21 +289,21 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <div className="order-1 lg:order-2">
-                <h2 className="font-(family-name:--font-outfit) font-bold text-5xl text-[#003f7d] mb-8 leading-tight">Total Control Over Your <span className="text-[#006d3f]">Loan Journey</span></h2>
-                <div className="space-y-10">
+              <div className="order-1 lg:order-2 text-center lg:text-left">
+                <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-5xl text-[#003f7d] mb-8 leading-tight">Total Control Over Your <span className="text-[#006d3f]">Loan Journey</span></h2>
+                <div className="space-y-8 sm:space-y-10">
                   {[
                     { icon: 'hub', bg: 'linear-gradient(135deg,#1e3a8a 0%,#3b82f6 25%,#2563eb 50%,#1d4ed8 75%,#1e40af 100%)', title: 'For DSAs: Lead Dominance', desc: 'Centralized dashboard to track clients, submit multiple documents concurrently, monitor sanction status, and calculate exact commission structures.' },
                     { icon: 'bolt', bg: '#006d3f', title: 'For Borrowers: Zero Friction', desc: 'Create an account, securely upload GST/Bank statements via Account Aggregators framework, and pick the best pre-qualified loan offer instantly.' },
                     { icon: 'policy', bg: '#443b54', title: 'Consent-based Privacy', desc: '100% compliant with DPDP guidelines. Complete transparency and secure digital consent journeys ensuring your business data is impenetrable.' },
                   ].map(item => (
-                    <div key={item.title} className="flex gap-6">
+                    <div key={item.title} className="flex flex-col sm:flex-row items-center lg:items-start gap-4 sm:gap-6">
                       <div className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: item.bg }}>
                         <span className="material-symbols-outlined text-white" style={{ fontVariationSettings: "'FILL' 1" }}>{item.icon}</span>
                       </div>
                       <div>
                         <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                        <p className="text-[#424751]">{item.desc}</p>
+                        <p className="text-[#424751] leading-relaxed text-sm sm:text-base">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -413,32 +413,32 @@ export default function HomePage() {
           <div className="px-orb w-[500px] h-[500px] bg-[#1565d8] absolute top-[-150px] right-[-100px] z-0" id="orb-pr1" />
           <div className="px-orb w-[300px] h-[300px] bg-[#1dff9b] absolute bottom-[-80px] left-[20%] z-0" id="orb-pr2" />
           <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <h2 className="font-(family-name:--font-outfit) font-bold text-4xl text-white mb-6">Choose Your Growth Path</h2>
-              <p className="text-[#b3ceff] text-lg">Whether managing a large portfolio or searching for working capital, our portal gets you funded seamlessly.</p>
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-20">
+              <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl text-white mb-6">Choose Your Growth Path</h2>
+              <p className="text-[#b3ceff] text-base sm:text-lg px-4">Whether managing a large portfolio or searching for working capital, our portal gets you funded seamlessly.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
               {/* MSMEs */}
-              <div className="bg-white/5 backdrop-blur-md p-10 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
-                <p className="text-[#58ffa5] text-sm font-(family-name:--font-jb-mono) font-bold mb-4 uppercase tracking-widest">For Businesses</p>
-                <h3 className="text-3xl font-bold text-white mb-6">Individual MSMEs</h3>
-                <p className="text-white/70 text-base mb-8 min-h-[60px]">Direct funding without middlemen. Unlock your working capital rapidly based purely on your operational data.</p>
-                <ul className="space-y-5 mb-10 text-white/90 text-sm">
-                  {[['verified_user', 'Self-Service Dashboards'], ['bolt', 'Instant Eligibility Evaluation'], ['account_balance', 'Low Interst Unsecured Lines']].map(([icon, text]) => (
-                    <li key={text} className="flex items-center gap-3"><span className="material-symbols-outlined text-[#58ffa5] text-xl">{icon}</span><span className="text-base">{text}</span></li>
+              <div className="bg-white/5 backdrop-blur-md p-6 sm:p-10 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+                <p className="text-[#58ffa5] text-[10px] sm:text-sm font-(family-name:--font-jb-mono) font-bold mb-4 uppercase tracking-widest">For Businesses</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6">Individual MSMEs</h3>
+                <p className="text-white/70 text-sm sm:text-base mb-8 min-h-[60px]">Direct funding without middlemen. Unlock your working capital rapidly based purely on your operational data.</p>
+                <ul className="space-y-5 mb-10 text-white/90 text-[13px] sm:text-sm">
+                  {[['verified_user', 'Self-Service Dashboards'], ['bolt', 'Instant Eligibility Evaluation'], ['account_balance', 'Low Interest Unsecured Lines']].map(([icon, text]) => (
+                    <li key={text} className="flex items-center gap-3"><span className="material-symbols-outlined text-[#58ffa5] text-xl">{icon}</span><span className="text-sm sm:text-base">{text}</span></li>
                   ))}
                 </ul>
                 <Link href="/login" className="block text-center w-full py-4 rounded-lg border-2 border-[#1dff9b] text-[#1dff9b] font-bold hover:bg-[#1dff9b] hover:text-[#00210f] transition-all cursor-pointer">Apply for Loan</Link>
               </div>
               {/* DSA */}
-              <div className="bg-white p-10 rounded-2xl shadow-2xl relative scale-[1.02]">
-                <div className="absolute top-0 right-8 -translate-y-1/2 px-5 py-1.5 bg-[#006d3f] text-white text-xs font-bold rounded-full shadow-lg">PARTNER PORTAL</div>
-                <p className="text-[#003f7d] text-sm font-(family-name:--font-jb-mono) font-bold mb-4 uppercase tracking-widest">For Sales Partners</p>
-                <h3 className="text-3xl font-bold text-[#003f7d] mb-6">Certified DSAs</h3>
-                <p className="text-[#424751] text-base mb-8 min-h-[60px]">Supercharge your agency's pipeline. Manage customer documents, track statuses, and withdraw commissions effortlessly.</p>
-                <ul className="space-y-5 text-base text-[#424751] mb-10">
+              <div className="bg-white p-6 sm:p-10 rounded-2xl shadow-2xl relative sm:scale-[1.02]">
+                <div className="absolute top-0 right-8 -translate-y-1/2 px-5 py-1.5 bg-[#006d3f] text-white text-[10px] sm:text-xs font-bold rounded-full shadow-lg">PARTNER PORTAL</div>
+                <p className="text-[#003f7d] text-[10px] sm:text-sm font-(family-name:--font-jb-mono) font-bold mb-4 uppercase tracking-widest">For Sales Partners</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#003f7d] mb-6">Certified DSAs</h3>
+                <p className="text-[#424751] text-sm sm:text-base mb-8 min-h-[60px]">Supercharge your agency's pipeline. Manage customer documents, track statuses, and automate your commission payouts in one centralized, powerful hub.</p>
+                <ul className="space-y-5 text-sm sm:text-base text-[#424751] mb-10">
                   {['Dedicated Portfolio Manager Hub', 'Realtime Commission Payout Dashboard', 'Co-branded tracking & alerts'].map(f => (
-                    <li key={f} className="flex gap-3"><span className="material-symbols-outlined text-[#006d3f] text-xl">check_circle</span>{f}</li>
+                    <li key={f} className="flex gap-3"><span className="material-symbols-outlined text-[#006d3f] text-lg sm:text-xl">check_circle</span>{f}</li>
                   ))}
                 </ul>
                 <Link href="/login" className="block text-center w-full py-4 rounded-lg text-white font-bold shadow-lg hover:opacity-90 transition-all cursor-pointer" style={{ background: 'linear-gradient(135deg,#1e3a8a 0%,#3b82f6 25%,#2563eb 50%,#1d4ed8 75%,#1e40af 100%)' }}>Join our DSA Network</Link>
@@ -458,14 +458,25 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          <h2 className="font-(family-name:--font-outfit) font-bold text-5xl text-[#003f7d] mb-8 relative z-10">Access Capital. <span className="text-[#006d3f]">Expand Horizons.</span></h2>
-          <div className="flex flex-col sm:flex-row justify-center gap-6 relative z-10">
-            <Link href="/login" className="px-12 py-5 bg-[#1dff9b] text-[#00210f] font-black rounded-lg text-xl hover:scale-105 transition-transform shadow-xl">Apply as MSME</Link>
-            <Link href="/login" className="px-12 py-5 text-white font-bold rounded-lg text-xl hover:bg-[#0056a7] transition-all" style={{ background: 'linear-gradient(135deg,#1e3a8a 0%,#3b82f6 25%,#2563eb 50%,#1d4ed8 75%,#1e40af 100%)' }}>Agent Login</Link>
+          <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-5xl text-[#003f7d] mb-8 relative z-10 px-4">Access Capital. <span className="text-[#006d3f]">Expand Horizons.</span></h2>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 relative z-10 px-6">
+            <Link href="/login" className="px-8 sm:px-12 py-4 sm:py-5 bg-[#1dff9b] text-[#00210f] font-black rounded-lg text-lg sm:text-xl hover:scale-105 transition-transform shadow-xl text-center">Apply as MSME</Link>
+            <Link href="/login" className="px-8 sm:px-12 py-4 sm:py-5 text-white font-bold rounded-lg text-lg sm:text-xl hover:bg-[#0056a7] transition-all text-center" style={{ background: 'linear-gradient(135deg,#1e3a8a 0%,#3b82f6 25%,#2563eb 50%,#1d4ed8 75%,#1e40af 100%)' }}>Agent Login</Link>
           </div>
-          <p className="mt-10 text-[#424751] font-(family-name:--font-jb-mono) text-sm tracking-wide">TRUSTED BY 14+ NBFCs AND TOP 5 PRIVATE BANKS</p>
-          <div className="flex justify-center mt-12">
-            <div id="cta-card-ghost" style={{ width: '380px', height: '240px', borderRadius: '20px', border: '1.5px dashed rgba(0,63,125,0.10)', background: 'rgba(0,63,125,0.02)', opacity: 0, transition: 'opacity .3s', pointerEvents: 'none' }} />
+          <p className="mt-10 text-[#424751] font-(family-name:--font-jb-mono) text-[10px] sm:text-sm tracking-wide px-4">TRUSTED BY 14+ NBFCs AND TOP 5 PRIVATE BANKS</p>
+          <div className="flex justify-center mt-12 relative h-[240px]">
+            {/* Desktop Transition Slot (Ghost) */}
+            <div id="cta-card-ghost" className="hidden lg:block" style={{ width: '380px', height: '240px', borderRadius: '20px', border: '1.5px dashed rgba(0,63,125,0.10)', background: 'rgba(0,63,125,0.02)', opacity: 0, transition: 'opacity .3s', pointerEvents: 'none' }} />
+            
+            {/* Mobile-Only 3D Card (Displayed only on mobile) */}
+            <div className="lg:hidden absolute inset-0 flex justify-center items-center scale-90 sm:scale-100">
+              <CreditCard3D 
+                sceneId="cta-mobile-card-scene"
+                wrapId="cta-mobile-card-wrap"
+                cardId="cta-mobile-card"
+                cardHolder="PREMIUM PARTNER"
+              />
+            </div>
           </div>
         </section>
 
@@ -702,43 +713,88 @@ export default function HomePage() {
 (function(){
   function initParallax(){
   if(!window.gsap||!window.ScrollTrigger)return;
-  const isMobile=window.innerWidth<768;
+  const isDesktop = window.innerWidth >= 1024;
+  const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+  const isMobile = window.innerWidth < 768;
+
+  // Simple reveal animations for desktop/tablet
   if(!isMobile){
     gsap.utils.toArray('#solutions .grid > div').forEach((card,i)=>{gsap.fromTo(card,{y:60,opacity:0,scale:0.97},{y:0,opacity:1,scale:1,duration:0.65,ease:'power3.out',delay:i*0.07,scrollTrigger:{trigger:card,start:'top 88%',toggleActions:'play none none none'}});});
     gsap.fromTo('#solutions h2',{y:36,opacity:0},{y:0,opacity:1,duration:0.7,ease:'power3.out',scrollTrigger:{trigger:'#solutions h2',start:'top 88%',toggleActions:'play none none none'}});
     gsap.utils.toArray('#platform .flex.gap-6').forEach((row,i)=>{gsap.fromTo(row,{x:50,opacity:0},{x:0,opacity:1,duration:0.6,ease:'power3.out',delay:i*0.1,scrollTrigger:{trigger:row,start:'top 86%',toggleActions:'play none none none'}});});
-    // Dashboard live feed
-    (function(){
-      const feed=document.getElementById('dash-feed');const counter=document.getElementById('dash-count');if(!feed)return;
-      const leads=[{name:'Sharma Enterprises',id:'99420',status:'PRE-QUALIFIED',color:'bg-[#00e388] text-[#00210f]',avatar:'11'},{name:'Patel Trading Co.',id:'99421',status:'VERIFIED',color:'bg-[#d6e3ff] text-[#003f7d]',avatar:'32'},{name:'Mehta Textiles Ltd.',id:'99422',status:'PRE-QUALIFIED',color:'bg-[#00e388] text-[#00210f]',avatar:'47'},{name:'Gupta Agro Pvt.',id:'99423',status:'BUREAU CLEAR',color:'bg-[#eaddfd] text-[#443b54]',avatar:'15'},{name:'Reddy Pharma Works',id:'99424',status:'PRE-QUALIFIED',color:'bg-[#00e388] text-[#00210f]',avatar:'60'},{name:'Singh Auto Parts',id:'99425',status:'ITR VERIFIED',color:'bg-[#d6e3ff] text-[#003f7d]',avatar:'25'},{name:'Joshi Exports Pvt.',id:'99426',status:'PRE-QUALIFIED',color:'bg-[#00e388] text-[#00210f]',avatar:'53'},{name:'Kumar Steel Works',id:'99427',status:'GST VERIFIED',color:'bg-[#eaddfd] text-[#443b54]',avatar:'38'}];
-      leads.forEach(l=>{const row=document.createElement('div');row.className='dash-row flex items-center justify-between p-3 bg-[#f6f3f2] rounded-lg';row.style.transform='translateY(12px)';row.style.opacity='0';row.innerHTML='<div class="flex items-center gap-3"><img src="https://i.pravatar.cc/32?img='+l.avatar+'" class="w-8 h-8 rounded-full object-cover border border-[#c2c6d3]/20" alt="'+l.name+'"/><div><p class="font-bold text-xs leading-tight">'+l.name+'</p><p class="text-[10px] text-[#424751] font-[Space_Grotesk]">Lead ID: '+l.id+'</p></div></div><div class="flex items-center gap-2"><div class="dash-shimmer h-5 w-20 rounded-full bg-[#e5e2e1] animate-pulse"></div><span class="dash-badge hidden px-2.5 py-1 '+l.color+' text-[9px] font-bold rounded-full whitespace-nowrap">'+l.status+'</span></div>';feed.appendChild(row);});
-      const rows=feed.querySelectorAll('.dash-row');let revealed=0,animating=false,currentCount=0;
-      function revealUpTo(n){rows.forEach((row,i)=>{if(i<n&&row.style.opacity==='0'){setTimeout(()=>{row.style.transition='opacity 0.3s ease,transform 0.3s ease';row.style.opacity='1';row.style.transform='translateY(0)';setTimeout(()=>{row.querySelector('.dash-shimmer').style.display='none';row.querySelector('.dash-badge').classList.remove('hidden');},300);},i*100);revealed=Math.max(revealed,i+1);}else if(i>=n){row.style.transition='none';row.style.opacity='0';row.style.transform='translateY(12px)';row.querySelector('.dash-shimmer').style.display='';row.querySelector('.dash-badge').classList.add('hidden');if(i<revealed)revealed=i;}});if(counter)counter.textContent=Math.max(0,n)+' processed';}
-      function startSequence(){if(animating)return;animating=true;currentCount=0;revealUpTo(0);const interval=setInterval(()=>{currentCount++;revealUpTo(currentCount);if(counter)counter.textContent=currentCount+' processed';if(currentCount>=leads.length){clearInterval(interval);animating=false;}},350);}
-      ScrollTrigger.create({trigger:'#platform',start:'top 60%',onEnter(){startSequence();},onLeaveBack(){animating=false;currentCount=0;revealUpTo(0);}});
-    })();
-    // Pipeline
-    (function(){
-      const section=document.getElementById('pipeline-section');if(!section)return;
-      const steps=document.querySelectorAll('.pl-step');const line=document.getElementById('pl-line');const label=document.getElementById('pl-label');const heading=document.getElementById('pl-heading');const metrics=document.getElementById('pl-metrics');const TOTAL=steps.length;
-      const stepConfig=[{badge:'UPLOADED',badgeBg:'rgba(0,86,167,0.25)',badgeColor:'#a8c8ff',iconStroke:'#a8c8ff',borderColor:'rgba(168,200,255,0.4)',iconBg:'rgba(0,86,167,0.15)'},{badge:'VERIFIED',badgeBg:'rgba(0,86,167,0.25)',badgeColor:'#a8c8ff',iconStroke:'#a8c8ff',borderColor:'rgba(168,200,255,0.4)',iconBg:'rgba(0,86,167,0.15)'},{badge:'PROCESSED',badgeBg:'rgba(0,86,167,0.25)',badgeColor:'#a8c8ff',iconStroke:'#a8c8ff',borderColor:'rgba(168,200,255,0.4)',iconBg:'rgba(0,86,167,0.15)'},{badge:'PRE-QUALIFIED',badgeBg:'rgba(29,255,155,0.15)',badgeColor:'#1dff9b',iconStroke:'#1dff9b',borderColor:'rgba(29,255,155,0.4)',iconBg:'rgba(29,255,155,0.1)'},{badge:'APPROVED ✓',badgeBg:'rgba(29,255,155,0.2)',badgeColor:'#1dff9b',iconStroke:'#1dff9b',borderColor:'rgba(29,255,155,0.6)',iconBg:'rgba(29,255,155,0.15)',glow:true}];
-      function activateStep(i){const step=steps[i];const cfg=stepConfig[i];const icon=step.querySelector('.pl-icon');const badge=step.querySelector('.pl-badge');const title=step.querySelector('.pl-title');const sub=step.querySelector('.pl-sub');const paths=icon.querySelectorAll('path,circle,rect');icon.style.background=cfg.iconBg;icon.style.borderColor=cfg.borderColor;if(cfg.glow){icon.style.boxShadow='0 0 24px rgba(29,255,155,0.6)';icon.style.transform='scale(1.15)';}paths.forEach(p=>p.setAttribute('stroke',cfg.iconStroke));badge.style.background=cfg.badgeBg;badge.style.color=cfg.badgeColor;badge.style.borderColor=cfg.borderColor;badge.textContent=cfg.badge;title.style.color='#fff';sub.style.color='rgba(255,255,255,0.55)';if(i===4&&!confettiTriggered){confettiTriggered=true;setTimeout(triggerConfetti,300);}}
-      function deactivateStep(i){const step=steps[i];const icon=step.querySelector('.pl-icon');const badge=step.querySelector('.pl-badge');const title=step.querySelector('.pl-title');const sub=step.querySelector('.pl-sub');const paths=icon.querySelectorAll('path,circle,rect');icon.style.background='rgba(255,255,255,0.04)';icon.style.borderColor='rgba(255,255,255,0.1)';icon.style.boxShadow='none';icon.style.transform='scale(1)';paths.forEach(p=>p.setAttribute('stroke','rgba(255,255,255,0.3)'));badge.style.background='rgba(255,255,255,0.06)';badge.style.color='rgba(255,255,255,0.25)';badge.style.borderColor='rgba(255,255,255,0.08)';if(badge)badge.textContent='PENDING';title.style.color='rgba(255,255,255,0.4)';sub.style.color='rgba(255,255,255,0.25)';}
-      function animateCount(el,target,suffix,duration){if(!el)return;const start=performance.now();function tick(now){if(!el||!el.isConnected)return;const t=Math.min((now-start)/duration,1);const ease=1-Math.pow(1-t,3);el.textContent=Math.round(ease*target)+suffix;if(t<1)requestAnimationFrame(tick);}requestAnimationFrame(tick);}
-      function triggerConfetti(){
-        if(typeof window.confetti !== 'function') return;
-        const duration = 3000;
-        const end = Date.now() + duration;
-        const colors = ['#1dff9b', '#a8c8ff', '#ffe066', '#0056a7'];
-        (function frame() {
-          window.confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 0.8 }, colors, zIndex: 9999, disableForReducedMotion: true });
-          window.confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 0.8 }, colors, zIndex: 9999, disableForReducedMotion: true });
-          if (Date.now() < end) requestAnimationFrame(frame);
-        }());
-      }
-      let confettiTriggered=false;
-      ScrollTrigger.create({trigger:section,start:'top top',end:'bottom bottom',scrub:0.1,onUpdate(self){const p=self.progress;if(p>0.02){label.style.opacity='1';label.style.transform='translateY(0)';heading.style.opacity='1';heading.style.transform='translateY(0)';}else{label.style.opacity='0';label.style.transform='translateY(16px)';heading.style.opacity='0';heading.style.transform='translateY(20px)';}const animStart=0.05,animEnd=0.82,animRange=animEnd-animStart;const animProgress=Math.min(1,Math.max(0,(p-animStart)/animRange));const stepWidth=1/TOTAL;steps.forEach((_,i)=>{if(animProgress>i*stepWidth){activateStep(i);}else{deactivateStep(i);if(i===4)confettiTriggered=false;}});line.style.width=(Math.min(1,animProgress)*100)+'%';if(p>=0.88){metrics.style.opacity='1';metrics.style.transform='translateY(0)';if(!metrics._counted){metrics._counted=true;animateCount(document.getElementById('pl-m1'),14280,'',1200);animateCount(document.getElementById('pl-m2'),94,'%',1000);animateCount(document.getElementById('pl-m3'),87,'ms',900);}}else{metrics.style.opacity='0';metrics.style.transform='translateY(20px)';metrics._counted=false;const m1=document.getElementById('pl-m1');const m2=document.getElementById('pl-m2');const m3=document.getElementById('pl-m3');if(m1)m1.textContent='0';if(m2)m2.textContent='0%';if(m3)m3.textContent='0ms';}}});
-    })();
+  }
+
+  // Dashboard live feed (Keep active on all devices for interactivity)
+  (function(){
+    const feed=document.getElementById('dash-feed');const counter=document.getElementById('dash-count');if(!feed)return;
+    const leads=[{name:'Sharma Enterprises',id:'99420',status:'PRE-QUALIFIED',color:'bg-[#00e388] text-[#00210f]',avatar:'11'},{name:'Patel Trading Co.',id:'99421',status:'VERIFIED',color:'bg-[#d6e3ff] text-[#003f7d]',avatar:'32'},{name:'Mehta Textiles Ltd.',id:'99422',status:'PRE-QUALIFIED',color:'bg-[#00e388] text-[#00210f]',avatar:'47'},{name:'Gupta Agro Pvt.',id:'99423',status:'BUREAU CLEAR',color:'bg-[#eaddfd] text-[#443b54]',avatar:'15'},{name:'Reddy Pharma Works',id:'99424',status:'PRE-QUALIFIED',color:'bg-[#00e388] text-[#00210f]',avatar:'60'},{name:'Singh Auto Parts',id:'99425',status:'ITR VERIFIED',color:'bg-[#d6e3ff] text-[#003f7d]',avatar:'25'},{name:'Joshi Exports Pvt.',id:'99426',status:'PRE-QUALIFIED',color:'bg-[#00e388] text-[#00210f]',avatar:'53'},{name:'Kumar Steel Works',id:'99427',status:'GST VERIFIED',color:'bg-[#eaddfd] text-[#443b54]',avatar:'38'}];
+    leads.forEach(l=>{const row=document.createElement('div');row.className='dash-row flex items-center justify-between p-3 bg-[#f6f3f2] rounded-lg';row.style.transform='translateY(12px)';row.style.opacity='0';row.innerHTML='<div class="flex items-center gap-3"><img src="https://i.pravatar.cc/32?img='+l.avatar+'" class="w-8 h-8 rounded-full object-cover border border-[#c2c6d3]/20" alt="'+l.name+'"/><div><p class="font-bold text-xs leading-tight">'+l.name+'</p><p class="text-[10px] text-[#424751] font-[Space_Grotesk]">Lead ID: '+l.id+'</p></div></div><div class="flex items-center gap-2"><div class="dash-shimmer h-5 w-20 rounded-full bg-[#e5e2e1] animate-pulse"></div><span class="dash-badge hidden px-2.5 py-1 '+l.color+' text-[9px] font-bold rounded-full whitespace-nowrap">'+l.status+'</span></div>';feed.appendChild(row);});
+    const rows=feed.querySelectorAll('.dash-row');let revealed=0,animating=false,currentCount=0;
+    function revealUpTo(n){rows.forEach((row,i)=>{if(i<n&&row.style.opacity==='0'){setTimeout(()=>{row.style.transition='opacity 0.3s ease,transform 0.3s ease';row.style.opacity='1';row.style.transform='translateY(0)';setTimeout(()=>{row.querySelector('.dash-shimmer').style.display='none';row.querySelector('.dash-badge').classList.remove('hidden');},300);},i*100);revealed=Math.max(revealed,i+1);}else if(i>=n){row.style.transition='none';row.style.opacity='0';row.style.transform='translateY(12px)';row.querySelector('.dash-shimmer').style.display='';row.querySelector('.dash-badge').classList.add('hidden');if(i<revealed)revealed=i;}});if(counter)counter.textContent=Math.max(0,n)+' processed';}
+    function startSequence(){if(animating)return;animating=true;currentCount=0;revealUpTo(0);const interval=setInterval(()=>{currentCount++;revealUpTo(currentCount);if(counter)counter.textContent=currentCount+' processed';if(currentCount>=leads.length){clearInterval(interval);animating=false;}},350);}
+    ScrollTrigger.create({trigger:'#platform',start:'top 60%',onEnter(){startSequence();},onLeaveBack(){animating=false;currentCount=0;revealUpTo(0);}});
+  })();
+
+  // Pipeline
+  (function(){
+    const section=document.getElementById('pipeline-section');if(!section)return;
+    const steps=document.querySelectorAll('.pl-step');const label=document.getElementById('pl-label');const heading=document.getElementById('pl-heading');const metrics=document.getElementById('pl-metrics');const line=document.getElementById('pl-line');const row=document.getElementById('pipeline-row');
+    const TOTAL=steps.length;
+    let confettiTriggered=false;
+    const stepConfig=[{badge:'UPLOADED',iBg:'rgba(0,86,167,0.15)',iS:'#a8c8ff'},{badge:'VERIFIED',iBg:'rgba(0,86,167,0.15)',iS:'#a8c8ff'},{badge:'PROCESSED',iBg:'rgba(0,86,167,0.15)',iS:'#a8c8ff'},{badge:'PRE-QUALIFIED',iBg:'rgba(29,255,155,0.1)',iS:'#1dff9b'},{badge:'APPROVED ✓',iBg:'rgba(29,255,155,0.15)',iS:'#1dff9b',glow:true}];
+
+    function activateStep(i){
+      const s=steps[i]; const cfg=stepConfig[i]; const icon=s.querySelector('.pl-icon'); const badge=s.querySelector('.pl-badge');
+      icon.style.background=cfg.iBg; icon.style.borderColor='rgba(29,255,155,0.4)';
+      icon.querySelectorAll('path,circle,rect').forEach(p=>p.setAttribute('stroke',cfg.iS));
+      badge.textContent=cfg.badge; badge.style.opacity='1';
+      s.querySelector('.pl-title').style.color='#fff';
+      if(cfg.glow){icon.style.boxShadow='0 0 20px rgba(29,255,155,0.4)';icon.style.transform='scale(1.1)';}
+      if(i===4 && !confettiTriggered){ confettiTriggered=true; setTimeout(triggerConfetti,300); }
+    }
+    function deactivateStep(i){
+      const s=steps[i]; const icon=s.querySelector('.pl-icon'); const badge=s.querySelector('.pl-badge');
+      icon.style.background='rgba(255,255,255,0.04)'; icon.style.borderColor='rgba(255,255,255,0.1)';
+      icon.querySelectorAll('path,circle,rect').forEach(p=>p.setAttribute('stroke','rgba(255,255,255,0.3)'));
+      badge.textContent='PENDING'; badge.style.opacity='0.4';
+      s.querySelector('.pl-title').style.color='rgba(255,255,255,0.4)';
+      icon.style.boxShadow='none'; icon.style.transform='scale(1)';
+    }
+
+    if(isDesktop){
+      // Desktop Horizontal Scrub
+      ScrollTrigger.create({
+        trigger: section, start: 'top top', end: 'bottom bottom', scrub: 0.1,
+        onUpdate(self){
+          const p = self.progress;
+          const animP = Math.min(1, Math.max(0, (p-0.05)/0.8));
+          steps.forEach((_,i)=>{if(animP>(i/TOTAL)) activateStep(i); else {deactivateStep(i); if(i===4)confettiTriggered=false;}});
+          if(line) line.style.width=(animP*100)+'%';
+          if(row) row.style.transform='translateX(-'+(animP*60)+'%)';
+          if(p>0.88 && !metrics._counted){ metrics._counted=true; metrics.style.opacity='1'; animateCount(document.getElementById('pl-m1'),14280,'',1200); animateCount(document.getElementById('pl-m2'),94,'%',1000); animateCount(document.getElementById('pl-m3'),87,'ms',900); }
+        }
+      });
+    } else {
+      // Mobile/Tablet Vertical Activation
+      steps.forEach((step, i) => {
+        ScrollTrigger.create({
+          trigger: step, start: 'top 75%', end: 'top 25%', toggleActions: 'play reverse play reverse',
+          onEnter: () => activateStep(i), onLeaveBack: () => { deactivateStep(i); if(i===4) confettiTriggered=false; }
+        });
+      });
+      ScrollTrigger.create({
+        trigger: metrics, start: 'top 90%', onEnter: () => {
+          if(!metrics._counted){ metrics._counted=true; metrics.style.opacity='1'; animateCount(document.getElementById('pl-m1'),14280,'',1200); animateCount(document.getElementById('pl-m2'),94,'%',1000); animateCount(document.getElementById('pl-m3'),87,'ms',900); }
+        }
+      });
+    }
+
+    function animateCount(el,target,suffix,duration){if(!el)return;const start=performance.now();function tick(now){if(!el||!el.isConnected)return;const t=Math.min((now-start)/duration,1);const ease=1-Math.pow(1-t,3);el.textContent=Math.round(ease*target)+suffix;if(t<1)requestAnimationFrame(tick);}requestAnimationFrame(tick);}
+    function triggerConfetti(){ if(typeof window.confetti !== 'function') return; const duration = 3000; const end = Date.now() + duration; const colors = ['#1dff9b', '#a8c8ff', '#ffe066', '#0056a7']; (function frame() { window.confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 0.8 }, colors, zIndex: 9999 }); window.confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 0.8 }, colors, zIndex: 9999 }); if (Date.now() < end) requestAnimationFrame(frame); })(); }
+  })();
+
+  // Other parallax elements (Capped for performance on mobile)
+  if(isDesktop){
     const dash=document.getElementById('platform-dashboard');
     if(dash){gsap.fromTo(dash,{y:40,opacity:0},{y:0,opacity:1,duration:0.8,ease:'power3.out',scrollTrigger:{trigger:dash,start:'top 85%',toggleActions:'play none none none'}});gsap.to(dash,{y:-30,ease:'none',scrollTrigger:{trigger:'#platform',start:'top bottom',end:'bottom top',scrub:1.5}});}
     gsap.fromTo('#platform h2',{y:36,opacity:0},{y:0,opacity:1,duration:0.7,ease:'power3.out',scrollTrigger:{trigger:'#platform h2',start:'top 88%',toggleActions:'play none none none'}});
@@ -747,23 +803,27 @@ export default function HomePage() {
     gsap.fromTo('#cta-section h2',{y:40,opacity:0,scale:0.96},{y:0,opacity:1,scale:1,duration:0.8,ease:'power3.out',scrollTrigger:{trigger:'#cta-section h2',start:'top 82%',toggleActions:'play none none none'}});
     [['#orb-s1',-80,-20],['#orb-s2',60,15],['#orb-p1',-90,-25],['#orb-p2',70,20],['#orb-pr1',-100,-30],['#orb-pr2',80,18],['#orb-c1',-70,-15],['#orb-c2',60,12]].forEach(([id,yTo,xTo])=>{const el=document.querySelector(id);if(!el)return;const section=el.closest('section')||el.parentElement;gsap.to(el,{opacity:0.14,duration:1,ease:'power2.out',scrollTrigger:{trigger:section,start:'top 90%',toggleActions:'play none none reverse'}});gsap.fromTo(el,{y:0,x:0},{y:yTo,x:xTo,ease:'none',scrollTrigger:{trigger:section,start:'top bottom',end:'bottom top',scrub:2}});});
     [['#shape-s1',-50,12],['#shape-s2',40,-8],['#shape-s3',-35,6],['#shape-p1',-60,16],['#shape-p2',45,-12]].forEach(([id,yTo,rot])=>{const el=document.querySelector(id);if(!el)return;const section=el.closest('section')||el.parentElement;gsap.fromTo(el,{y:0,rotation:0,opacity:0},{y:yTo,rotation:rot,opacity:1,ease:'none',scrollTrigger:{trigger:section,start:'top bottom',end:'bottom top',scrub:2}});});
-    const marquee=document.getElementById('marquee-inner');if(marquee&&!marquee._cloned){marquee._cloned=true;const clone=marquee.cloneNode(true);marquee.parentElement.appendChild(clone);gsap.to([marquee,clone],{xPercent:-50,ease:'none',duration:22,repeat:-1});}
-    gsap.fromTo('footer',{y:24,opacity:0},{y:0,opacity:1,duration:0.7,ease:'power2.out',scrollTrigger:{trigger:'footer',start:'top 95%',toggleActions:'play none none none'}});
+    // Hero orbs fade in on load
+    ['#orb-h1','#orb-h2','#orb-h3'].forEach((id,i)=>{const el=document.querySelector(id);if(el)gsap.to(el,{opacity:i===0?0.7:i===1?0.2:0.12,duration:1.5,delay:i*0.2,ease:'power2.out'});});
+  }
+
+  // Common Parallax (Active on Desktop/Tablet, light on mobile)
+  const marquee=document.getElementById('marquee-inner');if(marquee&&!marquee._cloned){marquee._cloned=true;const clone=marquee.cloneNode(true);marquee.parentElement.appendChild(clone);gsap.to([marquee,clone],{xPercent:-50,ease:'none',duration:22,repeat:-1});}
+  gsap.fromTo('footer',{y:24,opacity:0},{y:0,opacity:1,duration:0.7,ease:'power2.out',scrollTrigger:{trigger:'footer',start:'top 95%',toggleActions:'play none none none'}});
+  
+  if(isDesktop || isTablet){
     gsap.to('#hero-section h1',{y:-60,ease:'none',scrollTrigger:{trigger:'#hero-section',start:'top top',end:'bottom top',scrub:true}});
     gsap.to('#hero-section p',{y:-40,ease:'none',scrollTrigger:{trigger:'#hero-section',start:'top top',end:'bottom top',scrub:true}});
     gsap.to('#hero-section .flex.flex-wrap',{y:-24,ease:'none',scrollTrigger:{trigger:'#hero-section',start:'top top',end:'bottom top',scrub:true}});
     const heroGrid=document.getElementById('hero-grid');if(heroGrid){gsap.to(heroGrid,{y:50,ease:'none',scrollTrigger:{trigger:'#hero-section',start:'top top',end:'bottom top',scrub:true}});}
-    // GSAP fade in orbs
+    // GSAP fade in orbs for sections
     gsap.utils.toArray('.px-orb').forEach(orb=>{gsap.to(orb,{opacity:0.14,duration:1.5,ease:'power2.out',scrollTrigger:{trigger:orb.closest('section')||orb.parentElement,start:'top 90%',toggleActions:'play none none reverse'}});});
-    // Hero orbs fade in on load
-    ['#orb-h1','#orb-h2','#orb-h3'].forEach((id,i)=>{const el=document.querySelector(id);if(el)gsap.to(el,{opacity:i===0?0.7:i===1?0.2:0.12,duration:1.5,delay:i*0.2,ease:'power2.out'});});
   }
   } // end initParallax
   window.addEventListener('libs-ready', initParallax);
 })();
       `}</Script>
 
-      {/* Global styles for this page */}
       <style>{`
         .px-orb{position:absolute;border-radius:50%;pointer-events:none;will-change:transform;filter:blur(70px);opacity:0;}
         .px-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,63,125,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,63,125,0.04) 1px,transparent 1px);background-size:60px 60px;will-change:transform;}
@@ -785,7 +845,66 @@ export default function HomePage() {
         #card-streak{animation:streak-auto 4s ease-in-out infinite 1s;}
         #card-front:hover #card-shimmer{opacity:1!important;}
         .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
-        @media(max-width:767px){#card-scene{display:none!important;}#card-landing-slot{display:none!important;}#fixed-card{display:none!important;}#pipeline-section{height:auto!important;}#pipeline-sticky{position:relative!important;height:auto!important;padding:60px 16px!important;}.pl-step-row{flex-direction:column!important;gap:16px!important;}.pl-step{flex-direction:row!important;align-items:center!important;gap:16px!important;width:100%!important;}.pl-icon{width:52px!important;height:52px!important;}}
+        @media(max-width:1023px){
+          #card-scene, #card-landing-slot, #fixed-card { display:none!important; }
+          #pipeline-section { height: auto!important; min-height: 0!important; padding-bottom: 80px!important; }
+          #pipeline-sticky { position: relative!important; height: auto!important; padding: 60px 16px!important; }
+          .pl-step-row { 
+            flex-direction: column!important; 
+            gap: 40px!important; 
+            align-items: flex-start!important; 
+            padding-left: 24px!important;
+            padding-right: 24px!important;
+            border-left: 2px dashed rgba(29, 255, 155, 0.2);
+            margin-left: 20px;
+          }
+          .pl-step { 
+            flex-direction: row!important; 
+            align-items: flex-start!important; 
+            gap: 20px!important; 
+            width: 100%!important; 
+            text-align: left!important;
+            position: relative;
+          }
+          /* Custom bullet for mobile pipeline */
+          .pl-step::before {
+            content: "";
+            position: absolute;
+            left: -33px;
+            top: 24px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #1dff9b;
+            box-shadow: 0 0 15px #1dff9b;
+            z-index: 2;
+          }
+          .pl-icon { 
+            width: 52px!important; 
+            height: 52px!important; 
+            flex-shrink: 0!important; 
+            background: rgba(29, 255, 155, 0.1)!important;
+            border: 1px solid rgba(29, 255, 155, 0.2)!important;
+          }
+          .pl-badge { position: relative!important; top: 0!important; right: 0!important; margin-left: auto!important; margin-top: 4px!important; font-size: 9px!important; padding: 2px 6px!important; }
+          #pl-line { display: none!important; }
+          #pl-metrics { 
+            flex-direction: column!important; 
+            gap: 32px!important; 
+            align-items: stretch!important; 
+            height: auto!important; 
+            padding: 32px 24px!important;
+            margin-top: 40px!important;
+          }
+          #pl-metrics > div:nth-child(even) { display: none!important; } /* Hide the dividers */
+          #pl-metrics > div { width: 100%!important; }
+          
+          .px-orb { max-width: 100%; opacity: 0.1!important; pointer-events: none; }
+          
+          /* Typography adjustments */
+          h2 { font-size: 1.875rem !important; line-height: 1.25 !important; }
+          .pl-step h4 { font-size: 1.25rem !important; }
+        }
       `}</style>
     </>
   );
