@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { DM_Sans, Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
@@ -50,7 +51,9 @@ export default function RootLayout({
       <body suppressHydrationWarning className="h-full">
         <Script src="/lottie/lottie-player.js" strategy="beforeInteractive" id="global-lottie-player" />
         <Header />
-        <TransitionOverlay />
+        <Suspense>
+          <TransitionOverlay />
+        </Suspense>
         {children}
       </body>
     </html>
