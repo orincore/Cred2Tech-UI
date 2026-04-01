@@ -2,1264 +2,763 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Login | Cred2Tech</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
-/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── Exact homepage colors ── */
 :root {
-  --bg:           #fcf9f8;
-  --surface:      #fcf9f8;
-  --surface-low:  #f6f3f2;
-  --surface-cont: #f0eded;
-  --surface-high: #eae7e7;
-  --on-surface:   #1b1c1c;
-  --on-muted:     #424751;
-  --outline:      #727783;
-  --outline-var:  #c2c6d3;
-  --primary:      #003f7d;
-  --primary-cont: #0056a7;
-  --primary-dim:  #a8c8ff;
-  --primary-fix:  #d6e3ff;
-  --secondary:    #006d3f;
-  --sec-cont:     #1dff9b;
-  --white:        #ffffff;
+  --primary:     #003f7d;
+  --primary-c:   #0056a7;
+  --primary-dim: #a8c8ff;
+  --primary-fix: #d6e3ff;
+  --secondary:   #006d3f;
+  --accent:      #1dff9b;
+  --bg:          #fcf9f8;
+  --surface:     #ffffff;
+  --surface-low: #f6f3f2;
+  --outline:     #727783;
+  --outline-var: #c2c6d3;
+  --on-surface:  #1b1c1c;
+  --on-muted:    #424751;
+  --ease:        cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-body {
-  font-family: 'Inter', sans-serif;
+html, body {
+  height: 100%;
+  font-family: 'Sora', sans-serif;
   background: var(--bg);
   color: var(--on-surface);
   overflow: hidden;
-  height: 100vh;
 }
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  line-height: 1;
 }
 
-/* ── Three.js canvas — lives inside hero only ── */
-#bg-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* ── Layout ── */
-.login-layout {
-  position: relative;
-  z-index: 10;
+/* ── PAGE — full screen centered ── */
+.page {
+  min-height: 100vh;
   display: flex;
-  height: 100vh;
-  width: 100%;
-}
-
-/* ── LEFT HERO ── */
-.hero-side {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 3rem 3.5rem;
+  align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #003f7d 0%, #0056a7 55%, #155eaf 100%);
 }
 
-/* subtle grid overlay on hero */
-.hero-side::before {
+/* grid overlay */
+.page::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,63,125,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,63,125,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
   background-size: 56px 56px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* ── RIGHT FORM PANEL ── */
-.form-side {
-  width: 480px;
-  min-width: 480px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  background: var(--white);
-  border-left: 1px solid var(--outline-var);
-  box-shadow: -8px 0 40px rgba(0,63,125,0.07);
-  padding: 2.5rem 4.5rem 2rem 2.5rem;
-  overflow: hidden;
-}
-
-/* top-right corner accent */
-.form-side::after {
-  content: '';
+/* orbs */
+.orb {
   position: absolute;
-  top: 0; right: 0;
-  width: 140px; height: 140px;
-  background: linear-gradient(225deg, var(--primary-fix) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(70px);
   pointer-events: none;
+  z-index: 0;
+  animation: orbDrift var(--d, 20s) ease-in-out infinite alternate;
+}
+.orb-1 { width:500px;height:500px;background:#0d3a8e;top:-140px;left:-120px;opacity:.8;--d:22s; }
+.orb-2 { width:320px;height:320px;background:rgba(29,255,155,.2);bottom:-80px;right:-60px;opacity:1;--d:26s;animation-delay:-9s; }
+.orb-3 { width:200px;height:200px;background:#00aaff;top:40%;left:50%;opacity:.12;--d:18s;animation-delay:-5s; }
+
+@keyframes orbDrift {
+  0%   { transform: translate(0,0); }
+  100% { transform: translate(20px,-28px); }
+}
+</style>
+
+<style>
+/* ── CARD ── */
+.card {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 2.6rem 2.8rem 2.2rem;
+  box-shadow: 0 24px 64px rgba(0,0,0,.22), 0 0 0 1px rgba(255,255,255,.08);
+  animation: cardIn .7s var(--ease) both;
 }
 
-.form-content { position: relative; z-index: 1; }
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(24px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
 
 /* ── LOGO ── */
-.logo-mark {
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 2rem;
+  animation: fadeUp .5s var(--ease) .1s both;
+}
+.logo-icon {
+  width: 30px; height: 30px;
+  background: var(--primary);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute; inset: 2px;
+  background: #fff;
+  border-radius: 5px;
+}
+.logo-icon svg { position: relative; z-index: 1; }
+.logo-text {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--primary);
+  letter-spacing: -.03em;
+}
+.logo-text .two { color: var(--secondary); }
+
+/* ── HEADING ── */
+.heading {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.9rem;
+  color: var(--on-surface);
+  letter-spacing: -.04em;
+  line-height: 1.1;
+  animation: fadeUp .5s var(--ease) .15s both;
+}
+.sub {
+  font-size: .85rem;
+  color: var(--on-muted);
+  margin-top: .35rem;
+  margin-bottom: 1.6rem;
+  animation: fadeUp .5s var(--ease) .2s both;
+}
+
+/* ── ROLE TABS ── */
+.role-tabs {
+  display: flex;
+  background: var(--surface-low);
+  border: 1px solid var(--outline-var);
+  border-radius: 10px;
+  padding: 3px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  animation: fadeUp .5s var(--ease) .25s both;
+}
+.role-pill {
+  position: absolute;
+  top: 3px; bottom: 3px;
+  background: var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,63,125,.3);
+  transition: left .35s var(--ease), width .35s var(--ease);
+  pointer-events: none;
+}
+.role-tab {
+  flex: 1;
+  padding: 8px 4px;
+  border: none;
+  background: transparent;
+  color: var(--on-muted);
+  font-size: .72rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 7px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: color .25s var(--ease);
+  white-space: nowrap;
+}
+.role-tab .material-symbols-outlined { font-size: 14px; }
+.role-tab.active { color: #fff; }
+.role-tab:not(.active):hover { color: var(--primary); }
+
+/* ── FORM SECTIONS ── */
+.form-section { animation: fadeUp .35s var(--ease) both; }
+
+/* ── INPUTS ── */
+.field {
+  margin-bottom: .9rem;
+}
+.field-wrap {
   display: flex;
   align-items: center;
   gap: 10px;
-  position: relative;
-  z-index: 1;
-}
-
-.logo-icon {
-  width: 34px; height: 34px;
-  background: var(--primary);
-  display: flex; align-items: center; justify-content: center;
-  clip-path: polygon(0 0, 82% 0, 100% 18%, 100% 100%, 18% 100%, 0 82%);
-}
-
-.logo-icon-inner {
-  width: 22px; height: 22px;
-  background: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  clip-path: polygon(0 0, 80% 0, 100% 20%, 100% 100%, 20% 100%, 0 80%);
-}
-
-.logo-icon-inner svg { display: block; }
-
-.logo-text {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 900;
-  font-size: 1.3rem;
-  letter-spacing: -0.04em;
-  color: var(--primary);
-}
-
-.logo-text .two { color: var(--secondary); }
-
-/* ── HERO CONTENT ── */
-.hero-headline {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 800;
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  color: var(--white);
-  position: relative;
-  z-index: 1;
-}
-
-.hero-headline .accent {
-  color: var(--sec-cont);
-}
-
-.hero-sub {
-  color: rgba(255,255,255,0.65);
-  font-size: 1rem;
-  margin-top: 1rem;
-  line-height: 1.65;
-  max-width: 400px;
-  position: relative;
-  z-index: 1;
-}
-
-.stat-row {
-  display: flex;
-  gap: 2.5rem;
-  margin-top: 2.5rem;
-  position: relative;
-  z-index: 1;
-}
-
-.stat-item .val {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 800;
-  font-size: 1.7rem;
-  color: var(--sec-cont);
-  letter-spacing: -0.02em;
-}
-
-.stat-item .lbl {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-top: 2px;
-}
-
-/* ── CERT BADGES ── */
-.cert-row {
-  display: flex;
-  gap: 0.75rem;
-  position: relative;
-  z-index: 1;
-}
-
-.cert-badge {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 14px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(8px);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.7);
-  clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
-  transition: all 0.2s;
-  cursor: default;
-}
-
-.cert-badge:hover {
-  border-color: rgba(29,255,155,0.3);
-  color: rgba(255,255,255,0.95);
-  background: rgba(29,255,155,0.06);
-}
-
-.cert-badge .material-symbols-outlined {
-  font-size: 15px;
-  color: var(--sec-cont);
-}
-
-/* ── ROLE SELECTOR — vertical right edge ── */
-.role-selector {
-  position: absolute;
-  right: -1px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  z-index: 20;
-}
-
-.role-card {
-  width: 50px;
-  padding: 16px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
-  border: 1px solid var(--outline-var);
-  border-right: none;
   background: var(--surface-low);
+  border: 1.5px solid var(--outline-var);
+  border-radius: 10px;
+  padding: 0 13px;
+  height: 50px;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease), background .2s;
   position: relative;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
-
-.role-card + .role-card { border-top: none; }
-
-/* left accent bar */
-.role-card::before {
+.field-wrap::after {
   content: '';
   position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 2px;
+  bottom: 0; left: 0;
+  height: 2px; width: 0;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 0 0 10px 10px;
+  transition: width .35s var(--ease);
+}
+.field-wrap:focus-within {
+  border-color: var(--primary-dim);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0,63,125,.08);
+}
+.field-wrap:focus-within::after { width: 100%; }
+.field-icon {
+  color: var(--outline);
+  display: flex; align-items: center;
+  flex-shrink: 0;
+  transition: color .2s;
+}
+.field-wrap:focus-within .field-icon { color: var(--primary); }
+.field-icon .material-symbols-outlined { font-size: 17px; }
+.field-input {
+  flex: 1;
   background: transparent;
-  transition: background 0.25s;
-}
-
-.role-card.active::before {
-  background: linear-gradient(180deg, var(--primary), var(--sec-cont));
-}
-
-.role-card.active {
-  background: var(--primary-fix);
-  border-color: var(--primary-dim);
-  width: 58px;
-}
-
-.role-card:hover:not(.active) {
-  background: var(--surface-cont);
-  border-color: var(--outline);
-  width: 55px;
-}
-
-.role-card .role-icon {
-  font-size: 17px;
-  color: var(--outline);
-  transition: color 0.25s;
-  font-variation-settings: 'FILL' 0;
-}
-
-.role-card.active .role-icon {
-  color: var(--primary);
-  font-variation-settings: 'FILL' 1;
-}
-
-.role-card:hover:not(.active) .role-icon {
-  color: var(--primary-cont);
-}
-
-.role-card .role-label {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--outline);
-  transition: color 0.25s;
-  white-space: nowrap;
-}
-
-.role-card.active .role-label { color: var(--primary); }
-.role-card:hover:not(.active) .role-label { color: var(--primary-cont); }
-
-.role-card .role-dot {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--outline-var);
-  transition: background 0.25s, box-shadow 0.25s;
-}
-
-.role-card.active .role-dot {
-  background: var(--primary);
-  box-shadow: 0 0 5px rgba(0,63,125,0.5);
-}
-
-/* ── ACTIVE ROLE BADGE ── */
-.active-role-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  background: var(--primary-fix);
-  border: 1px solid var(--primary-dim);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--primary);
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
-  margin-bottom: 1.2rem;
-}
-
-.active-role-badge .dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--primary);
-  animation: blink 1.8s ease-in-out infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.25; }
-}
-
-/* ── SECTION LABEL ── */
-.section-label {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--outline);
-  margin-bottom: 0.35rem;
-}
-
-.welcome-title {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 800;
-  font-size: 1.65rem;
-  letter-spacing: -0.03em;
-  color: var(--on-surface);
-}
-
-.welcome-sub {
-  font-size: 0.82rem;
-  color: var(--on-muted);
-  margin-top: 4px;
-}
-
-/* ── INPUTS ── */
-.input-group { margin-bottom: 1.15rem; }
-
-.input-label {
-  display: block;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--on-muted);
-  margin-bottom: 5px;
-  transition: color 0.2s;
-}
-
-.input-group:focus-within .input-label { color: var(--primary); }
-
-.input-wrap { position: relative; }
-
-.input-field {
-  width: 100%;
-  background: var(--surface-low);
-  border: 1px solid var(--outline-var);
-  border-bottom: 2px solid var(--outline-var);
-  color: var(--on-surface);
+  border: none; outline: none;
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
-  padding: 10px 38px 10px 12px;
-  outline: none;
-  transition: all 0.2s;
-  clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 0 100%);
+  font-size: .88rem;
+  color: var(--on-surface);
+  caret-color: var(--primary);
 }
-
-.input-field::placeholder { color: var(--outline); }
-
-.input-field:focus {
-  border-color: var(--primary-dim);
-  border-bottom-color: var(--primary);
-  background: var(--white);
-  box-shadow: 0 0 0 3px rgba(0,63,125,0.07), 0 2px 12px rgba(0,63,125,0.06);
-}
-
-.input-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+.field-input::placeholder { color: var(--outline); }
+.field-action {
   color: var(--outline);
-  font-size: 17px;
   cursor: pointer;
-  transition: color 0.2s;
+  display: flex; align-items: center;
+  transition: color .2s;
+  flex-shrink: 0;
 }
+.field-action:hover { color: var(--primary); }
+.field-action .material-symbols-outlined { font-size: 16px; }
 
-.input-icon:hover { color: var(--primary); }
-
-/* ── FORGOT / REMEMBER ── */
+/* ── FORGOT ── */
 .forgot-row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
+  justify-content: flex-end;
+  margin: -.3rem 0 1.1rem;
 }
-
 .forgot-link {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.7rem;
+  font-size: .72rem;
   font-weight: 600;
-  color: var(--primary-cont);
+  color: var(--primary-c);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color .2s;
 }
-
 .forgot-link:hover { color: var(--primary); text-decoration: underline; }
 
-.remember-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 1.4rem;
-}
-
-.remember-row input[type="checkbox"] {
-  width: 14px; height: 14px;
-  accent-color: var(--primary);
-  cursor: pointer;
-}
-
-.remember-row label {
-  font-size: 0.78rem;
-  color: var(--on-muted);
-  cursor: pointer;
-}
-
-/* ── SUBMIT BUTTON ── */
-.submit-btn {
+/* ── BUTTON ── */
+.btn {
   width: 100%;
-  padding: 13px;
+  height: 48px;
   background: var(--primary);
-  color: var(--white);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem;
+  color: #fff;
+  font-size: .8rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: .06em;
   text-transform: uppercase;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 0.25s;
   position: relative;
   overflow: hidden;
+  transition: background .2s, transform .2s var(--ease), box-shadow .2s;
+  box-shadow: 0 4px 16px rgba(0,63,125,.28);
 }
-
-.submit-btn::before {
+.btn::before {
   content: '';
   position: absolute;
   top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-  transition: left 0.5s;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+  transform: skewX(-20deg);
+  transition: left .5s var(--ease);
 }
+.btn:hover::before { left: 160%; }
+.btn:hover { background: var(--primary-c); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,63,125,.32); }
+.btn:active { transform: scale(.99); }
+.btn.success { background: var(--secondary); }
+.btn:disabled { opacity: .8; cursor: not-allowed; transform: none; }
 
-.submit-btn:hover::before { left: 100%; }
-
-.submit-btn:hover {
-  background: var(--primary-cont);
-  box-shadow: 0 6px 24px rgba(0,63,125,0.28);
-  transform: translateY(-1px);
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin-ring {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
 }
-
-.submit-btn:active { transform: translateY(0) scale(0.99); }
-
-/* ── REGISTER LINK ── */
-.register-row {
-  text-align: center;
-  margin-top: 1.1rem;
-  font-size: 0.78rem;
-  color: var(--on-muted);
-}
-
-.register-row a {
-  color: var(--primary-cont);
-  font-weight: 700;
-  text-decoration: none;
-  margin-left: 4px;
-  transition: color 0.2s;
-}
-
-.register-row a:hover { color: var(--primary); text-decoration: underline; }
+@keyframes checkDraw { from { stroke-dashoffset: 28; } to { stroke-dashoffset: 0; } }
+.check-path { stroke-dasharray: 28; stroke-dashoffset: 28; animation: checkDraw .4s var(--ease) forwards; }
 
 /* ── DIVIDER ── */
 .divider {
-  height: 1px;
-  background: var(--outline-var);
+  display: flex; align-items: center; gap: 10px;
   margin: 1.1rem 0;
 }
-
-/* ── ANIMATIONS ── */
-@keyframes fadeLeft {
-  from { opacity: 0; transform: translateX(-28px); }
-  to   { opacity: 1; transform: translateX(0); }
+.divider::before, .divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--outline-var);
 }
-@keyframes fadeRight {
-  from { opacity: 0; transform: translateX(28px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
+.divider span {
+  font-size: .72rem; font-weight: 600; color: var(--outline); white-space: nowrap;
 }
 
-.anim-left  { animation: fadeLeft  0.65s ease-out both; }
-.anim-right { animation: fadeRight 0.65s ease-out both; }
-.anim-up    { animation: fadeUp    0.55s ease-out both; }
-
-.d1 { animation-delay: 0.05s; }
-.d2 { animation-delay: 0.15s; }
-.d3 { animation-delay: 0.28s; }
-.d4 { animation-delay: 0.42s; }
-.d5 { animation-delay: 0.55s; }
-.d6 { animation-delay: 0.68s; }
-.d7 { animation-delay: 0.80s; }
-
-/* ── GLITCH on headline ── */
-@keyframes glitch {
-  0%, 88%, 100% { clip-path: none; transform: none; }
-  90% { clip-path: polygon(0 15%, 100% 15%, 100% 35%, 0 35%); transform: translateX(-2px); }
-  92% { clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%); transform: translateX(2px); }
-  94% { clip-path: none; transform: none; }
+/* ── SOCIAL BUTTONS ── */
+.social-btn {
+  width: 100%; height: 46px;
+  background: #fff;
+  border: 1.5px solid var(--outline-var);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 9px;
+  font-size: .82rem; font-weight: 500;
+  color: var(--on-surface);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .2s, box-shadow .2s, transform .2s var(--ease);
+  margin-bottom: .65rem;
 }
-
-.glitch { animation: glitch 9s infinite; }
-
-/* ── HUD corners on role cards ── */
-.hud-corner {
-  position: absolute;
-  width: 8px; height: 8px;
+.social-btn:hover {
   border-color: var(--primary-dim);
-  border-style: solid;
-  opacity: 0.7;
+  box-shadow: 0 2px 10px rgba(0,63,125,.1);
+  transform: translateY(-1px);
 }
-.hud-corner.tl { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; }
-.hud-corner.bl { bottom: 0; left: 0; border-width: 0 0 1.5px 1.5px; }
 
-/* ── OTP boxes ── */
-.otp-box {
-  width: 44px;
-  height: 50px;
+/* ── REGISTER ── */
+.register-row {
   text-align: center;
-  font-family: 'Space Grotesk', sans-serif;
+  font-size: .78rem;
+  color: var(--on-muted);
+  margin-top: .8rem;
+}
+.register-row a {
+  color: var(--primary-c); font-weight: 700;
+  text-decoration: none; margin-left: 4px;
+  transition: color .2s;
+}
+.register-row a:hover { color: var(--primary); text-decoration: underline; }
+
+/* ── OTP ── */
+.otp-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: .9rem;
+  justify-content: center;
+}
+.otp-box {
+  width: 46px;
+  height: 52px;
+  flex-shrink: 0;
+  text-align: center;
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--on-surface);
   background: var(--surface-low);
   border: 1.5px solid var(--outline-var);
-  border-bottom: 2.5px solid var(--outline-var);
+  border-radius: 10px;
   outline: none;
-  transition: all 0.2s;
-  clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 0 100%);
+  caret-color: var(--primary);
+  transition: all .22s var(--ease);
+}
+.otp-box:focus { border-color: var(--primary-dim); background: #fff; box-shadow: 0 0 0 3px rgba(0,63,125,.09); transform: scale(1.04); }
+.otp-box.filled { border-color: var(--primary); background: var(--primary-fix); color: var(--primary); }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-5px)} 40%{transform:translateX(5px)} 60%{transform:translateX(-3px)} 80%{transform:translateX(3px)} }
+.otp-box.error { animation: shake .4s var(--ease); border-color: #ba1a1a; }
+@keyframes otpPulse { 0%{box-shadow:0 0 0 0 rgba(0,109,63,.4)} 70%{box-shadow:0 0 0 7px rgba(0,109,63,0)} 100%{box-shadow:0 0 0 0 rgba(0,109,63,0)} }
+.otp-box.success { animation: otpPulse .5s ease-out; border-color: var(--secondary); background: #e8f5ee; }
+
+.otp-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: .72rem; }
+.otp-timer { color: var(--outline); }
+.otp-timer strong { color: var(--primary); }
+.resend-btn { background: none; border: none; cursor: pointer; font-size: .72rem; font-weight: 600; color: var(--outline); opacity: .4; pointer-events: none; transition: all .2s; }
+.resend-btn.active { opacity: 1; color: var(--primary-c); pointer-events: auto; }
+
+.otp-banner { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: var(--primary-fix); border: 1px solid var(--primary-dim); border-radius: 9px; margin-bottom: 1rem; font-size: .78rem; color: var(--primary); font-weight: 600; }
+.otp-banner .material-symbols-outlined { font-size: 15px; flex-shrink: 0; }
+.otp-banner .change-btn { margin-left: auto; background: none; border: none; cursor: pointer; font-size: .7rem; font-weight: 700; color: var(--primary-c); text-decoration: underline; }
+
+/* ── TRUST ── */
+.trust-row {
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  margin-top: .8rem;
+  font-size: .68rem; color: var(--outline);
+}
+.trust-row .material-symbols-outlined { font-size: 13px; color: var(--secondary); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.otp-box:focus {
-  border-color: var(--primary-dim);
-  border-bottom-color: var(--primary);
-  background: var(--white);
-  box-shadow: 0 0 0 3px rgba(0,63,125,0.08);
-}
-
-.otp-box.filled {
-  border-bottom-color: var(--primary);
-  background: var(--primary-fix);
-}
-
-/* form transition */
-.form-fade {
-  animation: fadeUp 0.35s ease-out both;
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .card { padding: 2rem 1.5rem 1.8rem; border-radius: 16px; }
+  .heading { font-size: 1.7rem; }
 }
 </style>
+
 </head>
 <body>
+<div class="page">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
 
-<div class="login-layout">
-
-  <!-- ── LEFT HERO (dark gradient like homepage hero) ── -->
-  <section class="hero-side" style="background: linear-gradient(135deg, #003f7d 0%, #0056a7 45%, #155eaf 100%);">
-    <canvas id="bg-canvas"></canvas>
+  <div class="card">
 
     <!-- Logo -->
-    <div class="logo-mark anim-left d1">
+    <div class="logo">
       <div class="logo-icon">
-        <div class="logo-icon-inner">
-          <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-            <path d="M2.5 7h3.5M8 3.5l3.5 3.5L8 10.5" stroke="#003f7d" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2.5 7h3.5M8 3.5l3.5 3.5L8 10.5" stroke="#003f7d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-      <span class="logo-text" style="color:#fff;">Cred<span class="two" style="color:#1dff9b;">2</span>Tech</span>
+      <span class="logo-text">Cred<span class="two">2</span>Tech</span>
     </div>
 
-    <!-- Main headline -->
-    <div class="anim-left d3" style="max-width:500px; position:relative; z-index:1;">
-      <div style="font-family:'Space Grotesk',sans-serif; font-size:0.62rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(29,255,155,0.85); margin-bottom:1rem;">
-        ◆ Enterprise Fintech Platform
-      </div>
-      <h1 class="hero-headline glitch">
-        Empowering the<br/>next generation of<br/>
-        <span class="accent">Fintech Intelligence.</span>
-      </h1>
-      <p class="hero-sub">
-        Enterprise-grade security. Regulatory-compliant infrastructure. Built for scale.
-      </p>
-      <div class="stat-row anim-left d4">
-        <div class="stat-item">
-          <div class="val">99.9%</div>
-          <div class="lbl">Uptime SLA</div>
-        </div>
-        <div class="stat-item">
-          <div class="val">256-bit</div>
-          <div class="lbl">AES Encryption</div>
-        </div>
-        <div class="stat-item">
-          <div class="val">ISO 27001</div>
-          <div class="lbl">Certified</div>
-        </div>
-      </div>
+    <!-- Heading -->
+    <div class="heading" id="heading">Welcome back</div>
+    <div class="sub" id="sub">Sign in to your account to continue.</div>
+
+    <!-- Role tabs -->
+    <div class="role-tabs" id="roleTabs">
+      <div class="role-pill" id="rolePill"></div>
+      <button class="role-tab active" data-role="dsa" type="button">
+        <span class="material-symbols-outlined">support_agent</span>DSA / Agent
+      </button>
+      <button class="role-tab" data-role="msme" type="button">
+        <span class="material-symbols-outlined">storefront</span>MSME
+      </button>
+      <button class="role-tab" data-role="admin" type="button">
+        <span class="material-symbols-outlined">admin_panel_settings</span>Admin
+      </button>
     </div>
 
-    <!-- Cert badges -->
-    <div class="cert-row anim-left d5">
-      <div class="cert-badge">
-        <span class="material-symbols-outlined">verified_user</span>
-        ISO 27001 Certified
+    <!-- ── EMAIL / PASSWORD FORM ── -->
+    <div id="formEmailPwd" class="form-section">
+
+      <div class="field">
+        <div class="field-wrap">
+          <span class="field-icon"><span class="material-symbols-outlined">person</span></span>
+          <input class="field-input" id="email" type="email" placeholder="Email address" autocomplete="email"/>
+        </div>
       </div>
-      <div class="cert-badge">
+
+      <div class="field">
+        <div class="field-wrap">
+          <span class="field-icon"><span class="material-symbols-outlined">lock</span></span>
+          <input class="field-input" id="password" type="password" placeholder="Password" autocomplete="current-password"/>
+          <span class="field-action" id="togglePwd" role="button" aria-label="Toggle password">
+            <span class="material-symbols-outlined" id="eyeIcon">visibility</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="forgot-row">
+        <a class="forgot-link" href="#">Forgot password?</a>
+      </div>
+
+      <button class="btn" id="loginBtn" type="button">
+        <span class="btn-label">Sign In</span>
+        <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
+      </button>
+
+      <div class="trust-row">
         <span class="material-symbols-outlined">lock</span>
-        Bank-level Security
+        256-bit encryption · Trusted by 10,000+ businesses
       </div>
+
+      <div class="divider"><span>or continue with</span></div>
+
+      <a class="social-btn" href="#">
+        <svg width="17" height="17" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Continue with Google
+      </a>
+
+      <a class="social-btn" href="#" style="margin-bottom:0;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Continue with Facebook
+      </a>
+
+      <div class="register-row">New to the platform?<a href="#">Register as Partner</a></div>
     </div>
 
-  </section>
+    <!-- ── OTP FORM (MSME) ── -->
+    <div id="formOtp" class="form-section" style="display:none;">
 
-  <!-- ── RIGHT FORM PANEL (pure white like homepage cards) ── -->
-  <section class="form-side">
-
-    <!-- Role selector — vertical right edge -->
-    <div class="role-selector" id="roleSelector">
-      <div class="role-card active" data-role="DSA / Agent">
-        <div class="hud-corner tl"></div>
-        <span class="material-symbols-outlined role-icon">support_agent</span>
-        <span class="role-label">DSA / Agent</span>
-        <div class="role-dot"></div>
-      </div>
-      <div class="role-card" data-role="MSME">
-        <span class="material-symbols-outlined role-icon">storefront</span>
-        <span class="role-label">MSME</span>
-        <div class="role-dot"></div>
-      </div>
-      <div class="role-card" data-role="Admin">
-        <div class="hud-corner bl"></div>
-        <span class="material-symbols-outlined role-icon">admin_panel_settings</span>
-        <span class="role-label">Admin</span>
-        <div class="role-dot"></div>
-      </div>
-    </div>
-
-    <div class="form-content">
-
-      <!-- Active role badge -->
-      <div class="active-role-badge anim-right d1" id="activeBadge">
-        <div class="dot"></div>
-        <span id="activeBadgeText">DSA / Agent</span>
-      </div>
-
-      <!-- Welcome -->
-      <div class="anim-right d2" style="margin-bottom:1.4rem;">
-        <div class="section-label">Secure Access</div>
-        <div class="welcome-title" id="welcomeTitle">Welcome Back</div>
-        <div class="welcome-sub" id="welcomeSub">Sign in to manage your fintech pipeline.</div>
-      </div>
-
-      <!-- ── EMAIL + PASSWORD form (DSA / Admin) ── -->
-      <form id="formEmailPwd">
-
-        <div class="input-group anim-right d3">
-          <label class="input-label" for="email">Email Address</label>
-          <div class="input-wrap">
-            <input class="input-field" id="email" type="email" placeholder="name@company.com" autocomplete="email"/>
-            <span class="material-symbols-outlined input-icon" style="pointer-events:none;">alternate_email</span>
+      <div id="otpStep1">
+        <div class="field">
+          <div style="display:flex;gap:8px;">
+            <!-- 30% — country code -->
+            <div class="field-wrap" style="flex:0 0 30%;min-width:0;">
+              <input class="field-input" id="dialCode" value="+91"
+                style="text-align:center;font-weight:600;color:var(--on-muted);width:100%;padding:0 8px;"
+                maxlength="5"/>
+            </div>
+            <!-- 70% — phone number -->
+            <div class="field-wrap" style="flex:1;min-width:0;">
+              <span class="field-icon"><span class="material-symbols-outlined">smartphone</span></span>
+              <input class="field-input" id="phone" type="tel" placeholder="Mobile number" maxlength="10" autocomplete="tel"/>
+            </div>
           </div>
         </div>
+        <p style="font-size:.7rem;color:var(--outline);margin:-.4rem 0 1rem;">OTP will be sent to this number via SMS</p>
 
-        <div class="input-group anim-right d4">
-          <div class="forgot-row">
-            <label class="input-label" for="password" style="margin-bottom:0;">Password</label>
-            <a class="forgot-link" href="#">Forgot password?</a>
-          </div>
-          <div class="input-wrap">
-            <input class="input-field" id="password" type="password" placeholder="••••••••" autocomplete="current-password"/>
-            <span class="material-symbols-outlined input-icon" id="togglePwd">visibility</span>
-          </div>
-        </div>
-
-        <div class="remember-row anim-right d5">
-          <input type="checkbox" id="remember"/>
-          <label for="remember">Keep me signed in for 30 days</label>
-        </div>
-
-        <button class="submit-btn anim-right d6" type="submit">
-          <span>Sign In</span>
-          <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
+        <button class="btn" id="sendOtpBtn" type="button">
+          <span class="btn-label">Send OTP</span>
+          <span class="material-symbols-outlined" style="font-size:16px;">send</span>
         </button>
+        <div class="register-row" style="margin-top:.8rem;">New to the platform?<a href="#">Register as Partner</a></div>
+      </div>
 
-      </form>
-
-      <!-- ── PHONE + OTP form (MSME) ── -->
-      <form id="formOtp" style="display:none;">
-
-        <!-- Step 1: phone number -->
-        <div id="otpStep1">
-          <div class="input-group anim-right d3">
-            <label class="input-label" for="phone">Mobile Number</label>
-            <div class="input-wrap" style="display:flex; gap:8px;">
-              <div style="position:relative; width:72px; flex-shrink:0;">
-                <input class="input-field" id="dialCode" value="+91" style="text-align:center; padding-left:8px; padding-right:8px;" maxlength="5"/>
-              </div>
-              <div style="position:relative; flex:1;">
-                <input class="input-field" id="phone" type="tel" placeholder="98765 43210" maxlength="10" autocomplete="tel"/>
-                <span class="material-symbols-outlined input-icon" style="pointer-events:none;">smartphone</span>
-              </div>
-            </div>
-            <div style="font-size:0.7rem; color:var(--outline); margin-top:5px;">
-              OTP will be sent to this number via SMS
-            </div>
-          </div>
-
-          <button class="submit-btn anim-right d5" type="button" id="sendOtpBtn">
-            <span>Send OTP</span>
-            <span class="material-symbols-outlined" style="font-size:16px;">send</span>
-          </button>
+      <div id="otpStep2" style="display:none;">
+        <div class="otp-banner">
+          <span class="material-symbols-outlined">check_circle</span>
+          OTP sent to <strong id="phoneMask" style="margin-left:3px;"></strong>
+          <button class="change-btn" id="changePhoneBtn" type="button">Change</button>
         </div>
 
-        <!-- Step 2: OTP entry (hidden until OTP sent) -->
-        <div id="otpStep2" style="display:none;">
+        <p style="font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--outline);margin-bottom:.6rem;">Enter 6-digit OTP</p>
 
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom:1.2rem; padding:10px 12px; background:var(--primary-fix); border:1px solid var(--primary-dim); clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px));">
-            <span class="material-symbols-outlined" style="font-size:16px; color:var(--primary);">check_circle</span>
-            <span style="font-size:0.78rem; color:var(--primary); font-weight:600;">OTP sent to <span id="phoneMask"></span></span>
-            <button type="button" id="changePhoneBtn" style="margin-left:auto; font-size:0.7rem; font-weight:700; color:var(--primary-cont); background:none; border:none; cursor:pointer; text-decoration:underline;">Change</button>
-          </div>
-
-          <div class="input-group">
-            <label class="input-label">Enter 6-digit OTP</label>
-            <div style="display:flex; gap:8px; justify-content:space-between;">
-              <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
-              <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
-              <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
-              <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
-              <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
-              <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
-            </div>
-          </div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.4rem; margin-top:0.5rem;">
-            <span style="font-size:0.72rem; color:var(--outline);">
-              Expires in <span id="otpTimer" style="font-weight:700; color:var(--primary);">2:00</span>
-            </span>
-            <button type="button" id="resendOtpBtn" style="font-size:0.72rem; font-weight:700; color:var(--primary-cont); background:none; border:none; cursor:pointer; opacity:0.4; pointer-events:none;">
-              Resend OTP
-            </button>
-          </div>
-
-          <button class="submit-btn" type="submit" id="verifyOtpBtn">
-            <span>Verify &amp; Sign In</span>
-            <span class="material-symbols-outlined" style="font-size:16px;">verified</span>
-          </button>
-
+        <div class="otp-row">
+          <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+          <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+          <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+          <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+          <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
+          <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"/>
         </div>
 
-      </form>
+        <div class="otp-meta">
+          <div class="otp-timer">Expires in <strong id="otpTimer">2:00</strong></div>
+          <button class="resend-btn" id="resendBtn" type="button">Resend OTP</button>
+        </div>
 
-      <div class="divider"></div>
-
-      <div class="register-row anim-right d7">
-        New to the platform?
-        <a href="#">Register as Partner</a>
+        <button class="btn" id="verifyOtpBtn" type="button">
+          <span class="btn-label">Verify &amp; Sign In</span>
+          <span class="material-symbols-outlined" style="font-size:16px;">verified</span>
+        </button>
+        <div class="register-row" style="margin-top:.8rem;">New to the platform?<a href="#">Register as Partner</a></div>
       </div>
 
     </div>
-  </section>
 
+  </div>
 </div>
 
 <script>
-// ── THREE.JS — hero section animation ────────────────────────────────────
-(function () {
-  const canvas = document.getElementById('bg-canvas');
-  const hero   = canvas.parentElement;
+// ── ROLE PILL ─────────────────────────────────────────────────────────────
+const roleTabs = document.querySelectorAll('.role-tab');
+const rolePill = document.getElementById('rolePill');
 
-  function heroW() { return hero.offsetWidth; }
-  function heroH() { return hero.offsetHeight; }
+function positionPill(tab) {
+  const wrap = document.getElementById('roleTabs').getBoundingClientRect();
+  const rect = tab.getBoundingClientRect();
+  rolePill.style.left  = (rect.left - wrap.left) + 'px';
+  rolePill.style.width = rect.width + 'px';
+}
+window.addEventListener('load',   () => positionPill(document.querySelector('.role-tab.active')));
+window.addEventListener('resize', () => positionPill(document.querySelector('.role-tab.active')));
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(heroW(), heroH());
-  renderer.setClearColor(0x000000, 0); // fully transparent — hero CSS gradient shows through
+// ── ROLE SWITCH ───────────────────────────────────────────────────────────
+const heading      = document.getElementById('heading');
+const sub          = document.getElementById('sub');
+const formEmailPwd = document.getElementById('formEmailPwd');
+const formOtp      = document.getElementById('formOtp');
 
-  const scene  = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, heroW() / heroH(), 0.1, 500);
-  camera.position.set(0, 0, 22);
+const roleData = {
+  dsa:   { h: 'Welcome back',   s: 'Sign in to manage your fintech pipeline.' },
+  msme:  { h: 'MSME Login',     s: 'Enter your mobile number to receive an OTP.' },
+  admin: { h: 'Admin Access',   s: 'Sign in to your admin account.' }
+};
 
-  // ── Wireframe grid ──
-  const gridGeo = new THREE.PlaneGeometry(80, 80, 30, 30);
-  const gridMat = new THREE.MeshBasicMaterial({
-    color: 0xffffff,
-    wireframe: true,
-    transparent: true,
-    opacity: 0.07
-  });
-  const grid = new THREE.Mesh(gridGeo, gridMat);
-  grid.rotation.x = -Math.PI / 2.5;
-  grid.position.y = -8;
-  scene.add(grid);
-
-  // ── Floating shards — bright so visible on dark hero ──
-  const shardGroup = new THREE.Group();
-  scene.add(shardGroup);
-
-  // Vivid colors that pop on the dark blue gradient
-  const shardColors = [
-    0x1dff9b,  // green accent
-    0xa8c8ff,  // light blue
-    0xffffff,  // white
-    0x58ffa5,  // lighter green
-    0xd6e3ff,  // pale blue
-    0x00e388   // teal
-  ];
-
-  for (let i = 0; i < 30; i++) {
-    const pick = Math.floor(Math.random() * 3);
-    const geo = [
-      new THREE.TetrahedronGeometry(Math.random() * 1.1 + 0.3),
-      new THREE.OctahedronGeometry(Math.random() * 0.8 + 0.25),
-      new THREE.BoxGeometry(
-        Math.random() * 1.4 + 0.3,
-        Math.random() * 1.4 + 0.3,
-        Math.random() * 0.12 + 0.04
-      )
-    ][pick];
-
-    const isWire = Math.random() > 0.3;
-    const mat = new THREE.MeshBasicMaterial({
-      color: shardColors[Math.floor(Math.random() * shardColors.length)],
-      wireframe: isWire,
-      transparent: true,
-      opacity: isWire
-        ? (Math.random() * 0.45 + 0.2)   // wireframe: clearly visible
-        : (Math.random() * 0.18 + 0.06)  // solid: subtle fill
-    });
-
-    const mesh = new THREE.Mesh(geo, mat);
-    mesh.position.set(
-      (Math.random() - 0.5) * 45,
-      (Math.random() - 0.5) * 25,
-      (Math.random() - 0.5) * 14 - 2
-    );
-    mesh.rotation.set(
-      Math.random() * Math.PI,
-      Math.random() * Math.PI,
-      Math.random() * Math.PI
-    );
-    mesh.userData = {
-      rotX:       (Math.random() - 0.5) * 0.009,
-      rotY:       (Math.random() - 0.5) * 0.013,
-      floatSpeed: Math.random() * 0.4 + 0.2,
-      floatOff:   Math.random() * Math.PI * 2
-    };
-    shardGroup.add(mesh);
-  }
-
-  // ── Particle field — large, bright, clearly visible ──
-  const pCount = 700;
-  const pPos   = new Float32Array(pCount * 3);
-  const pColors = new Float32Array(pCount * 3); // per-particle color
-
-  // Two colors: white and green accent
-  const c1 = new THREE.Color(0xffffff);
-  const c2 = new THREE.Color(0x1dff9b);
-  const c3 = new THREE.Color(0xa8c8ff);
-
-  for (let i = 0; i < pCount; i++) {
-    pPos[i * 3]     = (Math.random() - 0.5) * 70;
-    pPos[i * 3 + 1] = (Math.random() - 0.5) * 45;
-    pPos[i * 3 + 2] = (Math.random() - 0.5) * 28;
-
-    const c = [c1, c2, c3][Math.floor(Math.random() * 3)];
-    pColors[i * 3]     = c.r;
-    pColors[i * 3 + 1] = c.g;
-    pColors[i * 3 + 2] = c.b;
-  }
-
-  const pGeo = new THREE.BufferGeometry();
-  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  pGeo.setAttribute('color',    new THREE.BufferAttribute(pColors, 3));
-
-  const pMat = new THREE.PointsMaterial({
-    vertexColors: true,
-    size: 0.22,          // bigger = more visible
-    transparent: true,
-    opacity: 0.75,       // high opacity
-    sizeAttenuation: true
-  });
-
-  const particles = new THREE.Points(pGeo, pMat);
-  scene.add(particles);
-
-  // ── Data-stream lines — bright on dark ──
-  const lineGroup = new THREE.Group();
-  scene.add(lineGroup);
-
-  for (let i = 0; i < 14; i++) {
-    const pts = [];
-    const sx = (Math.random() - 0.5) * 55;
-    const sy = (Math.random() - 0.5) * 28;
-    const sz = (Math.random() - 0.5) * 14;
-    for (let j = 0; j < 6; j++) {
-      pts.push(new THREE.Vector3(
-        sx + (Math.random() - 0.5) * 14,
-        sy + (Math.random() - 0.5) * 7,
-        sz + j * 0.5
-      ));
-    }
-    const lGeo = new THREE.BufferGeometry().setFromPoints(pts);
-    const lMat = new THREE.LineBasicMaterial({
-      color: Math.random() > 0.5 ? 0x1dff9b : 0xa8c8ff,
-      transparent: true,
-      opacity: Math.random() * 0.5 + 0.15  // clearly visible
-    });
-    const line = new THREE.Line(lGeo, lMat);
-    line.userData.speed = Math.random() * 0.005 + 0.002;
-    lineGroup.add(line);
-  }
-
-  // ── Mouse parallax (relative to hero) ──
-  let mx = 0, my = 0;
-  hero.addEventListener('mousemove', e => {
-    const r = hero.getBoundingClientRect();
-    mx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
-    my = ((e.clientY - r.top)  / r.height - 0.5) * 2;
-  });
-
-  window.addEventListener('resize', () => {
-    camera.aspect = heroW() / heroH();
-    camera.updateProjectionMatrix();
-    renderer.setSize(heroW(), heroH());
-  });
-
-  let t = 0;
-  (function animate() {
-    requestAnimationFrame(animate);
-    t += 0.01;
-
-    camera.position.x += (mx * 2 - camera.position.x) * 0.03;
-    camera.position.y += (-my * 1.5 - camera.position.y) * 0.03;
-    camera.lookAt(scene.position);
-
-    grid.rotation.z = Math.sin(t * 0.15) * 0.012;
-
-    shardGroup.children.forEach(m => {
-      m.rotation.x += m.userData.rotX;
-      m.rotation.y += m.userData.rotY;
-      m.position.y += Math.sin(t * m.userData.floatSpeed + m.userData.floatOff) * 0.007;
-    });
-
-    // Slowly drift particles
-    particles.rotation.y = t * 0.018;
-    particles.rotation.x = t * 0.007;
-
-    // Pulse line opacity
-    lineGroup.children.forEach((l, i) => {
-      l.material.opacity = (Math.sin(t * l.userData.speed * 80 + i) * 0.5 + 0.5) * 0.45 + 0.1;
-    });
-
-    renderer.render(scene, camera);
-  })();
-})();
-
-// ── Role selector ─────────────────────────────────────────────────────────
-const roleCards      = document.querySelectorAll('.role-card');
-const activeBadgeText = document.getElementById('activeBadgeText');
-const welcomeTitle   = document.getElementById('welcomeTitle');
-const welcomeSub     = document.getElementById('welcomeSub');
-const formEmailPwd   = document.getElementById('formEmailPwd');
-const formOtp        = document.getElementById('formOtp');
-
-let currentRole = 'DSA / Agent';
-
-function switchRole(role) {
-  currentRole = role;
-  activeBadgeText.textContent = role;
-
-  if (role === 'MSME') {
-    formEmailPwd.style.display = 'none';
-    formOtp.style.display = 'block';
-    formOtp.classList.add('form-fade');
-    welcomeTitle.textContent = 'MSME Login';
-    welcomeSub.textContent   = 'Enter your mobile number to receive an OTP.';
-    // reset OTP flow
-    showOtpStep(1);
-  } else {
-    formOtp.style.display = 'none';
-    formEmailPwd.style.display = 'block';
-    formEmailPwd.classList.add('form-fade');
-    welcomeTitle.textContent = 'Welcome Back';
-    welcomeSub.textContent   = role === 'Admin'
-      ? 'Sign in to your admin account.'
-      : 'Sign in to manage your fintech pipeline.';
-  }
+function swapText(el, text) {
+  el.style.transition = 'opacity .18s, transform .18s';
+  el.style.opacity = '0'; el.style.transform = 'translateY(6px)';
+  setTimeout(() => {
+    el.textContent = text;
+    el.style.opacity = '1'; el.style.transform = 'translateY(0)';
+  }, 180);
 }
 
-roleCards.forEach(card => {
-  card.addEventListener('click', () => {
-    roleCards.forEach(c => c.classList.remove('active'));
-    card.classList.add('active');
-    switchRole(card.dataset.role);
+function switchRole(role) {
+  swapText(heading, roleData[role].h);
+  swapText(sub,     roleData[role].s);
+
+  const outEl = role === 'msme' ? formEmailPwd : formOtp;
+  const inEl  = role === 'msme' ? formOtp : formEmailPwd;
+
+  outEl.style.transition = 'opacity .2s, transform .2s';
+  outEl.style.opacity = '0'; outEl.style.transform = 'translateX(-10px)';
+  setTimeout(() => {
+    outEl.style.display = 'none';
+    inEl.style.display = 'block';
+    inEl.style.opacity = '0'; inEl.style.transform = 'translateX(10px)';
+    requestAnimationFrame(() => {
+      inEl.style.transition = 'opacity .28s, transform .28s';
+      inEl.style.opacity = '1'; inEl.style.transform = 'translateX(0)';
+    });
+    if (role === 'msme') showOtpStep(1);
+  }, 220);
+}
+
+roleTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    roleTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    positionPill(tab);
+    switchRole(tab.dataset.role);
   });
 });
 
-// ── Password toggle ───────────────────────────────────────────────────────
+// ── PASSWORD TOGGLE ───────────────────────────────────────────────────────
 document.getElementById('togglePwd').addEventListener('click', function () {
-  const pwd  = document.getElementById('password');
+  const pwd = document.getElementById('password');
+  const icon = document.getElementById('eyeIcon');
   const show = pwd.type === 'password';
   pwd.type = show ? 'text' : 'password';
-  this.textContent = show ? 'visibility_off' : 'visibility';
+  icon.textContent = show ? 'visibility_off' : 'visibility';
 });
 
-// ── Email/Password form submit ────────────────────────────────────────────
-formEmailPwd.addEventListener('submit', e => {
-  e.preventDefault();
-  const btn  = formEmailPwd.querySelector('.submit-btn');
-  const span = btn.querySelector('span:first-child');
-  const icon = btn.querySelector('span:last-child');
-  span.textContent = 'Authenticating';
-  icon.style.display = 'none';
-  btn.insertAdjacentHTML('beforeend', `<div class="spin-ring"></div>`);
-  addSpinStyle();
+// ── BUTTON HELPERS ────────────────────────────────────────────────────────
+function btnLoad(btn) {
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spin-ring"></div>';
+}
+function btnSuccess(btn, label) {
+  btn.classList.add('success');
+  btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline class="check-path" points="20 6 9 17 4 12"/></svg><span>${label}</span>`;
+  btn.disabled = false;
+}
+function btnReset(btn, label, icon) {
+  btn.classList.remove('success'); btn.disabled = false;
+  btn.innerHTML = `<span class="btn-label">${label}</span><span class="material-symbols-outlined" style="font-size:16px;">${icon}</span>`;
+}
+
+// ── LOGIN ─────────────────────────────────────────────────────────────────
+document.getElementById('loginBtn').addEventListener('click', function () {
+  btnLoad(this);
   setTimeout(() => {
-    btn.style.background = '#006d3f';
-    btn.querySelector('.spin-ring').remove();
-    span.textContent = 'Access Granted';
-    icon.style.display = '';
-    icon.textContent = 'check_circle';
-    icon.style.fontVariationSettings = "'FILL' 1";
+    btnSuccess(this, 'Access Granted');
     setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
   }, 1500);
 });
 
-// ── OTP flow ──────────────────────────────────────────────────────────────
-const otpStep1     = document.getElementById('otpStep1');
-const otpStep2     = document.getElementById('otpStep2');
-const sendOtpBtn   = document.getElementById('sendOtpBtn');
-const phoneMask    = document.getElementById('phoneMask');
-const changePhone  = document.getElementById('changePhoneBtn');
-const resendBtn    = document.getElementById('resendOtpBtn');
-const otpTimerEl   = document.getElementById('otpTimer');
-const otpBoxes     = document.querySelectorAll('.otp-box');
-let timerInterval  = null;
+// ── OTP FLOW ──────────────────────────────────────────────────────────────
+const otpStep1   = document.getElementById('otpStep1');
+const otpStep2   = document.getElementById('otpStep2');
+const otpBoxes   = document.querySelectorAll('.otp-box');
+const otpTimerEl = document.getElementById('otpTimer');
+const resendBtn  = document.getElementById('resendBtn');
+let timerInterval = null;
 
 function showOtpStep(n) {
   otpStep1.style.display = n === 1 ? 'block' : 'none';
   otpStep2.style.display = n === 2 ? 'block' : 'none';
   if (n === 1) {
     clearInterval(timerInterval);
-    otpBoxes.forEach(b => { b.value = ''; b.classList.remove('filled'); });
+    otpBoxes.forEach(b => { b.value = ''; b.classList.remove('filled','error','success'); });
+    btnReset(document.getElementById('sendOtpBtn'), 'Send OTP', 'send');
   }
 }
 
-function startTimer(seconds) {
+function startTimer(sec) {
   clearInterval(timerInterval);
-  resendBtn.style.opacity = '0.4';
-  resendBtn.style.pointerEvents = 'none';
-  let remaining = seconds;
+  resendBtn.classList.remove('active');
+  let rem = sec;
   function tick() {
-    const m = String(Math.floor(remaining / 60)).padStart(1, '0');
-    const s = String(remaining % 60).padStart(2, '0');
-    otpTimerEl.textContent = `${m}:${s}`;
-    if (remaining <= 0) {
-      clearInterval(timerInterval);
-      otpTimerEl.textContent = '0:00';
-      resendBtn.style.opacity = '1';
-      resendBtn.style.pointerEvents = 'auto';
-    }
-    remaining--;
+    otpTimerEl.textContent = `${Math.floor(rem/60)}:${String(rem%60).padStart(2,'0')}`;
+    if (rem <= 0) { clearInterval(timerInterval); resendBtn.classList.add('active'); }
+    rem--;
   }
-  tick();
-  timerInterval = setInterval(tick, 1000);
+  tick(); timerInterval = setInterval(tick, 1000);
 }
 
-sendOtpBtn.addEventListener('click', () => {
+document.getElementById('sendOtpBtn').addEventListener('click', function () {
   const phone = document.getElementById('phone').value.trim();
   if (phone.length < 10) {
-    document.getElementById('phone').focus();
-    document.getElementById('phone').style.borderBottomColor = '#ba1a1a';
+    document.getElementById('phone').style.color = '#ba1a1a';
+    setTimeout(() => document.getElementById('phone').style.color = '', 1000);
     return;
   }
-  document.getElementById('phone').style.borderBottomColor = '';
-
-  const btn = sendOtpBtn;
-  const span = btn.querySelector('span:first-child');
-  span.textContent = 'Sending…';
-  btn.disabled = true;
-  addSpinStyle();
-  btn.insertAdjacentHTML('beforeend', `<div class="spin-ring"></div>`);
-
+  btnLoad(this);
   setTimeout(() => {
-    btn.querySelector('.spin-ring')?.remove();
-    span.textContent = 'Send OTP';
-    btn.disabled = false;
     const dial = document.getElementById('dialCode').value || '+91';
-    phoneMask.textContent = `${dial} ••••••${phone.slice(-4)}`;
-    showOtpStep(2);
-    startTimer(120);
-    otpBoxes[0].focus();
+    document.getElementById('phoneMask').textContent = `${dial} ••••••${phone.slice(-4)}`;
+    showOtpStep(2); startTimer(120); otpBoxes[0].focus();
   }, 1200);
 });
 
-changePhone.addEventListener('click', () => showOtpStep(1));
+document.getElementById('changePhoneBtn').addEventListener('click', () => showOtpStep(1));
 
-resendBtn.addEventListener('click', () => {
-  otpBoxes.forEach(b => { b.value = ''; b.classList.remove('filled'); });
-  startTimer(120);
-  otpBoxes[0].focus();
+resendBtn.addEventListener('click', function () {
+  if (!this.classList.contains('active')) return;
+  otpBoxes.forEach(b => { b.value = ''; b.classList.remove('filled','error','success'); });
+  startTimer(120); otpBoxes[0].focus();
 });
 
-// OTP box auto-advance
 otpBoxes.forEach((box, idx) => {
   box.addEventListener('input', () => {
-    box.value = box.value.replace(/\D/g, '').slice(-1);
+    box.value = box.value.replace(/\D/g,'').slice(-1);
     box.classList.toggle('filled', box.value !== '');
-    if (box.value && idx < otpBoxes.length - 1) otpBoxes[idx + 1].focus();
+    if (box.value && idx < otpBoxes.length - 1) otpBoxes[idx+1].focus();
   });
   box.addEventListener('keydown', e => {
     if (e.key === 'Backspace' && !box.value && idx > 0) {
-      otpBoxes[idx - 1].focus();
-      otpBoxes[idx - 1].value = '';
-      otpBoxes[idx - 1].classList.remove('filled');
+      otpBoxes[idx-1].focus(); otpBoxes[idx-1].value = '';
+      otpBoxes[idx-1].classList.remove('filled');
     }
   });
-  // allow paste across all boxes
   box.addEventListener('paste', e => {
     e.preventDefault();
-    const digits = (e.clipboardData.getData('text').replace(/\D/g, '')).slice(0, 6);
-    digits.split('').forEach((d, i) => {
-      if (otpBoxes[i]) {
-        otpBoxes[i].value = d;
-        otpBoxes[i].classList.add('filled');
-      }
-    });
-    const next = Math.min(digits.length, otpBoxes.length - 1);
-    otpBoxes[next].focus();
+    const digits = e.clipboardData.getData('text').replace(/\D/g,'').slice(0,6);
+    digits.split('').forEach((d,i) => { if (otpBoxes[i]) { otpBoxes[i].value=d; otpBoxes[i].classList.add('filled'); } });
+    otpBoxes[Math.min(digits.length, otpBoxes.length-1)].focus();
   });
 });
 
-// OTP form submit
-formOtp.addEventListener('submit', e => {
-  e.preventDefault();
+document.getElementById('verifyOtpBtn').addEventListener('click', function () {
   const otp = Array.from(otpBoxes).map(b => b.value).join('');
-  if (otp.length < 6) { otpBoxes[otp.length].focus(); return; }
-
-  const btn  = document.getElementById('verifyOtpBtn');
-  const span = btn.querySelector('span:first-child');
-  const icon = btn.querySelector('span:last-child');
-  span.textContent = 'Verifying…';
-  icon.style.display = 'none';
-  addSpinStyle();
-  btn.insertAdjacentHTML('beforeend', `<div class="spin-ring"></div>`);
-
+  if (otp.length < 6) {
+    otpBoxes.forEach(b => { b.classList.add('error'); setTimeout(() => b.classList.remove('error'), 500); });
+    return;
+  }
+  btnLoad(this);
   setTimeout(() => {
     clearInterval(timerInterval);
-    btn.style.background = '#006d3f';
-    btn.querySelector('.spin-ring')?.remove();
-    span.textContent = 'Verified';
-    icon.style.display = '';
-    icon.textContent = 'check_circle';
-    icon.style.fontVariationSettings = "'FILL' 1";
+    otpBoxes.forEach((b,i) => setTimeout(() => b.classList.add('success'), i*60));
+    btnSuccess(this, 'Verified');
     setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
   }, 1500);
 });
-
-// ── Shared spinner style ──────────────────────────────────────────────────
-function addSpinStyle() {
-  if (document.getElementById('spin-style')) return;
-  const s = document.createElement('style');
-  s.id = 'spin-style';
-  s.textContent = `
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .spin-ring {
-      width: 14px; height: 14px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      flex-shrink: 0;
-    }
-  `;
-  document.head.appendChild(s);
-}
 </script>
 </body>
 </html>
