@@ -481,7 +481,7 @@ export default function HomePage() {
                   >
                     <span className="material-symbols-outlined text-lg sm:text-xl" style={{ color: item.color }}>{item.icon}</span>
                   </div>
-                  <div className="font-(family-name:--font-jb-mono) text-2xl sm:text-3xl font-black mb-2" style={{ color: item.color + '25' }}>
+                  <div className="font-(family-name:--font-jb-mono) text-2xl sm:text-3xl font-black mb-2" style={{ color: item.color }}>
                     {item.step}
                   </div>
                   <h3 className="font-(family-name:--font-outfit) font-bold text-base sm:text-lg text-[#003f7d] mb-1.5">{item.title}</h3>
