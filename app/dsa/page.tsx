@@ -211,7 +211,7 @@ export default function HomePage() {
             {/* LEFT — Copy */}
             <div className="text-center lg:text-left">
               <span className="inline-block font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
-                India's MSME Credit Platform
+                FOR DSA AGENTS & PARTNERS
               </span>
 
               {/* Text Accent Animation */}
@@ -220,12 +220,11 @@ export default function HomePage() {
               </div>
 
               <h1 className="font-(family-name:--font-outfit) font-extrabold text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.75rem] leading-[1.05] tracking-tight text-white mb-6 sm:mb-8">
-                The <span className="relative">smartest<span className="absolute -bottom-1 left-0 w-full h-[8px] bg-[#1dff9b]/30 -z-10" /></span> way to close{' '}
-                <span className="text-[#1dff9b]">MSME credit</span>.
+                Your entire lending business. One platform. <span className="text-[#1dff9b]">Zero chaos.</span>
               </h1>
 
               <p className="text-sm sm:text-base lg:text-[1.05rem] text-white/70 max-w-lg mx-auto lg:mx-0 mb-6 sm:mb-8 leading-relaxed">
-                Cred2Tech connects MSME lending agents and MSME with the right lenders in minutes, not months. Powered by proprietary algorithms. Built for India's lending ecosystem.
+                Cred2Tech is the only platform built specifically for MSME lending DSAs — from onboarding customers to closing cases, managing teams, and tracking every rupee of commission. Stop juggling spreadsheets and WhatsApp threads. Run a real business.
               </p>
 
               <div className="flex flex-col xs:flex-row justify-center lg:justify-start gap-3 mb-4 sm:mb-5">
@@ -234,10 +233,10 @@ export default function HomePage() {
                 >
                   Register as a DSA Partner <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </Link>
-                <Link href="/login" id="hero-cta-msme"
+                <Link href="/login" id="hero-cta-demo"
                   className="inline-flex items-center justify-center gap-1.5 border-2 border-white/25 text-white px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:bg-white/10 hover:border-white/50 transition-all whitespace-nowrap group"
                 >
-                  Check My Loan Eligibility <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  Request a Demo <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </Link>
               </div>
 
@@ -298,66 +297,91 @@ export default function HomePage() {
           <div className="px-orb w-[220px] h-[220px] bg-[#003f7d] absolute bottom-[-40px] left-[5%] z-0" id="orb-s2" />
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-2xl mx-auto text-center mb-12 sm:mb-16">
-              <p className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#006d3f] mb-3">Why Cred2Tech</p>
+              <p className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#006d3f] mb-3">Features — DSA Portal</p>
               <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2.5rem] text-[#003f7d] mb-4 leading-tight">
-                Credit the way it should have always worked.
+                EVERYTHING NEEDED TO RUN A LENDING BUSINESS
               </h2>
-              <p className="text-[#424751] text-sm sm:text-base leading-relaxed">
-                Cred2Tech was built because the MSME lending journey in India is still far harder than it needs to be for the borrower and the agent. The platform changes that on both sides simultaneously.
-              </p>
             </div>
 
-            {/* Modern Bento Grid — 4 Pillars */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+            {/* Modern Bento Grid — 8 Features */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
 
-              {/* Intelligent Matching - spans 2 cols */}
-              <div className="md:col-span-2 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-500">
-                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gradient-to-br from-[#1dff9b]/10 to-transparent translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* 1. My Pipeline */}
+              <div className="col-span-1 lg:col-span-2 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-500">
                 <div className="w-12 h-12 bg-gradient-to-br from-[#003f7d] to-[#0056a7] flex items-center justify-center mb-6 shadow-lg shadow-[#003f7d]/20">
-                  <span className="material-symbols-outlined text-white text-xl">auto_awesome</span>
+                  <span className="material-symbols-outlined text-white text-xl">view_kanban</span>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Intelligent Matching</h3>
-                <p className="text-[#424751]/80 text-sm sm:text-base leading-relaxed max-w-md relative z-10">
-                  An AI enabled algorithm analyses ITR, GST, bank statements, and bureau data to identify the lender most likely to approve the case at the best rate.
+                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">My Pipeline</h3>
+                <p className="text-[#424751]/80 text-sm sm:text-base leading-relaxed relative z-10">
+                  A single, intelligent view of every case — by stage, lender, alert status, and CIBIL score. Sort, filter, and act instantly.
                 </p>
               </div>
 
-              {/* Secure & Private - spans 1 col */}
-              <div className="md:col-span-1 group relative overflow-hidden bg-[#003f7d] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50" />
+              {/* 2. Team Management */}
+              <div className="col-span-1 lg:col-span-2 group relative overflow-hidden bg-[#003f7d] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500">
                 <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-6 relative z-10">
-                  <span className="material-symbols-outlined text-[#1dff9b] text-xl">shield_lock</span>
+                  <span className="material-symbols-outlined text-[#1dff9b] text-xl">group</span>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-white mb-2 relative z-10">Secure & Private</h3>
+                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-white mb-2 relative z-10">Team Management</h3>
                 <p className="text-white/70 text-sm leading-relaxed relative z-10">
-                  Customer financial data is fetched via secure, authorised APIs. Data remains fully encrypted, and the platform team has no access to customer details.
+                  Add agents and sub-DSAs, assign roles, allocate credits, monitor performance, and manage access — all from the admin dashboard.
                 </p>
               </div>
 
-              {/* Fast. Simple. Digital. - spans 1 col */}
-              <div className="md:col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
+              {/* 3. Wallet Management */}
+              <div className="col-span-1 lg:col-span-2 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
                 <div className="w-12 h-12 bg-[#f0f4f8] flex items-center justify-center mb-6 border border-[#e2e8f0]">
-                  <span className="material-symbols-outlined text-[#006d3f] text-xl">bolt</span>
+                  <span className="material-symbols-outlined text-[#006d3f] text-xl">account_balance_wallet</span>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Fast. Simple. Digital.</h3>
+                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Wallet Management</h3>
                 <p className="text-[#424751]/80 text-sm leading-relaxed">
-                  From eligibility check to lender introduction completed in minutes, not days or weeks. No branch visits. No paperwork piles.
+                  Purchase credit packages, distribute balance to team members, and track consumption in real time. Credits are auto-reclaimed when an agent exits.
                 </p>
               </div>
 
-              {/* Full Transparency - spans 2 cols */}
-              <div className="md:col-span-2 group relative overflow-hidden bg-[#f6f3f2] p-6 sm:p-8 border border-[#e8e4e1] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] hover:border-[#1dff9b]/30 transition-all duration-500">
-                <div className="absolute bottom-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500 hidden sm:block">
-                  <span className="material-symbols-outlined text-[120px] text-[#003f7d]/5">monitoring</span>
-                </div>
+              {/* 4. Instant LAP Eligibility */}
+              <div className="col-span-1 lg:col-span-2 group relative overflow-hidden bg-[#f6f3f2] p-6 sm:p-8 border border-[#e8e4e1] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] hover:border-[#1dff9b]/30 transition-all duration-500">
                 <div className="w-12 h-12 bg-white flex items-center justify-center mb-6 shadow-sm border border-[#e8e4e1]">
-                  <span className="material-symbols-outlined text-[#0056a7] text-xl">analytics</span>
+                  <span className="material-symbols-outlined text-[#0056a7] text-xl">bolt</span>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Full Transparency</h3>
-                <p className="text-[#424751]/80 text-sm sm:text-base leading-relaxed max-w-md relative z-10">
-                  See exactly which lenders are available, at what loan amount, and at what interest rate before an application is even submitted. No hidden fees or surprises.
+                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Instant LAP Eligibility</h3>
+                <p className="text-[#424751]/80 text-sm sm:text-base leading-relaxed relative z-10">
+                  Run a full MSME Loan Against Property eligibility check — bureau, ITR, GST, bank data — in minutes. Multi-lender report generated automatically.
                 </p>
               </div>
+
+              {/* 5. Commission Tracking */}
+              <div className="col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
+                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Commission Tracking</h3>
+                <p className="text-[#424751]/80 text-sm leading-relaxed">
+                  Earned commissions, pending payouts, and invoice history — transparent and up to date.
+                </p>
+              </div>
+
+              {/* 6. Lender Panel */}
+              <div className="col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
+                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Lender Panel</h3>
+                <p className="text-[#424751]/80 text-sm leading-relaxed">
+                  Access a curated panel of banks and NBFCs for Loan Against Property. View rate matrices, configure eligibility rules, and manage relationships.
+                </p>
+              </div>
+
+              {/* 7. PDD Management */}
+              <div className="col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
+                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">PDD Management</h3>
+                <p className="text-[#424751]/80 text-sm leading-relaxed">
+                  Post-disbursement document tracking and follow-up workflows to keep the portfolio clean. <span className="text-[#006d3f] font-bold text-[10px] uppercase">(Launching soon)</span>
+                </p>
+              </div>
+
+              {/* 8. Case Detail & Documents */}
+              <div className="col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
+                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Case Details</h3>
+                <p className="text-[#424751]/80 text-sm leading-relaxed">
+                  Every case has a full audit trail — documents, notes, status history, and lender communication — in one view.
+                </p>
+              </div>
+
             </div>
           </div>
         </section>
@@ -378,18 +402,13 @@ export default function HomePage() {
               {/* Left */}
               <div className="relative">
                 <div className="relative z-10">
-                  <p className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-3">For DSA Agents</p>
+                  <p className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-3">Why DSAs Choose Cred2Tech</p>
                   <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2.75rem] text-white mb-4 leading-tight">
-                    Run your lending <br className="hidden lg:block"/> business like a pro.
+                    THE DIFFERENCE
                   </h2>
                   <p className="text-white/65 text-sm sm:text-[1rem] leading-relaxed mb-6 sm:mb-8 max-w-lg">
                     Cred2Tech is the complete operating system for MSME lending agents from sourcing to Disbursement. Manage customers, track cases, monitor teams, and receive commissions, all in one platform.
                   </p>
-                  <Link href="/login" id="dsa-section-cta"
-                    className="inline-flex items-center gap-1.5 bg-[#1dff9b] text-[#001233] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:shadow-[0_0_24px_rgba(29,255,155,0.4)] hover:scale-[1.02] transition-all group"
-                  >
-                    Register as a DSA Partner <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </Link>
                 </div>
 
                 {/* Sub-bg Lottie */}
@@ -405,10 +424,11 @@ export default function HomePage() {
                 </div>
                 <div className="grid grid-cols-1 gap-2.5 sm:gap-3 relative z-10">
                   {[
-                    { icon: 'view_kanban', title: 'Entire pipeline in one view', desc: 'No more spreadsheets. Every case, every stage, every lender — tracked live.' },
-                    { icon: 'bolt', title: 'Instant lender eligibility', desc: 'Run an MSME Loan eligibility check in minutes. Multiple lenders, one report.' },
-                    { icon: 'wallet', title: 'Team & wallet management', desc: 'Purchase credit packages, allocate balance to agents, track consumption, and manage sub-DSA networks.' },
-                    { icon: 'payments', title: 'Commission transparency', desc: 'Know exactly what has been earned, what is pending, and what has been paid out.' },
+                    { icon: 'all_inclusive', title: 'The only platform that is BOTH a CRM and an eligibility engine', desc: 'No switching between tools.' },
+                    { icon: 'hub', title: 'Sub-DSA network management', desc: 'With wallet allocation and performance tracking.' },
+                    { icon: 'shopping_cart_checkout', title: 'Credit package model', desc: 'Buy as needed, allocate to team, pay only for what is used.' },
+                    { icon: 'speed', title: 'Multi-lender LAP eligibility in one click', desc: 'No more sending cases to lenders manually.' },
+                    { icon: 'verified', title: 'Full commission transparency', desc: 'No more chasing payout statements.' },
                   ].map((item) => (
                     <div key={item.title} className="flex items-start gap-4 bg-white/8 p-4 sm:p-5 border border-white/10 hover:bg-white/12 hover:border-white/20 transition-all duration-300">
                       <div className="w-10 h-10 sm:w-11 sm:h-11 bg-[#1dff9b]/15 border border-[#1dff9b]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -426,8 +446,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ══ S5 — FOR BUSINESS OWNERS ══ */}
-        <section id="for-msmes" className="py-14 sm:py-18 lg:py-20 bg-white relative overflow-hidden">
+        {/* ══ S5 — Pricing ══ */}
+        <section id="pricing" className="py-14 sm:py-18 lg:py-20 bg-white relative overflow-hidden">
           <div className="px-orb w-[300px] h-[300px] bg-[#003f7d] absolute top-[-60px] right-[-60px] z-0" id="orb-m1" />
           <div className="px-orb w-[200px] h-[200px] bg-[#1dff9b] absolute bottom-[-40px] left-[5%] z-0" id="orb-m2" />
 
@@ -437,22 +457,22 @@ export default function HomePage() {
                 <LottiePlayer src="/lottie/data_msme_recolored.json" background="transparent" speed="0.7" loop autoplay />
               </div>
               <div className="relative z-10">
-                <p className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#006d3f] mb-3">For Business Owners</p>
+                <p className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#006d3f] mb-3">Pricing Overview</p>
                 <h2 className="font-(family-name:--font-outfit) font-bold text-2xl sm:text-3xl lg:text-[2.5rem] text-[#003f7d] mb-5 leading-tight">
-                  Your business deserves better credit.
+                  SIMPLE, TRANSPARENT PRICING
                 </h2>
                 <p className="text-[#424751] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-                  Cred2Tech gives MSME owners a clear, honest picture of the loan options available to them. Experience a one-time eligibility check that maps your business directly to the best-matched lenders.
+                  Cred2Tech operates on a credit package model for DSAs. Packages are purchased upfront and allocated across the team.
                 </p>
               </div>
             </div>
 
-            {/* 3-Step Process */}
+            {/* 3-Step Process for pricing */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 mb-10 sm:mb-12">
               {[
-                { step: '01', title: 'Share business details', desc: 'Basic information, property details, GST number, and consent to fetch financial data', icon: 'description', color: '#0056a7' },
-                { step: '02', title: 'Eligibility check runs', desc: 'Bureau, ITR, GST, and bank data analysed in real time across multiple lenders', icon: 'analytics', color: '#006d3f' },
-                { step: '03', title: 'See matched lenders and relax', desc: 'Choose the best Loan offer; a Cred2Tech-empanelled agent handles the rest', icon: 'handshake', color: '#1dff9b' },
+                { step: '₹150', title: 'Per eligibility check', desc: '₹150 per run (deducted from DSA credit balance).', icon: 'payments', color: '#0056a7' },
+                { step: '₹1k+', title: 'Credit packages', desc: 'Starting from ₹1,000 minimum top-up.', icon: 'add_card', color: '#006d3f' },
+                { step: 'Free', title: 'Admin & CRM features', desc: 'Included with an active wallet.', icon: 'admin_panel_settings', color: '#1dff9b' },
               ].map((item) => (
                 <div key={item.step} className="bg-[#f6f3f2] p-5 sm:p-6 border border-[#e8e4e1] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                   <div
@@ -470,153 +490,55 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="text-center">
-              <Link href="/login" id="msme-section-cta"
-                className="inline-flex items-center gap-1.5 bg-[#003f7d] text-white px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:bg-[#0056a7] hover:shadow-[0_8px_24px_rgba(0,63,125,0.3)] hover:scale-[1.02] transition-all group"
-              >
-                Check My LAP Eligibility ₹1,000 <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* ══ S6 — ON THE HORIZON ══ */}
-        <section
-          id="coming-soon"
-          className="py-16 sm:py-24 relative overflow-hidden bg-[#f0f7ff]"
-        >
-          {/* Subtle Light-themed Background Effects */}
-          <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(#003f7d 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
-          <div className="px-orb w-[600px] h-[600px] bg-[#1dff9b]/25 absolute top-[-200px] right-[-100px] z-0" id="orb-pr1" />
-          <div className="px-orb w-[500px] h-[500px] bg-[#003f7d]/5 absolute bottom-[-150px] left-[-80px] z-0" id="orb-pr2" />
-          
-          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div 
-              className="max-w-4xl mx-auto p-8 sm:p-14 border border-white shadow-[0_32px_80px_-20px_rgba(0,63,125,0.12)] relative overflow-hidden"
-              style={{
-                background: 'rgba(255, 255, 255, 0.7)',
-                backdropFilter: 'blur(32px)',
-              }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-white to-transparent pointer-events-none" />
-              
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#006d3f]/5 border border-[#006d3f]/15 mb-6">
-                  <span className="w-1.5 h-1.5 bg-[#006d3f] shadow-[0_0_6px_rgba(0,109,63,0.3)]" />
-                  <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#006d3f]">On the Horizon</span>
-                </div>
-
-                <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[#003f7d] mb-6 leading-tight">
-                  Never miss a government <br className="hidden sm:block" /> scheme again.
-                </h2>
-
-                <div className="absolute -bottom-10 -right-10 w-56 h-56 opacity-[0.12] pointer-events-none">
-                  <LottiePlayer src="/lottie/forgot_password_recolored.json" background="transparent" speed="0.5" loop autoplay />
-                </div>
-                
-                <p className="text-[#424751] text-sm sm:text-base lg:text-[1.05rem] leading-relaxed mb-10 max-w-2xl mx-auto">
-                  India has hundreds of central and state government schemes for MSMEs — subsidies, credit guarantees, grants, and incentives. Most businesses never find them. 
-                  <span className="text-[#006d3f] font-bold"> We're building a first-of-its-kind Government Scheme Identification Engine </span> 
-                  that maps your business profile to every scheme you qualify for.
-                </p>
-
-                <form id="notify-form" className="flex flex-col xs:flex-row gap-3 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
-                  <div className="flex-1 relative group">
-                    <input
-                      type="email"
-                      placeholder="Enter your email address"
-                      className="w-full px-5 py-3 sm:py-4 bg-white border border-[#003f7d]/10 text-[#003f7d] placeholder-[#003f7d]/30 text-sm outline-none focus:border-[#003f7d]/40 transition-all shadow-sm"
-                      required
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center gap-2 bg-[#003f7d] text-white px-6 py-3 sm:py-4 font-bold text-[14px] hover:bg-[#0056a7] hover:shadow-[0_8px_30px_rgba(0,63,125,0.25)] hover:scale-[1.02] active:scale-95 transition-all whitespace-nowrap group"
+            <div className="text-center bg-[#fcfcfc] p-6 border border-[#003f7d]/10 max-w-3xl mx-auto">
+                <p className="text-[#003f7d] font-medium text-sm">Enterprise and high-volume pricing available for large DSA networks.</p>
+                <div className="mt-4">
+                  <Link href="/contact"
+                    className="inline-flex items-center gap-1.5 border-2 border-[#003f7d]/25 text-[#003f7d] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm hover:bg-[#003f7d]/5 hover:border-[#003f7d]/50 transition-all group"
                   >
-                    Notify Me <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </button>
-                </form>
-              </div>
+                    Contact Cred2Tech for custom packages
+                  </Link>
+                </div>
             </div>
           </div>
         </section>
 
-        {/* ══ S7 — THE OPPORTUNITY ══ */}
-        <section id="opportunity" className="py-20 sm:py-28 bg-white relative overflow-hidden">
-          {/* Decorative Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#003f7d 1px,transparent 1px),linear-gradient(90deg,#003f7d 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
-          
-          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-              {/* Left: Content Block */}
-              <div className="w-full lg:w-1/2 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#006d3f]/5 border border-[#006d3f]/10 mb-6">
-                  <span className="w-2 h-[2px] bg-[#006d3f]" />
-                  <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#006d3f]">The Market Opportunity</span>
+        {/* ══ S6 — FAQ ══ */}
+        <section id="faq" className="py-20 sm:py-28 bg-[#f0f7ff] relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(#003f7d 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
+          <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-12">
+              <p className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#006d3f] mb-3">Questions & Answers</p>
+              <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[#003f7d] leading-tight">
+                DSA FAQ
+              </h2>
+            </div>
+            
+            <div className="space-y-4">
+              {[
+                { 
+                  q: 'Can a team of agents be managed under one DSA account?', 
+                  a: 'Yes. The admin account enables onboarding of agents and sub-DSAs, credit allocation, activity monitoring, and pipeline visibility across the entire team.' 
+                },
+                { 
+                  q: 'How does credit allocation work?', 
+                  a: 'Credits are purchased as a package and distributed by the admin to each team member. When an eligibility check is run, the cost is deducted from the allocated balance. On an agent exit, remaining balance is automatically returned to the master wallet.' 
+                },
+                { 
+                  q: 'Is customer data secure?', 
+                  a: 'Yes. All customer data is encrypted and consent-driven. Customers authorise every data fetch explicitly. The Cred2Tech platform team has no access to the financial data, name, or contact details of any customer onboarded by a DSA. Customer data belongs to the DSA and their customer — not to Cred2Tech.' 
+                }
+              ].map((faq, i) => (
+                <div key={i} className="bg-white p-6 sm:p-8 border border-[#003f7d]/10 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-[#003f7d] text-lg mb-3 flex gap-3">
+                    <span className="text-[#1dff9b] mt-0.5"><span className="material-symbols-outlined">help</span></span>
+                    {faq.q}
+                  </h3>
+                  <p className="text-[#424751] text-sm sm:text-base leading-relaxed pl-9">
+                    {faq.a}
+                  </p>
                 </div>
-                
-                <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[#003f7d] mb-6 leading-[1.1] tracking-tight">
-                  India's MSME credit gap <br className="hidden sm:block" /> 
-                  is <span className="text-[#006d3f] relative inline-block">
-                    ₹25 lakh crore.
-                    <span className="absolute bottom-1 left-0 w-full h-[6px] bg-[#1dff9b]/20 -z-10" />
-                  </span>
-                </h2>
-                
-                <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                  Despite being the backbone of the Indian economy, MSMEs are still underserved by traditional financial institutions. Cred2Tech is building the digital bridge to unlock capital at scale.
-                </p>
-
-                {/* Sub Stats Mobile Grid / Desktop inline */}
-                <div className="flex flex-wrap justify-center lg:justify-start gap-8 sm:gap-12">
-                  {[
-                    { number: '63M+', label: 'Total MSMEs' },
-                    { number: '80%', label: 'Underserved' },
-                  ].map((stat) => (
-                    <div key={stat.label} className="text-center lg:text-left">
-                      <div className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-black text-[#003f7d]">{stat.number}</div>
-                      <div className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-widest uppercase text-slate-400 mt-1">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right: Large Graphic Stat Card with Lottie */}
-              <div className="w-full lg:w-1/2 relative">
-                {/* Lottie Overlay */}
-                <div className="absolute -top-16 -right-16 w-64 h-64 opacity-20 pointer-events-none hidden sm:block">
-                  <LottiePlayer src="/lottie/data_recolored.json" background="transparent" speed="0.4" loop autoplay />
-                </div>
-                
-                {/* Bridge Decoration SVG */}
-                <svg className="absolute -top-12 -left-12 w-24 h-24 text-[#1dff9b] opacity-20 hidden xl:block z-0" viewBox="0 0 100 100" fill="none">
-                  <path d="M0 50 Q 50 0 100 50" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  <circle cx="0" cy="50" r="4" fill="currentColor" />
-                  <circle cx="100" cy="50" r="4" fill="currentColor" />
-                </svg>
-
-                <div className="bg-[#003f7d] p-8 sm:p-12 lg:p-16 relative shadow-[0_40px_100px_-20px_rgba(0,63,125,0.25)] border-l-8 border-[#1dff9b] z-10">
-                  {/* Subtle Background Glow */}
-                  <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-white/[0.03] to-transparent pointer-events-none" />
-                  
-                  <div className="relative z-10">
-                    <div className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.25em] uppercase text-[#1dff9b]/60 mb-4 sm:mb-6">Annual Credit Deficit</div>
-                    <div className="font-(family-name:--font-outfit) text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-none tracking-tighter mb-4 sm:mb-6">
-                      ₹25L <br className="hidden sm:block" /> <span className="text-[#1dff9b]">Cr</span>
-                    </div>
-                    <p className="text-white/60 text-xs sm:text-sm font-medium max-w-xs uppercase tracking-wider leading-relaxed">
-                      Bridging this gap through data-driven eligibility and direct empanelment.
-                    </p>
-                  </div>
-
-                  {/* Decorative Elements */}
-                  <div className="absolute bottom-6 right-6 flex gap-1 items-end">
-                    {[3, 5, 8, 4, 6].map((h, i) => (
-                      <div key={i} className="w-[3px] bg-[#1dff9b]/30" style={{ height: `${h * 4}px` }} />
-                    ))}
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>

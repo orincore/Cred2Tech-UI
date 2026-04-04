@@ -26,8 +26,8 @@ const jbMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Login | Cred2Tech",
-  description: "Cred2Tech — Enterprise Fintech Platform",
+  title: "Cred2Tech · Credit, Simplified.",
+  description: "Cred2Tech — The complete platform for MSME lending agents",
 };
 
 export default function RootLayout({
@@ -39,7 +39,7 @@ export default function RootLayout({
     .join(';');
 
   return (
-    <html suppressHydrationWarning lang="en" className={`${outfit.variable} ${inter.variable} ${jbMono.variable} font-(family-name:--font-inter) h-full`}>
+    <html suppressHydrationWarning lang="en" className={`${outfit.variable} ${inter.variable} ${jbMono.variable} font-(family-name:--font-inter)`}>
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -48,7 +48,7 @@ export default function RootLayout({
         {/* Inject theme CSS vars so they're always in sync with theme.ts */}
         <style>{`:root{${cssVarString}}`}</style>
       </head>
-      <body suppressHydrationWarning className="h-full">
+      <body suppressHydrationWarning>
         <Script src="/lottie/lottie-player.js" strategy="beforeInteractive" id="global-lottie-player" />
         <Header />
         <Suspense>
