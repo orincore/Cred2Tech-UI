@@ -1,11 +1,11 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { DM_Sans, Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import theme from "./theme";
 import Header from "./components/Header";
-import TransitionOverlay from "./components/TransitionOverlay";
+import Footer from "./components/Footer";
+import PageTransition from "./components/PageTransition";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -48,13 +48,22 @@ export default function RootLayout({
         {/* Inject theme CSS vars so they're always in sync with theme.ts */}
         <style>{`:root{${cssVarString}}`}</style>
       </head>
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning className="min-h-screen flex flex-col">
         <Script src="/lottie/lottie-player.js" strategy="beforeInteractive" id="global-lottie-player" />
         <Header />
-        <Suspense>
-          <TransitionOverlay />
-        </Suspense>
-        {children}
+        <PageTransition>
+          <main className="flex-1">{children}</main>
+        </PageTransition>
+        <Footer />
+        <style>{`
+          @keyframes pageTransition {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .page-transition {
+            animation: pageTransition 0.4s ease-out;
+          }
+        `}</style>
       </body>
     </html>
   );

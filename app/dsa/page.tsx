@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 
@@ -10,12 +10,40 @@ const LottiePlayer = (props: any) => {
 /* ─────────────────────────────────────────────
  Loan Eligibility Widget — hero right panel
 ───────────────────────────────────────────── */
+const LENDERS = [
+  { name: 'HDFC Bank', amount: '₹45L', rate: '9.5%', badge: 'BEST RATE', badgeColor: '#1dff9b', logo: '/images/hdfc.png' },
+  { name: 'ICICI Bank', amount: '₹42L', rate: '9.9%', badge: 'HIGH LIMIT', badgeColor: '#a8c8ff', logo: '/images/icici.jpg' },
+  { name: 'Bajaj Finserv', amount: '₹40L', rate: '10.2%', badge: 'FAST', badgeColor: '#ffe066', logo: '/images/bajaj.png' },
+];
+
 function LoanEligibilityWidget() {
+  const [phase, setPhase] = useState<'scanning' | 'revealing' | 'done'>('scanning');
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  useEffect(() => {
+    let t1: ReturnType<typeof setTimeout>;
+    let t2: ReturnType<typeof setTimeout>;
+    let t3: ReturnType<typeof setTimeout>;
+    let t4: ReturnType<typeof setTimeout>;
+    function runCycle() {
+      setPhase('scanning');
+      setVisibleCount(0);
+      t1 = setTimeout(() => {
+        setPhase('revealing');
+        setVisibleCount(1);
+        t2 = setTimeout(() => setVisibleCount(2), 500);
+        t3 = setTimeout(() => { setVisibleCount(3); setPhase('done'); }, 1000);
+        t4 = setTimeout(runCycle, 5500);
+      }, 1800);
+    }
+    runCycle();
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+  }, []);
+
   return (
-    <div id="loan-widget" className="card-scene w-full max-w-[340px] sm:max-w-[380px] mx-auto lg:mx-0 select-none">
+    <div id="loan-widget" className="card-scene w-full max-w-[340px] sm:max-w-[360px] lg:max-w-[400px] mx-auto lg:mx-0 select-none">
       <div
         className="card-3d relative overflow-hidden border border-white/15"
-
         style={{
           background: 'linear-gradient(160deg,rgba(255,255,255,0.10) 0%,rgba(255,255,255,0.04) 100%)',
           backdropFilter: 'blur(24px)',
@@ -23,41 +51,41 @@ function LoanEligibilityWidget() {
         }}
       >
         {/* Header */}
-        <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between">
+        <div className="px-3 py-2 lg:px-5 lg:py-4 border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#1dff9b] shadow-[0_0_8px_#1dff9b] animate-pulse" />
+            <div className={`w-2 h-2 rounded-full shadow-[0_0_8px_#1dff9b] ${phase === 'scanning' ? 'bg-[#ffe066] animate-pulse' : 'bg-[#1dff9b] animate-pulse'}`} />
             <span className="text-white/70 text-[10px] font-bold font-(family-name:--font-jb-mono) tracking-widest uppercase">Eligibility Check</span>
           </div>
           <span className="text-[9px] text-white/35 font-(family-name:--font-jb-mono)">ID: #EC-20044</span>
         </div>
 
         {/* Business info */}
-        <div className="px-4 py-3 border-b border-white/10">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 bg-[#1dff9b]/15 border border-[#1dff9b]/30 flex items-center justify-center flex-shrink-0">
-              <span className="material-symbols-outlined text-[#1dff9b] text-sm">store</span>
+        <div className="px-3 py-2 lg:px-5 lg:py-4 border-b border-white/10">
+          <div className="flex items-center gap-2 lg:gap-3 mb-2 lg:mb-3">
+            <div className="w-7 h-7 lg:w-10 lg:h-10 bg-[#1dff9b]/15 border border-[#1dff9b]/30 flex items-center justify-center flex-shrink-0">
+              <span className="material-symbols-outlined text-[#1dff9b] text-xs lg:text-base">store</span>
             </div>
             <div className="min-w-0">
-              <p className="text-white text-xs font-bold leading-tight truncate">Sharma Enterprises Pvt. Ltd.</p>
+              <p className="text-white text-xs font-bold leading-tight truncate">ORINCORE Technologies</p>
               <p className="text-white/45 text-[10px] font-(family-name:--font-jb-mono)">GST: 07AAECS1234F1Z5</p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-2">
-            <div className="bg-white/6 px-3 py-2">
-              <p className="text-white/40 text-[9px] uppercase tracking-wider font-(family-name:--font-jb-mono)">Loan Amount</p>
-              <p className="text-white font-bold text-sm">₹45,00,000</p>
+            <div className="bg-white/6 px-2 py-1.5 lg:px-4 lg:py-3">
+              <p className="text-white/40 text-[9px] lg:text-[10px] uppercase tracking-wider font-(family-name:--font-jb-mono)">Loan Amount</p>
+              <p className="text-white font-bold text-sm lg:text-base">₹45,00,000</p>
             </div>
-            <div className="bg-white/6 px-3 py-2">
-              <p className="text-white/40 text-[9px] uppercase tracking-wider font-(family-name:--font-jb-mono)">Type</p>
-              <p className="text-white font-bold text-sm">LAP</p>
+            <div className="bg-white/6 px-2 py-1.5 lg:px-4 lg:py-3">
+              <p className="text-white/40 text-[9px] lg:text-[10px] uppercase tracking-wider font-(family-name:--font-jb-mono)">Type</p>
+              <p className="text-white font-bold text-sm lg:text-base">LAP</p>
             </div>
           </div>
         </div>
 
         {/* Data checks */}
-        <div className="px-4 py-3 border-b border-white/10">
-          <p className="text-white/35 text-[9px] uppercase tracking-widest font-(family-name:--font-jb-mono) mb-2">Data Analysed</p>
-          <div className="flex flex-wrap gap-1.5">
+        <div className="px-3 py-2 lg:px-5 lg:py-4 border-b border-white/10">
+          <p className="text-white/35 text-[9px] lg:text-[10px] uppercase tracking-widest font-(family-name:--font-jb-mono) mb-1 lg:mb-2">Data Analysed</p>
+          <div className="flex flex-wrap gap-1.5 lg:gap-2">
             {[
               { label: 'ITR', color: '#1dff9b' },
               { label: 'GST', color: '#1dff9b' },
@@ -77,49 +105,65 @@ function LoanEligibilityWidget() {
         </div>
 
         {/* Matched lenders */}
-        <div className="px-4 py-3">
-          <p className="text-white/35 text-[9px] uppercase tracking-widest font-(family-name:--font-jb-mono) mb-2">Matched Lenders</p>
-          <div className="space-y-1.5">
-            {[
-              { name: 'HDFC Bank', amount: '₹45L', rate: '9.5%', badge: 'BEST RATE', badgeColor: '#1dff9b' },
-              { name: 'ICICI Bank', amount: '₹42L', rate: '9.9%', badge: 'HIGH LIMIT', badgeColor: '#a8c8ff' },
-              { name: 'Bajaj Finserv', amount: '₹40L', rate: '10.2%', badge: 'FAST', badgeColor: '#ffe066' },
-            ].map((lender, i) => (
-              <div
-                key={lender.name}
-                id={`widget-lender-${i}`}
-                className="flex items-center justify-between bg-white/5 px-3 py-2 border border-white/8 opacity-0"
-                style={{ transform: 'translateY(6px)' }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 bg-white/10 flex items-center justify-center flex-shrink-0">
-                    <span className="material-symbols-outlined text-white/50 text-xs">account_balance</span>
+        <div className="px-3 py-2 lg:px-5 lg:py-4">
+          <p className="text-white/35 text-[9px] lg:text-[10px] uppercase tracking-widest font-(family-name:--font-jb-mono) mb-1 lg:mb-2">Matched Lenders</p>
+          {phase === 'scanning' && (
+            <div className="flex flex-col gap-2">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="flex items-center gap-3 bg-white/5 px-3 py-2 lg:px-4 lg:py-3 border border-white/8">
+                  <div className="w-7 h-7 lg:w-8 lg:h-8 bg-white/10 rounded flex-shrink-0 animate-pulse" style={{ animationDelay: `${i * 0.15}s` }} />
+                  <div className="flex-1 space-y-1.5">
+                    <div className="h-2 bg-white/10 rounded animate-pulse w-3/4" style={{ animationDelay: `${i * 0.1}s` }} />
+                    <div className="h-1.5 bg-white/7 rounded animate-pulse w-1/2" style={{ animationDelay: `${i * 0.12}s` }} />
                   </div>
-                  <div>
-                    <p className="text-white text-[11px] font-bold leading-none">{lender.name}</p>
-                    <p className="text-white/45 text-[9px] mt-0.5">{lender.amount} @ {lender.rate}</p>
-                  </div>
+                  <div className="w-12 h-4 bg-white/10 rounded animate-pulse" style={{ animationDelay: `${i * 0.08}s` }} />
                 </div>
-                <span
-                  className="text-[8px] font-black px-1.5 py-0.5 font-(family-name:--font-jb-mono) whitespace-nowrap"
-                  style={{ background: lender.badgeColor + '20', color: lender.badgeColor }}
+              ))}
+              <p className="text-white/30 text-[9px] font-(family-name:--font-jb-mono) text-center mt-1 animate-pulse">Scanning lender panel…</p>
+            </div>
+          )}
+          {phase !== 'scanning' && (
+            <div className="space-y-1 lg:space-y-2">
+              {LENDERS.map((lender, i) => (
+                <div
+                  key={lender.name}
+                  className="flex items-center justify-between bg-white/5 px-3 py-2 lg:px-4 lg:py-3 border border-white/8"
+                  style={{ opacity: i < visibleCount ? 1 : 0, transform: i < visibleCount ? 'translateY(0)' : 'translateY(8px)', transition: 'opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1)' }}
                 >
-                  {lender.badge}
-                </span>
-              </div>
-            ))}
-          </div>
+                  <div className="flex items-center gap-2 lg:gap-3">
+                    <div className="w-7 h-7 lg:w-8 lg:h-8 bg-white rounded flex items-center justify-center flex-shrink-0 overflow-hidden p-0.5">
+                      <img src={lender.logo} alt={lender.name} className="w-full h-full object-contain" />
+                    </div>
+                    <div>
+                      <p className="text-white text-[11px] lg:text-xs font-bold leading-none">{lender.name}</p>
+                      <p className="text-white/45 text-[9px] lg:text-[10px] mt-0.5">{lender.amount} @ {lender.rate}</p>
+                    </div>
+                  </div>
+                  <span className="text-[8px] lg:text-[9px] font-black px-1.5 py-0.5 lg:px-2 lg:py-1 font-(family-name:--font-jb-mono) whitespace-nowrap" style={{ background: lender.badgeColor + '20', color: lender.badgeColor }}>{lender.badge}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Status footer */}
-        <div className="px-4 py-2.5 border-t border-white/10 flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <div className="w-4 h-4 rounded-full bg-[#1dff9b]/15 border border-[#1dff9b]/40 flex items-center justify-center">
-              <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3 5.5L6.5 2" stroke="#1dff9b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </div>
-            <span className="text-[#1dff9b] text-[10px] font-bold font-(family-name:--font-jb-mono)">3 LENDERS MATCHED</span>
+        <div className="px-3 py-2 lg:px-5 lg:py-4 border-t border-white/10 flex items-center justify-between">
+          <div className="flex items-center gap-1.5 lg:gap-2">
+            {phase === 'scanning' ? (
+              <>
+                <div className="w-4 h-4 lg:w-5 lg:h-5 border-2 border-[#ffe066]/40 border-t-[#ffe066] rounded-full animate-spin flex-shrink-0" />
+                <span className="text-[#ffe066] text-[10px] lg:text-xs font-bold font-(family-name:--font-jb-mono) animate-pulse">SCANNING LENDERS…</span>
+              </>
+            ) : (
+              <>
+                <div className="w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-[#1dff9b]/15 border border-[#1dff9b]/40 flex items-center justify-center flex-shrink-0">
+                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3 5.5L6.5 2" stroke="#1dff9b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </div>
+                <span className="text-[#1dff9b] text-[10px] lg:text-xs font-bold font-(family-name:--font-jb-mono)">{visibleCount} LENDER{visibleCount !== 1 ? 'S' : ''} MATCHED</span>
+              </>
+            )}
           </div>
-          <span className="text-white/30 text-[9px] font-(family-name:--font-jb-mono)">~4 mins</span>
+          <span className="text-white/30 text-[9px] lg:text-[10px] font-(family-name:--font-jb-mono)">~4 mins</span>
         </div>
       </div>
 
@@ -132,6 +176,40 @@ function LoanEligibilityWidget() {
         <p className="text-white/45 text-[9px] font-(family-name:--font-jb-mono) uppercase tracking-wider">Avg Decision</p>
         <p className="text-white font-bold text-sm">4 <span className="text-white/50 text-xs">min</span></p>
       </div>
+    </div>
+  );
+}
+
+const DSA_FAQS = [
+  { q: 'Can a team of agents be managed under one DSA account?', a: 'Yes. The admin account enables onboarding of agents and sub-DSAs, credit allocation, activity monitoring, and pipeline visibility across the entire team.' },
+  { q: 'How does credit allocation work?', a: 'Credits are purchased as a package and distributed by the admin to each team member. When an eligibility check is run, the cost is deducted from the allocated balance. On an agent exit, remaining balance is automatically returned to the master wallet.' },
+  { q: 'Is customer data secure?', a: 'Yes. All customer data is encrypted and consent-driven. Customers authorise every data fetch explicitly. The Cred2Tech platform team has no access to the financial data, name, or contact details of any customer onboarded by a DSA. Customer data belongs to the DSA and their customer not to Cred2Tech.' },
+];
+
+function DSAFaqAccordion() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  return (
+    <div className="space-y-3">
+      {DSA_FAQS.map((faq, i) => {
+        const isOpen = openIndex === i;
+        return (
+          <div key={i} className="bg-white border border-[#003f7d]/10 shadow-sm overflow-hidden transition-shadow hover:shadow-md">
+            <button
+              suppressHydrationWarning
+              className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+              onClick={() => setOpenIndex(isOpen ? null : i)}
+            >
+              <span className="font-(family-name:--font-outfit) font-bold text-[#003f7d] text-base sm:text-lg leading-snug">{faq.q}</span>
+              <span className={`flex-shrink-0 w-7 h-7 rounded-full border-2 border-[#003f7d]/20 flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[#003f7d] border-[#003f7d]' : ''}`}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={isOpen ? '#1dff9b' : '#003f7d'} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+            </button>
+            <div style={{ maxHeight: isOpen ? '400px' : '0', transition: 'max-height 0.35s cubic-bezier(0.22,1,0.36,1)', overflow: 'hidden' }}>
+              <p className="px-6 pb-5 text-sm sm:text-base text-[#424751] leading-relaxed border-t border-[#003f7d]/5 pt-4">{faq.a}</p>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -199,32 +277,27 @@ export default function HomePage() {
           className="relative min-h-screen flex items-center overflow-hidden"
           style={{ background: 'linear-gradient(135deg,#0a1628 0%,#0d2d6b 35%,#1565d8 70%,#0a1628 100%)' }}
         >
-          <canvas id="ribbon-canvas" className="absolute inset-0 w-full h-full pointer-events-none z-0" />
-          <div className="px-orb w-[400px] h-[400px] bg-[#0d3a8e] absolute top-[-100px] left-[-150px] z-0" id="orb-h1" />
-          <div className="px-orb w-[300px] h-[300px] bg-[#1dff9b] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
-          <div className="px-orb w-[200px] h-[200px] bg-[#00aaff] absolute top-[35%] left-[45%] z-0" id="orb-h3" />
+          <canvas id="ribbon-canvas" className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0" />
+          <div className="hidden lg:block px-orb w-[400px] h-[400px] bg-[#0d3a8e] absolute top-[-100px] left-[-150px] z-0" id="orb-h1" />
+          <div className="hidden lg:block px-orb w-[300px] h-[300px] bg-[#1dff9b] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
+          <div className="hidden lg:block px-orb w-[200px] h-[200px] bg-[#00aaff] absolute top-[35%] left-[45%] z-0" id="orb-h3" />
           <div className="px-grid z-0" id="hero-grid" />
 
           {/* Container — matches header max-w-[1440px] exactly */}
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 pt-28 pb-16 lg:pt-0 lg:pb-0 lg:min-h-screen">
 
             {/* LEFT — Copy */}
-            <div className="text-center lg:text-left">
+            <div className="order-2 lg:order-1 text-center lg:text-left">
               <span className="inline-block font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
                 FOR DSA AGENTS & PARTNERS
               </span>
-
-              {/* Text Accent Animation */}
-              <div className="absolute -top-12 -left-12 w-48 h-48 opacity-[0.07] pointer-events-none hidden xl:block">
-                <LottiePlayer src="/lottie/data_recolored.json" background="transparent" speed="0.6" loop autoplay />
-              </div>
 
               <h1 className="font-(family-name:--font-outfit) font-extrabold text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.75rem] leading-[1.05] tracking-tight text-white mb-6 sm:mb-8">
                 Your entire lending business. One platform. <span className="text-[#1dff9b]">Zero chaos.</span>
               </h1>
 
               <p className="text-sm sm:text-base lg:text-[1.05rem] text-white/70 max-w-lg mx-auto lg:mx-0 mb-6 sm:mb-8 leading-relaxed">
-                Cred2Tech is the only platform built specifically for MSME lending DSAs — from onboarding customers to closing cases, managing teams, and tracking every rupee of commission. Stop juggling spreadsheets and WhatsApp threads. Run a real business.
+                Cred2Tech is the only platform built specifically for MSME lending DSAs from onboarding customers to closing cases, managing teams, and tracking every rupee of commission. Stop juggling spreadsheets and WhatsApp threads. Run a real business.
               </p>
 
               <div className="flex flex-col xs:flex-row justify-center lg:justify-start gap-3 mb-4 sm:mb-5">
@@ -247,8 +320,29 @@ export default function HomePage() {
             </div>
 
             {/* RIGHT — Widget */}
-            <div className="relative flex justify-center items-center">
+            <div className="order-1 lg:order-2 relative flex justify-center items-center -mt-20 sm:-mt-4 lg:mt-0">
               <LoanEligibilityWidget />
+            </div>
+          </div>
+        </section>
+
+        {/* ══ DSA STATS STRIP ══ */}
+        <section className="py-8 sm:py-10 bg-[#003f7d] overflow-hidden relative">
+          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(#1dff9b 1px,transparent 1px)', backgroundSize: '24px 24px' }} />
+          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-white/10 text-center">
+              {[
+                { value: '1 Platform', label: 'For Your Entire Business', icon: 'dashboard' },
+                { value: '< 5 Min', label: 'Eligibility Per Case', icon: 'bolt' },
+                { value: '100%', label: 'Commission Transparency', icon: 'payments' },
+                { value: '0 Spreadsheets', label: 'Needed', icon: 'table_chart' },
+              ].map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center text-center lg:px-8 group">
+                  <span className="material-symbols-outlined text-[#1dff9b]/60 text-2xl mb-2 group-hover:text-[#1dff9b] transition-colors duration-300">{stat.icon}</span>
+                  <div className="font-(family-name:--font-outfit) text-xl sm:text-2xl lg:text-3xl font-black text-white leading-none mb-1">{stat.value}</div>
+                  <div className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.16em] uppercase text-white/40">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -292,7 +386,8 @@ export default function HomePage() {
         </section>
 
         {/* ══ S3 — WHY CRED2TECH ══ */}
-        <section id="why-cred2tech" className="py-14 sm:py-18 lg:py-20 relative overflow-hidden bg-[#fcf9f8]">
+        <section id="why-cred2tech" className="py-14 sm:py-18 lg:py-20 bg-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(#003f7d 1px,transparent 1px),linear-gradient(90deg,#003f7d 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
           <div className="px-orb w-[300px] h-[300px] bg-[#1dff9b] absolute top-[-50px] right-[-60px] z-0" id="orb-s1" />
           <div className="px-orb w-[220px] h-[220px] bg-[#003f7d] absolute bottom-[-40px] left-[5%] z-0" id="orb-s2" />
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -313,7 +408,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">My Pipeline</h3>
                 <p className="text-[#424751]/80 text-sm sm:text-base leading-relaxed relative z-10">
-                  A single, intelligent view of every case — by stage, lender, alert status, and CIBIL score. Sort, filter, and act instantly.
+                  A single, intelligent view of every case by stage, lender, alert status, and CIBIL score. Sort, filter, and act instantly.
                 </p>
               </div>
 
@@ -324,7 +419,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-white mb-2 relative z-10">Team Management</h3>
                 <p className="text-white/70 text-sm leading-relaxed relative z-10">
-                  Add agents and sub-DSAs, assign roles, allocate credits, monitor performance, and manage access — all from the admin dashboard.
+                  Add agents and sub-DSAs, assign roles, allocate credits, monitor performance, and manage access all from the admin dashboard.
                 </p>
               </div>
 
@@ -346,7 +441,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Instant LAP Eligibility</h3>
                 <p className="text-[#424751]/80 text-sm sm:text-base leading-relaxed relative z-10">
-                  Run a full MSME Loan Against Property eligibility check — bureau, ITR, GST, bank data — in minutes. Multi-lender report generated automatically.
+                  Run a full MSME Loan Against Property eligibility check bureau, ITR, GST, bank data in minutes. Multi-lender report generated automatically.
                 </p>
               </div>
 
@@ -354,7 +449,7 @@ export default function HomePage() {
               <div className="col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
                 <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Commission Tracking</h3>
                 <p className="text-[#424751]/80 text-sm leading-relaxed">
-                  Earned commissions, pending payouts, and invoice history — transparent and up to date.
+                  Earned commissions, pending payouts, and invoice history transparent and up to date.
                 </p>
               </div>
 
@@ -378,7 +473,7 @@ export default function HomePage() {
               <div className="col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
                 <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Case Details</h3>
                 <p className="text-[#424751]/80 text-sm leading-relaxed">
-                  Every case has a full audit trail — documents, notes, status history, and lender communication — in one view.
+                  Every case has a full audit trail documents, notes, status history, and lender communication in one view.
                 </p>
               </div>
 
@@ -448,6 +543,7 @@ export default function HomePage() {
 
         {/* ══ S5 — Pricing ══ */}
         <section id="pricing" className="py-14 sm:py-18 lg:py-20 bg-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(#003f7d 1px,transparent 1px),linear-gradient(90deg,#003f7d 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
           <div className="px-orb w-[300px] h-[300px] bg-[#003f7d] absolute top-[-60px] right-[-60px] z-0" id="orb-m1" />
           <div className="px-orb w-[200px] h-[200px] bg-[#1dff9b] absolute bottom-[-40px] left-[5%] z-0" id="orb-m2" />
 
@@ -514,32 +610,7 @@ export default function HomePage() {
               </h2>
             </div>
             
-            <div className="space-y-4">
-              {[
-                { 
-                  q: 'Can a team of agents be managed under one DSA account?', 
-                  a: 'Yes. The admin account enables onboarding of agents and sub-DSAs, credit allocation, activity monitoring, and pipeline visibility across the entire team.' 
-                },
-                { 
-                  q: 'How does credit allocation work?', 
-                  a: 'Credits are purchased as a package and distributed by the admin to each team member. When an eligibility check is run, the cost is deducted from the allocated balance. On an agent exit, remaining balance is automatically returned to the master wallet.' 
-                },
-                { 
-                  q: 'Is customer data secure?', 
-                  a: 'Yes. All customer data is encrypted and consent-driven. Customers authorise every data fetch explicitly. The Cred2Tech platform team has no access to the financial data, name, or contact details of any customer onboarded by a DSA. Customer data belongs to the DSA and their customer — not to Cred2Tech.' 
-                }
-              ].map((faq, i) => (
-                <div key={i} className="bg-white p-6 sm:p-8 border border-[#003f7d]/10 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="font-(family-name:--font-outfit) font-bold text-[#003f7d] text-lg mb-3 flex gap-3">
-                    <span className="text-[#1dff9b] mt-0.5"><span className="material-symbols-outlined">help</span></span>
-                    {faq.q}
-                  </h3>
-                  <p className="text-[#424751] text-sm sm:text-base leading-relaxed pl-9">
-                    {faq.a}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <DSAFaqAccordion />
           </div>
         </section>
 
@@ -592,38 +663,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* ══ FOOTER ══ */}
-        <footer className="w-full py-10 sm:py-12 border-t border-[#003f7d]/10 bg-[#fcf9f8]">
-          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
-            <div className="col-span-2 sm:col-span-1">
-              <span className="text-sm sm:text-base font-bold text-[#003f7d] mb-0.5 block">Cred2Tech</span>
-              <span className="text-xs text-[#006d3f] font-(family-name:--font-jb-mono) block mb-3">Credit, Simplified.</span>
-              <p className="text-xs text-[#443b54] leading-relaxed">
-                India's MSME credit platform — connecting lending agents and businesses with the right lenders.
-              </p>
-            </div>
-            {[
-              { title: 'Products', links: ['For DSA Agents', 'For MSMEs', 'LAP Eligibility', 'Govt Schemes'] },
-              { title: 'Resources', links: ['Support', 'Documentation', 'Developer Hub'] },
-              { title: 'Legal', links: ['Privacy Policy', 'Terms of Service', 'Cookie Settings'] },
-            ].map((col) => (
-              <div key={col.title} className="space-y-2.5 sm:space-y-3">
-                <h4 className="font-bold text-[#003f7d] text-xs sm:text-sm">{col.title}</h4>
-                <ul className="space-y-1.5 sm:space-y-2 text-xs text-[#443b54]/70">
-                  {col.links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="hover:text-[#003f7d] transition-colors hover:underline decoration-[#1dff9b] underline-offset-4">{l}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-[#003f7d]/5">
-            <p className="text-xs text-[#443b54] text-center">© 2024 Cred2Tech. All rights reserved. Credit, Simplified.</p>
-          </div>
-        </footer>
 
       </div>
 

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 
@@ -10,12 +10,45 @@ const LottiePlayer = (props: any) => {
 /* ─────────────────────────────────────────────
  Loan Eligibility Widget — hero right panel
 ───────────────────────────────────────────── */
+const LENDERS = [
+  { name: 'HDFC Bank', amount: '₹45L', rate: '9.5%', badge: 'BEST RATE', badgeColor: '#1dff9b', logo: '/images/hdfc.png' },
+  { name: 'ICICI Bank', amount: '₹42L', rate: '9.9%', badge: 'HIGH LIMIT', badgeColor: '#a8c8ff', logo: '/images/icici.jpg' },
+  { name: 'Bajaj Finserv', amount: '₹40L', rate: '10.2%', badge: 'FAST', badgeColor: '#ffe066', logo: '/images/bajaj.png' },
+];
+
 function LoanEligibilityWidget() {
+  // phase: 'scanning' | 'revealing' | 'done'
+  const [phase, setPhase] = useState<'scanning' | 'revealing' | 'done'>('scanning');
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  useEffect(() => {
+    let t1: ReturnType<typeof setTimeout>;
+    let t2: ReturnType<typeof setTimeout>;
+    let t3: ReturnType<typeof setTimeout>;
+    let t4: ReturnType<typeof setTimeout>;
+
+    function runCycle() {
+      setPhase('scanning');
+      setVisibleCount(0);
+      // After 1.8s start revealing lenders one by one
+      t1 = setTimeout(() => {
+        setPhase('revealing');
+        setVisibleCount(1);
+        t2 = setTimeout(() => setVisibleCount(2), 500);
+        t3 = setTimeout(() => { setVisibleCount(3); setPhase('done'); }, 1000);
+        // Hold for 4s then restart
+        t4 = setTimeout(runCycle, 5500);
+      }, 1800);
+    }
+
+    runCycle();
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+  }, []);
+
   return (
-    <div id="loan-widget" className="card-scene w-full max-w-[340px] sm:max-w-[380px] mx-auto lg:mx-0 select-none">
+    <div id="loan-widget" className="card-scene w-full max-w-[340px] sm:max-w-[360px] lg:max-w-[400px] mx-auto lg:mx-0 select-none">
       <div
         className="card-3d relative overflow-hidden border border-white/15"
-
         style={{
           background: 'linear-gradient(160deg,rgba(255,255,255,0.10) 0%,rgba(255,255,255,0.04) 100%)',
           backdropFilter: 'blur(24px)',
@@ -23,41 +56,41 @@ function LoanEligibilityWidget() {
         }}
       >
         {/* Header */}
-        <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between">
+        <div className="px-3 py-2 lg:px-5 lg:py-4 border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#1dff9b] shadow-[0_0_8px_#1dff9b] animate-pulse" />
+            <div className={`w-2 h-2 rounded-full shadow-[0_0_8px_#1dff9b] ${phase === 'scanning' ? 'bg-[#ffe066] animate-pulse' : 'bg-[#1dff9b] animate-pulse'}`} />
             <span className="text-white/70 text-[10px] font-bold font-(family-name:--font-jb-mono) tracking-widest uppercase">Eligibility Check</span>
           </div>
           <span className="text-[9px] text-white/35 font-(family-name:--font-jb-mono)">ID: #EC-20044</span>
         </div>
 
         {/* Business info */}
-        <div className="px-4 py-3 border-b border-white/10">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-8 bg-[#1dff9b]/15 border border-[#1dff9b]/30 flex items-center justify-center flex-shrink-0">
-              <span className="material-symbols-outlined text-[#1dff9b] text-sm">store</span>
+        <div className="px-3 py-2 lg:px-5 lg:py-4 border-b border-white/10">
+          <div className="flex items-center gap-2 lg:gap-3 mb-2 lg:mb-3">
+            <div className="w-7 h-7 lg:w-10 lg:h-10 bg-[#1dff9b]/15 border border-[#1dff9b]/30 flex items-center justify-center flex-shrink-0">
+              <span className="material-symbols-outlined text-[#1dff9b] text-xs lg:text-base">store</span>
             </div>
             <div className="min-w-0">
-              <p className="text-white text-xs font-bold leading-tight truncate">Sharma Enterprises Pvt. Ltd.</p>
-              <p className="text-white/45 text-[10px] font-(family-name:--font-jb-mono)">GST: 07AAECS1234F1Z5</p>
+              <p className="text-white text-xs font-bold leading-tight truncate">ORINCORE Technologies</p>
+              <p className="text-white/45 text-[9px] font-(family-name:--font-jb-mono)">GST: 07AAECS1234F1Z5</p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-2">
-            <div className="bg-white/6 px-3 py-2">
-              <p className="text-white/40 text-[9px] uppercase tracking-wider font-(family-name:--font-jb-mono)">Loan Amount</p>
-              <p className="text-white font-bold text-sm">₹45,00,000</p>
+            <div className="bg-white/6 px-2 py-1.5 lg:px-4 lg:py-3">
+              <p className="text-white/40 text-[9px] lg:text-[10px] uppercase tracking-wider font-(family-name:--font-jb-mono)">Loan Amount</p>
+              <p className="text-white font-bold text-sm lg:text-base">₹45,00,000</p>
             </div>
-            <div className="bg-white/6 px-3 py-2">
-              <p className="text-white/40 text-[9px] uppercase tracking-wider font-(family-name:--font-jb-mono)">Type</p>
-              <p className="text-white font-bold text-sm">LAP</p>
+            <div className="bg-white/6 px-2 py-1.5 lg:px-4 lg:py-3">
+              <p className="text-white/40 text-[9px] lg:text-[10px] uppercase tracking-wider font-(family-name:--font-jb-mono)">Type</p>
+              <p className="text-white font-bold text-sm lg:text-base">LAP</p>
             </div>
           </div>
         </div>
 
         {/* Data checks */}
-        <div className="px-4 py-3 border-b border-white/10">
-          <p className="text-white/35 text-[9px] uppercase tracking-widest font-(family-name:--font-jb-mono) mb-2">Data Analysed</p>
-          <div className="flex flex-wrap gap-1.5">
+        <div className="px-3 py-2 lg:px-5 lg:py-4 border-b border-white/10">
+          <p className="text-white/35 text-[9px] lg:text-[10px] uppercase tracking-widest font-(family-name:--font-jb-mono) mb-1 lg:mb-2">Data Analysed</p>
+          <div className="flex flex-wrap gap-1.5 lg:gap-2">
             {[
               { label: 'ITR', color: '#1dff9b' },
               { label: 'GST', color: '#1dff9b' },
@@ -77,49 +110,78 @@ function LoanEligibilityWidget() {
         </div>
 
         {/* Matched lenders */}
-        <div className="px-4 py-3">
-          <p className="text-white/35 text-[9px] uppercase tracking-widest font-(family-name:--font-jb-mono) mb-2">Matched Lenders</p>
-          <div className="space-y-1.5">
-            {[
-              { name: 'HDFC Bank', amount: '₹45L', rate: '9.5%', badge: 'BEST RATE', badgeColor: '#1dff9b' },
-              { name: 'ICICI Bank', amount: '₹42L', rate: '9.9%', badge: 'HIGH LIMIT', badgeColor: '#a8c8ff' },
-              { name: 'Bajaj Finserv', amount: '₹40L', rate: '10.2%', badge: 'FAST', badgeColor: '#ffe066' },
-            ].map((lender, i) => (
-              <div
-                key={lender.name}
-                id={`widget-lender-${i}`}
-                className="flex items-center justify-between bg-white/5 px-3 py-2 border border-white/8 opacity-0"
-                style={{ transform: 'translateY(6px)' }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 bg-white/10 flex items-center justify-center flex-shrink-0">
-                    <span className="material-symbols-outlined text-white/50 text-xs">account_balance</span>
+        <div className="px-3 py-2 lg:px-5 lg:py-4">
+          <p className="text-white/35 text-[9px] lg:text-[10px] uppercase tracking-widest font-(family-name:--font-jb-mono) mb-1 lg:mb-2">Matched Lenders</p>
+
+          {/* Scanning state */}
+          {phase === 'scanning' && (
+            <div className="flex flex-col gap-2">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="flex items-center gap-3 bg-white/5 px-3 py-2 lg:px-4 lg:py-3 border border-white/8">
+                  <div className="w-7 h-7 lg:w-8 lg:h-8 bg-white/10 rounded flex-shrink-0 animate-pulse" style={{ animationDelay: `${i * 0.15}s` }} />
+                  <div className="flex-1 space-y-1.5">
+                    <div className="h-2 bg-white/10 rounded animate-pulse w-3/4" style={{ animationDelay: `${i * 0.1}s` }} />
+                    <div className="h-1.5 bg-white/7 rounded animate-pulse w-1/2" style={{ animationDelay: `${i * 0.12}s` }} />
                   </div>
-                  <div>
-                    <p className="text-white text-[11px] font-bold leading-none">{lender.name}</p>
-                    <p className="text-white/45 text-[9px] mt-0.5">{lender.amount} @ {lender.rate}</p>
-                  </div>
+                  <div className="w-12 h-4 bg-white/10 rounded animate-pulse" style={{ animationDelay: `${i * 0.08}s` }} />
                 </div>
-                <span
-                  className="text-[8px] font-black px-1.5 py-0.5 font-(family-name:--font-jb-mono) whitespace-nowrap"
-                  style={{ background: lender.badgeColor + '20', color: lender.badgeColor }}
+              ))}
+              <p className="text-white/30 text-[9px] font-(family-name:--font-jb-mono) text-center mt-1 animate-pulse">Scanning lender panel…</p>
+            </div>
+          )}
+
+          {/* Revealing / done state */}
+          {phase !== 'scanning' && (
+            <div className="space-y-1 lg:space-y-2">
+              {LENDERS.map((lender, i) => (
+                <div
+                  key={lender.name}
+                  className="flex items-center justify-between bg-white/5 px-3 py-2 lg:px-4 lg:py-3 border border-white/8"
+                  style={{
+                    opacity: i < visibleCount ? 1 : 0,
+                    transform: i < visibleCount ? 'translateY(0)' : 'translateY(8px)',
+                    transition: 'opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1)',
+                  }}
                 >
-                  {lender.badge}
-                </span>
-              </div>
-            ))}
-          </div>
+                  <div className="flex items-center gap-2 lg:gap-3">
+                    <div className="w-7 h-7 lg:w-8 lg:h-8 bg-white rounded flex items-center justify-center flex-shrink-0 overflow-hidden p-0.5">
+                      <img src={lender.logo} alt={lender.name} className="w-full h-full object-contain" />
+                    </div>
+                    <div>
+                      <p className="text-white text-[11px] lg:text-xs font-bold leading-none">{lender.name}</p>
+                      <p className="text-white/45 text-[9px] lg:text-[10px] mt-0.5">{lender.amount} @ {lender.rate}</p>
+                    </div>
+                  </div>
+                  <span
+                    className="text-[8px] lg:text-[9px] font-black px-1.5 py-0.5 lg:px-2 lg:py-1 font-(family-name:--font-jb-mono) whitespace-nowrap"
+                    style={{ background: lender.badgeColor + '20', color: lender.badgeColor }}
+                  >
+                    {lender.badge}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Status footer */}
-        <div className="px-4 py-2.5 border-t border-white/10 flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <div className="w-4 h-4 rounded-full bg-[#1dff9b]/15 border border-[#1dff9b]/40 flex items-center justify-center">
-              <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3 5.5L6.5 2" stroke="#1dff9b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </div>
-            <span className="text-[#1dff9b] text-[10px] font-bold font-(family-name:--font-jb-mono)">3 LENDERS MATCHED</span>
+        <div className="px-3 py-2 lg:px-5 lg:py-4 border-t border-white/10 flex items-center justify-between">
+          <div className="flex items-center gap-1.5 lg:gap-2">
+            {phase === 'scanning' ? (
+              <>
+                <div className="w-4 h-4 lg:w-5 lg:h-5 border-2 border-[#ffe066]/40 border-t-[#ffe066] rounded-full animate-spin flex-shrink-0" />
+                <span className="text-[#ffe066] text-[10px] lg:text-xs font-bold font-(family-name:--font-jb-mono) animate-pulse">SCANNING LENDERS…</span>
+              </>
+            ) : (
+              <>
+                <div className="w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-[#1dff9b]/15 border border-[#1dff9b]/40 flex items-center justify-center flex-shrink-0">
+                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3 5.5L6.5 2" stroke="#1dff9b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </div>
+                <span className="text-[#1dff9b] text-[10px] lg:text-xs font-bold font-(family-name:--font-jb-mono)">{visibleCount} LENDER{visibleCount !== 1 ? 'S' : ''} MATCHED</span>
+              </>
+            )}
           </div>
-          <span className="text-white/30 text-[9px] font-(family-name:--font-jb-mono)">~4 mins</span>
+          <span className="text-white/30 text-[9px] lg:text-[10px] font-(family-name:--font-jb-mono)">~4 mins</span>
         </div>
       </div>
 
@@ -199,25 +261,20 @@ export default function HomePage() {
           className="relative min-h-screen flex items-center overflow-hidden"
           style={{ background: 'linear-gradient(135deg,#0a1628 0%,#0d2d6b 35%,#1565d8 70%,#0a1628 100%)' }}
         >
-          <canvas id="ribbon-canvas" className="absolute inset-0 w-full h-full pointer-events-none z-0" />
-          <div className="px-orb w-[400px] h-[400px] bg-[#0d3a8e] absolute top-[-100px] left-[-150px] z-0" id="orb-h1" />
-          <div className="px-orb w-[300px] h-[300px] bg-[#1dff9b] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
-          <div className="px-orb w-[200px] h-[200px] bg-[#00aaff] absolute top-[35%] left-[45%] z-0" id="orb-h3" />
+          <canvas id="ribbon-canvas" className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0" />
+          <div className="hidden lg:block px-orb w-[400px] h-[400px] bg-[#0d3a8e] absolute top-[-100px] left-[-150px] z-0" id="orb-h1" />
+          <div className="hidden lg:block px-orb w-[300px] h-[300px] bg-[#1dff9b] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
+          <div className="hidden lg:block px-orb w-[200px] h-[200px] bg-[#00aaff] absolute top-[35%] left-[45%] z-0" id="orb-h3" />
           <div className="px-grid z-0" id="hero-grid" />
 
           {/* Container — matches header max-w-[1440px] exactly */}
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 pt-28 pb-16 lg:pt-0 lg:pb-0 lg:min-h-screen">
 
             {/* LEFT — Copy */}
-            <div className="text-center lg:text-left">
+            <div className="order-2 lg:order-1 text-center lg:text-left">
               <span className="inline-block font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
                 India's MSME Credit Platform
               </span>
-
-              {/* Text Accent Animation */}
-              <div className="absolute -top-12 -left-12 w-48 h-48 opacity-[0.07] pointer-events-none hidden xl:block">
-                <LottiePlayer src="/lottie/data_recolored.json" background="transparent" speed="0.6" loop autoplay />
-              </div>
 
               <h1 className="font-(family-name:--font-outfit) font-extrabold text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.75rem] leading-[1.05] tracking-tight text-white mb-6 sm:mb-8">
                 The <span className="relative">smartest<span className="absolute -bottom-1 left-0 w-full h-[8px] bg-[#1dff9b]/30 -z-10" /></span> way to close{' '}
@@ -248,7 +305,7 @@ export default function HomePage() {
             </div>
 
             {/* RIGHT — Widget */}
-            <div className="relative flex justify-center items-center">
+            <div className="order-1 lg:order-2 relative flex justify-center items-center -mt-20 sm:-mt-4 lg:mt-0">
               <LoanEligibilityWidget />
             </div>
           </div>
@@ -273,7 +330,7 @@ export default function HomePage() {
                 {[...lenders, ...lenders, ...lenders, ...lenders].map((lender, i) => (
                   <div
                     key={`${lender.name}-${i}`}
-                    className="flex shrink-0 items-center justify-center px-8"
+                    className="flex shrink-0 items-center justify-center px-3 sm:px-8"
                     style={{ height: '48px' }}
                   >
                     <img 
@@ -428,6 +485,7 @@ export default function HomePage() {
 
         {/* ══ S5 — FOR BUSINESS OWNERS ══ */}
         <section id="for-msmes" className="py-14 sm:py-18 lg:py-20 bg-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(#003f7d 1px,transparent 1px),linear-gradient(90deg,#003f7d 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
           <div className="px-orb w-[300px] h-[300px] bg-[#003f7d] absolute top-[-60px] right-[-60px] z-0" id="orb-m1" />
           <div className="px-orb w-[200px] h-[200px] bg-[#1dff9b] absolute bottom-[-40px] left-[5%] z-0" id="orb-m2" />
 
@@ -527,11 +585,13 @@ export default function HomePage() {
                       placeholder="Enter your email address"
                       className="w-full px-5 py-3 sm:py-4 bg-white border border-[#003f7d]/10 text-[#003f7d] placeholder-[#003f7d]/30 text-sm outline-none focus:border-[#003f7d]/40 transition-all shadow-sm"
                       required
+                      suppressHydrationWarning
                     />
                   </div>
                   <button
                     type="submit"
                     className="inline-flex items-center justify-center gap-2 bg-[#003f7d] text-white px-6 py-3 sm:py-4 font-bold text-[14px] hover:bg-[#0056a7] hover:shadow-[0_8px_30px_rgba(0,63,125,0.25)] hover:scale-[1.02] active:scale-95 transition-all whitespace-nowrap group"
+                    suppressHydrationWarning
                   >
                     Notify Me <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </button>
@@ -670,38 +730,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* ══ FOOTER ══ */}
-        <footer className="w-full py-10 sm:py-12 border-t border-[#003f7d]/10 bg-[#fcf9f8]">
-          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
-            <div className="col-span-2 sm:col-span-1">
-              <span className="text-sm sm:text-base font-bold text-[#003f7d] mb-0.5 block">Cred2Tech</span>
-              <span className="text-xs text-[#006d3f] font-(family-name:--font-jb-mono) block mb-3">Credit, Simplified.</span>
-              <p className="text-xs text-[#443b54] leading-relaxed">
-                India's MSME credit platform — connecting lending agents and businesses with the right lenders.
-              </p>
-            </div>
-            {[
-              { title: 'Products', links: ['For DSA Agents', 'For MSMEs', 'LAP Eligibility', 'Govt Schemes'] },
-              { title: 'Resources', links: ['Support', 'Documentation', 'Developer Hub'] },
-              { title: 'Legal', links: ['Privacy Policy', 'Terms of Service', 'Cookie Settings'] },
-            ].map((col) => (
-              <div key={col.title} className="space-y-2.5 sm:space-y-3">
-                <h4 className="font-bold text-[#003f7d] text-xs sm:text-sm">{col.title}</h4>
-                <ul className="space-y-1.5 sm:space-y-2 text-xs text-[#443b54]/70">
-                  {col.links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="hover:text-[#003f7d] transition-colors hover:underline decoration-[#1dff9b] underline-offset-4">{l}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-[#003f7d]/5">
-            <p className="text-xs text-[#443b54] text-center">© 2024 Cred2Tech. All rights reserved. Credit, Simplified.</p>
-          </div>
-        </footer>
 
       </div>
 

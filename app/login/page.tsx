@@ -10,19 +10,17 @@ import { countries } from '../lib/countries';
 
 const { colors, fonts, gradients, shadows, radii } = theme;
 
-type Role = 'dsa' | 'msme' | 'admin';
+type Role = 'dsa' | 'msme';
 type BtnState = 'idle' | 'loading' | 'success';
 
 const roleData: Record<Role, { h: string; s: string }> = {
-  dsa:   { h: 'Welcome back',  s: 'Sign in to manage your fintech pipeline.' },
+  dsa:   { h: 'Welcome',  s: 'Sign in to manage your fintech pipeline.' },
   msme:  { h: 'MSME Login',    s: 'Enter your mobile number to receive an OTP.' },
-  admin: { h: 'Admin Access',  s: 'Sign in to your admin account.' },
 };
 
 const roles: { key: Role; icon: string; label: string }[] = [
   { key: 'dsa',   icon: 'support_agent',       label: 'DSA / Agent' },
   { key: 'msme',  icon: 'storefront',           label: 'MSME' },
-  { key: 'admin', icon: 'admin_panel_settings', label: 'Admin' },
 ];
 
 export default function LoginPage() {
@@ -141,6 +139,7 @@ export default function LoginPage() {
   }
 
   return (
+    <div>
     <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center relative overflow-hidden font-(family-name:--font-inter)"
       style={{ background: gradients.hero }}>
 
@@ -189,8 +188,8 @@ export default function LoginPage() {
         <div className="flex bg-[#f6f3f2] border border-[#c2c6d3] rounded-[10px] p-[3px] mb-6 relative">
           <div className="absolute top-[3px] left-[3px] bottom-[3px] rounded-[8px] pointer-events-none transition-transform duration-300 ease-out"
             style={{ 
-              width: 'calc((100% - 6px) / 3)',
-              transform: `translateX(${['dsa','msme','admin'].indexOf(role) * 100}%)`,
+              width: 'calc((100% - 6px) / 2)',
+              transform: `translateX(${['dsa','msme'].indexOf(role) * 100}%)`,
               background: colors.primary, 
               boxShadow: '0 2px 8px rgba(0,63,125,.3)'
             }} />
@@ -395,11 +394,9 @@ export default function LoginPage() {
                 <LottiePlayer 
                   key={role}
                   src={
-                    role === 'admin' 
-                      ? "/lottie/data_admin_recolored.json?v=2" 
-                      : role === 'msme' 
-                        ? "/lottie/data_msme_recolored.json?v=2" 
-                        : "/lottie/data_recolored.json?v=2"
+                    role === 'msme' 
+                      ? "/lottie/data_msme_recolored.json?v=2" 
+                      : "/lottie/data_recolored.json?v=2"
                   }
                   background="transparent" 
                   speed="1" 
@@ -434,6 +431,7 @@ export default function LoginPage() {
           line-height: 1;
         }
       `}</style>
+    </div>
     </div>
   );
 }
