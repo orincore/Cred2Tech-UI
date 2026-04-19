@@ -28,6 +28,11 @@ const jbMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Cred2Tech · Credit, Simplified.",
   description: "Cred2Tech — The complete platform for MSME lending agents",
+  icons: {
+    icon: "/logos/fab icon.png",
+    shortcut: "/logos/fab icon.png",
+    apple: "/logos/fab icon.png",
+  },
 };
 
 export default function RootLayout({

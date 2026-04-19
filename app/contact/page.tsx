@@ -55,7 +55,7 @@ export default function ContactPage() {
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-block font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
+            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
               Get Started
             </span>
             <h1 className="font-(family-name:--font-outfit) font-extrabold text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] leading-[1.05] tracking-tight text-white mb-6">
@@ -208,7 +208,7 @@ export default function ContactPage() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#003f7d]/10 to-transparent" />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10 sm:mb-14">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+            <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[#006d3f]">
               Direct Contact
             </span>
             <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[#003f7d]">

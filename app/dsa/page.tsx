@@ -7,6 +7,13 @@ import Script from 'next/script';
 const LottiePlayer = (props: any) => {
   return React.createElement('lottie-player', props);
 };
+
+// Client-only wrapper to prevent hydration mismatch
+function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted ? <>{children}</> : <div className="w-[120px] h-[120px] mb-4" />;
+}
 /* ─────────────────────────────────────────────
  Loan Eligibility Widget — hero right panel
 ───────────────────────────────────────────── */
@@ -284,11 +291,12 @@ export default function HomePage() {
           <div className="px-grid z-0" id="hero-grid" />
 
           {/* Container — matches header max-w-[1440px] exactly */}
-          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 pt-28 pb-16 lg:pt-0 lg:pb-0 lg:min-h-screen">
+          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center relative z-10 pt-28 pb-16 lg:pt-0 lg:pb-0 lg:min-h-screen">
 
-            {/* LEFT — Copy */}
-            <div className="order-2 lg:order-1 text-center lg:text-left">
-              <span className="inline-block font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
+            {/* CENTERED — Copy */}
+            <div className="max-w-3xl">
+              <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[#003f7d] mb-6 px-5 py-2.5 bg-white border-2 border-[#1dff9b] shadow-[0_4px_20px_rgba(29,255,155,0.25)]">
+                <span className="w-2 h-2 bg-[#1dff9b] animate-pulse" />
                 FOR DSA AGENTS & PARTNERS
               </span>
 
@@ -296,11 +304,11 @@ export default function HomePage() {
                 Your entire lending business. One platform. <span className="text-[#1dff9b]">Zero chaos.</span>
               </h1>
 
-              <p className="text-sm sm:text-base lg:text-[1.05rem] text-white/70 max-w-lg mx-auto lg:mx-0 mb-6 sm:mb-8 leading-relaxed">
-                Cred2Tech is the only platform built specifically for MSME lending DSAs from onboarding customers to closing cases, managing teams, and tracking every rupee of commission. Stop juggling spreadsheets and WhatsApp threads. Run a real business.
+              <p className="text-sm sm:text-base lg:text-[1.05rem] text-white/70 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed">
+                The complete workspace for MSME loan agents: eligibility checks, commission tracking, team management, and customer pipelines—all in one dashboard.
               </p>
 
-              <div className="flex flex-col xs:flex-row justify-center lg:justify-start gap-3 mb-4 sm:mb-5">
+              <div className="flex flex-col xs:flex-row justify-center gap-3 mb-4 sm:mb-5">
                 <Link href="/login" id="hero-cta-dsa"
                   className="inline-flex items-center justify-center gap-1.5 bg-[#1dff9b] text-[#001233] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
                 >
@@ -313,15 +321,10 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              <p className="flex items-center justify-center lg:justify-start gap-1.5 text-white/40 text-xs font-(family-name:--font-jb-mono)">
+              <p className="flex items-center justify-center gap-1.5 text-white/40 text-xs font-(family-name:--font-jb-mono)">
                 <span className="material-symbols-outlined text-[14px]">lock</span>
                 Your data stays private. Secure. Confidential.
               </p>
-            </div>
-
-            {/* RIGHT — Widget */}
-            <div className="order-1 lg:order-2 relative flex justify-center items-center -mt-20 sm:-mt-4 lg:mt-0">
-              <LoanEligibilityWidget />
             </div>
           </div>
         </section>
@@ -350,7 +353,10 @@ export default function HomePage() {
         {/* ══ S2 — TRUST / LENDER BAR ══ */}
         <section id="lender-bar" className="py-10 sm:py-14 bg-white border-b border-[#e8e4e1]">
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#003f7d]/35 mb-2">Social Proof Strip</p>
+            <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[#003f7d] mb-4 px-5 py-2.5 bg-white border-2 border-[#006d3f] shadow-[0_4px_20px_rgba(0,109,63,0.15)]">
+              <span className="w-2 h-2 bg-[#006d3f]" />
+              Social Proof
+            </span>
             <h2 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl lg:text-2xl text-[#003f7d] mb-3">
               Matched with lenders you can trust
             </h2>
@@ -386,95 +392,174 @@ export default function HomePage() {
         </section>
 
         {/* ══ S3 — WHY CRED2TECH ══ */}
-        <section id="why-cred2tech" className="py-14 sm:py-18 lg:py-20 bg-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(#003f7d 1px,transparent 1px),linear-gradient(90deg,#003f7d 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
-          <div className="px-orb w-[300px] h-[300px] bg-[#1dff9b] absolute top-[-50px] right-[-60px] z-0" id="orb-s1" />
-          <div className="px-orb w-[220px] h-[220px] bg-[#003f7d] absolute bottom-[-40px] left-[5%] z-0" id="orb-s2" />
+        <section id="why-cred2tech" className="py-14 sm:py-18 lg:py-20 bg-[#1dff9b] relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: 'linear-gradient(#003f7d 1px,transparent 1px),linear-gradient(90deg,#003f7d 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
+          <div className="px-orb w-[300px] h-[300px] bg-[#003f7d]/20 absolute top-[-50px] right-[-60px] z-0" id="orb-s1" />
+          <div className="px-orb w-[220px] h-[220px] bg-white/30 absolute bottom-[-40px] left-[5%] z-0" id="orb-s2" />
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-2xl mx-auto text-center mb-12 sm:mb-16">
-              <p className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#006d3f] mb-3">Features — DSA Portal</p>
-              <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2.5rem] text-[#003f7d] mb-4 leading-tight">
-                EVERYTHING NEEDED TO RUN A LENDING BUSINESS
-              </h2>
+            {/* Header with Title Left and Arrows Right */}
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+              <div>
+                <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[#003f7d] mb-3 px-5 py-2.5 bg-white border-2 border-[#006d3f] shadow-[0_4px_20px_rgba(0,109,63,0.15)]">
+                  <span className="w-2 h-2 bg-[#006d3f]" />
+                  Features — DSA Portal
+                </span>
+                <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2.5rem] text-[#001233] leading-tight uppercase tracking-wide">
+                  EVERYTHING NEEDED TO RUN A LENDING BUSINESS
+                </h2>
+              </div>
+              {/* Navigation Arrows - Right Side */}
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: -360, behavior: 'smooth' })}
+                  className="w-10 h-10 flex items-center justify-center bg-white border-2 border-[#003f7d] text-[#003f7d] hover:bg-[#003f7d] hover:text-white transition-all duration-300 shadow-lg"
+                  aria-label="Scroll left"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button 
+                  onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: 360, behavior: 'smooth' })}
+                  className="w-10 h-10 flex items-center justify-center bg-[#003f7d] border-2 border-[#003f7d] text-white hover:bg-[#0056a7] hover:border-[#0056a7] transition-all duration-300 shadow-lg"
+                  aria-label="Scroll right"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
-            {/* Modern Bento Grid — 8 Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {/* Feature Carousel */}
+            <div className="relative overflow-visible">
+              <div id="feature-carousel" className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 px-2 -mx-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
 
-              {/* 1. My Pipeline */}
-              <div className="col-span-1 lg:col-span-2 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-500">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#003f7d] to-[#0056a7] flex items-center justify-center mb-6 shadow-lg shadow-[#003f7d]/20">
-                  <span className="material-symbols-outlined text-white text-xl">view_kanban</span>
+                {/* 1. My Pipeline */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4">
+                    <ClientOnly>
+                      <LottiePlayer src="https://assets9.lottiefiles.com/packages/lf20_5njp3vgg.json" background="transparent" speed="1" loop autoplay style={{ width: '120px', height: '120px' }} />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">My Pipeline</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed relative z-10">
+                    A single, intelligent view of every case by stage, lender, alert status, and CIBIL score. Sort, filter, and act instantly.
+                  </p>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">My Pipeline</h3>
-                <p className="text-[#424751]/80 text-sm sm:text-base leading-relaxed relative z-10">
-                  A single, intelligent view of every case by stage, lender, alert status, and CIBIL score. Sort, filter, and act instantly.
-                </p>
-              </div>
 
-              {/* 2. Team Management */}
-              <div className="col-span-1 lg:col-span-2 group relative overflow-hidden bg-[#003f7d] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500">
-                <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-6 relative z-10">
-                  <span className="material-symbols-outlined text-[#1dff9b] text-xl">group</span>
+                {/* 2. Team Management */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] hover:-translate-y-1 transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
+                    <ClientOnly>
+                      <video 
+                        src="/images/team management.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Team Management</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed">
+                    Add agents and sub-DSAs, assign roles, allocate credits, monitor performance, and manage access all from the admin dashboard.
+                  </p>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-white mb-2 relative z-10">Team Management</h3>
-                <p className="text-white/70 text-sm leading-relaxed relative z-10">
-                  Add agents and sub-DSAs, assign roles, allocate credits, monitor performance, and manage access all from the admin dashboard.
-                </p>
-              </div>
 
-              {/* 3. Wallet Management */}
-              <div className="col-span-1 lg:col-span-2 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
-                <div className="w-12 h-12 bg-[#f0f4f8] flex items-center justify-center mb-6 border border-[#e2e8f0]">
-                  <span className="material-symbols-outlined text-[#006d3f] text-xl">account_balance_wallet</span>
+                {/* 3. Wallet Management */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
+                    <ClientOnly>
+                      <video 
+                        src="/images/wallet management.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Wallet Management</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed">
+                    Purchase credit packages, distribute balance to team members, and track consumption in real time. Credits are auto-reclaimed when an agent exits.
+                  </p>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Wallet Management</h3>
-                <p className="text-[#424751]/80 text-sm leading-relaxed">
-                  Purchase credit packages, distribute balance to team members, and track consumption in real time. Credits are auto-reclaimed when an agent exits.
-                </p>
-              </div>
 
-              {/* 4. Instant LAP Eligibility */}
-              <div className="col-span-1 lg:col-span-2 group relative overflow-hidden bg-[#f6f3f2] p-6 sm:p-8 border border-[#e8e4e1] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] hover:border-[#1dff9b]/30 transition-all duration-500">
-                <div className="w-12 h-12 bg-white flex items-center justify-center mb-6 shadow-sm border border-[#e8e4e1]">
-                  <span className="material-symbols-outlined text-[#0056a7] text-xl">bolt</span>
+                {/* 4. Instant LAP Eligibility */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-[#f6f3f2] p-6 sm:p-8 rounded-2xl border border-[#e8e4e1] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] hover:border-[#1dff9b]/30 transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4">
+                    <ClientOnly>
+                      <LottiePlayer src="https://assets5.lottiefiles.com/packages/lf20_3jmvq04g.json" background="transparent" speed="1" loop autoplay style={{ width: '120px', height: '120px' }} />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Instant LAP Eligibility</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed relative z-10">
+                    Run a full MSME Loan Against Property eligibility check bureau, ITR, GST, bank data in minutes. Multi-lender report generated automatically.
+                  </p>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Instant LAP Eligibility</h3>
-                <p className="text-[#424751]/80 text-sm sm:text-base leading-relaxed relative z-10">
-                  Run a full MSME Loan Against Property eligibility check bureau, ITR, GST, bank data in minutes. Multi-lender report generated automatically.
-                </p>
-              </div>
 
-              {/* 5. Commission Tracking */}
-              <div className="col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Commission Tracking</h3>
-                <p className="text-[#424751]/80 text-sm leading-relaxed">
-                  Earned commissions, pending payouts, and invoice history transparent and up to date.
-                </p>
-              </div>
+                {/* 5. Commission Tracking */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4">
+                    <ClientOnly>
+                      <LottiePlayer src="https://assets4.lottiefiles.com/packages/lf20_qp1q7mct.json" background="transparent" speed="1" loop autoplay style={{ width: '120px', height: '120px' }} />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Commission Tracking</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed">
+                    Earned commissions, pending payouts, and invoice history transparent and up to date.
+                  </p>
+                </div>
 
-              {/* 6. Lender Panel */}
-              <div className="col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Lender Panel</h3>
-                <p className="text-[#424751]/80 text-sm leading-relaxed">
-                  Access a curated panel of banks and NBFCs for Loan Against Property. View rate matrices, configure eligibility rules, and manage relationships.
-                </p>
-              </div>
+                {/* 6. Lender Panel */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4">
+                    <ClientOnly>
+                      <LottiePlayer src="https://assets3.lottiefiles.com/packages/lf20_7z8wtyb0.json" background="transparent" speed="1" loop autoplay style={{ width: '120px', height: '120px' }} />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Lender Panel</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed">
+                    Access a curated panel of banks and NBFCs for Loan Against Property. View rate matrices, configure eligibility rules, and manage relationships.
+                  </p>
+                </div>
 
-              {/* 7. PDD Management */}
-              <div className="col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">PDD Management</h3>
-                <p className="text-[#424751]/80 text-sm leading-relaxed">
-                  Post-disbursement document tracking and follow-up workflows to keep the portfolio clean. <span className="text-[#006d3f] font-bold text-[10px] uppercase">(Launching soon)</span>
-                </p>
-              </div>
+                {/* 7. PDD Management */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4">
+                    <ClientOnly>
+                      <LottiePlayer src="https://assets2.lottiefiles.com/packages/lf20_w51pcehl.json" background="transparent" speed="1" loop autoplay style={{ width: '120px', height: '120px' }} />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">PDD Management</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed">
+                    Post-disbursement document tracking and follow-up workflows to keep the portfolio clean. <span className="text-[#006d3f] font-bold text-[10px] uppercase">(Launching soon)</span>
+                  </p>
+                </div>
 
-              {/* 8. Case Detail & Documents */}
-              <div className="col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Case Details</h3>
-                <p className="text-[#424751]/80 text-sm leading-relaxed">
-                  Every case has a full audit trail documents, notes, status history, and lender communication in one view.
-                </p>
+                {/* 8. Case Detail & Documents */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
+                    <ClientOnly>
+                      <video 
+                        src="/images/case management.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Case Details</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed">
+                    Every case has a full audit trail documents, notes, status history, and lender communication in one view.
+                  </p>
+                </div>
+
               </div>
 
             </div>
@@ -553,7 +638,7 @@ export default function HomePage() {
                 <LottiePlayer src="/lottie/data_msme_recolored.json" background="transparent" speed="0.7" loop autoplay />
               </div>
               <div className="relative z-10">
-                <p className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#006d3f] mb-3">Pricing Overview</p>
+                <p className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[#006d3f] mb-3">Pricing Overview</p>
                 <h2 className="font-(family-name:--font-outfit) font-bold text-2xl sm:text-3xl lg:text-[2.5rem] text-[#003f7d] mb-5 leading-tight">
                   SIMPLE, TRANSPARENT PRICING
                 </h2>
@@ -604,7 +689,7 @@ export default function HomePage() {
           <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(#003f7d 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
           <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-12">
-              <p className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#006d3f] mb-3">Questions & Answers</p>
+              <p className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[#006d3f] mb-3">Questions & Answers</p>
               <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[#003f7d] leading-tight">
                 DSA FAQ
               </h2>

@@ -7,6 +7,13 @@ import Script from 'next/script';
 const LottiePlayer = (props: any) => {
   return React.createElement('lottie-player', props);
 };
+
+// Client-only wrapper to prevent hydration mismatch
+function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted ? <>{children}</> : <div className="w-[120px] h-[120px] mb-4" />;
+}
 /* ─────────────────────────────────────────────
  Loan Eligibility Widget — hero right panel
 ───────────────────────────────────────────── */
@@ -268,11 +275,12 @@ export default function HomePage() {
           <div className="px-grid z-0" id="hero-grid" />
 
           {/* Container — matches header max-w-[1440px] exactly */}
-          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 pt-28 pb-16 lg:pt-0 lg:pb-0 lg:min-h-screen">
+          <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center relative z-10 pt-28 pb-16 lg:pt-0 lg:pb-0 lg:min-h-screen">
 
-            {/* LEFT — Copy */}
-            <div className="order-2 lg:order-1 text-center lg:text-left">
-              <span className="inline-block font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
+            {/* CENTERED — Copy */}
+            <div className="max-w-3xl">
+              <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[#003f7d] mb-6 px-5 py-2.5 bg-white border-2 border-[#1dff9b] shadow-[0_4px_20px_rgba(29,255,155,0.25)]">
+                <span className="w-2 h-2 bg-[#1dff9b] animate-pulse" />
                 India's MSME Credit Platform
               </span>
 
@@ -281,11 +289,11 @@ export default function HomePage() {
                 <span className="text-[#1dff9b]">MSME credit</span>.
               </h1>
 
-              <p className="text-sm sm:text-base lg:text-[1.05rem] text-white/70 max-w-lg mx-auto lg:mx-0 mb-6 sm:mb-8 leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-[1.05rem] text-white/70 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed">
                 Cred2Tech connects MSME lending agents and MSME with the right lenders in minutes, not months. Powered by proprietary algorithms. Built for India's lending ecosystem.
               </p>
 
-              <div className="flex flex-col xs:flex-row justify-center lg:justify-start gap-3 mb-4 sm:mb-5">
+              <div className="flex flex-col xs:flex-row justify-center gap-3 mb-4 sm:mb-5">
                 <Link href="/login" id="hero-cta-dsa"
                   className="inline-flex items-center justify-center gap-1.5 bg-[#1dff9b] text-[#001233] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
                 >
@@ -298,15 +306,12 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              <p className="flex items-center justify-center lg:justify-start gap-1.5 text-white/40 text-xs font-(family-name:--font-jb-mono)">
-                <span className="material-symbols-outlined text-[14px]">lock</span>
-                Your data stays private. Secure. Confidential.
-              </p>
-            </div>
-
-            {/* RIGHT — Widget */}
-            <div className="order-1 lg:order-2 relative flex justify-center items-center -mt-20 sm:-mt-4 lg:mt-0">
-              <LoanEligibilityWidget />
+              <div className="inline-flex items-center justify-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
+                <span className="material-symbols-outlined text-sm sm:text-base text-[#1dff9b]">lock</span>
+                <span className="text-white text-xs sm:text-sm font-semibold font-(family-name:--font-jb-mono) whitespace-nowrap">
+                  Your data stays private. Secure. Confidential.
+                </span>
+              </div>
             </div>
           </div>
         </section>
@@ -314,7 +319,10 @@ export default function HomePage() {
         {/* ══ S2 — TRUST / LENDER BAR ══ */}
         <section id="lender-bar" className="py-10 sm:py-14 bg-white border-b border-[#e8e4e1]">
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#003f7d]/35 mb-2">Social Proof Strip</p>
+            <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[#003f7d] mb-4 px-5 py-2.5 bg-white border-2 border-[#006d3f] shadow-[0_4px_20px_rgba(0,109,63,0.15)]">
+              <span className="w-2 h-2 bg-[#006d3f]" />
+              Social Proof
+            </span>
             <h2 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl lg:text-2xl text-[#003f7d] mb-3">
               Matched with lenders you can trust
             </h2>
@@ -350,71 +358,134 @@ export default function HomePage() {
         </section>
 
         {/* ══ S3 — WHY CRED2TECH ══ */}
-        <section id="why-cred2tech" className="py-14 sm:py-18 lg:py-20 relative overflow-hidden bg-[#fcf9f8]">
-          <div className="px-orb w-[300px] h-[300px] bg-[#1dff9b] absolute top-[-50px] right-[-60px] z-0" id="orb-s1" />
-          <div className="px-orb w-[220px] h-[220px] bg-[#003f7d] absolute bottom-[-40px] left-[5%] z-0" id="orb-s2" />
+        <section id="why-cred2tech" className="py-14 sm:py-18 lg:py-20 relative overflow-hidden bg-[#1dff9b]">
+          <div className="px-orb w-[300px] h-[300px] bg-[#003f7d]/20 absolute top-[-50px] right-[-60px] z-0" id="orb-s1" />
+          <div className="px-orb w-[220px] h-[220px] bg-white/30 absolute bottom-[-40px] left-[5%] z-0" id="orb-s2" />
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-2xl mx-auto text-center mb-12 sm:mb-16">
-              <p className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#006d3f] mb-3">Why Cred2Tech</p>
-              <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2.5rem] text-[#003f7d] mb-4 leading-tight">
-                Credit the way it should have always worked.
-              </h2>
-              <p className="text-[#424751] text-sm sm:text-base leading-relaxed">
-                Cred2Tech was built because the MSME lending journey in India is still far harder than it needs to be for the borrower and the agent. The platform changes that on both sides simultaneously.
-              </p>
+            {/* Header with Title Left and Arrows Right */}
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+              <div className="max-w-2xl">
+                <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[#003f7d] mb-3 px-5 py-2.5 bg-white border-2 border-[#006d3f] shadow-[0_4px_20px_rgba(0,109,63,0.15)]">
+                  <span className="w-2 h-2 bg-[#006d3f]" />
+                  Why Cred2Tech
+                </span>
+                <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2.5rem] text-[#001233] leading-tight uppercase tracking-wide">
+                  CREDIT THE WAY IT SHOULD HAVE ALWAYS WORKED
+                </h2>
+                <p className="text-[#003f7d] text-sm sm:text-base leading-relaxed mt-3">
+                  Cred2Tech was built because the MSME lending journey in India is still far harder than it needs to be for the borrower and the agent. The platform changes that on both sides simultaneously.
+                </p>
+              </div>
+              {/* Navigation Arrows - Right Side */}
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: -360, behavior: 'smooth' })}
+                  className="w-10 h-10 flex items-center justify-center bg-white border-2 border-[#003f7d] text-[#003f7d] hover:bg-[#003f7d] hover:text-white transition-all duration-300 shadow-lg"
+                  aria-label="Scroll left"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button 
+                  onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: 360, behavior: 'smooth' })}
+                  className="w-10 h-10 flex items-center justify-center bg-[#003f7d] border-2 border-[#003f7d] text-white hover:bg-[#0056a7] hover:border-[#0056a7] transition-all duration-300 shadow-lg"
+                  aria-label="Scroll right"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
-            {/* Modern Bento Grid — 4 Pillars */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-
-              {/* Intelligent Matching - spans 2 cols */}
-              <div className="md:col-span-2 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-500">
-                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gradient-to-br from-[#1dff9b]/10 to-transparent translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="w-12 h-12 bg-gradient-to-br from-[#003f7d] to-[#0056a7] flex items-center justify-center mb-6 shadow-lg shadow-[#003f7d]/20">
-                  <span className="material-symbols-outlined text-white text-xl">auto_awesome</span>
+            {/* Feature Carousel */}
+            <div className="relative overflow-visible">
+              {/* Carousel Container */}
+              <div id="feature-carousel" className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 px-2 -mx-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                
+                {/* Card 1: Intelligent Matching */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] transition-all duration-500">
+                  <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-gradient-to-br from-[#1dff9b]/10 to-transparent translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
+                  <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
+                    <ClientOnly>
+                      <video 
+                        src="/images/Intelligent Matching.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Intelligent Matching</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed relative z-10">
+                    An AI enabled algorithm analyses ITR, GST, bank statements, and bureau data to identify the lender most likely to approve the case at the best rate.
+                  </p>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Intelligent Matching</h3>
-                <p className="text-[#424751]/80 text-sm sm:text-base leading-relaxed max-w-md relative z-10">
-                  An AI enabled algorithm analyses ITR, GST, bank statements, and bureau data to identify the lender most likely to approve the case at the best rate.
-                </p>
+
+                {/* Card 2: Secure & Private */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] hover:-translate-y-1 transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
+                    <ClientOnly>
+                      <video 
+                        src="/images/Secure & Private.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Secure & Private</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed">
+                    Customer financial data is fetched via secure, authorised APIs. Data remains fully encrypted, and the platform team has no access to customer details.
+                  </p>
+                </div>
+
+                {/* Card 3: Fast. Simple. Digital. */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] hover:-translate-y-1 transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
+                    <ClientOnly>
+                      <video 
+                        src="/images/Fast Simple Digital.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Fast. Simple. Digital.</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed">
+                    From eligibility check to lender introduction completed in minutes, not days or weeks. No branch visits. No paperwork piles.
+                  </p>
+                </div>
+
+                {/* Card 4: Full Transparency */}
+                <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] hover:border-[#1dff9b]/30 transition-all duration-500">
+                  <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
+                    <ClientOnly>
+                      <video 
+                        src="/images/Full Transparency.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Full Transparency</h3>
+                  <p className="text-[#424751]/80 text-sm leading-relaxed">
+                    See exactly which lenders are available, at what loan amount, and at what interest rate before an application is even submitted. No hidden fees or surprises.
+                  </p>
+                </div>
               </div>
 
-              {/* Secure & Private - spans 1 col */}
-              <div className="md:col-span-1 group relative overflow-hidden bg-[#003f7d] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50" />
-                <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-6 relative z-10">
-                  <span className="material-symbols-outlined text-[#1dff9b] text-xl">shield_lock</span>
-                </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-white mb-2 relative z-10">Secure & Private</h3>
-                <p className="text-white/70 text-sm leading-relaxed relative z-10">
-                  Customer financial data is fetched via secure, authorised APIs. Data remains fully encrypted, and the platform team has no access to customer details.
-                </p>
-              </div>
-
-              {/* Fast. Simple. Digital. - spans 1 col */}
-              <div className="md:col-span-1 group relative overflow-hidden bg-white p-6 sm:p-8 border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
-                <div className="w-12 h-12 bg-[#f0f4f8] flex items-center justify-center mb-6 border border-[#e2e8f0]">
-                  <span className="material-symbols-outlined text-[#006d3f] text-xl">bolt</span>
-                </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Fast. Simple. Digital.</h3>
-                <p className="text-[#424751]/80 text-sm leading-relaxed">
-                  From eligibility check to lender introduction completed in minutes, not days or weeks. No branch visits. No paperwork piles.
-                </p>
-              </div>
-
-              {/* Full Transparency - spans 2 cols */}
-              <div className="md:col-span-2 group relative overflow-hidden bg-[#f6f3f2] p-6 sm:p-8 border border-[#e8e4e1] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] hover:border-[#1dff9b]/30 transition-all duration-500">
-                <div className="absolute bottom-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500 hidden sm:block">
-                  <span className="material-symbols-outlined text-[120px] text-[#003f7d]/5">monitoring</span>
-                </div>
-                <div className="w-12 h-12 bg-white flex items-center justify-center mb-6 shadow-sm border border-[#e8e4e1]">
-                  <span className="material-symbols-outlined text-[#0056a7] text-xl">analytics</span>
-                </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[#003f7d] mb-2">Full Transparency</h3>
-                <p className="text-[#424751]/80 text-sm sm:text-base leading-relaxed max-w-md relative z-10">
-                  See exactly which lenders are available, at what loan amount, and at what interest rate before an application is even submitted. No hidden fees or surprises.
-                </p>
-              </div>
             </div>
           </div>
         </section>
@@ -435,7 +506,7 @@ export default function HomePage() {
               {/* Left */}
               <div className="relative">
                 <div className="relative z-10">
-                  <p className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-3">For DSA Agents</p>
+                  <p className="font-(family-name:--font-jb-mono) text-sm sm:text-base font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-3">For DSA Agents</p>
                   <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2.75rem] text-white mb-4 leading-tight">
                     Run your lending <br className="hidden lg:block"/> business like a pro.
                   </h2>
@@ -451,14 +522,18 @@ export default function HomePage() {
 
                 {/* Sub-bg Lottie */}
                 <div className="absolute -top-20 -left-20 w-80 h-80 opacity-10 pointer-events-none hidden xl:block">
-                  <LottiePlayer src="/lottie/data_admin_recolored.json" background="transparent" speed="0.8" loop autoplay />
+                  <ClientOnly>
+                    <LottiePlayer src="/lottie/data_admin_recolored.json" background="transparent" speed="0.8" loop autoplay />
+                  </ClientOnly>
                 </div>
               </div>
 
               {/* Right — 4 Benefits with small Lottie accent */}
               <div className="relative">
                 <div className="absolute -bottom-10 -right-10 w-64 h-64 opacity-5 pointer-events-none hidden lg:block">
-                  <LottiePlayer src="/lottie/data_recolored.json" background="transparent" speed="0.5" loop autoplay />
+                  <ClientOnly>
+                    <LottiePlayer src="/lottie/data_recolored.json" background="transparent" speed="0.5" loop autoplay />
+                  </ClientOnly>
                 </div>
                 <div className="grid grid-cols-1 gap-2.5 sm:gap-3 relative z-10">
                   {[
@@ -492,10 +567,12 @@ export default function HomePage() {
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-4xl mx-auto mb-12 sm:mb-16 relative">
               <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-48 h-48 opacity-[0.08] pointer-events-none">
-                <LottiePlayer src="/lottie/data_msme_recolored.json" background="transparent" speed="0.7" loop autoplay />
+                <ClientOnly>
+                  <LottiePlayer src="/lottie/data_msme_recolored.json" background="transparent" speed="0.7" loop autoplay />
+                </ClientOnly>
               </div>
               <div className="relative z-10">
-                <p className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#006d3f] mb-3">For Business Owners</p>
+                <p className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[#006d3f] mb-3">For Business Owners</p>
                 <h2 className="font-(family-name:--font-outfit) font-bold text-2xl sm:text-3xl lg:text-[2.5rem] text-[#003f7d] mb-5 leading-tight">
                   Your business deserves better credit.
                 </h2>
@@ -561,7 +638,7 @@ export default function HomePage() {
               <div className="relative z-10">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#006d3f]/5 border border-[#006d3f]/15 mb-6">
                   <span className="w-1.5 h-1.5 bg-[#006d3f] shadow-[0_0_6px_rgba(0,109,63,0.3)]" />
-                  <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#006d3f]">On the Horizon</span>
+                  <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[#006d3f]">On the Horizon</span>
                 </div>
 
                 <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[#003f7d] mb-6 leading-tight">
@@ -569,7 +646,9 @@ export default function HomePage() {
                 </h2>
 
                 <div className="absolute -bottom-10 -right-10 w-56 h-56 opacity-[0.12] pointer-events-none">
-                  <LottiePlayer src="/lottie/forgot_password_recolored.json" background="transparent" speed="0.5" loop autoplay />
+                  <ClientOnly>
+                    <LottiePlayer src="/lottie/forgot_password_recolored.json" background="transparent" speed="0.5" loop autoplay />
+                  </ClientOnly>
                 </div>
                 
                 <p className="text-[#424751] text-sm sm:text-base lg:text-[1.05rem] leading-relaxed mb-10 max-w-2xl mx-auto">
@@ -612,7 +691,7 @@ export default function HomePage() {
               <div className="w-full lg:w-1/2 text-center lg:text-left">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#006d3f]/5 border border-[#006d3f]/10 mb-6">
                   <span className="w-2 h-[2px] bg-[#006d3f]" />
-                  <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#006d3f]">The Market Opportunity</span>
+                  <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[#006d3f]">The Market Opportunity</span>
                 </div>
                 
                 <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[#003f7d] mb-6 leading-[1.1] tracking-tight">
@@ -634,7 +713,7 @@ export default function HomePage() {
                     { number: '80%', label: 'Underserved' },
                   ].map((stat) => (
                     <div key={stat.label} className="text-center lg:text-left">
-                      <div className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-black text-[#003f7d]">{stat.number}</div>
+                      <div className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-black text-[#1dff9b]">{stat.number}</div>
                       <div className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-widest uppercase text-slate-400 mt-1">{stat.label}</div>
                     </div>
                   ))}
@@ -645,7 +724,9 @@ export default function HomePage() {
               <div className="w-full lg:w-1/2 relative">
                 {/* Lottie Overlay */}
                 <div className="absolute -top-16 -right-16 w-64 h-64 opacity-20 pointer-events-none hidden sm:block">
-                  <LottiePlayer src="/lottie/data_recolored.json" background="transparent" speed="0.4" loop autoplay />
+                  <ClientOnly>
+                    <LottiePlayer src="/lottie/data_recolored.json" background="transparent" speed="0.4" loop autoplay />
+                  </ClientOnly>
                 </div>
                 
                 {/* Bridge Decoration SVG */}
@@ -661,8 +742,8 @@ export default function HomePage() {
                   
                   <div className="relative z-10">
                     <div className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.25em] uppercase text-[#1dff9b]/60 mb-4 sm:mb-6">Annual Credit Deficit</div>
-                    <div className="font-(family-name:--font-outfit) text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-none tracking-tighter mb-4 sm:mb-6">
-                      ₹25L <br className="hidden sm:block" /> <span className="text-[#1dff9b]">Cr</span>
+                    <div className="font-(family-name:--font-outfit) text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-[#1dff9b] leading-none tracking-tighter mb-4 sm:mb-6">
+                      ₹25L <br className="hidden sm:block" /> Cr
                     </div>
                     <p className="text-white/60 text-xs sm:text-sm font-medium max-w-xs uppercase tracking-wider leading-relaxed">
                       Bridging this gap through data-driven eligibility and direct empanelment.
@@ -707,7 +788,7 @@ export default function HomePage() {
 
           <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-2xl mx-auto">
-              <p className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-3">Get Started Today</p>
+              <p className="font-(family-name:--font-jb-mono) text-sm sm:text-base font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-3">Get Started Today</p>
               <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2rem] text-white mb-3 sm:mb-4 leading-tight">
                 Credit, Simplified. For every agent who closes it and every business that deserves it.
               </h2>
@@ -750,7 +831,7 @@ export default function HomePage() {
  const COLORS=[new THREE.Color('#0a1628'),new THREE.Color('#0d3a8e'),new THREE.Color('#1565d8'),new THREE.Color('#00aaff'),new THREE.Color('#00e5ff'),new THREE.Color('#1dff9b'),new THREE.Color('#ffe066')];
  class RibbonCurve extends THREE.Curve{constructor(aX,aY,bX,phase,twist){super();Object.assign(this,{aX,aY,bX,phase,twist});}getPoint(t){const a=t*Math.PI*2+this.phase;return new THREE.Vector3(Math.sin(this.aX*a)*2.8,Math.sin(this.aY*a+this.twist)*1.6,Math.cos(this.bX*a)*1.2);}}
  const defs=[[1,2,1,0,0,1,0.055,0.90],[1,2,1,0.15,0.1,2,0.045,0.85],[1,2,1,0.30,0.2,3,0.035,0.80],[1,2,1,0.45,0.3,4,0.025,0.75],[1,2,1,0.60,0.4,5,0.018,0.70]];
- const ribbons=defs.map(([aX,aY,bX,phase,twist,ci,radius,opacity])=>{const mesh=new THREE.Mesh(new THREE.TubeGeometry(new RibbonCurve(aX,aY,bX,phase,twist),180,radius,8,true),new THREE.MeshPhongMaterial({color:COLORS[ci],emissive:COLORS[ci],emissiveIntensity:0.4,transparent:true,opacity,shininess:120,side:THREE.DoubleSide}));mesh.position.x=1.8;scene.add(mesh);return mesh;});
+ const ribbons=defs.map(([aX,aY,bX,phase,twist,ci,radius,opacity])=>{const mesh=new THREE.Mesh(new THREE.TubeGeometry(new RibbonCurve(aX,aY,bX,phase,twist),180,radius,8,true),new THREE.MeshPhongMaterial({color:COLORS[ci],emissive:COLORS[ci],emissiveIntensity:0.4,transparent:true,opacity,shininess:120,side:THREE.DoubleSide}));mesh.position.x=0;scene.add(mesh);return mesh;});
  scene.add(new THREE.AmbientLight(0xffffff,0.3));
  const pA=new THREE.PointLight(0x00aaff,2.5,20);pA.position.set(4,3,4);scene.add(pA);
  const pB=new THREE.PointLight(0x1dff9b,1.8,20);pB.position.set(-3,-2,3);scene.add(pB);

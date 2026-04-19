@@ -4,6 +4,18 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 
+// Lottie Player Component
+const LottiePlayer = (props: any) => {
+  return React.createElement('lottie-player', props);
+};
+
+// Client-only wrapper to prevent hydration mismatch
+function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted ? <>{children}</> : <div className="w-[120px] h-[120px] mb-4" />;
+}
+
 const LENDERS = [
   { name: 'HDFC Bank', amount: '₹45L', rate: '9.5%', badge: 'BEST RATE', badgeColor: '#1dff9b', logo: '/images/hdfc.png' },
   { name: 'ICICI Bank', amount: '₹42L', rate: '9.9%', badge: 'HIGH LIMIT', badgeColor: '#a8c8ff', logo: '/images/icici.jpg' },
@@ -352,9 +364,9 @@ export default function MSMEPage() {
         <div className="hidden lg:block px-orb w-[200px] h-[200px] bg-[#00aaff] absolute top-[35%] left-[45%] z-0" id="orb-h3" />
         <div className="px-grid z-0" id="hero-grid" />
 
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 pt-28 pb-16 lg:pt-0 lg:pb-0 lg:min-h-screen">
-          <div className="order-2 lg:order-1 text-center lg:text-left">
-            <span className="inline-block font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center relative z-10 pt-28 pb-16 lg:pt-0 lg:pb-0 lg:min-h-screen">
+          <div className="max-w-3xl">
+            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
               FOR BUSINESS OWNERS
             </span>
 
@@ -362,11 +374,11 @@ export default function MSMEPage() {
               Find the right Loan Against Property for your business.
             </h1>
 
-            <p className="text-sm sm:text-base lg:text-[1.05rem] text-white/70 max-w-lg mx-auto lg:mx-0 mb-6 sm:mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-[1.05rem] text-white/70 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed">
               Getting a LAP should not require weeks of uncertainty and multiple rejections. Cred2Tech gives MSME owners a clear, data backed picture of exactly which lenders will consider their application and at what terms. A one time fee of ₹1,000 applies for the eligibility check.
             </p>
 
-            <div className="flex flex-col xs:flex-row justify-center lg:justify-start gap-3 mb-4 sm:mb-5">
+            <div className="flex flex-col xs:flex-row justify-center gap-3 mb-4 sm:mb-5">
               <Link
                 href="/login"
                 className="inline-flex items-center justify-center gap-1.5 bg-[#1dff9b] text-[#001233] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
@@ -376,14 +388,10 @@ export default function MSMEPage() {
               </Link>
             </div>
 
-            <p className="flex items-center justify-center lg:justify-start gap-1.5 text-white/45 text-xs font-(family-name:--font-jb-mono)">
+            <p className="flex items-center justify-center gap-1.5 text-white/45 text-xs font-(family-name:--font-jb-mono)">
               <span className="material-symbols-outlined text-[14px]">lock</span>
               Consent driven. Secure. No unwanted calls.
             </p>
-          </div>
-
-          <div className="order-1 lg:order-2 relative flex justify-center items-center -mt-20 sm:-mt-4 lg:mt-0">
-            <LoanEligibilityWidget />
           </div>
         </div>
       </section>
@@ -409,12 +417,11 @@ export default function MSMEPage() {
         </div>
       </section>
 
-      <section id="msme-how" className="py-10 sm:py-12 lg:py-16 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(#003f7d 1px,transparent 1px),linear-gradient(90deg,#003f7d 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#003f7d]/20 to-transparent" />
+      <section id="msme-how" className="py-10 sm:py-12 lg:py-16 bg-[#f0f7ff] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(#003f7d 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mb-12">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#003f7d]">
               How It Works — MSME Detail
             </span>
             <h2 className="font-(family-name:--font-outfit) text-[1.8rem] sm:text-[2.2rem] lg:text-[2.6rem] font-bold text-[#003f7d] mt-4">
@@ -445,31 +452,88 @@ export default function MSMEPage() {
         </div>
       </section>
 
-      <section id="msme-features" className="py-10 sm:py-12 lg:py-16 bg-[#f0f7ff] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(#003f7d 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
+      <section id="msme-features" className="py-10 sm:py-12 lg:py-16 bg-[#1dff9b] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: 'linear-gradient(#003f7d 1px,transparent 1px),linear-gradient(90deg,#003f7d 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#003f7d]/20 to-transparent" />
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl mb-12">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
-              Features — MSME Portal
-            </span>
-            <h2 className="font-(family-name:--font-outfit) text-[1.8rem] sm:text-[2.2rem] lg:text-[2.6rem] font-bold text-[#003f7d] mt-4">
-              Features
-            </h2>
+          {/* Header with Title Left and Arrows Right */}
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+            <div>
+              <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[#003f7d] mb-3 px-5 py-2.5 bg-white border-2 border-[#006d3f] shadow-[0_4px_20px_rgba(0,109,63,0.15)]">
+                <span className="w-2 h-2 bg-[#006d3f]" />
+                Features — MSME Portal
+              </span>
+              <h2 className="font-(family-name:--font-outfit) text-[1.8rem] sm:text-[2.2rem] lg:text-[2.6rem] font-bold text-[#001233] leading-tight uppercase tracking-wide">
+                FEATURES
+              </h2>
+            </div>
+            {/* Navigation Arrows - Right Side */}
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: -360, behavior: 'smooth' })}
+                className="w-10 h-10 flex items-center justify-center bg-white border-2 border-[#003f7d] text-[#003f7d] hover:bg-[#003f7d] hover:text-white transition-all duration-300 shadow-lg"
+                aria-label="Scroll left"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button 
+                onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: 360, behavior: 'smooth' })}
+                className="w-10 h-10 flex items-center justify-center bg-[#003f7d] border-2 border-[#003f7d] text-white hover:bg-[#0056a7] hover:border-[#0056a7] transition-all duration-300 shadow-lg"
+                aria-label="Scroll right"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-7">
-            {features.map((feature) => (
-              <div key={feature.title} className="group relative overflow-hidden bg-white p-6 sm:p-7 border border-black/[0.05] shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#003f7d] to-[#0056a7] flex items-center justify-center mb-5 shadow-lg shadow-[#003f7d]/20">
-                  <span className="material-symbols-outlined text-white text-xl">{feature.icon}</span>
+
+          {/* Feature Carousel */}
+          <div className="relative overflow-visible">
+            {/* Carousel Container */}
+            <div id="feature-carousel" className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 px-2 -mx-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {features.map((feature, index) => (
+                <div key={feature.title} className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-7 rounded-2xl border border-black/[0.05] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
+                    <ClientOnly>
+                      {index === 0 ? (
+                        <LottiePlayer 
+                          src="https://assets9.lottiefiles.com/packages/lf20_5njp3vgg.json"
+                          background="transparent" 
+                          speed="1" 
+                          loop 
+                          autoplay 
+                          style={{ width: '120px', height: '120px' }} 
+                        />
+                      ) : (
+                        <video 
+                          src={
+                            index === 1 ? "/images/Lender Matching.mp4" :
+                            index === 2 ? "/images/Document Vault.mp4" :
+                            index === 3 ? "/images/Application Tracking.mp4" :
+                            index === 4 ? "/images/privacy.mp4" :
+                            "/images/Govt Schemes.mp4"
+                          } 
+                          autoPlay 
+                          loop 
+                          muted 
+                          playsInline
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                    </ClientOnly>
+                  </div>
+                  <h3 className="font-(family-name:--font-outfit) text-lg sm:text-xl font-semibold text-[#003f7d] leading-tight">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-[#424751] leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
-                <h3 className="font-(family-name:--font-outfit) text-lg sm:text-xl font-semibold text-[#003f7d] leading-tight">
-                  {feature.title}
-                </h3>
-                <p className="mt-3 text-sm sm:text-base text-[#424751] leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>

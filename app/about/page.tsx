@@ -80,7 +80,7 @@ export default function AboutPage() {
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-block font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
+            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
               About Us
             </span>
             <h1 className="font-(family-name:--font-outfit) font-extrabold text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] leading-[1.05] tracking-tight text-white mb-6">
@@ -100,7 +100,7 @@ export default function AboutPage() {
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10 sm:mb-14">
-              <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+              <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[#006d3f]">
                 Mission
               </span>
               <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[#003f7d]">
@@ -140,7 +140,7 @@ export default function AboutPage() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#003f7d]/10 to-transparent" />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10 sm:mb-14">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+            <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[#006d3f]">
               What Cred2Tech Stands For
             </span>
             <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[#003f7d]">
@@ -174,7 +174,7 @@ export default function AboutPage() {
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10 sm:mb-14">
-              <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+              <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[#006d3f]">
                 Why This Was Built
               </span>
               <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[#003f7d]">
@@ -215,7 +215,7 @@ export default function AboutPage() {
             ].map((stat) => (
               <div key={stat.label} className="lg:px-8">
                 <div className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-black text-white leading-none mb-1">{stat.value}</div>
-                <div className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.16em] uppercase text-white/40">{stat.label}</div>
+                <div className="font-(family-name:--font-jb-mono) text-sm sm:text-base font-bold tracking-[0.16em] uppercase text-white/40">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -228,7 +228,7 @@ export default function AboutPage() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#003f7d]/10 to-transparent" />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10 sm:mb-14">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+            <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[#006d3f]">
               Leadership
             </span>
             <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[#003f7d]">
@@ -257,7 +257,7 @@ export default function AboutPage() {
                   <div className="hidden lg:block absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent" />
                   {/* Badge */}
                   <div className="absolute top-5 left-5">
-                    <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-widest uppercase bg-[#1dff9b] text-[#001233] px-2.5 py-1">CO-FOUNDER</span>
+                    <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-widest uppercase bg-[#1dff9b] text-[#001233] px-2.5 py-1">CO-FOUNDER</span>
                   </div>
                   
                 </div>
@@ -267,7 +267,7 @@ export default function AboutPage() {
                   {/* Subtle dot texture */}
                   <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#003f7d 1px,transparent 1px)', backgroundSize: '20px 20px' }} />
                   <div className="relative z-10">
-                    <p className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#003f7d] mb-2">Founder Profile</p>
+                    <p className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[#003f7d] mb-2">Founder Profile</p>
                     <h3 className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-bold text-[#003f7d] mb-1">Bobby Thomas M</h3>
                     <p className="font-(family-name:--font-jb-mono) text-xs font-semibold text-[#006d3f] tracking-wider uppercase mb-6">MBA · 20+ Years · IIFL · HDFC Bank · ICICI Bank</p>
 
@@ -283,14 +283,14 @@ export default function AboutPage() {
                       {[{ v: '20+', l: 'Years' }, { v: '₹2,000Cr', l: 'Portfolio' }, { v: '5+', l: 'Institutions' }].map(s => (
                         <div key={s.l}>
                           <div className="font-(family-name:--font-outfit) text-xl font-black text-[#003f7d]">{s.v}</div>
-                          <div className="font-(family-name:--font-jb-mono) text-[9px] font-bold uppercase tracking-widest text-[#424751]/50">{s.l}</div>
+                          <div className="font-(family-name:--font-jb-mono) text-sm font-bold uppercase tracking-widest text-[#424751]/50">{s.l}</div>
                         </div>
                       ))}
                     </div>
 
                     <div className="flex flex-wrap gap-2">
                       {['Housing Finance', 'MSME Lending', 'ESG Finance', 'Digital Distribution'].map(tag => (
-                        <span key={tag} className="text-[10px] font-semibold px-2.5 py-1 bg-[#003f7d]/5 text-[#003f7d] border border-[#003f7d]/15 hover:bg-[#003f7d]/10 transition-colors">{tag}</span>
+                        <span key={tag} className="text-base font-semibold px-2.5 py-1 bg-[#003f7d]/5 text-[#003f7d] border border-[#003f7d]/15 hover:bg-[#003f7d]/10 transition-colors">{tag}</span>
                       ))}
                     </div>
                   </div>
@@ -317,7 +317,7 @@ export default function AboutPage() {
                   <div className="hidden lg:block absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent" />
                   {/* Badge */}
                   <div className="absolute top-5 right-5">
-                    <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-widest uppercase bg-[#1dff9b] text-[#001233] px-2.5 py-1">CO-FOUNDER</span>
+                    <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-widest uppercase bg-[#1dff9b] text-[#001233] px-2.5 py-1">CO-FOUNDER</span>
                   </div>
                   
                 </div>
@@ -326,7 +326,7 @@ export default function AboutPage() {
                 <div className="flex-1 p-7 sm:p-10 lg:p-12 flex flex-col justify-center relative">
                   <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#003f7d 1px,transparent 1px)', backgroundSize: '20px 20px' }} />
                   <div className="relative z-10">
-                    <p className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.2em] uppercase text-[#003f7d] mb-2">Founder Profile</p>
+                    <p className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[#003f7d] mb-2">Founder Profile</p>
                     <h3 className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-bold text-[#003f7d] mb-1">Sunil Agarwal</h3>
                     <p className="font-(family-name:--font-jb-mono) text-xs font-semibold text-[#006d3f] tracking-wider uppercase mb-6">CA · Certified Independent Director · ICICI · IIFL · Udaan</p>
 
@@ -342,14 +342,14 @@ export default function AboutPage() {
                       {[{ v: '20+', l: 'Years' }, { v: 'CA', l: 'Qualified' }, { v: 'Board', l: 'Experience' }].map(s => (
                         <div key={s.l}>
                           <div className="font-(family-name:--font-outfit) text-xl font-black text-[#003f7d]">{s.v}</div>
-                          <div className="font-(family-name:--font-jb-mono) text-[9px] font-bold uppercase tracking-widest text-[#424751]/50">{s.l}</div>
+                          <div className="font-(family-name:--font-jb-mono) text-sm font-bold uppercase tracking-widest text-[#424751]/50">{s.l}</div>
                         </div>
                       ))}
                     </div>
 
                     <div className="flex flex-wrap gap-2">
                       {['Credit & Risk', 'Supply Chain Finance', 'BFSI Leadership', 'Governance'].map(tag => (
-                        <span key={tag} className="text-[10px] font-semibold px-2.5 py-1 bg-[#003f7d]/5 text-[#003f7d] border border-[#003f7d]/15 hover:bg-[#003f7d]/10 transition-colors">{tag}</span>
+                        <span key={tag} className="text-base font-semibold px-2.5 py-1 bg-[#003f7d]/5 text-[#003f7d] border border-[#003f7d]/15 hover:bg-[#003f7d]/10 transition-colors">{tag}</span>
                       ))}
                     </div>
                   </div>
@@ -368,7 +368,7 @@ export default function AboutPage() {
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-8">
-              <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+              <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[#006d3f]">
                 Legal Entity
               </span>
               <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[#003f7d]">
@@ -394,7 +394,7 @@ export default function AboutPage() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#003f7d]/10 to-transparent" />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10 sm:mb-14">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+            <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[#006d3f]">
               Startup India Innovation Statement
             </span>
             <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[#003f7d]">
@@ -454,7 +454,7 @@ export default function AboutPage() {
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-8">
-              <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+              <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[#006d3f]">
                 Our Privacy Architecture
               </span>
               <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[#003f7d]">

@@ -115,7 +115,7 @@ export default function HowItWorksPage() {
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-block font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
+            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[#1dff9b] mb-4 px-3 py-1 border border-[#1dff9b]/30 bg-[#1dff9b]/10">
               How It Works
             </span>
             <h1 className="font-(family-name:--font-outfit) font-extrabold text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] leading-[1.05] tracking-tight text-white mb-6">
@@ -135,21 +135,21 @@ export default function HowItWorksPage() {
             <img src="/images/MSME-owner.jpg" alt="MSME Owner" className="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500" onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.background = 'linear-gradient(135deg,#003f7d,#0056a7)'; (e.target as HTMLImageElement).remove(); }} />
             <div className="absolute inset-0 bg-gradient-to-t from-[#003f7d]/60 to-transparent" />
             <div className="absolute bottom-3 left-3">
-              <span className="font-(family-name:--font-jb-mono) text-[9px] font-bold tracking-widest uppercase text-white/80">MSME Owner</span>
+              <span className="font-(family-name:--font-jb-mono) text-sm font-bold tracking-widest uppercase text-white/80">MSME Owner</span>
             </div>
           </div>
           <div className="relative overflow-hidden border-x border-white/20">
             <img src="/images/Agent.jpg" alt="DSA Agent" className="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500" onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.background = 'linear-gradient(135deg,#001233,#003f7d)'; (e.target as HTMLImageElement).remove(); }} />
             <div className="absolute inset-0 bg-gradient-to-t from-[#001233]/60 to-transparent" />
             <div className="absolute bottom-3 left-3">
-              <span className="font-(family-name:--font-jb-mono) text-[9px] font-bold tracking-widest uppercase text-white/80">DSA Agent</span>
+              <span className="font-(family-name:--font-jb-mono) text-sm font-bold tracking-widest uppercase text-white/80">DSA Agent</span>
             </div>
           </div>
           <div className="relative overflow-hidden bg-gradient-to-br from-[#003f7d] to-[#0056a7] flex items-center justify-center">
             <div className="text-center p-4">
               <div className="font-(family-name:--font-outfit) text-3xl sm:text-4xl lg:text-5xl font-black text-[#1dff9b] leading-none mb-1">₹25L</div>
               <div className="font-(family-name:--font-outfit) text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-none mb-2">Cr</div>
-              <div className="font-(family-name:--font-jb-mono) text-[8px] sm:text-[10px] font-bold tracking-widest uppercase text-white/50">Credit Gap</div>
+              <div className="font-(family-name:--font-jb-mono) text-xs sm:text-base font-bold tracking-widest uppercase text-white/50">Credit Gap</div>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ export default function HowItWorksPage() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#003f7d]/20 to-transparent" />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10 sm:mb-14">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+            <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[#006d3f]">
               For MSMEs
             </span>
             <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[#003f7d]">
@@ -217,7 +217,7 @@ export default function HowItWorksPage() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#003f7d]/10 to-transparent" />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10 sm:mb-14">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[#006d3f]">
+            <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[#006d3f]">
               For DSAs
             </span>
             <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[#003f7d]">

@@ -22,36 +22,27 @@ export default function Header() {
  }, [pathname]);
 
  return (
- <header id="site-header" className="sticky top-0 z-[1000] bg-[#003f7d] border-b border-[#003f7d] shadow-lg shadow-[#003f7d]/30">
+ <header id="site-header" className="sticky top-0 z-[1000] bg-white border-b border-gray-200 shadow-sm">
  <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
  <nav id="header-nav" className="flex justify-between items-center h-[64px] sm:h-[72px]">
 
  {/* ── LOGO ── */}
  <Link href="/" className="flex items-center gap-2 flex-shrink-0 sm:gap-3 group">
- <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0 transition-transform duration-300 group-hover:scale-105">
- <div className="absolute inset-0 rounded-full shadow-[0_4px_12px_rgba(0,63,125,0.3)]" style={{ background: 'linear-gradient(135deg, #003f7d 0%, #0056a7 100%)' }} />
- <div className="absolute inset-[2.5px] rounded-full bg-white flex items-center justify-center">
- <svg width="15" height="15" viewBox="0 0 14 14" fill="none">
- <path d="M2.5 7h3.5M8 3.5l3.5 3.5L8 10.5" stroke="#003f7d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
- </svg>
- </div>
+ <div className="relative w-36 h-36 sm:w-40 sm:h-40 lg:w-55 lg:h-55 shrink-0 transition-transform duration-300 group-hover:scale-105">
+ <img src="/logos/Final Logo.png" alt="Cred2Tech" className="w-full h-full object-contain" />
  </div>
  <div className="flex flex-col leading-none">
- <span className="font-(family-name:--font-outfit) font-bold text-[1.1rem] sm:text-[1.4rem] tracking-tight text-white leading-none transition-all">
- Cred<span className="text-emerald-400">2</span>Tech
- </span>
- <span className="text-[8.5px] sm:text-[10px] font-(family-name:--font-inter) font-medium tracking-[0.05em] text-white/70 mt-1 uppercase">
- Credit, Simplified.
- </span>
+ 
+
  </div>
  </Link>
 
  {/* ── NAV LINKS (Pill container) ── */}
- <div className="hidden lg:flex items-center px-2 py-1.5 rounded-full" style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
+ <div className="hidden lg:flex items-center px-2 py-1.5 rounded-full bg-gray-100 border border-gray-200">
  
  {/* Products */}
  <div className="relative group">
- <button suppressHydrationWarning className="flex items-center gap-1.5 px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) text-white/90 hover:text-white hover:bg-white/20 transition-all duration-300">
+ <button suppressHydrationWarning className="flex items-center gap-1.5 px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) text-[#424751] hover:text-[#003f7d] hover:bg-gray-200 transition-all duration-300">
  Products
  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
  </button>
@@ -96,7 +87,7 @@ export default function Header() {
 
  {/* Solutions */}
  <div className="relative group">
- <button suppressHydrationWarning className="flex items-center gap-1.5 px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) text-white/90 hover:text-white hover:bg-white/20 transition-all duration-300">
+ <button suppressHydrationWarning className="flex items-center gap-1.5 px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) text-[#424751] hover:text-[#003f7d] hover:bg-gray-200 transition-all duration-300">
  Solutions
  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
  </button>
@@ -126,21 +117,21 @@ export default function Header() {
 
  {/* How It Works */}
  <Link href="/how-it-works" className={`px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 ${
- pathname === '/how-it-works' ? 'bg-white/25 text-white font-semibold' : 'text-white/90 hover:text-white hover:bg-white/20'
+ pathname === '/how-it-works' ? 'bg-[#003f7d] text-white font-semibold' : 'text-[#424751] hover:text-[#003f7d] hover:bg-gray-200'
  }`}>
  How It Works
  </Link>
 
  {/* About Us */}
  <Link href="/about" className={`px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 ${
- pathname === '/about' ? 'bg-white/25 text-white font-semibold' : 'text-white/90 hover:text-white hover:bg-white/20'
+ pathname === '/about' ? 'bg-[#003f7d] text-white font-semibold' : 'text-[#424751] hover:text-[#003f7d] hover:bg-gray-200'
  }`}>
  About Us
  </Link>
 
  {/* Contact */}
  <Link href="/contact" className={`px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 ${
- pathname === '/contact' ? 'bg-white/25 text-white font-semibold' : 'text-white/90 hover:text-white hover:bg-white/20'
+ pathname === '/contact' ? 'bg-[#003f7d] text-white font-semibold' : 'text-[#424751] hover:text-[#003f7d] hover:bg-gray-200'
  }`}>
  Contact
  </Link>
@@ -151,22 +142,21 @@ export default function Header() {
  <div className="flex items-center gap-2">
  {/* Log In (Secondary) */}
  <Link href="/login"
- className="hidden md:flex items-center gap-1.5 px-4 py-2.5 rounded-full text-[14px] font-medium font-(family-name:--font-inter) text-white/90 hover:text-white transition-colors duration-200 hover:bg-white/20 tracking-wide">
+ className="hidden md:flex items-center gap-1.5 px-4 py-2.5 rounded-full text-[14px] font-medium font-(family-name:--font-inter) text-[#424751] hover:text-[#003f7d] transition-colors duration-200 hover:bg-gray-200 tracking-wide">
  Login
  </Link>
 
  {/* Get Started (Primary) */}
  <Link href="/login"
- className="hidden sm:flex relative items-center gap-2 px-6 py-2.5 rounded-full text-[14px] font-bold font-(family-name:--font-inter) text-[#003f7d] bg-white overflow-hidden hover:scale-105 transition-all shadow-lg group"
+ className="hidden sm:flex relative items-center gap-2 px-6 py-2.5 rounded-full text-[14px] font-bold font-(family-name:--font-inter) text-white bg-[#003f7d] overflow-hidden hover:scale-105 transition-all shadow-lg group"
  >
  <span className="relative tracking-wide">Get Started</span>
  <svg className="relative w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
  <path d="M5 12h14M12 5l7 7-7 7"/>
  </svg>
  </Link>
-
  {/* Mobile hamburger */}
- <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2 text-white hover:text-white ml-1 bg-white/20 rounded-full" id="mobile-menu-btn" suppressHydrationWarning>
+ <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2 text-[#424751] hover:text-[#003f7d] ml-1 bg-gray-200 rounded-full" id="mobile-menu-btn" suppressHydrationWarning>
  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
  <line x1="3" y1="12" x2="21" y2="12"></line>
  <line x1="3" y1="6" x2="21" y2="6"></line>
