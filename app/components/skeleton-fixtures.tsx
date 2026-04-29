@@ -60,14 +60,14 @@ function MarketingHero({
     >
       <div className="absolute inset-0 opacity-20">
         <div className="absolute left-[-8%] top-[-4%] h-72 w-72 rounded-full bg-[#0d3a8e] blur-3xl" />
-        <div className="absolute right-[4%] top-[22%] h-56 w-56 rounded-full bg-[#1dff9b] blur-3xl" />
+        <div className="absolute right-[4%] top-[22%] h-56 w-56 rounded-full bg-[var(--accent)] blur-3xl" />
         <div className="absolute left-[44%] top-[34%] h-40 w-40 rounded-full bg-[#00aaff] blur-3xl" />
       </div>
 
       <SectionShell className="relative z-10 grid min-h-screen grid-cols-1 items-center gap-8 pt-28 pb-16 lg:grid-cols-2 lg:gap-12">
         <div className="max-w-2xl">
           <div className="h-8 w-48 rounded-full bg-white/12" />
-          <div className="mt-6 h-5 w-40 rounded-full bg-[#1dff9b]/30" aria-label={eyebrow} />
+          <div className="mt-6 h-5 w-40 rounded-full bg-[var(--accent)]/30" aria-label={eyebrow} />
           <div className="mt-6 space-y-4">
             <div className="h-10 w-full max-w-[36rem] rounded-full bg-white/12" />
             <div className="h-10 w-[88%] max-w-[30rem] rounded-full bg-white/12" />
@@ -79,7 +79,7 @@ function MarketingHero({
             <div className="h-4 w-[64%] max-w-[18rem] rounded-full bg-white/10" />
           </div>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <div className="h-12 w-56 rounded-full bg-[#1dff9b]/55" />
+            <div className="h-12 w-56 rounded-full bg-[var(--accent)]/55" />
             <div className="h-12 w-56 rounded-full bg-white/15" />
           </div>
           <div className="mt-6 h-3 w-56 rounded-full bg-white/10" />
@@ -92,7 +92,7 @@ function MarketingHero({
           </div>
           <div className="space-y-4 py-4">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-2xl bg-[#1dff9b]/20" />
+              <div className="h-10 w-10 rounded-2xl bg-[var(--accent)]/20" />
               <div className="flex-1 space-y-2">
                 <div className="h-3 w-[72%] rounded-full bg-white/12" />
                 <div className="h-3 w-[44%] rounded-full bg-white/10" />
@@ -123,7 +123,7 @@ function MarketingHero({
             </div>
           </div>
           <div className="border-t border-white/10 pt-4">
-            <div className="h-3 w-40 rounded-full bg-[#1dff9b]/30" />
+            <div className="h-3 w-40 rounded-full bg-[var(--accent)]/30" />
           </div>
         </div>
       </SectionShell>
@@ -211,7 +211,7 @@ export function LoginPageFixture() {
     <AuthCardShell
       sidePanel={
         <div className="relative z-10 flex h-[440px] w-[440px] items-center justify-center">
-          <div className="h-72 w-72 rounded-full bg-gradient-to-tr from-[#3b82f6]/20 to-[#003f7d]/10 blur-3xl" />
+          <div className="h-72 w-72 rounded-full bg-gradient-to-tr from-[#3b82f6]/20 to-[var(--primary)]/10 blur-3xl" />
           <div className="absolute h-52 w-52 rounded-[32px] bg-white/70 shadow-[0_18px_60px_rgba(0,63,125,0.10)]" />
         </div>
       }
@@ -232,7 +232,7 @@ export function LoginPageFixture() {
         <div className="h-12 rounded-[10px] bg-[#f6f3f2]" />
         <div className="h-12 rounded-[10px] bg-[#f6f3f2]" />
         <div className="ml-auto h-3 w-28 rounded-full bg-[#eef4fb]" />
-        <div className="h-12 rounded-[10px] bg-[#003f7d]" />
+        <div className="h-12 rounded-[10px] bg-[var(--primary)]" />
       </div>
     </AuthCardShell>
   );
@@ -258,7 +258,7 @@ export function ForgotPasswordPageFixture() {
       <div className="mt-8 space-y-4">
         <div className="h-4 w-16 rounded-full bg-[#eef4fb]" />
         <div className="h-12 rounded-[10px] bg-[#f6f3f2]" />
-        <div className="h-[54px] rounded-[10px] bg-[#003f7d]" />
+        <div className="h-[54px] rounded-[10px] bg-[var(--primary)]" />
       </div>
 
       <div className="mt-24 h-4 w-36 rounded-full bg-[#eef4fb]" />

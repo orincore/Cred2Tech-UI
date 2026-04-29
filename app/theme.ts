@@ -27,8 +27,10 @@ export const colors = {
   secondary:    '#006d3f',
   secondaryFix: '#58ffa5',
 
-  accent:       '#1dff9b',
-  accentDark:   '#00e388',
+  accent:       '#22c55e',
+  accentDark:   '#16a34a',
+  accentBlue:   '#1565d8',
+  accentBlueDark: '#0056a7',
 
   // Surfaces
   bg:           '#fcf9f8',

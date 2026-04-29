@@ -150,7 +150,7 @@ export default function CreditCard3D({
               {/* Signature Pattern Area */}
               <div style={{ flex: 1, height: '100%', background: 'repeating-linear-gradient(45deg, rgba(200,200,200,0.3), rgba(200,200,200,0.3) 2px, transparent 2px, transparent 6px)', position: 'relative' }}>
                 {/* Simulated signature cursive squiggle */}
-                <svg viewBox="0 0 100 30" style={{ position: 'absolute', top: '4px', left: '10px', height: '24px', opacity: 0.8, stroke: '#003f7d', strokeWidth: 1.5, fill: 'none', strokeLinecap: 'round' }}>
+                <svg viewBox="0 0 100 30" style={{ position: 'absolute', top: '4px', left: '10px', height: '24px', opacity: 0.8, stroke: 'var(--primary)', strokeWidth: 1.5, fill: 'none', strokeLinecap: 'round' }}>
                   <path d="M5,20 C10,5 20,5 25,20 S35,5 40,20 S50,5 55,20 S65,5 75,15 S85,25 95,5" />
                 </svg>
               </div>

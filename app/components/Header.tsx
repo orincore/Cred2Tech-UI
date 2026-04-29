@@ -22,14 +22,14 @@ export default function Header() {
  }, [pathname]);
 
  return (
- <header id="site-header" className="sticky top-0 z-[1000] bg-white border-b border-gray-200 shadow-sm">
+ <header id="site-header" className="sticky top-0 z-[1000] bg-[var(--primary)] border-b border-white/10 shadow-sm">
  <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
  <nav id="header-nav" className="flex justify-between items-center h-[64px] sm:h-[72px]">
 
  {/* ── LOGO ── */}
  <Link href="/" className="flex items-center gap-2 flex-shrink-0 sm:gap-3 group">
  <div className="relative w-36 h-36 sm:w-40 sm:h-40 lg:w-55 lg:h-55 shrink-0 transition-transform duration-300 group-hover:scale-105">
- <img src="/logos/Final Logo.png" alt="Cred2Tech" className="w-full h-full object-contain" />
+ <img src="/logos/logo.png" alt="Cred2Tech" className="w-full h-full object-contain" />
  </div>
  <div className="flex flex-col leading-none">
  
@@ -38,117 +38,116 @@ export default function Header() {
  </Link>
 
  {/* ── NAV LINKS (Pill container) ── */}
- <div className="hidden lg:flex items-center px-2 py-1.5 rounded-full bg-gray-100 border border-gray-200">
- 
- {/* Products */}
- <div className="relative group">
- <button suppressHydrationWarning className="flex items-center gap-1.5 px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) text-[#424751] hover:text-[#003f7d] hover:bg-gray-200 transition-all duration-300">
- Products
- <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
- </button>
- 
- {/* Products Dropdown */}
- <div className="absolute top-[120%] left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-[650px] z-[1050]">
- <div className="bg-white shadow-[0_20px_40px_-15px_rgba(0,63,125,0.15)] border border-[#003f7d]/10 overflow-hidden flex text-left before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:w-4 before:h-4 before:bg-white before:rotate-45 before:border-l before:border-t before:border-[#003f7d]/10">
- <div className="flex-1 p-6 border-r border-[#003f7d]/5 bg-white">
- <h4 className="text-[11px] uppercase tracking-wider font-bold text-[#003f7d]/50 mb-4 px-3">Platforms</h4>
- <Link href="/dsa" className="block p-3 hover:bg-[#003f7d]/5 transition-colors mb-2">
- <div className="font-semibold text-[#003f7d] text-[14px] mb-1">For DSAs</div>
- <p className="text-[12px] text-[#424751] leading-relaxed">The complete platform for MSME lending agents: pipeline, team, wallet, and commissions</p>
- </Link>
- <Link href="/msme" className="block p-3 hover:bg-[#003f7d]/5 transition-colors">
- <div className="font-semibold text-[#003f7d] text-[14px] mb-1">For MSMEs</div>
- <p className="text-[12px] text-[#424751] leading-relaxed">Check eligibility for a Loan and connect with the right lender</p>
- </Link>
- </div>
- <div className="flex-1 p-6 bg-slate-50/50">
- <h4 className="text-[11px] uppercase tracking-wider font-bold text-[#003f7d]/50 mb-4 px-3">Products</h4>
- <Link href="#" className="flex flex-col p-3 hover:bg-white hover:shadow-sm transition-all mb-1">
- <div className="font-semibold text-[#424751] text-[13px]">Home Loan and LAP</div>
- </Link>
- <div className="flex flex-col p-3 group/item mb-1 cursor-default opacity-80">
- <div className="font-semibold text-[#424751] text-[13px] flex items-center gap-2">Business Loans <span className="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">🔜</span></div>
- <p className="text-[11px] text-[#424751]/70 mt-1">Additional loan products coming soon</p>
- </div>
- <div className="flex flex-col p-3 group/item mb-1 cursor-default opacity-80">
- <div className="font-semibold text-[#424751] text-[13px] flex items-center gap-2">Working Capital <span className="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">🔜</span></div>
- </div>
- <div className="flex flex-col p-3 group/item mb-1 cursor-default opacity-80">
- <div className="font-semibold text-[#424751] text-[13px] flex items-center gap-2">Supply Chain Financing <span className="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">🔜</span></div>
- </div>
- <div className="flex flex-col p-3 group/item cursor-default opacity-80">
- <div className="font-semibold text-[#424751] text-[13px] flex items-center gap-2">Government Schemes <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">🔜</span></div>
- <p className="text-[11px] text-[#424751]/70 mt-1">Discover and apply for MSME government schemes (Coming Soon)</p>
- </div>
- </div>
- </div>
- </div>
- </div>
+ <div className="hidden lg:flex items-center px-2 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm">
+                {/* For DSA */}
+                <div className="relative group">
+                    <Link href="/dsa" suppressHydrationWarning className={`flex items-center gap-1.5 px-5 py-2 rounded-full text-[14px] font-bold font-(family-name:--font-inter) transition-all duration-300 ${
+                        pathname === '/dsa' ? 'bg-white text-[var(--primary)]' : 'text-white hover:bg-white/15'
+                    }`}>
+                        For DSA
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </Link>
 
- {/* Solutions */}
- <div className="relative group">
- <button suppressHydrationWarning className="flex items-center gap-1.5 px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) text-[#424751] hover:text-[#003f7d] hover:bg-gray-200 transition-all duration-300">
- Solutions
- <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
- </button>
- 
- {/* Solutions Dropdown */}
- <div className="absolute top-[120%] left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-[500px] z-[1050]">
- <div className="bg-white shadow-[0_20px_40px_-15px_rgba(0,63,125,0.15)] border border-[#003f7d]/10 overflow-hidden text-left p-4 grid grid-cols-1 gap-1 before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:w-4 before:h-4 before:bg-white before:rotate-45 before:border-l before:border-t before:border-[#003f7d]/10">
- <Link href="#" className="flex flex-col p-4 hover:bg-slate-50 transition-colors">
- <div className="font-semibold text-[#003f7d] text-[14px] mb-1">LAP Eligibility Check</div>
- <p className="text-[12px] text-[#424751] leading-relaxed">Real-time matching across lenders for Loan Against Property</p>
- </Link>
- <Link href="#" className="flex flex-col p-4 hover:bg-slate-50 transition-colors">
- <div className="font-semibold text-[#003f7d] text-[14px] mb-1">DSA CRM & Pipeline</div>
- <p className="text-[12px] text-[#424751] leading-relaxed">End-to-end case management for DSA agents</p>
- </Link>
- <Link href="#" className="flex flex-col p-4 hover:bg-slate-50 transition-colors">
- <div className="font-semibold text-[#003f7d] text-[14px] mb-1">Document Vault</div>
- <p className="text-[12px] text-[#424751] leading-relaxed">Securely verified and customer-uploaded documents, organised</p>
- </Link>
- <Link href="#" className="flex flex-col p-4 hover:bg-slate-50 transition-colors">
- <div className="font-semibold text-[#003f7d] text-[14px] mb-1">Commission & Wallet</div>
- <p className="text-[12px] text-[#424751] leading-relaxed">Transparent payout tracking and wallet management</p>
- </Link>
- </div>
- </div>
- </div>
+                    {/* For DSA Dropdown */}
+                    <div className="absolute top-[120%] left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-[340px] z-[1050]">
+                        <div className="bg-white shadow-[0_20px_40px_-15px_rgba(0,63,125,0.15)] border border-[var(--primary)]/10 overflow-hidden text-left p-3 before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:w-4 before:h-4 before:bg-white before:rotate-45 before:border-l before:border-t before:border-[var(--primary)]/10">
+                            <Link href="/dsa#eligibility" className="flex items-center gap-3 p-3 hover:bg-[var(--primary)]/5 transition-colors">
+                                <span className="material-symbols-outlined text-[var(--primary)] text-[20px]">fact_check</span>
+                                <span className="font-medium text-[#424751] text-[13px]">Check Loan Eligibility</span>
+                            </Link>
+                            <Link href="/dsa#crm" className="flex items-center gap-3 p-3 hover:bg-[var(--primary)]/5 transition-colors">
+                                <span className="material-symbols-outlined text-[var(--primary)] text-[20px]">view_kanban</span>
+                                <span className="font-medium text-[#424751] text-[13px]">DSA CRM</span>
+                            </Link>
+                            <Link href="/dsa#vault" className="flex items-center gap-3 p-3 hover:bg-[var(--primary)]/5 transition-colors">
+                                <span className="material-symbols-outlined text-[var(--primary)] text-[20px]">folder_shared</span>
+                                <span className="font-medium text-[#424751] text-[13px]">Document Vault</span>
+                            </Link>
+                            <Link href="/dsa#invoice" className="flex items-center gap-3 p-3 hover:bg-[var(--primary)]/5 transition-colors">
+                                <span className="material-symbols-outlined text-[var(--primary)] text-[20px]">receipt_long</span>
+                                <span className="font-medium text-[#424751] text-[13px]">Invoice Management</span>
+                            </Link>
+                            <Link href="/dsa#performance" className="flex items-center gap-3 p-3 hover:bg-[var(--primary)]/5 transition-colors">
+                                <span className="material-symbols-outlined text-[var(--primary)] text-[20px]">monitoring</span>
+                                <span className="font-medium text-[#424751] text-[13px]">Performance Tracking</span>
+                            </Link>
+                            <div className="flex items-center gap-3 p-3 cursor-default opacity-70">
+                                <span className="material-symbols-outlined text-[var(--primary)] text-[20px]">policy</span>
+                                <span className="font-medium text-[#424751] text-[13px]">MSME Govt Scheme Discovery</span>
+                                <span className="text-[9px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">SOON</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
- {/* How It Works */}
- <Link href="/how-it-works" className={`px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 ${
- pathname === '/how-it-works' ? 'bg-[#003f7d] text-white font-semibold' : 'text-[#424751] hover:text-[#003f7d] hover:bg-gray-200'
- }`}>
- How It Works
- </Link>
+                {/* For MSME */}
+                <div className="relative group">
+                    <Link href="/msme" suppressHydrationWarning className={`flex items-center gap-1.5 px-5 py-2 rounded-full text-[14px] font-bold font-(family-name:--font-inter) transition-all duration-300 ${
+                        pathname === '/msme' ? 'bg-white text-[var(--primary)]' : 'text-white hover:bg-white/15'
+                    }`}>
+                        For MSME
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </Link>
 
- {/* About Us */}
- <Link href="/about" className={`px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 ${
- pathname === '/about' ? 'bg-[#003f7d] text-white font-semibold' : 'text-[#424751] hover:text-[#003f7d] hover:bg-gray-200'
- }`}>
- About Us
- </Link>
+                    {/* For MSME Dropdown */}
+                    <div className="absolute top-[120%] left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-[340px] z-[1050]">
+                        <div className="bg-white shadow-[0_20px_40px_-15px_rgba(0,63,125,0.15)] border border-[var(--primary)]/10 overflow-hidden text-left p-3 before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:w-4 before:h-4 before:bg-white before:rotate-45 before:border-l before:border-t before:border-[var(--primary)]/10">
+                            <Link href="/msme#eligibility" className="flex items-center gap-3 p-3 hover:bg-[var(--primary)]/5 transition-colors">
+                                <span className="material-symbols-outlined text-[var(--primary)] text-[20px]">fact_check</span>
+                                <span className="font-medium text-[#424751] text-[13px]">Check Loan Eligibility</span>
+                            </Link>
+                            <Link href="/msme#vault" className="flex items-center gap-3 p-3 hover:bg-[var(--primary)]/5 transition-colors">
+                                <span className="material-symbols-outlined text-[var(--primary)] text-[20px]">folder_shared</span>
+                                <span className="font-medium text-[#424751] text-[13px]">Document Vault</span>
+                            </Link>
+                            <Link href="/msme#cases" className="flex items-center gap-3 p-3 hover:bg-[var(--primary)]/5 transition-colors">
+                                <span className="material-symbols-outlined text-[var(--primary)] text-[20px]">work</span>
+                                <span className="font-medium text-[#424751] text-[13px]">My Cases</span>
+                            </Link>
+                            <div className="flex items-center gap-3 p-3 cursor-default opacity-70">
+                                <span className="material-symbols-outlined text-[var(--primary)] text-[20px]">policy</span>
+                                <span className="font-medium text-[#424751] text-[13px]">MSME Govt Scheme Discovery</span>
+                                <span className="text-[9px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">SOON</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
- {/* Contact */}
- <Link href="/contact" className={`px-5 py-2 rounded-full text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 ${
- pathname === '/contact' ? 'bg-[#003f7d] text-white font-semibold' : 'text-[#424751] hover:text-[#003f7d] hover:bg-gray-200'
- }`}>
- Contact
- </Link>
+                {/* About Us */}
+                <Link href="/about" className={`px-5 py-2 rounded-full text-[14px] font-bold font-(family-name:--font-inter) transition-all duration-300 ${
+                    pathname === '/about' ? 'bg-white text-[var(--primary)]' : 'text-white hover:bg-white/15'
+                }`}>
+                    About Us
+                </Link>
+
+                {/* How It Works */}
+                <Link href="/how-it-works" className={`px-5 py-2 rounded-full text-[14px] font-bold font-(family-name:--font-inter) transition-all duration-300 ${
+                    pathname === '/how-it-works' ? 'bg-white text-[var(--primary)]' : 'text-white hover:bg-white/15'
+                }`}>
+                    How It Works
+                </Link>
+
+                {/* Blogs */}
+                <Link href="/blogs" className={`px-5 py-2 rounded-full text-[14px] font-bold font-(family-name:--font-inter) transition-all duration-300 ${
+                    pathname?.startsWith('/blogs') ? 'bg-white text-[var(--primary)]' : 'text-white hover:bg-white/15'
+                }`}>
+                    Blogs
+                </Link>
+
+                {/* Contact */}
+                <Link href="/contact" className={`px-5 py-2 rounded-full text-[14px] font-bold font-(family-name:--font-inter) transition-all duration-300 ${
+                    pathname === '/contact' ? 'bg-white text-[var(--primary)]' : 'text-white hover:bg-white/15'
+                }`}>
+                    Contact
+                </Link>
 
  </div>
 
  {/* ── ACTIONS ── */}
  <div className="flex items-center gap-2">
- {/* Log In (Secondary) */}
- <Link href="/login"
- className="hidden md:flex items-center gap-1.5 px-4 py-2.5 rounded-full text-[14px] font-medium font-(family-name:--font-inter) text-[#424751] hover:text-[#003f7d] transition-colors duration-200 hover:bg-gray-200 tracking-wide">
- Login
- </Link>
-
  {/* Get Started (Primary) */}
  <Link href="/login"
- className="hidden sm:flex relative items-center gap-2 px-6 py-2.5 rounded-full text-[14px] font-bold font-(family-name:--font-inter) text-white bg-[#003f7d] overflow-hidden hover:scale-105 transition-all shadow-lg group"
+ className="hidden sm:flex relative items-center gap-2 px-6 py-2.5 rounded-full text-[14px] font-bold font-(family-name:--font-inter) text-[var(--primary)] bg-[var(--accent)] overflow-hidden hover:scale-105 transition-all shadow-lg group"
  >
  <span className="relative tracking-wide">Get Started</span>
  <svg className="relative w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -156,7 +155,7 @@ export default function Header() {
  </svg>
  </Link>
  {/* Mobile hamburger */}
- <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2 text-[#424751] hover:text-[#003f7d] ml-1 bg-gray-200 rounded-full" id="mobile-menu-btn" suppressHydrationWarning>
+ <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2 text-white hover:text-[var(--accent)] ml-1 bg-white/10 rounded-full" id="mobile-menu-btn" suppressHydrationWarning>
  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
  <line x1="3" y1="12" x2="21" y2="12"></line>
  <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -172,46 +171,42 @@ export default function Header() {
  <div id="mobile-nav-drawer" className="fixed top-[72px] left-0 right-0 max-h-[80vh] overflow-y-auto bg-white border-b border-gray-200 p-5 z-[999] shadow-lg animate-in fade-in slide-in-from-top-4 duration-300"
  >
  <div className="flex flex-col gap-1">
- <div className="font-semibold text-[#003f7d] px-2 py-2 text-[13px] uppercase tracking-wide">Products</div>
- <Link href="/dsa" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[#003f7d]/5">For DSAs</Link>
- <Link href="/msme" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[#003f7d]/5">For MSMEs</Link>
- <Link href="#" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[#003f7d]/5">Home Loan and LAP</Link>
- <div className="block px-4 py-2.5 text-[15px] text-[#424751]/60 ">Business Loans 🔜</div>
- <div className="block px-4 py-2.5 text-[15px] text-[#424751]/60 ">Working Capital 🔜</div>
- <div className="block px-4 py-2.5 text-[15px] text-[#424751]/60 ">Supply Chain Financing 🔜</div>
- <div className="block px-4 py-2.5 text-[15px] text-[#424751]/60 ">Government Schemes 🔜</div>
- 
- <div className="h-px bg-[#003f7d]/10 my-2 mx-2" />
- 
- <div className="font-semibold text-[#003f7d] px-2 py-2 text-[13px] uppercase tracking-wide">Solutions</div>
- <Link href="#" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[#003f7d]/5">LAP Eligibility Check</Link>
- <Link href="#" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[#003f7d]/5">DSA CRM & Pipeline</Link>
- <Link href="#" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[#003f7d]/5">Document Vault</Link>
- <Link href="#" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[#003f7d]/5">Commission & Wallet</Link>
+ <div className="font-bold text-[var(--primary)] px-2 py-2 text-[13px] uppercase tracking-wide">For DSA</div>
+ <Link href="/dsa" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[var(--primary)]/5">Overview</Link>
+ <Link href="/dsa#eligibility" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[var(--primary)]/5">Check Loan Eligibility</Link>
+ <Link href="/dsa#crm" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[var(--primary)]/5">DSA CRM</Link>
+ <Link href="/dsa#vault" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[var(--primary)]/5">Document Vault</Link>
+ <Link href="/dsa#invoice" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[var(--primary)]/5">Invoice Management</Link>
+ <Link href="/dsa#performance" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[var(--primary)]/5">Performance Tracking</Link>
+ <div className="block px-4 py-2.5 text-[15px] text-[#424751]/60">MSME Govt Scheme Discovery (Soon)</div>
 
- <div className="h-px bg-[#003f7d]/10 my-2 mx-2" />
+ <div className="h-px bg-[var(--primary)]/10 my-2 mx-2" />
+
+ <div className="font-semibold text-[var(--primary)] px-2 py-2 text-[13px] uppercase tracking-wide">For MSME</div>
+ <Link href="/msme" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[var(--primary)]/5">Overview</Link>
+ <Link href="/msme#eligibility" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[var(--primary)]/5">Check Loan Eligibility</Link>
+ <Link href="/msme#vault" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[var(--primary)]/5">Document Vault</Link>
+ <Link href="/msme#cases" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-[#424751] rounded-full hover:bg-[var(--primary)]/5">My Cases</Link>
+ <div className="block px-4 py-2.5 text-[15px] text-[#424751]/60">MSME Govt Scheme Discovery (Soon)</div>
+
+ <div className="h-px bg-[var(--primary)]/10 my-2 mx-2" />
 
  <Link href="/how-it-works" onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 text-[16px] font-semibold rounded-full ${
- pathname === '/how-it-works' ? 'bg-[#003f7d]/10 text-[#003f7d]' : 'text-[#003f7d] hover:bg-[#003f7d]/5'
- }`}>How It Works</Link>
-
- <Link href="/about" onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 text-[16px] font-semibold rounded-full ${
- pathname === '/about' ? 'bg-[#003f7d]/10 text-[#003f7d]' : 'text-[#003f7d] hover:bg-[#003f7d]/5'
- }`}>About Us</Link>
+                                pathname === '/how-it-works' ? 'bg-[var(--primary)]/10 text-[var(--primary)]' : 'text-[var(--primary)] hover:bg-[var(--primary)]/5'
+                            }`}>How It Works</Link>
+ <Link href="/blogs" onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 text-[16px] font-semibold rounded-full ${
+                                pathname?.startsWith('/blogs') ? 'bg-[var(--primary)]/10 text-[var(--primary)]' : 'text-[var(--primary)] hover:bg-[var(--primary)]/5'
+                            }`}>Blogs</Link>
  <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 text-[16px] font-semibold rounded-full ${
- pathname === '/contact' ? 'bg-[#003f7d]/10 text-[#003f7d]' : 'text-[#003f7d] hover:bg-[#003f7d]/5'
- }`}>Contact</Link>
+                                pathname === '/contact' ? 'bg-[var(--primary)]/10 text-[var(--primary)]' : 'text-[var(--primary)] hover:bg-[var(--primary)]/5'
+                            }`}>Contact</Link>
  </div>
  
- <div className="h-px bg-[#003f7d]/10 my-4" />
+ <div className="h-px bg-[var(--primary)]/10 my-4" />
  
- <Link href="/login" onClick={() => setMobileMenuOpen(false)} 
- className="flex items-center justify-center gap-2 px-5 py-4 mt-2 border-[1.5px] border-[#003f7d] font-(family-name:--font-inter) text-[15px] font-bold tracking-wide text-[#003f7d] rounded-full hover:bg-[#003f7d]/5 transition-colors">
- Login
- </Link>
  <Link href="/login" onClick={() => setMobileMenuOpen(false)}
  className="flex items-center justify-center gap-2 px-5 py-4 mt-3 font-(family-name:--font-inter) text-[15px] font-bold tracking-wide text-white rounded-full shadow-lg"
- style={{ background: 'linear-gradient(135deg, #003f7d 0%, #0056a7 100%)', boxShadow: '0 8px 24px rgba(0,63,125,0.25), inset 0 1px 1px rgba(255,255,255,0.2)' }}>
+ style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-c) 100%)', boxShadow: '0 8px 24px rgba(0,63,125,0.25), inset 0 1px 1px rgba(255,255,255,0.2)' }}>
  Get Started
  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
  </Link>
