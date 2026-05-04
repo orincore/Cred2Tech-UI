@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 
 const LENDERS = [
-  { name: 'HDFC Bank', amount: '₹45L', rate: '9.5%', badge: 'BEST RATE', badgeColor: 'var(--accent)', logo: '/images/hdfc.png' },
+  { name: 'HDFC Bank', amount: '₹45L', rate: '9.5%', badge: 'BEST RATE', badgeColor: 'var(--on-surface)', logo: '/images/hdfc.png' },
   { name: 'ICICI Bank', amount: '₹42L', rate: '9.9%', badge: 'HIGH LIMIT', badgeColor: '#a8c8ff', logo: '/images/icici.jpg' },
   { name: 'Bajaj Finserv', amount: '₹40L', rate: '10.2%', badge: 'FAST', badgeColor: '#ffe066', logo: '/images/bajaj.png' },
 ];
@@ -50,7 +50,7 @@ export default function LoanEligibilityWidget() {
         {/* Header */}
         <div className="px-3 py-2 lg:px-5 lg:py-4 border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className={`w-2 h-2 rounded-full shadow-[0_0_8px_var(--accent)] ${phase === 'scanning' ? 'bg-[#ffe066] animate-pulse' : 'bg-[var(--accent)] animate-pulse'}`} />
+            <div className={`w-2 h-2 rounded-full shadow-[0_0_8px_var(--on-surface)] ${phase === 'scanning' ? 'bg-[#ffe066] animate-pulse' : 'bg-[var(--on-surface)] animate-pulse'}`} />
             <span className="text-white/70 text-[10px] font-bold font-(family-name:--font-jb-mono) tracking-widest uppercase">Eligibility Check</span>
           </div>
           <span className="text-[9px] text-white/35 font-(family-name:--font-jb-mono)">ID: #EC-20044</span>
@@ -59,8 +59,8 @@ export default function LoanEligibilityWidget() {
         {/* Business info */}
         <div className="px-3 py-2 lg:px-5 lg:py-4 border-b border-white/10">
           <div className="flex items-center gap-2 lg:gap-3 mb-2 lg:mb-3">
-            <div className="w-7 h-7 lg:w-10 lg:h-10 bg-[var(--accent)]/15 border border-[var(--accent)]/30 flex items-center justify-center flex-shrink-0">
-              <span className="material-symbols-outlined text-[var(--accent)] text-xs lg:text-base">store</span>
+            <div className="w-7 h-7 lg:w-10 lg:h-10 bg-[var(--on-surface)]/15 border border-[var(--on-surface)]/30 flex items-center justify-center flex-shrink-0">
+              <span className="material-symbols-outlined text-[var(--on-surface)] text-xs lg:text-base">store</span>
             </div>
             <div className="min-w-0">
               <p className="text-white text-xs font-bold leading-tight truncate">ORINCORE Technologies</p>
@@ -84,9 +84,9 @@ export default function LoanEligibilityWidget() {
           <p className="text-white/35 text-[9px] lg:text-[10px] uppercase tracking-widest font-(family-name:--font-jb-mono) mb-1 lg:mb-2">Data Analysed</p>
           <div className="flex flex-wrap gap-1.5 lg:gap-2">
             {[
-              { label: 'ITR', color: 'var(--accent)' },
-              { label: 'GST', color: 'var(--accent)' },
-              { label: 'Bureau', color: 'var(--accent)' },
+              { label: 'ITR', color: 'var(--on-surface)' },
+              { label: 'GST', color: 'var(--on-surface)' },
+              { label: 'Bureau', color: 'var(--on-surface)' },
               { label: 'Bank Stmt', color: '#a8c8ff' },
             ].map((item) => (
               <span
@@ -166,10 +166,10 @@ export default function LoanEligibilityWidget() {
               </>
             ) : (
               <>
-                <div className="w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-[var(--accent)]/15 border border-[var(--accent)]/40 flex items-center justify-center flex-shrink-0">
-                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3 5.5L6.5 2" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                <div className="w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-[var(--on-surface)]/15 border border-[var(--on-surface)]/40 flex items-center justify-center flex-shrink-0">
+                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4L3 5.5L6.5 2" stroke="var(--on-surface)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
-                <span className="text-[var(--accent)] text-[10px] lg:text-xs font-bold font-(family-name:--font-jb-mono)">{visibleCount} LENDER{visibleCount !== 1 ? 'S' : ''} MATCHED</span>
+                <span className="text-[var(--on-surface)] text-[10px] lg:text-xs font-bold font-(family-name:--font-jb-mono)">{visibleCount} LENDER{visibleCount !== 1 ? 'S' : ''} MATCHED</span>
               </>
             )}
           </div>
@@ -180,7 +180,7 @@ export default function LoanEligibilityWidget() {
       {/* Floating stat pills — desktop only */}
       <div className="absolute -left-14 top-[30%] bg-[#0d2d6b] border border-white/15 px-3 py-2 shadow-xl hidden xl:block">
         <p className="text-white/45 text-[9px] font-(family-name:--font-jb-mono) uppercase tracking-wider">Cases Today</p>
-        <p className="text-white font-bold text-sm">128 <span className="text-[var(--accent)] text-[10px]">↑ 12%</span></p>
+        <p className="text-white font-bold text-sm">128 <span className="text-[var(--on-surface)] text-[10px]">↑ 12%</span></p>
       </div>
       <div className="absolute -right-12 bottom-[25%] bg-[#0d2d6b] border border-white/15 px-3 py-2 shadow-xl hidden xl:block">
         <p className="text-white/45 text-[9px] font-(family-name:--font-jb-mono) uppercase tracking-wider">Avg Decision</p>

@@ -78,7 +78,7 @@ export default function CreditCard3D({
               position: 'absolute', inset: 0,
               backfaceVisibility: 'hidden',
               borderRadius: radii.card,
-              background: gradients.cardFront,
+              background: '#0b2147',
               boxShadow: shadows.card,
               overflow: 'hidden',
             }}
@@ -136,21 +136,21 @@ export default function CreditCard3D({
             </div>
 
             {/* Streak sweep */}
-            <div id={streakId} style={{ position: 'absolute', top: '-100%', left: '-60%', width: '40%', height: '300%', background: 'linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent)', transform: 'skewX(-20deg)', pointerEvents: 'none', transition: 'left 0.6s ease' }} />
+            <div id={streakId} style={{ position: 'absolute', top: '-100%', left: '-60%', width: '40%', height: '300%', background: '#0b2147', transform: 'skewX(-20deg)', pointerEvents: 'none', transition: 'left 0.6s ease' }} />
           </div>
 
           {/* ── BACK FACE ── */}
-          <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', borderRadius: radii.card, background: gradients.cardBack, transform: 'rotateY(180deg)', boxShadow: shadows.card, overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', borderRadius: radii.card, background: '#050b18', transform: 'rotateY(180deg)', boxShadow: shadows.card, overflow: 'hidden' }}>
 
             {/* Dark magnetic stripe with realistic sheen */}
-            <div style={{ position: 'absolute', top: '32px', left: 0, right: 0, height: '46px', background: 'linear-gradient(180deg,#191919 0%,#0f0f0f 30%,#262626 50%,#0a0a0a 70%,#191919 100%)', boxShadow: '0 2px 4px rgba(0,0,0,0.5)' }} />
+            <div style={{ position: 'absolute', top: '32px', left: 0, right: 0, height: '46px', background: '#191919', boxShadow: '0 2px 4px rgba(0,0,0,0.5)' }} />
 
             {/* Continuous Signature Strip & CVV */}
             <div style={{ position: 'absolute', top: '96px', left: '24px', width: '240px', height: '34px', background: '#fff', borderRadius: '4px', boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
               {/* Signature Pattern Area */}
               <div style={{ flex: 1, height: '100%', background: 'repeating-linear-gradient(45deg, rgba(200,200,200,0.3), rgba(200,200,200,0.3) 2px, transparent 2px, transparent 6px)', position: 'relative' }}>
                 {/* Simulated signature cursive squiggle */}
-                <svg viewBox="0 0 100 30" style={{ position: 'absolute', top: '4px', left: '10px', height: '24px', opacity: 0.8, stroke: 'var(--primary)', strokeWidth: 1.5, fill: 'none', strokeLinecap: 'round' }}>
+                <svg viewBox="0 0 100 30" style={{ position: 'absolute', top: '4px', left: '10px', height: '24px', opacity: 0.8, stroke: 'var(--on-surface)', strokeWidth: 1.5, fill: 'none', strokeLinecap: 'round' }}>
                   <path d="M5,20 C10,5 20,5 25,20 S35,5 40,20 S50,5 55,20 S65,5 75,15 S85,25 95,5" />
                 </svg>
               </div>

@@ -75,7 +75,7 @@ export default function HowItWorksPage() {
     (window as any).__HIW_UNMOUNTED = false;
     const bar = document.createElement('div');
     bar.id = 'scroll-bar';
-    bar.style.cssText = 'position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--accent),var(--primary-c));z-index:9999;pointer-events:none;transition:width 0.1s;';
+    bar.style.cssText = 'position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--on-surface),var(--surface-low));z-index:9999;pointer-events:none;transition:width 0.1s;';
     document.body.prepend(bar);
     const onScroll = () => {
       bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
@@ -100,12 +100,12 @@ export default function HowItWorksPage() {
         }}
       >
         <div className="hidden lg:block px-orb w-[400px] h-[400px] bg-[#0d3a8e] absolute top-[-100px] left-[-150px] z-0" id="orb-h1" />
-        <div className="hidden lg:block px-orb w-[300px] h-[300px] bg-[var(--accent)] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
+        <div className="hidden lg:block px-orb w-[300px] h-[300px] bg-[var(--on-surface)] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
         <div className="px-grid z-0" id="hero-grid" />
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[var(--accent)] mb-4 px-3 py-1 border border-[var(--accent)]/30 bg-[var(--accent)]/10">
+            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[var(--on-surface)] mb-4 px-3 py-1 border border-[var(--on-surface)]/30 bg-[var(--on-surface)]/10">
               How It Works
             </span>
             <h1 className="font-(family-name:--font-outfit) font-extrabold text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] leading-[1.05] tracking-tight text-white mb-6">
@@ -122,22 +122,22 @@ export default function HowItWorksPage() {
       <section className="py-0 bg-[#fcf9f8] overflow-hidden">
         <div className="grid grid-cols-3 h-36 sm:h-52 lg:h-64">
           <div className="relative overflow-hidden">
-            <img src="/images/MSME-owner.jpg" alt="MSME Owner" className="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500" onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.background = 'linear-gradient(135deg,var(--primary),var(--primary-c))'; (e.target as HTMLImageElement).remove(); }} />
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/60 to-transparent" />
+            <img src="/images/MSME-owner.jpg" alt="MSME Owner" className="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500" onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.background = 'linear-gradient(135deg,var(--on-surface),var(--surface-low))'; (e.target as HTMLImageElement).remove(); }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--on-surface)]/60 to-transparent" />
             <div className="absolute bottom-3 left-3">
               <span className="font-(family-name:--font-jb-mono) text-sm font-bold tracking-widest uppercase text-white/80">MSME Owner</span>
             </div>
           </div>
           <div className="relative overflow-hidden border-x border-white/20">
-            <img src="/images/Agent.jpg" alt="DSA Agent" className="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500" onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.background = 'linear-gradient(135deg,#001233,var(--primary))'; (e.target as HTMLImageElement).remove(); }} />
+            <img src="/images/Agent.jpg" alt="DSA Agent" className="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500" onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.background = 'linear-gradient(135deg,#001233,var(--on-surface))'; (e.target as HTMLImageElement).remove(); }} />
             <div className="absolute inset-0 bg-gradient-to-t from-[#001233]/60 to-transparent" />
             <div className="absolute bottom-3 left-3">
               <span className="font-(family-name:--font-jb-mono) text-sm font-bold tracking-widest uppercase text-white/80">DSA Agent</span>
             </div>
           </div>
-          <div className="relative overflow-hidden bg-gradient-to-br from-[var(--primary)] to-[var(--primary-c)] flex items-center justify-center">
+          <div className="relative overflow-hidden bg-gradient-to-br from-[var(--on-surface)] to-[var(--surface-low)] flex items-center justify-center">
             <div className="text-center p-4">
-              <div className="font-(family-name:--font-outfit) text-3xl sm:text-4xl lg:text-5xl font-black text-[var(--accent)] leading-none mb-1 whitespace-nowrap">₹25L Cr</div>
+              <div className="font-(family-name:--font-outfit) text-3xl sm:text-4xl lg:text-5xl font-black text-[var(--on-surface)] leading-none mb-1 whitespace-nowrap">₹25L Cr</div>
               <div className="font-(family-name:--font-jb-mono) text-xs sm:text-base font-bold tracking-widest uppercase text-white/50">Credit Gap</div>
             </div>
           </div>
@@ -146,37 +146,37 @@ export default function HowItWorksPage() {
 
       {/* MSME Section */}
       <section id="msme-steps" className="py-10 sm:py-12 lg:py-16 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(var(--primary) 1px,transparent 1px),linear-gradient(90deg,var(--primary) 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--primary)]/20 to-transparent" />
+        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(var(--on-surface) 1px,transparent 1px),linear-gradient(90deg,var(--on-surface) 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--on-surface)]/20 to-transparent" />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10 sm:mb-14">
-            <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[var(--secondary)]">
+            <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[var(--on-surface)]">
               For MSMEs
             </span>
-            <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[var(--primary)]">
+            <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[var(--on-surface)]">
               THE LAP JOURNEY
             </h2>
           </div>
 
           <div className="relative space-y-4 sm:space-y-6">
             {/* Connecting line */}
-            <div className="hidden lg:block absolute left-[4.5rem] top-0 bottom-0 w-px bg-gradient-to-b from-[var(--accent)] via-[var(--primary)]/30 to-transparent msme-progress-line" />
+            <div className="hidden lg:block absolute left-[4.5rem] top-0 bottom-0 w-px bg-gradient-to-b from-[var(--on-surface)] via-[var(--on-surface)]/30 to-transparent msme-progress-line" />
             {msmeSteps.map((step, idx) => (
               <div
                 key={step.number}
                 data-step={idx}
-                className="step-card-msme group relative overflow-hidden bg-[#fcf9f8] border border-[#e8e4e1] p-6 sm:p-7 lg:p-8 transition-all duration-500 hover:scale-[1.02] hover:border-[var(--accent)]/50 hover:shadow-[0_20px_60px_rgba(0,63,125,0.08)]"
+                className="step-card-msme group relative overflow-hidden bg-[#fcf9f8] border border-[#e8e4e1] p-6 sm:p-7 lg:p-8 transition-all duration-500 hover:scale-[1.02] hover:border-[var(--on-surface)]/50 hover:shadow-[0_20px_60px_rgba(11,33,71,0.08)]"
               >
                 {/* Glow effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[var(--accent)]/5 via-transparent to-[var(--primary)]/5 pointer-events-none" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[var(--on-surface)]/5 via-transparent to-[var(--on-surface)]/5 pointer-events-none" />
                 <div className="flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-8">
                   <div className="flex-shrink-0">
-                    <span className="font-(family-name:--font-jb-mono) text-[2.5rem] sm:text-[3rem] lg:text-[3.5rem] font-bold text-[var(--primary)] leading-none">
+                    <span className="font-(family-name:--font-jb-mono) text-[2.5rem] sm:text-[3rem] lg:text-[3.5rem] font-bold text-[var(--on-surface)] leading-none">
                       {step.number}
                     </span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-(family-name:--font-outfit) text-xl sm:text-2xl font-semibold text-[var(--primary)] mb-2">
+                    <h3 className="font-(family-name:--font-outfit) text-xl sm:text-2xl font-semibold text-[var(--on-surface)] mb-2">
                       {step.title}
                     </h3>
                     <p className="text-sm sm:text-base text-[#424751] leading-relaxed">
@@ -191,7 +191,7 @@ export default function HowItWorksPage() {
           <div className="mt-10 sm:mt-12 text-center">
             <Link
               href="/login"
-              className="inline-flex items-center justify-center gap-1.5 bg-[var(--accent)] text-[#001233] px-6 py-3 sm:px-8 sm:py-4 font-bold text-sm sm:text-base hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
+              className="inline-flex items-center justify-center gap-1.5 bg-[var(--on-surface)] text-[#001233] px-6 py-3 sm:px-8 sm:py-4 font-bold text-sm sm:text-base hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
             >
               Start Your LAP Journey
               <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
@@ -202,37 +202,37 @@ export default function HowItWorksPage() {
 
       {/* DSA Section */}
       <section id="dsa-steps" className="py-10 sm:py-12 lg:py-16 bg-[#f0f7ff] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--primary) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--primary)]/10 to-transparent" />
+        <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--on-surface)]/10 to-transparent" />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10 sm:mb-14">
-            <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[var(--secondary)]">
+            <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[var(--on-surface)]">
               For DSAs
             </span>
-            <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[var(--primary)]">
+            <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[var(--on-surface)]">
               THE DSA OPERATING FLOW
             </h2>
           </div>
 
           <div className="relative space-y-4 sm:space-y-6">
             {/* Connecting line */}
-            <div className="hidden lg:block absolute left-[4.5rem] top-0 bottom-0 w-px bg-gradient-to-b from-[var(--primary)] via-[var(--accent)]/30 to-transparent dsa-progress-line" />
+            <div className="hidden lg:block absolute left-[4.5rem] top-0 bottom-0 w-px bg-gradient-to-b from-[var(--on-surface)] via-[var(--on-surface)]/30 to-transparent dsa-progress-line" />
             {dsaSteps.map((step, idx) => (
               <div
                 key={step.number}
                 data-step={idx}
-                className="step-card-dsa group relative overflow-hidden bg-[#fcf9f8] border border-[#e8e4e1] p-6 sm:p-7 lg:p-8 transition-all duration-500 hover:scale-[1.02] hover:border-[var(--primary)]/50 hover:shadow-[0_20px_60px_rgba(0,63,125,0.08)]"
+                className="step-card-dsa group relative overflow-hidden bg-[#fcf9f8] border border-[#e8e4e1] p-6 sm:p-7 lg:p-8 transition-all duration-500 hover:scale-[1.02] hover:border-[var(--on-surface)]/50 hover:shadow-[0_20px_60px_rgba(11,33,71,0.08)]"
               >
                 {/* Glow effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[var(--primary)]/5 via-transparent to-[var(--accent)]/5 pointer-events-none" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[var(--on-surface)]/5 via-transparent to-[var(--on-surface)]/5 pointer-events-none" />
                 <div className="flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-8">
                   <div className="flex-shrink-0">
-                    <span className="font-(family-name:--font-jb-mono) text-[2.5rem] sm:text-[3rem] lg:text-[3.5rem] font-bold text-[var(--primary)] leading-none">
+                    <span className="font-(family-name:--font-jb-mono) text-[2.5rem] sm:text-[3rem] lg:text-[3.5rem] font-bold text-[var(--on-surface)] leading-none">
                       {step.number}
                     </span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-(family-name:--font-outfit) text-xl sm:text-2xl font-semibold text-[var(--primary)] mb-2">
+                    <h3 className="font-(family-name:--font-outfit) text-xl sm:text-2xl font-semibold text-[var(--on-surface)] mb-2">
                       {step.title}
                     </h3>
                     <p className="text-sm sm:text-base text-[#424751] leading-relaxed">
@@ -247,7 +247,7 @@ export default function HowItWorksPage() {
           <div className="mt-10 sm:mt-12 text-center">
             <Link
               href="/login"
-              className="inline-flex items-center justify-center gap-1.5 bg-[var(--accent)] text-[#001233] px-6 py-3 sm:px-8 sm:py-4 font-bold text-sm sm:text-base hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
+              className="inline-flex items-center justify-center gap-1.5 bg-[var(--on-surface)] text-[#001233] px-6 py-3 sm:px-8 sm:py-4 font-bold text-sm sm:text-base hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
             >
               Become a DSA Partner
               <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>

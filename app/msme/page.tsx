@@ -120,19 +120,19 @@ function MsmeFaqAccordion() {
       {faqs.map((faq, i) => {
         const isOpen = openIndex === i;
         return (
-          <div key={i} className="bg-white border border-[var(--primary)]/10 shadow-sm overflow-hidden transition-shadow hover:shadow-md">
+          <div key={i} className="bg-white border border-[var(--on-surface)]/10 shadow-sm overflow-hidden transition-shadow hover:shadow-md">
             <button
               suppressHydrationWarning
               className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
               onClick={() => setOpenIndex(isOpen ? null : i)}
             >
-              <span className="font-(family-name:--font-outfit) font-bold text-[var(--primary)] text-base sm:text-lg leading-snug">{faq.question}</span>
-              <span className={`flex-shrink-0 w-7 h-7 rounded-full border-2 border-[var(--primary)]/20 flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[var(--primary)] border-[var(--primary)]' : ''}`}>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={isOpen ? 'var(--accent)' : 'var(--primary)'} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              <span className="font-(family-name:--font-outfit) font-bold text-[var(--on-surface)] text-base sm:text-lg leading-snug">{faq.question}</span>
+              <span className={`flex-shrink-0 w-7 h-7 rounded-full border-2 border-[var(--on-surface)]/20 flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[var(--on-surface)] border-[var(--on-surface)]' : ''}`}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={isOpen ? 'var(--on-surface)' : 'var(--on-surface)'} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
               </span>
             </button>
             <div style={{ maxHeight: isOpen ? '400px' : '0', transition: 'max-height 0.35s cubic-bezier(0.22,1,0.36,1)', overflow: 'hidden' }}>
-              <p className="px-6 pb-5 text-sm sm:text-base text-[#424751] leading-relaxed border-t border-[var(--primary)]/5 pt-4">{faq.answer}</p>
+              <p className="px-6 pb-5 text-sm sm:text-base text-[#424751] leading-relaxed border-t border-[var(--on-surface)]/5 pt-4">{faq.answer}</p>
             </div>
           </div>
         );
@@ -151,7 +151,7 @@ export default function MSMEPage() {
     }
     const bar = document.createElement('div');
     bar.id = 'scroll-bar';
-    bar.style.cssText = 'position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--accent),var(--primary-c));z-index:9999;pointer-events:none;transition:width 0.1s;';
+    bar.style.cssText = 'position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--on-surface),var(--surface-low));z-index:9999;pointer-events:none;transition:width 0.1s;';
     document.body.prepend(bar);
     const onScroll = () => {
       bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
@@ -193,14 +193,14 @@ export default function MSMEPage() {
       >
         <canvas id="ribbon-canvas" className="absolute inset-0 w-full h-full pointer-events-none z-0" />
         <div className="hidden lg:block px-orb w-[400px] h-[400px] bg-[#0d3a8e] absolute top-[-100px] left-[-150px] z-0" id="orb-h1" />
-        <div className="hidden lg:block px-orb w-[300px] h-[300px] bg-[var(--accent)] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
+        <div className="hidden lg:block px-orb w-[300px] h-[300px] bg-[var(--on-surface)] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
         <div className="hidden lg:block px-orb w-[200px] h-[200px] bg-[#00aaff] absolute top-[35%] left-[45%] z-0" id="orb-h3" />
         <div className="px-grid z-0" id="hero-grid" />
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 pt-28 pb-16 lg:pt-0 lg:pb-0 lg:min-h-screen">
           {/* LEFT — Copy */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
-            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[var(--accent)] mb-4 px-3 py-1 border border-[var(--accent)]/30 bg-[var(--accent)]/10">
+            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[var(--on-surface)] mb-4 px-3 py-1 border border-[var(--on-surface)]/30 bg-[var(--on-surface)]/10">
               FOR BUSINESS OWNERS
             </span>
 
@@ -215,7 +215,7 @@ export default function MSMEPage() {
             <div className="flex flex-col xs:flex-row justify-center lg:justify-start gap-3 mb-4 sm:mb-5">
               <Link
                 href="/login"
-                className="inline-flex items-center justify-center gap-1.5 bg-[var(--accent)] text-[#001233] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
+                className="inline-flex items-center justify-center gap-1.5 bg-[var(--on-surface)] text-[#001233] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
               >
                 Check My LAP Eligibility ₹1,000
                 <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
@@ -236,8 +236,8 @@ export default function MSMEPage() {
       </section>
 
       {/* ══ MSME STATS STRIP ══ */}
-      <section className="py-8 sm:py-10 bg-[var(--primary)] overflow-hidden relative">
-        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(var(--accent) 1px,transparent 1px)', backgroundSize: '24px 24px' }} />
+      <section className="py-8 sm:py-10 bg-[var(--on-surface)] overflow-hidden relative">
+        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '24px 24px' }} />
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-white/10 text-center">
             {[
@@ -247,7 +247,7 @@ export default function MSMEPage() {
               { value: '100%', label: 'Data Privacy Guaranteed', icon: 'lock' },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center text-center lg:px-8 group">
-                <span className="material-symbols-outlined text-[var(--accent)]/60 text-2xl mb-2 group-hover:text-[var(--accent)] transition-colors duration-300">{stat.icon}</span>
+                <span className="material-symbols-outlined text-[var(--on-surface)]/60 text-2xl mb-2 group-hover:text-[var(--on-surface)] transition-colors duration-300">{stat.icon}</span>
                 <div className="font-(family-name:--font-outfit) text-xl sm:text-2xl lg:text-3xl font-black text-white leading-none mb-1">{stat.value}</div>
                 <div className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.16em] uppercase text-white/40">{stat.label}</div>
               </div>
@@ -256,14 +256,14 @@ export default function MSMEPage() {
         </div>
       </section>
 
-      <section id="msme-how" className="py-10 sm:py-12 lg:py-16 bg-[#f0f7ff] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--primary) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
+      <section id="msme-how" className="py-10 sm:py-12 lg:py-16 bg-[var(--surface-low)] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mb-12">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[var(--primary)]">
+            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[var(--on-surface)]">
               How It Works — MSME Detail
             </span>
-            <h2 className="font-(family-name:--font-outfit) text-[1.8rem] sm:text-[2.2rem] lg:text-[2.6rem] font-bold text-[var(--primary)] mt-4">
+            <h2 className="font-(family-name:--font-outfit) text-[1.8rem] sm:text-[2.2rem] lg:text-[2.6rem] font-bold text-[var(--on-surface)] mt-4">
               THE LAP JOURNEY
             </h2>
           </div>
@@ -273,12 +273,12 @@ export default function MSMEPage() {
                 key={step.title}
                 className="group relative overflow-hidden bg-white p-6 sm:p-7 border border-[#e8e4e1] shadow-[0_6px_24px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_top_left,var(--accent)_0%,transparent_55%)] transition-opacity group-hover:opacity-[0.16]" />
+                <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_top_left,var(--on-surface)_0%,transparent_55%)] transition-opacity group-hover:opacity-[0.16]" />
                 <div className="relative z-10">
                   <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.3em] text-[#1565d8]/80 uppercase">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="mt-3 font-(family-name:--font-outfit) text-xl font-semibold text-[var(--primary)]">
+                  <h3 className="mt-3 font-(family-name:--font-outfit) text-xl font-semibold text-[var(--on-surface)]">
                     {step.title}
                   </h3>
                   <p className="mt-3 text-sm sm:text-base text-[#424751] leading-relaxed">
@@ -291,15 +291,15 @@ export default function MSMEPage() {
         </div>
       </section>
 
-      <section id="msme-features" className="py-10 sm:py-12 lg:py-16 bg-[var(--accent)] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: 'linear-gradient(var(--primary) 1px,transparent 1px),linear-gradient(90deg,var(--primary) 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--primary)]/20 to-transparent" />
+      <section id="msme-features" className="py-10 sm:py-12 lg:py-16 bg-[var(--on-surface)] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: 'linear-gradient(var(--on-surface) 1px,transparent 1px),linear-gradient(90deg,var(--on-surface) 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--on-surface)]/20 to-transparent" />
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header with Title Left and Arrows Right */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
             <div>
-              <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[var(--primary)] mb-3 px-5 py-2.5 bg-white border-2 border-[var(--secondary)] shadow-[0_4px_20px_rgba(0,109,63,0.15)]">
-                <span className="w-2 h-2 bg-[var(--secondary)]" />
+              <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[var(--on-surface)] mb-3 px-5 py-2.5 bg-white border-2 border-[var(--on-surface)] shadow-[0_4px_20px_rgba(0,109,63,0.15)]">
+                <span className="w-2 h-2 bg-[var(--on-surface)]" />
                 Features — MSME Portal
               </span>
               <h2 className="font-(family-name:--font-outfit) text-[1.8rem] sm:text-[2.2rem] lg:text-[2.6rem] font-bold text-[#001233] leading-tight uppercase tracking-wide">
@@ -310,7 +310,7 @@ export default function MSMEPage() {
             <div className="flex items-center gap-2">
               <button 
                 onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: -360, behavior: 'smooth' })}
-                className="w-10 h-10 flex items-center justify-center bg-white border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white transition-all duration-300 shadow-lg"
+                className="w-10 h-10 flex items-center justify-center bg-white border-2 border-[var(--on-surface)] text-[var(--on-surface)] hover:bg-[var(--on-surface)] hover:text-white transition-all duration-300 shadow-lg"
                 aria-label="Scroll left"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -319,7 +319,7 @@ export default function MSMEPage() {
               </button>
               <button 
                 onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: 360, behavior: 'smooth' })}
-                className="w-10 h-10 flex items-center justify-center bg-[var(--primary)] border-2 border-[var(--primary)] text-white hover:bg-[var(--primary-c)] hover:border-[var(--primary-c)] transition-all duration-300 shadow-lg"
+                className="w-10 h-10 flex items-center justify-center bg-[var(--on-surface)] border-2 border-[var(--on-surface)] text-white hover:bg-[var(--surface-low)] hover:border-[var(--surface-low)] transition-all duration-300 shadow-lg"
                 aria-label="Scroll right"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -364,7 +364,7 @@ export default function MSMEPage() {
                       )}
                     </ClientOnly>
                   </div>
-                  <h3 className="font-(family-name:--font-outfit) text-lg sm:text-xl font-semibold text-[var(--primary)] leading-tight">
+                  <h3 className="font-(family-name:--font-outfit) text-lg sm:text-xl font-semibold text-[var(--on-surface)] leading-tight">
                     {feature.title}
                   </h3>
                   <p className="mt-3 text-sm text-[#424751] leading-relaxed">
@@ -378,13 +378,13 @@ export default function MSMEPage() {
       </section>
 
       <section id="msme-faq" className="py-10 sm:py-12 lg:py-16 bg-[#f0f7ff] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--primary) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
+        <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10 sm:mb-14">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[var(--secondary)]">
+            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[var(--on-surface)]">
               MSME FAQ
             </span>
-            <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[var(--primary)]">
+            <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[var(--on-surface)]">
               MSME FAQ
             </h2>
           </div>

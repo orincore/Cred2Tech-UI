@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
-import theme from "./theme";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
+import { ThemeProvider } from "./components/ThemeProvider";
+import theme from "./theme";
 
 // Hikasami — the only typeface used across the entire site.
 // All three legacy CSS variables (--font-outfit / --font-inter / --font-jb-mono)
@@ -38,10 +39,6 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  // Build CSS variable string from theme for inline injection
-  const cssVarString = Object.entries(theme.cssVars)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(';');
 
   return (
     <html suppressHydrationWarning lang="en" className={`${hikasami.variable} font-(family-name:--font-hikasami)`}>
@@ -50,16 +47,48 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
-        {/* Inject theme CSS vars + alias every legacy font variable to Hikasami so the entire site uses one typeface */}
-        <style>{`:root{${cssVarString};--font-outfit:var(--font-hikasami);--font-inter:var(--font-hikasami);--font-jb-mono:var(--font-hikasami);}body,html{font-family:var(--font-hikasami),system-ui,sans-serif;}`}</style>
+        {/* Alias every legacy font variable to Hikasami so the entire site uses one typeface. Also inject dynamic color variables from theme.ts */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            :root {
+              --font-outfit: var(--font-hikasami);
+              --font-inter: var(--font-hikasami);
+              --font-jb-mono: var(--font-hikasami);
+              --bg: ${theme.colors.bg};
+              --surface: ${theme.colors.surface};
+              --surface-low: ${theme.colors.surfaceLow};
+              --outline: ${theme.colors.outline};
+              --on-surface: ${theme.colors.onSurface};
+              --on-muted: ${theme.colors.onMuted};
+            }
+            body,html { font-family: var(--font-hikasami), system-ui, sans-serif; }
+            
+            .dark {
+              --bg: ${theme.colors.dark.bg};
+              --surface: ${theme.colors.dark.surface};
+              --surface-low: ${theme.colors.dark.surfaceLow};
+              --outline: ${theme.colors.dark.outline};
+              --on-surface: ${theme.colors.dark.onSurface};
+              --on-muted: ${theme.colors.dark.onMuted};
+            }
+
+
+          `
+        }} />
       </head>
-      <body suppressHydrationWarning className="min-h-screen flex flex-col">
-        <Script src="/lottie/lottie-player.js" strategy="beforeInteractive" id="global-lottie-player" />
-        <Header />
-        <PageTransition>
-          <main className="flex-1">{children}</main>
-        </PageTransition>
-        <Footer />
+      <body suppressHydrationWarning className="min-h-screen flex flex-col transition-colors duration-300 bg-[var(--bg)] text-[var(--on-surface)]">
+        <ThemeProvider 
+          attribute="class" 
+          defaultTheme="dark" 
+          disableTransitionOnChange
+        >
+          <Script src="/lottie/lottie-player.js" strategy="beforeInteractive" id="global-lottie-player" />
+          <Header />
+          <PageTransition>
+            <main className="flex-1">{children}</main>
+          </PageTransition>
+          <Footer />
+        </ThemeProvider>
         <style>{`
           @keyframes pageTransition {
             from { opacity: 0; transform: translateY(12px); }

@@ -23,7 +23,7 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center relative overflow-hidden font-(family-name:--font-inter)"
-      style={{ background: gradients.hero }}>
+      style={{ background: 'linear-gradient(135deg, #0b2147 0%, #050b18 100%)' }}>
 
       {/* grid */}
       <div className="absolute inset-0 pointer-events-none z-0"
@@ -49,14 +49,14 @@ export default function ForgotPasswordPage() {
 
             {/* Logo */}
             <div className="flex items-center gap-2.5 mb-8">
-              <div className="w-[30px] h-[30px] rounded-lg flex items-center justify-center relative" style={{background: colors.primary}}>
+              <div className="w-[30px] h-[30px] rounded-lg flex items-center justify-center relative" style={{background: '#0b2147'}}>
                 <div className="absolute inset-[2px] bg-white rounded-[5px]" />
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="relative z-10">
-                  <path d="M2.5 7h3.5M8 3.5l3.5 3.5L8 10.5" stroke="var(--primary)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M2.5 7h3.5M8 3.5l3.5 3.5L8 10.5" stroke="var(--on-surface)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="font-black text-[1.15rem] tracking-[-0.03em] text-[var(--primary)]">
-                Cred<span className="text-[var(--secondary)]">2</span>Tech
+              <span className="font-black text-[1.15rem] tracking-[-0.03em] text-[var(--on-surface)]">
+                Cred<span className="text-[var(--on-surface)]">2</span>Tech
               </span>
             </div>
 
@@ -84,18 +84,18 @@ export default function ForgotPasswordPage() {
                 <div className="mb-5">
                   <label className="block text-[0.8rem] font-semibold text-[#1b1c1c] mb-1.5 ml-1">Email <span className="text-red-500">*</span></label>
                   <div className="flex items-center gap-2.5 bg-[#f6f3f2] border-[1.5px] border-[#c2c6d3] rounded-[10px] px-3.5 h-[50px] focus-within:border-[#a8c8ff] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,63,125,.08)] transition-all relative overflow-hidden group">
-                    <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--primary)] transition-colors shrink-0">mail</span>
+                    <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">mail</span>
                     <input value={email} onChange={e => setEmail(e.target.value)}
                       type="email" placeholder="john.doe@company.com" required autoComplete="email"
                       className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[#1b1c1c] placeholder-[#727783] font-(family-name:--font-inter)"/>
                     {/* bottom line */}
                     <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px]"
-                      style={{ background: gradients.accentLine }} />
+                      style={{ background: 'linear-gradient(90deg, #0b2147, #122a55)' }} />
                   </div>
                 </div>
 
                 <button type="submit" disabled={submitState === 'loading' || !email}
-                  className="w-full h-[54px] rounded-[10px] font-bold text-[0.85rem] tracking-[0.06em] uppercase text-white bg-[var(--primary)] hover:bg-[var(--primary-c)] focus:ring-4 focus:ring-[var(--primary)]/20 hover:-translate-y-px flex items-center justify-center gap-2 transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(0,63,125,.28)] disabled:opacity-50 disabled:cursor-not-allowed">
+                  className="w-full h-[54px] rounded-[10px] font-bold text-[0.85rem] tracking-[0.06em] uppercase text-white bg-[var(--on-surface)] hover:bg-[var(--surface-low)] focus:ring-4 focus:ring-[var(--on-surface)]/20 hover:-translate-y-px flex items-center justify-center gap-2 transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)] disabled:opacity-50 disabled:cursor-not-allowed">
                   {submitState === 'loading' && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
                   {submitState === 'idle' && (
                     <>
@@ -108,7 +108,7 @@ export default function ForgotPasswordPage() {
             )}
 
             <div className="mt-auto pt-6 flex justify-center">
-              <Link href="/login" className="flex items-center gap-1.5 text-[0.82rem] font-semibold text-[#424751] hover:text-[var(--primary)] transition-colors">
+              <Link href="/login" className="flex items-center gap-1.5 text-[0.82rem] font-semibold text-[#424751] hover:text-[var(--on-surface)] transition-colors">
                 <span className="material-symbols-outlined text-[15px]">arrow_back</span>
                 Back to secure login
               </Link>
@@ -122,7 +122,7 @@ export default function ForgotPasswordPage() {
             
             {/* Subtle pulse background */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40">
-              <div className="w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[#3b82f6]/20 to-[var(--primary)]/10 blur-3xl animate-pulse" />
+              <div className="w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[#3b82f6]/20 to-[var(--on-surface)]/10 blur-3xl animate-pulse" />
             </div>
 
             <div className="relative z-10 w-[440px] h-[440px] flex items-center justify-center">

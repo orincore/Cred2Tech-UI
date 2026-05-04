@@ -141,7 +141,7 @@ export default function LoginPage() {
   return (
     <div>
     <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center relative overflow-hidden font-(family-name:--font-inter)"
-      style={{ background: gradients.hero }}>
+      style={{ background: 'linear-gradient(135deg, #0b2147 0%, #050b18 100%)' }}>
 
       {/* grid */}
       <div className="absolute inset-0 pointer-events-none z-0"
@@ -167,14 +167,14 @@ export default function LoginPage() {
 
         {/* Logo */}
         <div className="flex items-center gap-2.5 mb-8">
-          <div className="w-[30px] h-[30px] rounded-lg flex items-center justify-center relative" style={{background: colors.primary}}>
+          <div className="w-[30px] h-[30px] rounded-lg flex items-center justify-center relative" style={{background: '#0b2147'}}>
             <div className="absolute inset-[2px] bg-white rounded-[5px]" />
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="relative z-10">
-              <path d="M2.5 7h3.5M8 3.5l3.5 3.5L8 10.5" stroke="var(--primary)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M2.5 7h3.5M8 3.5l3.5 3.5L8 10.5" stroke="var(--on-surface)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <span className="font-black text-[1.15rem] tracking-[-0.03em] text-[var(--primary)]">
-            Cred<span className="text-[var(--secondary)]">2</span>Tech
+          <span className="font-black text-[1.15rem] tracking-[-0.03em] text-[var(--on-surface)]">
+            Cred<span className="text-[var(--on-surface)]">2</span>Tech
           </span>
         </div>
 
@@ -190,14 +190,14 @@ export default function LoginPage() {
             style={{ 
               width: 'calc((100% - 6px) / 2)',
               transform: `translateX(${['dsa','msme'].indexOf(role) * 100}%)`,
-              background: colors.primary, 
+              background: '#0b2147', 
               boxShadow: '0 2px 8px rgba(0,63,125,.3)'
             }} />
           {roles.map((r) => (
             <button key={r.key}
               onClick={() => switchRole(r.key)}
               suppressHydrationWarning
-              className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-1 text-[0.72rem] font-semibold rounded-[7px] relative z-10 transition-colors duration-250 whitespace-nowrap cursor-pointer border-0 bg-transparent ${role === r.key ? 'text-white' : 'text-[#424751] hover:text-[var(--primary)]'}`}>
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-1 text-[0.72rem] font-semibold rounded-[7px] relative z-10 transition-colors duration-250 whitespace-nowrap cursor-pointer border-0 bg-transparent ${role === r.key ? 'text-white' : 'text-[#424751] hover:text-[var(--on-surface)]'}`}>
               <span className="material-symbols-outlined text-[14px]">{r.icon}</span>
               {r.label}
             </button>
@@ -210,42 +210,42 @@ export default function LoginPage() {
             {/* Email */}
             <div className="mb-3.5">
               <div className="flex items-center gap-2.5 bg-[#f6f3f2] border-[1.5px] border-[#c2c6d3] rounded-[10px] px-3.5 h-[50px] focus-within:border-[#a8c8ff] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,63,125,.08)] transition-all relative overflow-hidden group">
-                <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--primary)] transition-colors shrink-0">person</span>
+                <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">person</span>
                 <input value={email} onChange={e => setEmail(e.target.value)}
                   type="email" placeholder="Email address" autoComplete="email"
                   suppressHydrationWarning
                   className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[#1b1c1c] placeholder-[#727783] font-(family-name:--font-inter)"/>
                 {/* bottom line */}
                 <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px]"
-                  style={{ background: gradients.accentLine }} />
+                  style={{ background: 'linear-gradient(90deg, #0b2147, #122a55)' }} />
               </div>
             </div>
 
             {/* Password */}
             <div className="mb-1">
               <div className="flex items-center gap-2.5 bg-[#f6f3f2] border-[1.5px] border-[#c2c6d3] rounded-[10px] px-3.5 h-[50px] focus-within:border-[#a8c8ff] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,63,125,.08)] transition-all relative overflow-hidden group">
-                <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--primary)] transition-colors shrink-0">lock</span>
+                <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">lock</span>
                 <input value={password} onChange={e => setPassword(e.target.value)}
                   type={showPwd ? 'text' : 'password'} placeholder="Password" autoComplete="current-password"
                   suppressHydrationWarning
                   className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[#1b1c1c] placeholder-[#727783] font-(family-name:--font-inter)"/>
                 <button onClick={() => setShowPwd(p => !p)} type="button"
-                  className="text-[#727783] hover:text-[var(--primary)] transition-colors shrink-0 cursor-pointer bg-transparent border-0">
+                  className="text-[#727783] hover:text-[var(--on-surface)] transition-colors shrink-0 cursor-pointer bg-transparent border-0">
                   <span className="material-symbols-outlined text-[16px]">{showPwd ? 'visibility_off' : 'visibility'}</span>
                 </button>
                 <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px]"
-                  style={{ background: gradients.accentLine }} />
+                  style={{ background: 'linear-gradient(90deg, #0b2147, #122a55)' }} />
               </div>
             </div>
 
             <div className="flex justify-end mb-4">
-              <Link href="/forgot-password" className="text-[0.72rem] font-semibold text-[var(--primary-c)] hover:text-[var(--primary)] hover:underline transition-colors">Forgot password?</Link>
+              <Link href="/forgot-password" className="text-[0.72rem] font-semibold text-[var(--surface-low)] hover:text-[var(--on-surface)] hover:underline transition-colors">Forgot password?</Link>
             </div>
 
             {/* Sign In button */}
             <button onClick={handleLogin} disabled={loginState === 'loading'}
               suppressHydrationWarning
-              className={`w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white flex items-center justify-center gap-2 relative overflow-hidden transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(0,63,125,.28)] ${loginState === 'success' ? 'bg-[var(--secondary)]' : 'bg-[var(--primary)] hover:bg-[var(--primary-c)] hover:-translate-y-px hover:shadow-[0_8px_24px_rgba(0,63,125,.32)]'}`}>
+              className={`w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white flex items-center justify-center gap-2 relative overflow-hidden transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)] ${loginState === 'success' ? 'bg-[var(--on-surface)]' : 'bg-[var(--on-surface)] hover:bg-[var(--surface-low)] hover:-translate-y-px hover:shadow-[0_8px_24px_rgba(11,33,71,.32)]'}`}>
               {loginState === 'loading' && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
               {loginState === 'success' && (
                 <>
@@ -265,13 +265,13 @@ export default function LoginPage() {
 
             {/* Trust */}
             <div className="flex items-center justify-center gap-1.5 mt-3 text-[0.68rem] text-[#727783]">
-              <span className="material-symbols-outlined text-[13px] text-[var(--secondary)]">lock</span>
+              <span className="material-symbols-outlined text-[13px] text-[var(--on-surface)]">lock</span>
               256-bit encryption · Trusted by 10,000+ businesses
             </div>
 
             <p className="text-center text-[0.78rem] text-[#424751] mt-3">
               New to the platform?
-              <Link href="#" className="text-[var(--primary-c)] font-bold ml-1 hover:text-[var(--primary)] hover:underline transition-colors">Register as Partner</Link>
+              <Link href="#" className="text-[var(--surface-low)] font-bold ml-1 hover:text-[var(--on-surface)] hover:underline transition-colors">Register as Partner</Link>
             </p>
           </div>
         )}
@@ -294,30 +294,30 @@ export default function LoginPage() {
                         </option>
                       ))}
                     </select>
-                    <span className="material-symbols-outlined text-[18px] text-[#727783] absolute right-2 pointer-events-none group-focus-within:text-[var(--primary)] transition-colors">expand_more</span>
+                    <span className="material-symbols-outlined text-[18px] text-[#727783] absolute right-2 pointer-events-none group-focus-within:text-[var(--on-surface)] transition-colors">expand_more</span>
                   </div>
                   {/* phone — 70% */}
                   <div className="flex items-center gap-2.5 bg-[#f6f3f2] border-[1.5px] border-[#c2c6d3] rounded-[10px] px-3.5 h-[50px] focus-within:border-[#a8c8ff] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,63,125,.08)] transition-all flex-1 relative overflow-hidden group">
-                    <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--primary)] transition-colors shrink-0">smartphone</span>
+                    <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">smartphone</span>
                     <input value={phone} onChange={e => setPhone(e.target.value)}
                       type="tel" placeholder="Mobile number" maxLength={10} autoComplete="tel"
                       suppressHydrationWarning
                       className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[#1b1c1c] placeholder-[#727783] font-(family-name:--font-inter)"/>
                     <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px]"
-                      style={{ background: gradients.accentLine }} />
+                      style={{ background: 'linear-gradient(90deg, #0b2147, #122a55)' }} />
                   </div>
                 </div>
                 <p className="text-[0.7rem] text-[#727783] mb-4">OTP will be sent to this number via SMS</p>
 
                 <button onClick={handleSendOtp} disabled={sendState === 'loading'}
-                  className="w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white bg-[var(--primary)] hover:bg-[var(--primary-c)] hover:-translate-y-px flex items-center justify-center gap-2 transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(0,63,125,.28)]">
+                  className="w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white bg-[var(--on-surface)] hover:bg-[var(--surface-low)] hover:-translate-y-px flex items-center justify-center gap-2 transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)]">
                   {sendState === 'loading'
                     ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     : <><span>Send OTP</span><span className="material-symbols-outlined text-[16px]">send</span></>}
                 </button>
                 <p className="text-center text-[0.78rem] text-[#424751] mt-3">
                   New to the platform?
-                  <Link href="#" className="text-[var(--primary-c)] font-bold ml-1 hover:text-[var(--primary)] hover:underline transition-colors">Register as Partner</Link>
+                  <Link href="#" className="text-[var(--surface-low)] font-bold ml-1 hover:text-[var(--on-surface)] hover:underline transition-colors">Register as Partner</Link>
                 </p>
               </div>
             )}
@@ -326,10 +326,10 @@ export default function LoginPage() {
             {otpStep === 2 && (
               <div>
                 {/* Banner */}
-                <div className="flex items-center gap-2 px-3 py-2.5 bg-[#d6e3ff] border border-[#a8c8ff] rounded-[9px] mb-4 text-[0.78rem] text-[var(--primary)] font-semibold">
+                <div className="flex items-center gap-2 px-3 py-2.5 bg-[#d6e3ff] border border-[#a8c8ff] rounded-[9px] mb-4 text-[0.78rem] text-[var(--on-surface)] font-semibold">
                   <span className="material-symbols-outlined text-[15px] shrink-0">check_circle</span>
                   OTP sent to <strong className="ml-1">{phoneMask}</strong>
-                  <button onClick={() => setOtpStep(1)} className="ml-auto text-[0.7rem] font-bold text-[var(--primary-c)] underline cursor-pointer bg-transparent border-0">Change</button>
+                  <button onClick={() => setOtpStep(1)} className="ml-auto text-[0.7rem] font-bold text-[var(--surface-low)] underline cursor-pointer bg-transparent border-0">Change</button>
                 </div>
 
                 <p className="text-[0.62rem] font-semibold tracking-[0.12em] uppercase text-[#727783] mb-2.5">Enter 6-digit OTP</p>
@@ -345,25 +345,23 @@ export default function LoginPage() {
                       onPaste={handleOtpPaste}
                       type="text" inputMode="numeric" pattern="[0-9]*" maxLength={1}
                       suppressHydrationWarning
-                      className={`w-10 h-12 sm:w-12 sm:h-14 text-center border-[1.5px] rounded-[12px] text-[1.1rem] font-bold transition-all outline-none
-                        ${d && !otpError ? 'border-[var(--primary)] bg-[#d6e3ff] text-[var(--primary)]' : 'border-[#c2c6d3] bg-[#f6f3f2] text-[#1b1c1c]'}
-                        focus:border-[#a8c8ff] focus:bg-white focus:shadow-[0_0_0_3px_rgba(0,63,125,.09)] focus:scale-[1.04]`}
+                      className={`w-10 h-12 sm:w-12 sm:h-14 text-center border-[1.5px] rounded-[12px] text-[1.1rem] font-bold transition-all outline-none ${d && !otpError ? 'border-[var(--on-surface)] bg-[#d6e3ff] text-[var(--on-surface)]' : 'border-[#c2c6d3] bg-[#f6f3f2] text-[#1b1c1c]'} focus:border-[#a8c8ff] focus:bg-white focus:shadow-[0_0_0_3px_rgba(0,63,125,.09)] focus:scale-[1.04]`}
                     />
                   ))}
                 </div>
 
                 <div className="flex justify-between items-center mb-4 text-[0.72rem]">
-                  <span className="text-[#727783]">Expires in <strong className="text-[var(--primary)]">{timer}</strong></span>
+                  <span className="text-[#727783]">Expires in <strong className="text-[var(--on-surface)]">{timer}</strong></span>
                   <button onClick={() => { setOtp(['','','','','','']); startTimer(120); otpRefs.current[0]?.focus(); }}
                     disabled={!resendActive}
-                    className={`font-semibold cursor-pointer bg-transparent border-0 transition-all ${resendActive ? 'text-[var(--primary-c)] opacity-100 hover:text-[var(--primary)] hover:underline' : 'text-[#727783] opacity-40 cursor-not-allowed'}`}>
+                    className={`font-semibold cursor-pointer bg-transparent border-0 transition-all ${resendActive ? 'text-[var(--surface-low)] opacity-100 hover:text-[var(--on-surface)] hover:underline' : 'text-[#727783] opacity-40 cursor-not-allowed'}`}>
                     Resend OTP
                   </button>
                 </div>
 
                 <button onClick={handleVerify} disabled={verifyState === 'loading'}
                   suppressHydrationWarning
-                  className={`w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white flex items-center justify-center gap-2 transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(0,63,125,.28)] ${verifyState === 'success' ? 'bg-[var(--secondary)]' : 'bg-[var(--primary)] hover:bg-[var(--primary-c)] hover:-translate-y-px'}`}>
+                  className={`w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white flex items-center justify-center gap-2 transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)] ${verifyState === 'success' ? 'bg-[var(--on-surface)]' : 'bg-[var(--on-surface)] hover:bg-[var(--surface-low)] hover:-translate-y-px'}`}>
                   {verifyState === 'loading' && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
                   {verifyState === 'success' && (
                     <><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Verified</span></>
@@ -374,7 +372,7 @@ export default function LoginPage() {
                 </button>
                 <p className="text-center text-[0.78rem] text-[#424751] mt-3">
                   New to the platform?
-                  <Link href="#" className="text-[var(--primary-c)] font-bold ml-1 hover:text-[var(--primary)] hover:underline transition-colors">Register as Partner</Link>
+                  <Link href="#" className="text-[var(--surface-low)] font-bold ml-1 hover:text-[var(--on-surface)] hover:underline transition-colors">Register as Partner</Link>
                 </p>
               </div>
             )}

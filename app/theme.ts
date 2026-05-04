@@ -18,51 +18,23 @@
 // COLORS
 // ─────────────────────────────────────────────
 export const colors = {
-  // Brand
-  primary:      '#003f7d',
-  primaryHover: '#0056a7',
-  primaryDim:   '#a8c8ff',
-  primaryFix:   '#d6e3ff',
-
-  secondary:    '#006d3f',
-  secondaryFix: '#58ffa5',
-
-  accent:       '#22c55e',
-  accentDark:   '#16a34a',
-  accentBlue:   '#1565d8',
-  accentBlueDark: '#0056a7',
-
-  // Surfaces
-  bg:           '#fcf9f8',
+  // Light Mode
+  bg:           '#f8fafc',
   surface:      '#ffffff',
   surfaceLow:   '#f6f3f2',
-  surfaceMid:   '#f0eded',
-  surfaceHigh:  '#eae7e7',
+  onSurface:    '#0b2147',
+  onMuted:      '#4a5d73',
+  outline:      '#e2e8f0',
 
-  // Text
-  onSurface:    '#1b1c1c',
-  onMuted:      '#424751',
-  outline:      '#727783',
-  outlineVar:   '#c2c6d3',
-
-  // Semantic
-  error:        '#ba1a1a',
-  errorBg:      '#ffdad6',
-
-  // Hero gradient stops
-  heroBlue1:    '#1e3a8a',
-  heroBlue2:    '#3b82f6',
-  heroBlue3:    '#2563eb',
-  heroBlue4:    '#1d4ed8',
-  heroBlue5:    '#1e40af',
-
-  // Card
-  cardFront1:   '#0a1f5c',
-  cardFront2:   '#0d3a8e',
-  cardFront3:   '#1565d8',
-  cardFront4:   '#0a2a6e',
-  cardBack1:    '#071540',
-  cardBack2:    '#0a1f5c',
+  // Dark Mode
+  dark: {
+    bg:           '#050b18',
+    surface:      '#0b2147',
+    surfaceLow:   '#122a55',
+    onSurface:    '#e6edf7',
+    onMuted:      '#94a3b8',
+    outline:      '#1e293b',
+  },
 } as const;
 
 // ─────────────────────────────────────────────
@@ -86,11 +58,6 @@ export const fonts = {
 // GRADIENTS
 // ─────────────────────────────────────────────
 export const gradients = {
-  hero:       `linear-gradient(135deg, ${colors.heroBlue1} 0%, ${colors.heroBlue2} 25%, ${colors.heroBlue3} 50%, ${colors.heroBlue4} 75%, ${colors.heroBlue5} 100%)`,
-  primary:    `linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryHover} 100%)`,
-  cardFront:  `linear-gradient(135deg, ${colors.cardFront1} 0%, ${colors.cardFront2} 35%, ${colors.cardFront3} 65%, ${colors.cardFront4} 100%)`,
-  cardBack:   `linear-gradient(135deg, ${colors.cardBack1} 0%, ${colors.cardBack2} 100%)`,
-  accentLine: `linear-gradient(90deg, ${colors.primary}, ${colors.accent})`,
   navGlass:   'rgba(255,255,255,0.72)',
 } as const;
 
@@ -98,12 +65,12 @@ export const gradients = {
 // SHADOWS
 // ─────────────────────────────────────────────
 export const shadows = {
-  nav:        '0 2px 32px rgba(0,63,125,0.07), 0 1px 0 rgba(255,255,255,0.8) inset',
-  navScrolled:'0 4px 32px rgba(0,63,125,0.12)',
+  nav:        '0 2px 32px rgba(11,33,71,0.07), 0 1px 0 rgba(255,255,255,0.8) inset',
+  navScrolled:'0 4px 32px rgba(11,33,71,0.12)',
   card:       '0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.15)',
-  btnPrimary: '0 2px 12px rgba(0,63,125,0.3), 0 1px 0 rgba(255,255,255,0.15) inset',
-  btnHover:   '0 8px 24px rgba(0,63,125,0.35)',
-  input:      '0 0 0 3px rgba(0,63,125,0.08)',
+  btnPrimary: '0 2px 12px rgba(11,33,71,0.3), 0 1px 0 rgba(255,255,255,0.15) inset',
+  btnHover:   '0 8px 24px rgba(11,33,71,0.35)',
+  input:      '0 0 0 3px rgba(11,33,71,0.08)',
   modal:      '0 24px 64px rgba(0,0,0,0.22)',
 } as const;
 
@@ -160,17 +127,10 @@ export const breakpoints = {
 // These match the :root vars in globals.css exactly
 // ─────────────────────────────────────────────
 export const cssVars = {
-  '--primary':     colors.primary,
-  '--primary-c':   colors.primaryHover,
-  '--primary-dim': colors.primaryDim,
-  '--primary-fix': colors.primaryFix,
-  '--secondary':   colors.secondary,
-  '--accent':      colors.accent,
   '--bg':          colors.bg,
   '--surface':     colors.surface,
   '--surface-low': colors.surfaceLow,
   '--outline':     colors.outline,
-  '--outline-var': colors.outlineVar,
   '--on-surface':  colors.onSurface,
   '--on-muted':    colors.onMuted,
 } as const;

@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden font-(family-name:--font-inter)"
-      style={{ background: gradients.hero }}>
+      style={{ background: 'linear-gradient(135deg, #0b2147 0%, #050b18 100%)' }}>
 
       {/* grid */}
       <div className="absolute inset-0 pointer-events-none z-0"
@@ -53,14 +53,14 @@ export default function AdminLoginPage() {
 
             {/* Logo */}
             <div className="flex items-center gap-2.5 mb-8">
-              <div className="w-[30px] h-[30px] rounded-lg flex items-center justify-center relative" style={{background: colors.primary}}>
+              <div className="w-[30px] h-[30px] rounded-lg flex items-center justify-center relative" style={{background: '#0b2147'}}>
                 <div className="absolute inset-[2px] bg-white rounded-[5px]" />
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="relative z-10">
-                  <path d="M2.5 7h3.5M8 3.5l3.5 3.5L8 10.5" stroke="var(--primary)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M2.5 7h3.5M8 3.5l3.5 3.5L8 10.5" stroke="var(--on-surface)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="font-black text-[1.15rem] tracking-[-0.03em] text-[var(--primary)]">
-                Cred<span className="text-[var(--secondary)]">2</span>Tech
+              <span className="font-black text-[1.15rem] tracking-[-0.03em] text-[var(--on-surface)]">
+                Cred<span className="text-[var(--on-surface)]">2</span>Tech
               </span>
             </div>
 
@@ -71,49 +71,49 @@ export default function AdminLoginPage() {
             </div>
 
             {/* Admin Badge */}
-            <div className="flex items-center gap-2 bg-[var(--primary)]/10 border border-[var(--primary)]/20 rounded-[8px] px-3 py-2 mb-6">
-              <span className="material-symbols-outlined text-[18px] text-[var(--primary)]">admin_panel_settings</span>
-              <span className="text-[0.75rem] font-semibold text-[var(--primary)]">Administrator Portal</span>
+            <div className="flex items-center gap-2 bg-[var(--on-surface)]/10 border border-[var(--on-surface)]/20 rounded-[8px] px-3 py-2 mb-6">
+              <span className="material-symbols-outlined text-[18px] text-[var(--on-surface)]">admin_panel_settings</span>
+              <span className="text-[0.75rem] font-semibold text-[var(--on-surface)]">Administrator Portal</span>
             </div>
 
             {/* Email */}
             <div className="mb-3.5">
               <div className="flex items-center gap-2.5 bg-[#f6f3f2] border-[1.5px] border-[#c2c6d3] rounded-[10px] px-3.5 h-[50px] focus-within:border-[#a8c8ff] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,63,125,.08)] transition-all relative overflow-hidden group">
-                <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--primary)] transition-colors shrink-0">person</span>
+                <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">person</span>
                 <input value={email} onChange={e => setEmail(e.target.value)}
                   type="email" placeholder="Email address" autoComplete="email"
                   suppressHydrationWarning
                   className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[#1b1c1c] placeholder-[#727783] font-(family-name:--font-inter)"/>
                 <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px]"
-                  style={{ background: gradients.accentLine }} />
+                  style={{ background: 'linear-gradient(90deg, #0b2147, #122a55)' }} />
               </div>
             </div>
 
             {/* Password */}
             <div className="mb-1">
               <div className="flex items-center gap-2.5 bg-[#f6f3f2] border-[1.5px] border-[#c2c6d3] rounded-[10px] px-3.5 h-[50px] focus-within:border-[#a8c8ff] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,63,125,.08)] transition-all relative overflow-hidden group">
-                <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--primary)] transition-colors shrink-0">lock</span>
+                <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">lock</span>
                 <input value={password} onChange={e => setPassword(e.target.value)}
                   type={showPwd ? 'text' : 'password'} placeholder="Password" autoComplete="current-password"
                   suppressHydrationWarning
                   className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[#1b1c1c] placeholder-[#727783] font-(family-name:--font-inter)"/>
                 <button onClick={() => setShowPwd(p => !p)} type="button"
-                  className="text-[#727783] hover:text-[var(--primary)] transition-colors shrink-0 cursor-pointer bg-transparent border-0">
+                  className="text-[#727783] hover:text-[var(--on-surface)] transition-colors shrink-0 cursor-pointer bg-transparent border-0">
                   <span className="material-symbols-outlined text-[16px]">{showPwd ? 'visibility_off' : 'visibility'}</span>
                 </button>
                 <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px]"
-                  style={{ background: gradients.accentLine }} />
+                  style={{ background: 'linear-gradient(90deg, #0b2147, #122a55)' }} />
               </div>
             </div>
 
             <div className="flex justify-end mb-4">
-              <Link href="/forgot-password" className="text-[0.72rem] font-semibold text-[var(--primary-c)] hover:text-[var(--primary)] hover:underline transition-colors">Forgot password?</Link>
+              <Link href="/forgot-password" className="text-[0.72rem] font-semibold text-[var(--surface-low)] hover:text-[var(--on-surface)] hover:underline transition-colors">Forgot password?</Link>
             </div>
 
             {/* Sign In button */}
             <button onClick={handleLogin} disabled={loginState === 'loading'}
               suppressHydrationWarning
-              className={`w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white flex items-center justify-center gap-2 relative overflow-hidden transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(0,63,125,.28)] ${loginState === 'success' ? 'bg-[var(--secondary)]' : 'bg-[var(--primary)] hover:bg-[var(--primary-c)] hover:-translate-y-px hover:shadow-[0_8px_24px_rgba(0,63,125,.32)]'}`}>
+              className={`w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white flex items-center justify-center gap-2 relative overflow-hidden transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)] ${loginState === 'success' ? 'bg-[var(--on-surface)]' : 'bg-[var(--on-surface)] hover:bg-[var(--surface-low)] hover:-translate-y-px hover:shadow-[0_8px_24px_rgba(11,33,71,.32)]'}`}>
               {loginState === 'loading' && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
               {loginState === 'success' && (
                 <>
@@ -133,14 +133,14 @@ export default function AdminLoginPage() {
 
             {/* Trust */}
             <div className="flex items-center justify-center gap-1.5 mt-3 text-[0.68rem] text-[#727783]">
-              <span className="material-symbols-outlined text-[13px] text-[var(--secondary)]">lock</span>
+              <span className="material-symbols-outlined text-[13px] text-[var(--on-surface)]">lock</span>
               256-bit encryption · Secure Admin Access
             </div>
 
             {/* Back to main login */}
             <p className="text-center text-[0.78rem] text-[#424751] mt-6">
               Not an admin?
-              <Link href="/login" className="text-[var(--primary-c)] font-bold ml-1 hover:text-[var(--primary)] hover:underline transition-colors">Go to User Login</Link>
+              <Link href="/login" className="text-[var(--surface-low)] font-bold ml-1 hover:text-[var(--on-surface)] hover:underline transition-colors">Go to User Login</Link>
             </p>
           </div>
         </div>

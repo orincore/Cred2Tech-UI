@@ -35,12 +35,12 @@ export default function BlogsPage() {
         style={{ background: 'linear-gradient(135deg,#0a1628 0%,#0d2d6b 35%,#1565d8 70%,#0a1628 100%)' }}
       >
         <div className="hidden lg:block px-orb w-[400px] h-[400px] bg-[#0d3a8e] absolute top-[-100px] left-[-150px] z-0" id="orb-h1" />
-        <div className="hidden lg:block px-orb w-[300px] h-[300px] bg-[var(--accent)] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
+        <div className="hidden lg:block px-orb w-[300px] h-[300px] bg-[var(--on-surface)] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
         <div className="px-grid z-0" id="hero-grid" />
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[var(--accent)] mb-4 px-3 py-1 border border-[var(--accent)]/30 bg-[var(--accent)]/10">
+            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[var(--on-surface)] mb-4 px-3 py-1 border border-[var(--on-surface)]/30 bg-[var(--on-surface)]/10">
               Blogs
             </span>
             <h1 className="font-(family-name:--font-outfit) font-extrabold text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] leading-[1.05] tracking-tight text-white mb-6">
@@ -61,25 +61,25 @@ export default function BlogsPage() {
               <Link
                 key={post.slug}
                 href={`/blogs/${post.slug}`}
-                className="group relative overflow-hidden bg-[#fcf9f8] border border-[#e8e4e1] p-6 sm:p-8 hover:border-[var(--primary)]/30 hover:shadow-[0_24px_60px_rgba(0,63,125,0.08)] transition-all duration-500"
+                className="group relative overflow-hidden bg-[#fcf9f8] border border-[#e8e4e1] p-6 sm:p-8 hover:border-[var(--on-surface)]/30 hover:shadow-[0_24px_60px_rgba(11,33,71,0.08)] transition-all duration-500"
               >
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary)] via-[var(--accent)] to-[var(--primary-c)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--on-surface)] via-[var(--surface-low)] to-[var(--on-surface)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-12 h-12 bg-[var(--primary)]/5 flex items-center justify-center group-hover:bg-[var(--primary)]/10 transition-colors">
-                    <span className="material-symbols-outlined text-2xl text-[var(--primary)]">{post.icon}</span>
+                  <div className="w-12 h-12 bg-[var(--on-surface)]/5 flex items-center justify-center group-hover:bg-[var(--on-surface)]/10 transition-colors">
+                    <span className="material-symbols-outlined text-2xl text-[var(--on-surface)]">{post.icon}</span>
                   </div>
                   <div>
-                    <p className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-widest uppercase text-[var(--secondary)]">{post.tag}</p>
+                    <p className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-widest uppercase text-[var(--on-surface)]">{post.tag}</p>
                     <p className="text-xs text-[#424751]/70">{post.readTime}</p>
                   </div>
                 </div>
-                <h2 className="font-(family-name:--font-outfit) text-xl sm:text-2xl font-bold text-[var(--primary)] mb-3 group-hover:text-[var(--primary-c)] transition-colors">
+                <h2 className="font-(family-name:--font-outfit) text-xl sm:text-2xl font-bold text-[var(--on-surface)] mb-3 group-hover:text-[var(--surface-low)] transition-colors">
                   {post.title}
                 </h2>
                 <p className="text-sm sm:text-base text-[#424751] leading-relaxed mb-5">
                   {post.excerpt}
                 </p>
-                <span className="inline-flex items-center gap-1.5 font-bold text-sm text-[var(--primary)] group-hover:gap-2.5 transition-all">
+                <span className="inline-flex items-center gap-1.5 font-bold text-sm text-[var(--on-surface)] group-hover:gap-2.5 transition-all">
                   Read article
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M12 5l7 7-7 7" />
