@@ -18,22 +18,26 @@
 // COLORS
 // ─────────────────────────────────────────────
 export const colors = {
-  // Light Mode
+  // Light Mode - Black & White Palette
   bg:           '#ffffff',
   surface:      '#ffffff',
-  surfaceLow:   '#ffffff',
+  surfaceLow:   '#f5f5f5',
+  surfaceLower: '#e5e5e5',
   onSurface:    '#000000',
-  onMuted:      '#555555',
-  outline:      '#e5e5e5',
+  onMuted:      '#666666',
+  outline:      '#e0e0e0',
+  outlineLight: '#f0f0f0',
 
-  // Dark Mode
+  // Dark Mode - Black & White Palette
   dark: {
     bg:           '#000000',
-    surface:      '#0a0a0a',
-    surfaceLow:   '#141414',
+    surface:      '#111111',
+    surfaceLow:   '#1a1a1a',
+    surfaceLower: '#222222',
     onSurface:    '#ffffff',
     onMuted:      '#a0a0a0',
-    outline:      '#1a1a1a',
+    outline:      '#333333',
+    outlineLight: '#222222',
   },
 } as const;
 
@@ -130,7 +134,9 @@ export const cssVars = {
   '--bg':          colors.bg,
   '--surface':     colors.surface,
   '--surface-low': colors.surfaceLow,
+  '--surface-lower': colors.surfaceLower,
   '--outline':     colors.outline,
+  '--outline-light': colors.outlineLight,
   '--on-surface':  colors.onSurface,
   '--on-muted':    colors.onMuted,
 } as const;

@@ -73,7 +73,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="bg-[var(--bg)] text-[var(--on-surface)] font-(family-name:--font-inter) overflow-x-clip">
+    <div className="bg-[var(--bg)] text-[var(--on-surface)] font-(family-name:--font-inter) overflow-x-clip selection:bg-black selection:text-white">
 
       {/* ══ S1 — HERO ══ */}
       <section
@@ -85,8 +85,8 @@ export default function HomePage() {
         <div className="absolute top-[-15%] right-[12%] w-[500px] h-[110%] pointer-events-none z-[50] animate-strobe-light"
           style={{
             background: mounted && resolvedTheme === 'light'
-              ? 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 20%, rgba(0,0,0,0.05) 60%, transparent 85%)'
-              : 'linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.12) 20%, rgba(255,255,255,0.05) 60%, transparent 85%)',
+              ? 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.03) 60%, transparent 85%)'
+              : 'linear-gradient(to bottom, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.02) 60%, transparent 85%)',
             clipPath: 'polygon(42% 0%, 58% 0%, 100% 100%, 0% 100%)',
             filter: 'blur(80px)',
           }}
@@ -95,8 +95,8 @@ export default function HomePage() {
         <div className="absolute top-[-15%] right-[14%] w-[350px] h-[100%] pointer-events-none z-[51] animate-strobe-light"
           style={{
             background: mounted && resolvedTheme === 'light'
-              ? 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,0.08) 50%, transparent 75%)'
-              : 'linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 15%, rgba(255,255,255,0.05) 50%, transparent 75%)',
+              ? 'linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.12) 15%, rgba(0,0,0,0.05) 50%, transparent 75%)'
+              : 'linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.03) 50%, transparent 75%)',
             clipPath: 'polygon(44% 0%, 56% 0%, 90% 100%, 10% 100%)',
             filter: 'blur(40px)',
           }}
@@ -105,20 +105,20 @@ export default function HomePage() {
         <div className="absolute bottom-[15%] right-[10%] w-[600px] h-[200px] pointer-events-none z-[3]"
           style={{
             background: mounted && resolvedTheme === 'light'
-              ? 'radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.1) 40%, transparent 70%)'
-              : 'radial-gradient(ellipse at center, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 40%, transparent 70%)',
+              ? 'radial-gradient(ellipse at center, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.05) 40%, transparent 70%)'
+              : 'radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 40%, transparent 70%)',
             filter: 'blur(30px)',
           }}
         />
         {/* Ambient haze */}
-        <div className={`absolute -top-[5%] right-[0%] w-[800px] h-[800px] bg-gradient-to-b ${mounted && resolvedTheme === 'light' ? 'from-black/[0.02] via-black/[0.01]' : 'from-white/10 via-white/5'} to-transparent blur-[80px] pointer-events-none z-[3]`} />
+        <div className={`absolute -top-[5%] right-[0%] w-[800px] h-[800px] bg-gradient-to-b ${mounted && resolvedTheme === 'light' ? 'from-black/[0.04] via-black/[0.02]' : 'from-white/[0.08] via-white/[0.04]'} to-transparent blur-[80px] pointer-events-none z-[3]`} />
 
         {/* Perspective Grid Floor */}
         <div className="absolute bottom-0 left-0 w-full h-[50%] z-0 pointer-events-none"
           style={{ perspective: '1200px' }}>
-          <div className={`absolute inset-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-[0.05]' : 'opacity-[0.12]'}`}
+          <div className={`absolute inset-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-[0.06]' : 'opacity-[0.10]'}`}
             style={{
-              backgroundImage: `linear-gradient(${mounted && resolvedTheme === 'light' ? '#000000' : '#ffffff'} 1px, transparent 1px), linear-gradient(90deg, ${mounted && resolvedTheme === 'light' ? '#000000' : '#ffffff'} 1px, transparent 1px)`,
+              backgroundImage: `linear-gradient(${mounted && resolvedTheme === 'light' ? colors.outline : colors.dark.outline} 1px, transparent 1px), linear-gradient(90deg, ${mounted && resolvedTheme === 'light' ? colors.outline : colors.dark.outline} 1px, transparent 1px)`,
               backgroundSize: '60px 60px',
               transform: 'rotateX(65deg)',
               transformOrigin: 'center bottom',
@@ -164,20 +164,24 @@ export default function HomePage() {
           <div className="max-w-2xl mt-12 lg:mt-16 self-start w-full">
             {/* Badge */}
             <div className="mb-4">
-              <span className="inline-flex items-center text-[var(--on-surface)] opacity-70 font-(family-name:--font-jb-mono) text-sm font-medium tracking-wide">
-                [ India's MSME Credit Platform ]
+              <span className={`inline-flex items-center px-4 py-2 rounded-full font-(family-name:--font-jb-mono) text-xs font-bold tracking-[0.15em] uppercase ${mounted && resolvedTheme === 'light' ? 'bg-black/5 text-black border border-black/10' : 'bg-white/10 text-white border border-white/20'}`}>
+                India's MSME Credit Platform
               </span>
             </div>
 
             {/* Headline */}
             <h1 className="font-(family-name:--font-outfit) font-bold text-[1.8rem] sm:text-[2.5rem] lg:text-[4rem] leading-[1.05] tracking-tight text-[var(--on-surface)] transition-colors duration-500 mb-6">
-              The smartest way to close
-              MSME credit
+              The smartest way to close{' '}
+              <span className={`relative inline-block ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>
+                MSME credit
+                <span className={`absolute -bottom-2 left-0 w-full h-1 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black/30' : 'bg-white/40'}`} />
+              </span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg sm:text-[1rem] text-[var(--on-muted)] transition-colors duration-500 max-w-lg mb-8 leading-relaxed font-light">
-              AI-powered matching connects Indian MSMEs and DSAs with ideal lenders in minutes, not weeks.
+              AI-powered matching connects Indian MSMEs and DSAs with ideal lenders in{' '}
+              <span className={`font-semibold ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>minutes</span>, not weeks.
             </p>
             <div className="flex flex-wrap items-center gap-5 mb-8 mt-25">
               <TravelingBorderButton href="/register-dsa">
@@ -194,45 +198,47 @@ export default function HomePage() {
           </div>
 
           {/* Bottom 3-Column Section matched exactly from image */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 mt-auto pt-8 pb-4 w-full relative z-10 border-t border-[var(--outline)] md:border-none text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 mt-auto pt-8 pb-4 w-full relative z-10 border-t border-[var(--outline)] md:border-none text-left">
 
             {/* Col 1 */}
-            <div className="pr-8 relative">
+            <div className="pr-8 relative group/feature">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-6 h-6 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500">
-                  <span className="material-symbols-outlined text-[14px]">lock</span>
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${mounted && resolvedTheme === 'light' ? 'bg-black/10 text-black group-hover/feature:bg-black group-hover/feature:text-white' : 'bg-white/20 text-white group-hover/feature:bg-white group-hover/feature:text-black'}`}>
+                  <span className="material-symbols-outlined text-[16px]">lock</span>
                 </div>
-                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">Bank-grade Security</h3>
+                <h3 className={`text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base ${mounted && resolvedTheme === 'light' ? 'group-hover/feature:text-black' : 'group-hover/feature:text-white'}`}>Bank-grade Security</h3>
               </div>
-              <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-9">
+              <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-10">
                 Direct API integrations with banks <br className="hidden md:block" /> with complete data encryption.
               </p>
               {/* Divider */}
-              <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--outline)] transition-colors duration-500" />
+              <div className={`hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-12 transition-colors duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-[var(--outline)]' : 'bg-[var(--outline)]'}`} />
             </div>
 
             {/* Col 2 */}
-            <div className="px-0 md:px-8 relative">
+            <div className="px-0 md:px-8 relative group/feature">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-6 h-6 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500">
-                  <span className="material-symbols-outlined text-[14px]">speed</span>
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${mounted && resolvedTheme === 'light' ? 'bg-black/10 text-black group-hover/feature:bg-black group-hover/feature:text-white' : 'bg-white/20 text-white group-hover/feature:bg-white group-hover/feature:text-black'}`}>
+                  <span className="material-symbols-outlined text-[16px]">speed</span>
                 </div>
-                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">5-min Eligibility</h3>
+                <h3 className={`text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base ${mounted && resolvedTheme === 'light' ? 'group-hover/feature:text-black' : 'group-hover/feature:text-white'}`}>5-min Eligibility</h3>
               </div>
-              <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-9">
+              <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-10">
                 Run comprehensive matching checks <br className="hidden md:block" /> in minutes, not weeks.
               </p>
               {/* Divider */}
-              <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--outline)] transition-colors duration-500" />
+              <div className={`hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-12 transition-colors duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-[var(--outline)]' : 'bg-[var(--outline)]'}`} />
             </div>
 
             {/* Col 3 */}
-            <div className="px-0 md:pl-8 relative">
+            <div className="px-0 md:pl-8 relative group/feature">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-6 h-6 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500 font-bold text-[14px]">C</div>
-                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">RBI Compliant</h3>
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${mounted && resolvedTheme === 'light' ? 'bg-black/10 text-black group-hover/feature:bg-black group-hover/feature:text-white' : 'bg-white/20 text-white group-hover/feature:bg-white group-hover/feature:text-black'}`}>
+                  <span className="material-symbols-outlined text-[16px]">verified_user</span>
+                </div>
+                <h3 className={`text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base ${mounted && resolvedTheme === 'light' ? 'group-hover/feature:text-black' : 'group-hover/feature:text-white'}`}>RBI Compliant</h3>
               </div>
-              <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-9">
+              <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-10">
                 Reliable lending transactions <br className="hidden md:block" /> backed by audit trails.
               </p>
             </div>
@@ -243,10 +249,12 @@ export default function HomePage() {
       </section>
 
       {/* ══ S2 — TRUST / LENDER BAR ══ */}
-      <section id="lender-bar" className="py-10 sm:py-14 bg-[var(--bg)] border-b border-[var(--outline)]">
+      <section id="lender-bar" className={`py-12 sm:py-16 transition-colors duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-[var(--surface-low)]' : ''}`}
+        style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surfaceLow : undefined }}>
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[var(--on-surface)] mb-4 px-5 py-2.5 bg-[var(--surface)] border-2 border-[var(--outline)] shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
-            <span className="w-2 h-2 bg-[var(--on-surface)]" />
+          <span className={`inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase mb-4 px-5 py-2.5 border-2 transition-all duration-300 ${mounted && resolvedTheme === 'light' ? 'bg-white text-[var(--on-surface)] border-[var(--outline)] shadow-[0_4px_20px_rgba(0,0,0,0.06)]' : ''}`}
+            style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined, color: mounted && resolvedTheme === 'dark' ? colors.dark.onSurface : undefined }}>
+            <span className={`w-2 h-2 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black' : 'bg-white'}`} />
             Social Proof
           </span>
           <h2 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl lg:text-2xl text-[var(--on-surface)] mb-3">
@@ -257,8 +265,10 @@ export default function HomePage() {
           </p>
 
           <div className="marquee-wrap mt-10 overflow-hidden relative h-16 sm:h-20">
-            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)]/80 to-transparent z-10" />
-            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[var(--bg)] via-[var(--bg)]/80 to-transparent z-10" />
+            <div className={`absolute inset-y-0 left-0 w-32 bg-gradient-to-r z-10 ${mounted && resolvedTheme === 'light' ? 'from-[var(--surface-low)] via-[var(--surface-low)]/80 to-transparent' : ''}`}
+              style={{ background: mounted && resolvedTheme === 'dark' ? `linear-gradient(to right, ${colors.dark.surfaceLow}, ${colors.dark.surfaceLow}80, transparent)` : undefined }} />
+            <div className={`absolute inset-y-0 right-0 w-32 bg-gradient-to-l z-10 ${mounted && resolvedTheme === 'light' ? 'from-[var(--surface-low)] via-[var(--surface-low)]/80 to-transparent' : ''}`}
+              style={{ background: mounted && resolvedTheme === 'dark' ? `linear-gradient(to left, ${colors.dark.surfaceLow}, ${colors.dark.surfaceLow}80, transparent)` : undefined }} />
 
             <div className="marquee-track marquee-slow flex items-center h-full min-w-max" id="lender-marquee">
               {[...lenders, ...lenders, ...lenders, ...lenders].map((lender, i) => (
@@ -282,15 +292,17 @@ export default function HomePage() {
       </section>
 
       {/* ══ S3 — WHY CRED2TECH ══ */}
-      <section id="why-cred2tech" className="py-14 sm:py-18 lg:py-20 relative overflow-hidden bg-[var(--surface-low)]">
-        <div className={`px-orb w-[300px] h-[300px] absolute top-[-50px] right-[-60px] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'bg-[var(--on-surface)]/20 opacity-100'}`} id="orb-s1" />
-        <div className={`px-orb w-[220px] h-[220px] absolute bottom-[-40px] left-[5%] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'bg-white/30 opacity-100'}`} id="orb-s2" />
+      <section id="why-cred2tech" className={`py-16 sm:py-20 lg:py-24 relative overflow-hidden transition-colors duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-[var(--bg)]' : ''}`}
+        style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.bg : undefined }}>
+        <div className={`px-orb w-[350px] h-[350px] absolute top-[-50px] right-[-60px] z-0 blur-[100px] transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-black/8 opacity-100' : 'bg-white/12 opacity-100'}`} id="orb-s1" />
+        <div className={`px-orb w-[280px] h-[280px] absolute bottom-[-40px] left-[5%] z-0 blur-[80px] transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-black/6 opacity-100' : 'bg-white/10 opacity-100'}`} id="orb-s2" />
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header with Title Left and Arrows Right */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[var(--on-surface)] mb-3 px-5 py-2.5 bg-white border-2 border-[var(--outline)] shadow-[0_4px_20px_rgba(11,33,71,0.15)]">
-                <span className="w-2 h-2 bg-[var(--on-surface)]" />
+              <span className={`inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase mb-3 px-5 py-2.5 border-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 ${mounted && resolvedTheme === 'light' ? 'bg-white text-[var(--on-surface)] border-[var(--outline)]' : ''}`}
+                style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined, color: mounted && resolvedTheme === 'dark' ? colors.dark.onSurface : undefined }}>
+                <span className={`w-2 h-2 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black' : 'bg-white'}`} />
                 Why Cred2Tech
               </span>
               <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2.5rem] text-[var(--on-surface)] leading-tight uppercase tracking-wide">
@@ -304,7 +316,8 @@ export default function HomePage() {
             <div className="flex items-center gap-2.5 sm:gap-3 mt-4 sm:mt-0">
               <button
                 onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: -360, behavior: 'smooth' })}
-                className={`w-10 h-10 flex items-center justify-center border transition-all duration-300 shadow-lg rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-[#e5e5e5] border-[#e5e5e5] text-black' : 'bg-white/5 border-white/10 text-white'} hover:scale-105 active:scale-95`}
+                className={`w-11 h-11 flex items-center justify-center border transition-all duration-300 shadow-lg rounded-full hover:scale-105 active:scale-95 ${mounted && resolvedTheme === 'light' ? 'bg-white border-[var(--outline)] text-[var(--on-surface)] hover:border-black hover:text-black' : ''}`}
+                style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined, color: mounted && resolvedTheme === 'dark' ? colors.dark.onSurface : undefined }}
                 aria-label="Scroll left"
                 suppressHydrationWarning
               >
@@ -312,7 +325,7 @@ export default function HomePage() {
               </button>
               <button
                 onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: 360, behavior: 'smooth' })}
-                className={`w-10 h-10 flex items-center justify-center border transition-all duration-300 shadow-lg rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-[#e5e5e5] border-[#e5e5e5] text-black' : 'bg-white border-white text-black'} hover:scale-105 active:scale-95`}
+                className={`w-11 h-11 flex items-center justify-center border transition-all duration-300 shadow-lg rounded-full hover:scale-105 active:scale-95 ${mounted && resolvedTheme === 'light' ? 'bg-black border-black text-white' : 'bg-white border-white text-black'}`}
                 aria-label="Scroll right"
                 suppressHydrationWarning
               >
@@ -327,8 +340,9 @@ export default function HomePage() {
             <div id="feature-carousel" className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 px-2 -mx-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
 
               {/* Card 1: Intelligent Matching */}
-              <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] transition-all duration-500">
-                <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-gradient-to-br from-[var(--on-surface)]/10 to-transparent translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
+              <div className={`snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden p-6 sm:p-8 rounded-2xl border transition-all duration-500 hover:-translate-y-1 ${mounted && resolvedTheme === 'light' ? 'bg-white border-[var(--outline)] shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] hover:border-black/30' : ''}`}
+                style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined, boxShadow: mounted && resolvedTheme === 'dark' ? '0 8px 30px rgba(0,0,0,0.3)' : undefined }}>
+                <div className={`absolute top-0 right-0 w-[200px] h-[200px] bg-gradient-to-br from-black/10 to-transparent translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full ${mounted && resolvedTheme === 'light' ? '' : 'from-white/10'}`} />
                 <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
                   <ClientOnly>
                     <video
@@ -348,7 +362,8 @@ export default function HomePage() {
               </div>
 
               {/* Card 2: Secure & Private */}
-              <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] hover:-translate-y-1 transition-all duration-500">
+              <div className={`snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden p-6 sm:p-8 rounded-2xl border transition-all duration-500 hover:-translate-y-1 ${mounted && resolvedTheme === 'light' ? 'bg-white border-[var(--outline)] shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] hover:border-black/30' : ''}`}
+                style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined, boxShadow: mounted && resolvedTheme === 'dark' ? '0 8px 30px rgba(0,0,0,0.3)' : undefined }}>
                 <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
                   <ClientOnly>
                     <video
@@ -368,7 +383,8 @@ export default function HomePage() {
               </div>
 
               {/* Card 3: Fast. Simple. Digital. */}
-              <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] hover:-translate-y-1 transition-all duration-500">
+              <div className={`snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden p-6 sm:p-8 rounded-2xl border transition-all duration-500 hover:-translate-y-1 ${mounted && resolvedTheme === 'light' ? 'bg-white border-[var(--outline)] shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] hover:border-black/30' : ''}`}
+                style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined, boxShadow: mounted && resolvedTheme === 'dark' ? '0 8px 30px rgba(0,0,0,0.3)' : undefined }}>
                 <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
                   <ClientOnly>
                     <video
@@ -388,7 +404,8 @@ export default function HomePage() {
               </div>
 
               {/* Card 4: Full Transparency */}
-              <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] hover:border-[var(--on-surface)]/30 transition-all duration-500">
+              <div className={`snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden p-6 sm:p-8 rounded-2xl border transition-all duration-500 hover:-translate-y-1 ${mounted && resolvedTheme === 'light' ? 'bg-white border-[var(--outline)] shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.12)] hover:border-black/30' : ''}`}
+                style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined, boxShadow: mounted && resolvedTheme === 'dark' ? '0 8px 30px rgba(0,0,0,0.3)' : undefined }}>
                 <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
                   <ClientOnly>
                     <video
@@ -415,8 +432,8 @@ export default function HomePage() {
       {/* ══ S4 — FOR DSA AGENTS ══ */}
       <section
         id="for-dsas"
-        className="py-14 sm:py-18 lg:py-20 relative overflow-hidden transition-colors duration-500 border-y border-[var(--outline)]"
-        style={{ background: mounted && resolvedTheme === 'light' ? '#ffffff' : colors.dark.surface }}
+        className={`py-14 sm:py-18 lg:py-20 relative overflow-hidden transition-colors duration-500 border-y border-[var(--outline)] ${mounted && resolvedTheme === 'light' ? 'bg-white' : ''}`}
+        style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined }}
       >
         {/* Theme-aware orbs */}
         <div className={`px-orb w-[400px] h-[400px] absolute top-[-100px] right-[-100px] z-0 blur-[100px] transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'opacity-20'}`}
@@ -461,13 +478,17 @@ export default function HomePage() {
                   { icon: 'wallet', title: 'Team & wallet management', desc: 'Purchase credit packages, allocate balance to teams, track consumption, and manage sub-DSA networks.' },
                   { icon: 'payments', title: 'Payout Tracking', desc: 'Know exactly what has been earned, what is pending, and what has been paid out.' },
                 ].map((item) => (
-                  <div key={item.title} className={`flex items-start gap-5 p-5 sm:p-6 border transition-all duration-500 rounded-2xl group/card ${mounted && resolvedTheme === 'light' ? 'bg-white/70 backdrop-blur-md border-black/5 hover:border-black/20 shadow-sm' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/10'}`}>
-                    <div className={`w-12 h-12 border flex items-center justify-center flex-shrink-0 mt-0.5 rounded-xl transition-all duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-black/5 border-black/5 group-hover/card:bg-black group-hover/card:text-white' : 'bg-white/10 border-white/10 group-hover/card:bg-white group-hover/card:text-black'}`}>
+                  <div key={item.title} className={`flex items-start gap-5 p-5 sm:p-6 border transition-all duration-500 rounded-2xl group/card ${mounted && resolvedTheme === 'light' ? 'bg-white/70 backdrop-blur-md border-[var(--outline)] hover:border-black/30 shadow-sm' : ''}`}
+                    style={{ background: mounted && resolvedTheme === 'dark' ? `${colors.dark.surface}80` : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined }}>
+                    <div className={`w-12 h-12 border flex items-center justify-center flex-shrink-0 mt-0.5 rounded-xl transition-all duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-black/10 border-black/20 text-black group-hover/card:bg-black group-hover/card:text-white' : ''}`}
+                      style={{ background: mounted && resolvedTheme === 'dark' ? 'rgba(255,255,255,0.2)' : undefined, borderColor: mounted && resolvedTheme === 'dark' ? '#ffffff' : undefined, color: mounted && resolvedTheme === 'dark' ? '#ffffff' : undefined }}>
                       <span className="material-symbols-outlined text-2xl">{item.icon}</span>
                     </div>
                     <div>
-                      <h3 className={`font-(family-name:--font-outfit) font-bold text-base sm:text-lg mb-1.5 transition-colors ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>{item.title}</h3>
-                      <p className={`text-sm leading-relaxed transition-colors font-light ${mounted && resolvedTheme === 'light' ? 'text-black/60' : 'text-white/60'}`}>{item.desc}</p>
+                      <h3 className={`font-(family-name:--font-outfit) font-bold text-base sm:text-lg mb-1.5 transition-colors ${mounted && resolvedTheme === 'light' ? 'text-[var(--on-surface)] group-hover/card:text-black' : ''}`}
+                        style={{ color: mounted && resolvedTheme === 'dark' ? colors.dark.onSurface : undefined }}>{item.title}</h3>
+                      <p className={`text-sm leading-relaxed transition-colors font-light ${mounted && resolvedTheme === 'light' ? 'text-[var(--on-muted)]' : ''}`}
+                        style={{ color: mounted && resolvedTheme === 'dark' ? colors.dark.onMuted : undefined }}>{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -478,7 +499,8 @@ export default function HomePage() {
       </section>
 
       {/* ══ S5 — FOR BUSINESS OWNERS ══ */}
-      <section id="for-msmes" className="py-14 sm:py-18 lg:py-20 relative overflow-hidden transition-colors duration-500 bg-[var(--bg)]">
+      <section id="for-msmes" className={`py-14 sm:py-18 lg:py-20 relative overflow-hidden transition-colors duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-[var(--bg)]' : ''}`}
+        style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.bg : undefined }}>
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(var(--on-surface) 1.5px,transparent 1.5px),linear-gradient(90deg,var(--on-surface) 1.5px,transparent 1.5px)', backgroundSize: '48px 48px' }} />
 
         {/* Theme-aware orbs */}
@@ -513,11 +535,14 @@ export default function HomePage() {
               { step: '03', title: 'Document Vault', desc: 'All financial documents — ITR, GST, PAN, property papers — organised securely.', icon: 'folder_shared' },
               { step: '04', title: 'Application Tracking', desc: 'Track case status in real time — from submission to disbursement.', icon: 'track_changes' },
             ].map((item) => (
-              <div key={item.step} className={`group/step p-6 sm:p-8 border transition-all duration-500 rounded-3xl ${mounted && resolvedTheme === 'light' ? 'bg-white/40 backdrop-blur-sm border-black/5 hover:border-black/15 shadow-sm' : 'bg-white/5 border-white/5 hover:border-white/10'}`}>
-                <div className={`w-12 h-12 flex items-center justify-center mb-6 rounded-xl transition-all duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-black/5 text-black group-hover/step:bg-black group-hover/step:text-white' : 'bg-white/10 text-white group-hover/step:bg-white group-hover/step:text-black'}`}>
+              <div key={item.step} className={`group/step p-6 sm:p-8 border transition-all duration-500 rounded-3xl ${mounted && resolvedTheme === 'light' ? 'bg-white/40 backdrop-blur-sm border-[var(--outline)] hover:border-[var(--primary)]/20 shadow-sm' : ''}`}
+                style={{ background: mounted && resolvedTheme === 'dark' ? `${colors.dark.surface}80` : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined }}>
+                <div className={`w-12 h-12 flex items-center justify-center mb-6 rounded-xl transition-all duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-[var(--primary)]/10 text-[var(--primary)] group-hover/step:bg-[var(--primary)] group-hover/step:text-white' : ''}`}
+                  style={{ background: mounted && resolvedTheme === 'dark' ? `${colors.dark.primary}20` : undefined, color: mounted && resolvedTheme === 'dark' ? colors.dark.primary : undefined }}>
                   <span className="material-symbols-outlined text-2xl">{item.icon}</span>
                 </div>
-                <div className={`font-(family-name:--font-jb-mono) text-3xl sm:text-4xl font-black mb-4 transition-colors opacity-10 group-hover/step:opacity-20 ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>
+                <div className={`font-(family-name:--font-jb-mono) text-3xl sm:text-4xl font-black mb-4 transition-colors opacity-10 group-hover/step:opacity-20 ${mounted && resolvedTheme === 'light' ? 'text-[var(--on-surface)]' : ''}`}
+                  style={{ color: mounted && resolvedTheme === 'dark' ? colors.dark.onSurface : undefined }}>
                   {item.step}
                 </div>
                 <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[var(--on-surface)] mb-2.5">{item.title}</h3>
@@ -537,30 +562,34 @@ export default function HomePage() {
       {/* ══ S6 — ON THE HORIZON ══ */}
       <section
         id="coming-soon"
-        className="py-16 sm:py-24 relative overflow-hidden bg-[var(--surface-low)]"
+        className={`py-16 sm:py-24 relative overflow-hidden transition-colors duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-[var(--surface-low)]' : ''}`}
+        style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surfaceLow : undefined }}
       >
         {/* Subtle Light-themed Background Effects */}
         <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className={`px-orb w-[600px] h-[600px] absolute top-[-200px] right-[-100px] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'bg-[var(--on-surface)]/25 opacity-100'}`} id="orb-pr1" />
-        <div className={`px-orb w-[500px] h-[500px] absolute bottom-[-150px] left-[-80px] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'bg-[var(--on-surface)]/5 opacity-100'}`} id="orb-pr2" />
+        <div className={`px-orb w-[600px] h-[600px] absolute top-[-200px] right-[-100px] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'opacity-100'}`} id="orb-pr1"
+          style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.primary : undefined }} />
+        <div className={`px-orb w-[500px] h-[500px] absolute bottom-[-150px] left-[-80px] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'opacity-100'}`} id="orb-pr2"
+          style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.primary : undefined }} />
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div
-            className="max-w-4xl mx-auto p-8 sm:p-14 border border-white shadow-[0_32px_80px_-20px_rgba(0,0,0,0.12)] relative overflow-hidden rounded-3xl"
+            className={`max-w-4xl mx-auto p-8 sm:p-14 border shadow-[0_32px_80px_-20px_rgba(0,0,0,0.12)] relative overflow-hidden rounded-3xl ${mounted && resolvedTheme === 'light' ? 'border-white' : ''}`}
             style={{
-              background: 'rgba(255, 255, 255, 0.7)',
+              background: mounted && resolvedTheme === 'light' ? 'rgba(255, 255, 255, 0.7)' : colors.dark.glass,
               backdropFilter: 'blur(32px)',
+              borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.glassBorder : undefined,
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white to-transparent pointer-events-none" />
+            <div className={`absolute inset-0 bg-gradient-to-br pointer-events-none ${mounted && resolvedTheme === 'light' ? 'from-white to-transparent' : 'from-[var(--dark-surface)] to-transparent'}`} />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-black/5 border border-black/10 mb-6 rounded-full">
-                <span className="w-1.5 h-1.5 bg-black rounded-full" />
-                <span className="font-(family-name:--font-jb-mono) text-[11px] font-bold tracking-[0.2em] uppercase text-black/60">On the Horizon</span>
+              <div className={`inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black/5 border border-black/10' : 'bg-[var(--primary)]/10 border border-[var(--primary)]/20'}`}>
+                <span className={`w-1.5 h-1.5 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black' : 'bg-[var(--primary)]'}`} />
+                <span className={`font-(family-name:--font-jb-mono) text-[11px] font-bold tracking-[0.2em] uppercase ${mounted && resolvedTheme === 'light' ? 'text-black/60' : 'text-[var(--primary)]'}`}>On the Horizon</span>
               </div>
 
-              <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-black mb-6 leading-tight">
+              <h2 className={`font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] mb-6 leading-tight ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-[var(--on-surface)]'}`}>
                 Never miss a government <br className="hidden sm:block" /> scheme again.
               </h2>
 
@@ -570,24 +599,24 @@ export default function HomePage() {
                 </ClientOnly>
               </div>
 
-              <p className="text-black/70 text-sm sm:text-base lg:text-[1.05rem] leading-relaxed mb-10 max-w-2xl mx-auto">
+              <p className={`text-sm sm:text-base lg:text-[1.05rem] leading-relaxed mb-10 max-w-2xl mx-auto ${mounted && resolvedTheme === 'light' ? 'text-black/70' : 'text-[var(--on-muted)]'}`}>
                 India has hundreds of central and state government schemes for MSMEs — subsidies, credit guarantees, grants, and incentives. Most businesses never find them.
-                <span className="text-black font-bold"> We're building a first-of-its-kind Government Scheme Identification Engine </span>
+                <span className={`font-bold ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-[var(--on-surface)]'}`}> We're building a first-of-its-kind Government Scheme Identification Engine </span>
                 that maps your business profile to every scheme you qualify for.
               </p>
 
               <form id="notify-form" className="max-w-md mx-auto mt-8" onSubmit={(e) => e.preventDefault()}>
-                <div className="relative flex items-center p-1.5 bg-black/5 border border-black/10 rounded-2xl focus-within:ring-2 focus-within:ring-black/5 transition-all">
+                <div className={`relative flex items-center p-1.5 rounded-2xl focus-within:ring-2 transition-all ${mounted && resolvedTheme === 'light' ? 'bg-black/5 border border-black/10 focus-within:ring-black/5' : 'bg-[var(--dark-surface)] border-[var(--dark-outline)] focus-within:ring-[var(--primary)]/20'}`}>
                   <div className="flex-1 flex items-center pl-3">
-                    <span className="material-symbols-outlined text-[20px] text-black/30 mr-2">mail</span>
+                    <span className={`material-symbols-outlined text-[20px] mr-2 ${mounted && resolvedTheme === 'light' ? 'text-black/30' : 'text-[var(--on-muted)]'}`}>mail</span>
                     <input
                       type="email"
                       placeholder="Enter your email"
-                      className="w-full bg-transparent border-none focus:outline-none text-black text-[0.9375rem] placeholder:text-black/30"
+                      className={`w-full bg-transparent border-none focus:outline-none text-[0.9375rem] placeholder:text-opacity-30 ${mounted && resolvedTheme === 'light' ? 'text-black placeholder:text-black/30' : 'text-[var(--on-surface)] placeholder:text-[var(--on-muted)]'}`}
                       required
                     />
                   </div>
-                  <TravelingBorderButton type="submit" size="sm" showIcon={false} theme="light" className="shrink-0">
+                  <TravelingBorderButton type="submit" size="sm" showIcon={false} className="shrink-0">
                     Notify Me
                   </TravelingBorderButton>
                 </div>
@@ -600,22 +629,22 @@ export default function HomePage() {
       {/* ══ S8 — FINAL CTA ══ */}
       <section
         id="final-cta"
-        className="py-14 sm:py-18 lg:py-20 relative overflow-hidden text-center transition-colors duration-500"
-        style={{ background: mounted && resolvedTheme === 'light' ? '#ffffff' : colors.dark.surface }}
+        className={`py-14 sm:py-18 lg:py-20 relative overflow-hidden text-center transition-colors duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-white' : ''}`}
+        style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined }}
       >
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '28px 28px' }} />
 
         {/* Marquee */}
-        <div className="marquee-wrap mb-10 sm:mb-12 border-y border-white/10 py-3.5 overflow-hidden opacity-40">
+        <div className={`marquee-wrap mb-10 sm:mb-12 border-y py-3.5 overflow-hidden opacity-40 ${mounted && resolvedTheme === 'light' ? 'border-[var(--outline)]' : 'border-[var(--dark-outline)]'}`}>
           <div className="marquee-track marquee-fast">
             {[...Array(6)].map((_, groupIdx) => (
               <React.Fragment key={groupIdx}>
                 {['Top Lender Offers', '✦', 'MSME Specific', '✦', 'Quick Disbursal', '✦', 'FAST TRACK'].map((item, i) => (
-                  <span key={`${groupIdx}-${i}`} className={`font-(family-name:--font-jb-mono) text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase whitespace-nowrap ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>
+                  <span key={`${groupIdx}-${i}`} className={`font-(family-name:--font-jb-mono) text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase whitespace-nowrap ${mounted && resolvedTheme === 'light' ? 'text-[var(--on-surface)]' : 'text-[var(--on-surface)]'}`}>
                     {item}
                   </span>
                 ))}
-                <span className={`font-(family-name:--font-jb-mono) text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>
+                <span className={`font-(family-name:--font-jb-mono) text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase ${mounted && resolvedTheme === 'light' ? 'text-[var(--on-surface)]' : 'text-[var(--on-surface)]'}`}>
                   ✦
                 </span>
               </React.Fragment>
@@ -626,10 +655,10 @@ export default function HomePage() {
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-2xl mx-auto">
             <p className="font-(family-name:--font-jb-mono) text-sm sm:text-base font-bold tracking-[0.18em] uppercase text-[var(--on-surface)] mb-3">Get Started Today</p>
-            <h2 className={`font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2rem] mb-3 sm:mb-4 leading-tight transition-colors ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>
+            <h2 className={`font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2rem] mb-3 sm:mb-4 leading-tight transition-colors ${mounted && resolvedTheme === 'light' ? 'text-[var(--on-surface)]' : 'text-[var(--on-surface)]'}`}>
               Credit, Simplified. For every DSA who closes it and every MSME that deserves it.
             </h2>
-            <p className={`text-sm sm:text-[0.9375rem] mb-8 sm:mb-10 leading-relaxed transition-colors ${mounted && resolvedTheme === 'light' ? 'text-black/60' : 'text-white/55'}`}>
+            <p className={`text-sm sm:text-[0.9375rem] mb-8 sm:mb-10 leading-relaxed transition-colors ${mounted && resolvedTheme === 'light' ? 'text-[var(--on-muted)]' : 'text-[var(--on-muted)]'}`}>
               DSA agents and MSMEs across India are already using Cred2Tech to access smarter credit faster.
             </p>
             <div className="flex flex-col xs:flex-row justify-center gap-4">
