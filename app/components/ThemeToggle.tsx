@@ -21,8 +21,34 @@ export function ThemeToggle() {
 
   const isDark = theme === "dark";
 
-  const handleToggle = () => {
-    setTheme(isDark ? "light" : "dark");
+  const handleToggle = (e: React.MouseEvent) => {
+    // Check for View Transitions API support
+    const isTransitionSupported = 
+      typeof document !== 'undefined' && 
+      // @ts-ignore
+      document.startViewTransition !== undefined;
+
+    const nextTheme = isDark ? "light" : "dark";
+
+    if (!isTransitionSupported) {
+      setTheme(nextTheme);
+      return;
+    }
+
+    // Set transition class based on target theme
+    const transitionClass = nextTheme === 'dark' ? 'wipe-to-dark' : 'wipe-to-light';
+    document.documentElement.classList.add(transitionClass);
+
+    // Trigger the view transition
+    // @ts-ignore
+    const transition = document.startViewTransition(() => {
+      setTheme(nextTheme);
+    });
+
+    // Clean up class after transition
+    transition.finished.finally(() => {
+      document.documentElement.classList.remove(transitionClass);
+    });
   };
 
   return (

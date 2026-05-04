@@ -149,7 +149,7 @@ html {
   100% { opacity: 0.5; transform: scaleX(0.92); }
 }
 .animate-strobe-light {
-  animation: strobe-breathe 6s ease-in-out infinite;
+  animation: strobe-breathe 8s ease-in-out infinite;
   transform-origin: top center;
 }
 
@@ -353,5 +353,48 @@ img {
   img {
     opacity: 0;
     filter: blur(8px);
+  }
+}
+
+/* ── View Transitions (Theme Wipe) ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 999;
+}
+
+/* Diagonal Blade Wipes */
+.wipe-to-dark::view-transition-new(root) {
+  animation: reveal-top-left 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.wipe-to-light::view-transition-new(root) {
+  animation: reveal-top-right 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes reveal-top-left {
+  from { clip-path: polygon(0 0, 0 0, 0 0); }
+  to { clip-path: polygon(0 0, 200% 0, 0 200%); }
+}
+
+@keyframes reveal-top-right {
+  from { clip-path: polygon(100% 0, 100% 0, 100% 0); }
+  to { clip-path: polygon(100% 0, 100% 200%, -100% 0); }
+}
+
+@keyframes reveal-linear {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
   }
 }

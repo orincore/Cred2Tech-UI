@@ -84,7 +84,9 @@ export default function HomePage() {
         {/* Wide outer cone glow */}
         <div className="absolute top-[-15%] right-[12%] w-[500px] h-[110%] pointer-events-none z-[50] animate-strobe-light"
           style={{
-            background: 'linear-gradient(to bottom, rgba(140,170,255,0.7) 0%, rgba(100,130,255,0.3) 20%, rgba(78,84,200,0.08) 60%, transparent 85%)',
+            background: mounted && resolvedTheme === 'light'
+              ? 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 20%, rgba(0,0,0,0.05) 60%, transparent 85%)'
+              : 'linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.12) 20%, rgba(255,255,255,0.05) 60%, transparent 85%)',
             clipPath: 'polygon(42% 0%, 58% 0%, 100% 100%, 0% 100%)',
             filter: 'blur(80px)',
           }}
@@ -92,7 +94,9 @@ export default function HomePage() {
         {/* Bright inner core */}
         <div className="absolute top-[-15%] right-[14%] w-[350px] h-[100%] pointer-events-none z-[51] animate-strobe-light"
           style={{
-            background: 'linear-gradient(to bottom, rgba(200,220,255,0.8) 0%, rgba(160,180,255,0.35) 15%, rgba(120,140,255,0.1) 50%, transparent 75%)',
+            background: mounted && resolvedTheme === 'light'
+              ? 'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,0.08) 50%, transparent 75%)'
+              : 'linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 15%, rgba(255,255,255,0.05) 50%, transparent 75%)',
             clipPath: 'polygon(44% 0%, 56% 0%, 90% 100%, 10% 100%)',
             filter: 'blur(40px)',
           }}
@@ -100,19 +104,21 @@ export default function HomePage() {
         {/* Ground splash — where the light hits */}
         <div className="absolute bottom-[15%] right-[10%] w-[600px] h-[200px] pointer-events-none z-[3]"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(100,140,255,0.25) 0%, rgba(78,84,200,0.08) 40%, transparent 70%)',
+            background: mounted && resolvedTheme === 'light'
+              ? 'radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.1) 40%, transparent 70%)'
+              : 'radial-gradient(ellipse at center, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 40%, transparent 70%)',
             filter: 'blur(30px)',
           }}
         />
         {/* Ambient haze */}
-        <div className="absolute -top-[5%] right-[0%] w-[800px] h-[800px] bg-gradient-to-b from-blue-500/15 via-indigo-500/5 to-transparent blur-[80px] pointer-events-none z-[3]" />
+        <div className={`absolute -top-[5%] right-[0%] w-[800px] h-[800px] bg-gradient-to-b ${mounted && resolvedTheme === 'light' ? 'from-black/15 via-black/8' : 'from-white/10 via-white/5'} to-transparent blur-[80px] pointer-events-none z-[3]`} />
 
         {/* Perspective Grid Floor */}
         <div className="absolute bottom-0 left-0 w-full h-[50%] z-0 pointer-events-none"
           style={{ perspective: '1200px' }}>
-          <div className="absolute inset-0 opacity-[0.18]"
+          <div className="absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage: 'linear-gradient(#4E54C8 1px, transparent 1px), linear-gradient(90deg, #4E54C8 1px, transparent 1px)',
+              backgroundImage: `linear-gradient(${mounted && resolvedTheme === 'light' ? '#000000' : '#ffffff'} 1px, transparent 1px), linear-gradient(90deg, ${mounted && resolvedTheme === 'light' ? '#000000' : '#ffffff'} 1px, transparent 1px)`,
               backgroundSize: '60px 60px',
               transform: 'rotateX(65deg)',
               transformOrigin: 'center bottom',
@@ -158,29 +164,29 @@ export default function HomePage() {
           <div className="max-w-2xl mt-12 lg:mt-16 self-start w-full">
             {/* Badge */}
             <div className="mb-4">
-              <span className="inline-flex items-center text-[#4a8df8] font-(family-name:--font-jb-mono) text-sm font-medium tracking-wide">
+              <span className="inline-flex items-center text-[var(--on-surface)] opacity-70 font-(family-name:--font-jb-mono) text-sm font-medium tracking-wide">
                 [ India's MSME Credit Platform ]
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-(family-name:--font-outfit) font-bold text-[3rem] sm:text-[3.5rem] lg:text-[4rem] leading-[1.1] tracking-tight text-[var(--on-surface)] transition-colors duration-500 mb-4">
-              The smartest way to close <br />
+            <h1 className="font-(family-name:--font-outfit) font-bold text-[1.8rem] sm:text-[2.5rem] lg:text-[4rem] leading-[1.05] tracking-tight text-[var(--on-surface)] transition-colors duration-500 mb-6">
+              The smartest way to close
               MSME credit
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg sm:text-[1.15rem] text-[var(--on-muted)] transition-colors duration-500 max-w-lg mb-8 leading-relaxed font-light">
+            <p className="text-lg sm:text-[1rem] text-[var(--on-muted)] transition-colors duration-500 max-w-lg mb-8 leading-relaxed font-light">
               AI-powered matching connects Indian MSMEs and DSAs with ideal lenders in minutes, not weeks.
             </p>
-            <div className="flex flex-wrap items-center gap-5 mb-8">
+            <div className="flex flex-wrap items-center gap-5 mb-8 mt-25">
               <TravelingBorderButton href="/register-dsa">
                 Register as DSA Partner
               </TravelingBorderButton>
 
               {/* Secondary Button to keep content intact */}
               <Link href="/login"
-                className="inline-flex items-center justify-center gap-2 bg-transparent text-[var(--on-muted)] hover:text-[var(--on-surface)] transition-colors duration-500 px-8 py-3.5 font-medium text-[15px] rounded-xl border border-transparent hover:border-[var(--outline)]"
+                className="inline-flex items-center justify-center gap-2 bg-transparent text-[var(--on-muted)] hover:text-[var(--on-surface)] transition-colors duration-500 px-10 py-4 font-bold text-[17px] rounded-[14px] border border-transparent hover:border-[var(--outline)]"
               >
                 <span>Check Loan Eligibility</span>
               </Link>
@@ -237,9 +243,9 @@ export default function HomePage() {
       </section>
 
       {/* ══ S2 — TRUST / LENDER BAR ══ */}
-      <section id="lender-bar" className="py-10 sm:py-14 bg-white border-b border-[var(--outline)]">
+      <section id="lender-bar" className="py-10 sm:py-14 bg-[var(--bg)] border-b border-[var(--outline)]">
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[var(--on-surface)] mb-4 px-5 py-2.5 bg-white border-2 border-[var(--outline)] shadow-[0_4px_20px_rgba(11,33,71,0.15)]">
+          <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[var(--on-surface)] mb-4 px-5 py-2.5 bg-[var(--surface)] border-2 border-[var(--outline)] shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
             <span className="w-2 h-2 bg-[var(--on-surface)]" />
             Social Proof
           </span>
@@ -251,8 +257,8 @@ export default function HomePage() {
           </p>
 
           <div className="marquee-wrap mt-10 overflow-hidden relative h-16 sm:h-20">
-            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
-            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)]/80 to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[var(--bg)] via-[var(--bg)]/80 to-transparent z-10" />
 
             <div className="marquee-track flex items-center h-full min-w-max" id="lender-marquee">
               {[...lenders, ...lenders, ...lenders, ...lenders].map((lender, i) => (

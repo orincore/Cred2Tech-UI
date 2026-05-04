@@ -19,21 +19,21 @@
 // ─────────────────────────────────────────────
 export const colors = {
   // Light Mode
-  bg:           '#f8fafc',
+  bg:           '#fcfcfc',
   surface:      '#ffffff',
-  surfaceLow:   '#f6f3f2',
-  onSurface:    '#0b2147',
-  onMuted:      '#4a5d73',
-  outline:      '#e2e8f0',
+  surfaceLow:   '#f5f5f5',
+  onSurface:    '#000000',
+  onMuted:      '#555555',
+  outline:      '#e5e5e5',
 
   // Dark Mode
   dark: {
-    bg:           '#050b18',
-    surface:      '#0b2147',
-    surfaceLow:   '#122a55',
-    onSurface:    '#e6edf7',
-    onMuted:      '#94a3b8',
-    outline:      '#1e293b',
+    bg:           '#000000',
+    surface:      '#0a0a0a',
+    surfaceLow:   '#141414',
+    onSurface:    '#ffffff',
+    onMuted:      '#a0a0a0',
+    outline:      '#1a1a1a',
   },
 } as const;
 
@@ -65,13 +65,13 @@ export const gradients = {
 // SHADOWS
 // ─────────────────────────────────────────────
 export const shadows = {
-  nav:        '0 2px 32px rgba(11,33,71,0.07), 0 1px 0 rgba(255,255,255,0.8) inset',
-  navScrolled:'0 4px 32px rgba(11,33,71,0.12)',
-  card:       '0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.15)',
-  btnPrimary: '0 2px 12px rgba(11,33,71,0.3), 0 1px 0 rgba(255,255,255,0.15) inset',
-  btnHover:   '0 8px 24px rgba(11,33,71,0.35)',
-  input:      '0 0 0 3px rgba(11,33,71,0.08)',
-  modal:      '0 24px 64px rgba(0,0,0,0.22)',
+  nav:        '0 2px 32px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.8) inset',
+  navScrolled:'0 4px 32px rgba(0,0,0,0.1)',
+  card:       '0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.1)',
+  btnPrimary: '0 2px 12px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.1) inset',
+  btnHover:   '0 8px 24px rgba(0,0,0,0.4)',
+  input:      '0 0 0 3px rgba(0,0,0,0.05)',
+  modal:      '0 24px 64px rgba(0,0,0,0.3)',
 } as const;
 
 // ─────────────────────────────────────────────

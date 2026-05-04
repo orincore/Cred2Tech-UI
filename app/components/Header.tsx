@@ -46,14 +46,14 @@ export default function Header() {
                     <div className={`hidden lg:flex items-center px-2 py-1.5 rounded-xl backdrop-blur-md shadow-lg border transition-all duration-300 
                         ${mounted && (theme === 'light' || resolvedTheme === 'light') 
                             ? 'bg-white/70 border-black/5' 
-                            : 'bg-[#1A1D2E]/80 border-white/5'}`}>
+                            : 'bg-[var(--surface-low)]/80 border-white/5'}`}>
                         
                         {/* For DSA */}
                         <div className="relative group">
                             <Link href="/dsa" suppressHydrationWarning className={`flex items-center px-5 py-2 text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 relative 
                                 ${mounted && (theme === 'light' || resolvedTheme === 'light')
                                     ? (pathname === '/dsa' ? 'text-black' : 'text-black/60 hover:text-black')
-                                    : (pathname === '/dsa' ? 'text-white' : 'text-white/70 hover:text-white')
+                                    : (pathname === '/dsa' ? 'text-white' : 'text-white hover:text-white')
                                 }`}>
                                 For DSA
                                 {pathname === '/dsa' && (
@@ -66,12 +66,12 @@ export default function Header() {
                                 <div className={`shadow-[0_20px_40px_-15px_rgba(0,0,0,0.2)] border overflow-hidden text-left p-3 rounded-xl transition-all duration-300 relative
                                     ${mounted && (theme === 'light' || resolvedTheme === 'light')
                                         ? 'bg-white border-black/5'
-                                        : 'bg-[#1A1D2E] border-white/10'}`}>
+                                        : 'bg-[var(--surface)] border-white/10'}`}>
                                     {/* Arrow */}
                                     <div className={`absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 border-l border-t transition-all duration-300
                                         ${mounted && (theme === 'light' || resolvedTheme === 'light')
                                             ? 'bg-white border-black/5'
-                                            : 'bg-[#1A1D2E] border-white/10'}`} />
+                                            : 'bg-[var(--surface)] border-white/10'}`} />
                                     
                                     <Link href="/dsa#eligibility" className={`flex items-center gap-3 p-3 transition-colors rounded-lg ${mounted && (theme === 'light' || resolvedTheme === 'light') ? 'hover:bg-black/5' : 'hover:bg-white/5'}`}>
                                         <span className="material-symbols-outlined text-indigo-500 text-[20px]">fact_check</span>
@@ -107,7 +107,7 @@ export default function Header() {
                             <Link href="/msme" suppressHydrationWarning className={`flex items-center px-5 py-2 text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 relative 
                                 ${mounted && (theme === 'light' || resolvedTheme === 'light')
                                     ? (pathname === '/msme' ? 'text-black' : 'text-black/60 hover:text-black')
-                                    : (pathname === '/msme' ? 'text-white' : 'text-white/70 hover:text-white')
+                                    : (pathname === '/msme' ? 'text-white' : 'text-white hover:text-white')
                                 }`}>
                                 For MSME
                                 {pathname === '/msme' && (
@@ -120,12 +120,12 @@ export default function Header() {
                                 <div className={`shadow-[0_20px_40px_-15px_rgba(0,0,0,0.2)] border overflow-hidden text-left p-3 rounded-xl transition-all duration-300 relative
                                     ${mounted && (theme === 'light' || resolvedTheme === 'light')
                                         ? 'bg-white border-black/5'
-                                        : 'bg-[#1A1D2E] border-white/10'}`}>
+                                        : 'bg-[var(--surface)] border-white/10'}`}>
                                     {/* Arrow */}
                                     <div className={`absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 border-l border-t transition-all duration-300
                                         ${mounted && (theme === 'light' || resolvedTheme === 'light')
                                             ? 'bg-white border-black/5'
-                                            : 'bg-[#1A1D2E] border-white/10'}`} />
+                                            : 'bg-[var(--surface)] border-white/10'}`} />
 
                                     <Link href="/msme#eligibility" className={`flex items-center gap-3 p-3 transition-colors rounded-lg ${mounted && (theme === 'light' || resolvedTheme === 'light') ? 'hover:bg-black/5' : 'hover:bg-white/5'}`}>
                                         <span className="material-symbols-outlined text-indigo-500 text-[20px]">fact_check</span>
@@ -152,7 +152,7 @@ export default function Header() {
                         <Link href="/about" className={`px-5 py-2 text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 relative 
                             ${mounted && (theme === 'light' || resolvedTheme === 'light')
                                 ? (pathname === '/about' ? 'text-black' : 'text-black/60 hover:text-black')
-                                : (pathname === '/about' ? 'text-white' : 'text-white/70 hover:text-white')
+                                : (pathname === '/about' ? 'text-white' : 'text-white hover:text-white')
                             }`}>
                             About Us
                             {pathname === '/about' && (
@@ -164,7 +164,7 @@ export default function Header() {
                         <Link href="/how-it-works" className={`px-5 py-2 text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 relative 
                             ${mounted && (theme === 'light' || resolvedTheme === 'light')
                                 ? (pathname === '/how-it-works' ? 'text-black' : 'text-black/60 hover:text-black')
-                                : (pathname === '/how-it-works' ? 'text-white' : 'text-white/70 hover:text-white')
+                                : (pathname === '/how-it-works' ? 'text-white' : 'text-white hover:text-white')
                             }`}>
                             How It Works
                             {pathname === '/how-it-works' && (
@@ -176,7 +176,7 @@ export default function Header() {
                         <Link href="/blogs" className={`px-5 py-2 text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 relative 
                             ${mounted && (theme === 'light' || resolvedTheme === 'light')
                                 ? (pathname?.startsWith('/blogs') ? 'text-black' : 'text-black/60 hover:text-black')
-                                : (pathname?.startsWith('/blogs') ? 'text-white' : 'text-white/70 hover:text-white')
+                                : (pathname?.startsWith('/blogs') ? 'text-white' : 'text-white hover:text-white')
                             }`}>
                             Blogs
                             {pathname?.startsWith('/blogs') && (
@@ -210,10 +210,10 @@ export default function Header() {
 
             {/* Mobile drawer */}
             {mobileMenuOpen && (
-                <div id="mobile-nav-drawer" className="fixed top-[72px] left-0 right-0 max-h-[80vh] overflow-y-auto bg-[#0A0D18] border-b border-white/10 p-5 z-[999] shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300"
+                <div id="mobile-nav-drawer" className="fixed top-[72px] left-0 right-0 max-h-[80vh] overflow-y-auto bg-[var(--bg)] border-b border-[var(--outline)] p-5 z-[999] shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300"
                 >
                     <div className="flex flex-col gap-1">
-                        <div className="font-medium text-indigo-400 px-2 py-2 text-[12px] uppercase tracking-wider">For DSA</div>
+                        <div className="font-medium text-[var(--on-surface)] opacity-70 px-2 py-2 text-[12px] uppercase tracking-wider">For DSA</div>
                         <Link href="/dsa" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-white/80 rounded-xl hover:bg-white/5">Overview</Link>
                         <Link href="/dsa#eligibility" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-white/80 rounded-xl hover:bg-white/5">Check Loan Eligibility</Link>
                         <Link href="/dsa#crm" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-white/80 rounded-xl hover:bg-white/5">DSA CRM</Link>
@@ -223,7 +223,7 @@ export default function Header() {
 
                         <div className="h-px bg-white/10 my-3 mx-2" />
 
-                        <div className="font-medium text-indigo-400 px-2 py-2 text-[12px] uppercase tracking-wider">For MSME</div>
+                        <div className="font-medium text-[var(--on-surface)] opacity-70 px-2 py-2 text-[12px] uppercase tracking-wider">For MSME</div>
                         <Link href="/msme" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-white/80 rounded-xl hover:bg-white/5">Overview</Link>
                         <Link href="/msme#eligibility" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-white/80 rounded-xl hover:bg-white/5">Check Loan Eligibility</Link>
                         <Link href="/msme#vault" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-2.5 text-[15px] text-white/80 rounded-xl hover:bg-white/5">Document Vault</Link>
