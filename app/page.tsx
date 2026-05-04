@@ -252,7 +252,7 @@ export default function HomePage() {
       <section id="lender-bar" className={`py-12 sm:py-16 transition-colors duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-[var(--surface-low)]' : ''}`}
         style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surfaceLow : undefined }}>
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className={`inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase mb-4 px-5 py-2.5 border-2 transition-all duration-300 ${mounted && resolvedTheme === 'light' ? 'bg-white text-[var(--on-surface)] border-[var(--outline)] shadow-[0_4px_20px_rgba(0,0,0,0.06)]' : ''}`}
+          <span className={`inline-flex items-center justify-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase mb-4 px-5 py-2.5 border-2 rounded-full transition-all duration-300 ${mounted && resolvedTheme === 'light' ? 'bg-white text-[var(--on-surface)] border-[var(--outline)] shadow-[0_4px_20px_rgba(0,0,0,0.06)]' : ''}`}
             style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined, color: mounted && resolvedTheme === 'dark' ? colors.dark.onSurface : undefined }}>
             <span className={`w-2 h-2 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black' : 'bg-white'}`} />
             Social Proof
@@ -270,11 +270,11 @@ export default function HomePage() {
             <div className={`absolute inset-y-0 right-0 w-32 bg-gradient-to-l z-10 ${mounted && resolvedTheme === 'light' ? 'from-[var(--surface-low)] via-[var(--surface-low)]/80 to-transparent' : ''}`}
               style={{ background: mounted && resolvedTheme === 'dark' ? `linear-gradient(to left, ${colors.dark.surfaceLow}, ${colors.dark.surfaceLow}80, transparent)` : undefined }} />
 
-            <div className="marquee-track marquee-slow flex items-center h-full min-w-max" id="lender-marquee">
+            <div className="marquee-track marquee-fast flex items-center h-full min-w-max" id="lender-marquee">
               {[...lenders, ...lenders, ...lenders, ...lenders].map((lender, i) => (
                 <div
                   key={`${lender.name}-${i}`}
-                  className="flex shrink-0 items-center justify-center px-3 sm:px-8"
+                  className="flex shrink-0 items-center justify-center px-1 sm:px-2"
                   style={{ height: '48px' }}
                 >
                   <img
@@ -300,7 +300,7 @@ export default function HomePage() {
           {/* Header with Title Left and Arrows Right */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div className="max-w-2xl">
-              <span className={`inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase mb-3 px-5 py-2.5 border-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 ${mounted && resolvedTheme === 'light' ? 'bg-white text-[var(--on-surface)] border-[var(--outline)]' : ''}`}
+              <span className={`inline-flex items-center justify-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase mb-3 px-5 py-2.5 border-2 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 ${mounted && resolvedTheme === 'light' ? 'bg-white text-[var(--on-surface)] border-[var(--outline)]' : ''}`}
                 style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.surface : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined, color: mounted && resolvedTheme === 'dark' ? colors.dark.onSurface : undefined }}>
                 <span className={`w-2 h-2 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black' : 'bg-white'}`} />
                 Why Cred2Tech
@@ -535,10 +535,10 @@ export default function HomePage() {
               { step: '03', title: 'Document Vault', desc: 'All financial documents — ITR, GST, PAN, property papers — organised securely.', icon: 'folder_shared' },
               { step: '04', title: 'Application Tracking', desc: 'Track case status in real time — from submission to disbursement.', icon: 'track_changes' },
             ].map((item) => (
-              <div key={item.step} className={`group/step p-6 sm:p-8 border transition-all duration-500 rounded-3xl ${mounted && resolvedTheme === 'light' ? 'bg-white/40 backdrop-blur-sm border-[var(--outline)] hover:border-[var(--primary)]/20 shadow-sm' : ''}`}
+              <div key={item.step} className={`group/step p-6 sm:p-8 border transition-all duration-500 rounded-3xl ${mounted && resolvedTheme === 'light' ? 'bg-white/40 backdrop-blur-sm border-[var(--outline)] hover:border-black/20 shadow-sm' : ''}`}
                 style={{ background: mounted && resolvedTheme === 'dark' ? `${colors.dark.surface}80` : undefined, borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.outline : undefined }}>
-                <div className={`w-12 h-12 flex items-center justify-center mb-6 rounded-xl transition-all duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-[var(--primary)]/10 text-[var(--primary)] group-hover/step:bg-[var(--primary)] group-hover/step:text-white' : ''}`}
-                  style={{ background: mounted && resolvedTheme === 'dark' ? `${colors.dark.primary}20` : undefined, color: mounted && resolvedTheme === 'dark' ? colors.dark.primary : undefined }}>
+                <div className={`w-12 h-12 flex items-center justify-center mb-6 rounded-xl transition-all duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-black/10 text-black group-hover/step:bg-black group-hover/step:text-white' : ''}`}
+                  style={{ background: mounted && resolvedTheme === 'dark' ? 'rgba(255,255,255,0.2)' : undefined, color: mounted && resolvedTheme === 'dark' ? '#ffffff' : undefined }}>
                   <span className="material-symbols-outlined text-2xl">{item.icon}</span>
                 </div>
                 <div className={`font-(family-name:--font-jb-mono) text-3xl sm:text-4xl font-black mb-4 transition-colors opacity-10 group-hover/step:opacity-20 ${mounted && resolvedTheme === 'light' ? 'text-[var(--on-surface)]' : ''}`}
@@ -568,25 +568,25 @@ export default function HomePage() {
         {/* Subtle Light-themed Background Effects */}
         <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className={`px-orb w-[600px] h-[600px] absolute top-[-200px] right-[-100px] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'opacity-100'}`} id="orb-pr1"
-          style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.primary : undefined }} />
+          style={{ background: mounted && resolvedTheme === 'dark' ? '#ffffff' : undefined }} />
         <div className={`px-orb w-[500px] h-[500px] absolute bottom-[-150px] left-[-80px] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'opacity-100'}`} id="orb-pr2"
-          style={{ background: mounted && resolvedTheme === 'dark' ? colors.dark.primary : undefined }} />
+          style={{ background: mounted && resolvedTheme === 'dark' ? '#ffffff' : undefined }} />
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div
             className={`max-w-4xl mx-auto p-8 sm:p-14 border shadow-[0_32px_80px_-20px_rgba(0,0,0,0.12)] relative overflow-hidden rounded-3xl ${mounted && resolvedTheme === 'light' ? 'border-white' : ''}`}
             style={{
-              background: mounted && resolvedTheme === 'light' ? 'rgba(255, 255, 255, 0.7)' : colors.dark.glass,
+              background: mounted && resolvedTheme === 'light' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(17, 17, 17, 0.8)',
               backdropFilter: 'blur(32px)',
-              borderColor: mounted && resolvedTheme === 'dark' ? colors.dark.glassBorder : undefined,
+              borderColor: mounted && resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : undefined,
             }}
           >
             <div className={`absolute inset-0 bg-gradient-to-br pointer-events-none ${mounted && resolvedTheme === 'light' ? 'from-white to-transparent' : 'from-[var(--dark-surface)] to-transparent'}`} />
 
             <div className="relative z-10">
-              <div className={`inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black/5 border border-black/10' : 'bg-[var(--primary)]/10 border border-[var(--primary)]/20'}`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black' : 'bg-[var(--primary)]'}`} />
-                <span className={`font-(family-name:--font-jb-mono) text-[11px] font-bold tracking-[0.2em] uppercase ${mounted && resolvedTheme === 'light' ? 'text-black/60' : 'text-[var(--primary)]'}`}>On the Horizon</span>
+              <div className={`inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black/5 border border-black/10' : 'bg-white/10 border border-white/20'}`}>
+                <span className={`w-1.5 h-1.5 rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-black' : 'bg-white'}`} />
+                <span className={`font-(family-name:--font-jb-mono) text-[11px] font-bold tracking-[0.2em] uppercase ${mounted && resolvedTheme === 'light' ? 'text-black/60' : 'text-white'}`}>On the Horizon</span>
               </div>
 
               <h2 className={`font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] mb-6 leading-tight ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-[var(--on-surface)]'}`}>
@@ -606,7 +606,7 @@ export default function HomePage() {
               </p>
 
               <form id="notify-form" className="max-w-md mx-auto mt-8" onSubmit={(e) => e.preventDefault()}>
-                <div className={`relative flex items-center p-1.5 rounded-2xl focus-within:ring-2 transition-all ${mounted && resolvedTheme === 'light' ? 'bg-black/5 border border-black/10 focus-within:ring-black/5' : 'bg-[var(--dark-surface)] border-[var(--dark-outline)] focus-within:ring-[var(--primary)]/20'}`}>
+                <div className={`relative flex items-center p-1.5 rounded-2xl focus-within:ring-2 transition-all ${mounted && resolvedTheme === 'light' ? 'bg-black/5 border border-black/10 focus-within:ring-black/5' : 'bg-[var(--dark-surface)] border-[var(--dark-outline)] focus-within:ring-white/20'}`}>
                   <div className="flex-1 flex items-center pl-3">
                     <span className={`material-symbols-outlined text-[20px] mr-2 ${mounted && resolvedTheme === 'light' ? 'text-black/30' : 'text-[var(--on-muted)]'}`}>mail</span>
                     <input
