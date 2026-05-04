@@ -215,8 +215,16 @@ html {
   display: flex;
   gap: 3rem;
   white-space: nowrap;
-  animation: marquee 45s linear infinite;
+  animation: marquee 80s linear infinite;
   will-change: transform;
+}
+
+.marquee-slow {
+  animation-duration: 120s;
+}
+
+.marquee-fast {
+  animation-duration: 40s;
 }
 
 .marquee-wrap {

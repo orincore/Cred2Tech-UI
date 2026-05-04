@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
 import { useTheme } from 'next-themes';
+import { TravelingBorderButton } from './TravelingBorderButton';
 
 export default function Header() {
     const [scrolled, setScrolled] = useState(false);
@@ -188,14 +189,9 @@ export default function Header() {
                     {/* Theme Toggle & Contact Us Button */}
                     <div className="flex items-center gap-4">
                         <ThemeToggle />
-                        <Link href="/contact"
-                            className={`hidden sm:flex relative items-center gap-2 px-6 py-2.5 rounded-xl text-[14px] font-medium font-(family-name:--font-inter) transition-all group border bg-transparent
-                                ${mounted && (theme === 'light' || resolvedTheme === 'light') 
-                                    ? 'text-black border-black/20 hover:bg-black/5 hover:border-black/40' 
-                                    : 'text-white/90 border-white/20 hover:bg-white/5 hover:border-white/40'}`}
-                        >
-                            <span className="relative tracking-wide">Contact Us</span>
-                        </Link>
+                        <TravelingBorderButton href="/contact" size="sm" showIcon={false}>
+                            Contact Us
+                        </TravelingBorderButton>
                         {/* Mobile hamburger */}
                         <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2 text-white hover:text-white/80 ml-1 bg-white/5 border border-white/10 rounded-lg" id="mobile-menu-btn" suppressHydrationWarning>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

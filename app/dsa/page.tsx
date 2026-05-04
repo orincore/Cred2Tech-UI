@@ -40,7 +40,7 @@ function DSAFaqAccordion() {
             >
               <span className="font-(family-name:--font-outfit) font-bold text-[var(--on-surface)] text-base sm:text-lg leading-snug">{faq.q}</span>
               <span className={`flex-shrink-0 w-7 h-7 rounded-full border-2 border-[var(--on-surface)]/20 flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[var(--on-surface)] border-[var(--on-surface)]' : ''}`}>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={isOpen ? 'var(--surface-low)' : 'var(--on-surface)'} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={isOpen ? 'var(--surface-low)' : 'var(--on-surface)'} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
               </span>
             </button>
             <div style={{ maxHeight: isOpen ? '400px' : '0', transition: 'max-height 0.35s cubic-bezier(0.22,1,0.36,1)', overflow: 'hidden' }}>
@@ -144,12 +144,12 @@ export default function HomePage() {
                 <Link href="/login" id="hero-cta-dsa"
                   className="inline-flex items-center justify-center gap-1.5 bg-[var(--on-surface)] text-[#001233] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
                 >
-                  Register as a DSA Partner <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  Register as a DSA Partner <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                 </Link>
                 <Link href="/login" id="hero-cta-demo"
                   className="inline-flex items-center justify-center gap-1.5 border-2 border-white/25 text-white px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:bg-white/10 hover:border-white/50 transition-all whitespace-nowrap group"
                 >
-                  Request a Demo <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  Request a Demo <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                 </Link>
               </div>
 
@@ -212,19 +212,17 @@ export default function HomePage() {
                     className="flex shrink-0 items-center justify-center px-8"
                     style={{ height: '48px' }}
                   >
-                    <img 
-                      src={lender.image} 
-                      alt={lender.name} 
-                      className="h-full w-auto object-contain brightness-100 contrast-100" 
+                    <img
+                      src={lender.image}
+                      alt={lender.name}
+                      className="h-full w-auto object-contain brightness-100 contrast-100"
                       loading="eager"
                     />
                   </div>
                 ))}
               </div>
             </div>
-            <p className="mt-8 text-slate-400 text-[10px] font-(family-name:--font-jb-mono) uppercase tracking-widest text-center">
-              Empanelment in progress — logos updated as lenders are confirmed
-            </p>
+
           </div>
         </section>
 
@@ -247,7 +245,7 @@ export default function HomePage() {
               </div>
               {/* Navigation Arrows - Right Side */}
               <div className="flex items-center gap-2">
-                <button 
+                <button
                   onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: -360, behavior: 'smooth' })}
                   className="w-10 h-10 flex items-center justify-center bg-white border-2 border-[var(--on-surface)] text-[var(--on-surface)] hover:bg-[var(--on-surface)] hover:text-white transition-all duration-300 shadow-lg"
                   aria-label="Scroll left"
@@ -256,7 +254,7 @@ export default function HomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <button 
+                <button
                   onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: 360, behavior: 'smooth' })}
                   className="w-10 h-10 flex items-center justify-center bg-[var(--on-surface)] border-2 border-[var(--on-surface)] text-white hover:bg-[var(--surface-low)] hover:border-[var(--surface-low)] transition-all duration-300 shadow-lg"
                   aria-label="Scroll right"
@@ -289,11 +287,11 @@ export default function HomePage() {
                 <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] hover:-translate-y-1 transition-all duration-500">
                   <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
                     <ClientOnly>
-                      <video 
-                        src="/images/team management.mp4" 
-                        autoPlay 
-                        loop 
-                        muted 
+                      <video
+                        src="/images/team management.mp4"
+                        autoPlay
+                        loop
+                        muted
                         playsInline
                         className="w-full h-full object-cover"
                       />
@@ -309,11 +307,11 @@ export default function HomePage() {
                 <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
                   <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
                     <ClientOnly>
-                      <video 
-                        src="/images/wallet management.mp4" 
-                        autoPlay 
-                        loop 
-                        muted 
+                      <video
+                        src="/images/wallet management.mp4"
+                        autoPlay
+                        loop
+                        muted
                         playsInline
                         className="w-full h-full object-cover"
                       />
@@ -381,11 +379,11 @@ export default function HomePage() {
                 <div className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-8 rounded-2xl border border-black/[0.04] shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-all duration-500">
                   <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
                     <ClientOnly>
-                      <video 
-                        src="/images/case management.mp4" 
-                        autoPlay 
-                        loop 
-                        muted 
+                      <video
+                        src="/images/case management.mp4"
+                        autoPlay
+                        loop
+                        muted
                         playsInline
                         className="w-full h-full object-cover"
                       />
@@ -509,14 +507,14 @@ export default function HomePage() {
             </div>
 
             <div className="text-center bg-[#fcfcfc] p-6 border border-[var(--on-surface)]/10 max-w-3xl mx-auto">
-                <p className="text-[var(--on-surface)] font-medium text-sm">Enterprise and high-volume pricing available for large DSA networks.</p>
-                <div className="mt-4">
-                  <Link href="/contact"
-                    className="inline-flex items-center gap-1.5 border-2 border-[var(--on-surface)]/25 text-[var(--on-surface)] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm hover:bg-[var(--on-surface)]/5 hover:border-[var(--on-surface)]/50 transition-all group"
-                  >
-                    Contact Cred2Tech for custom packages
-                  </Link>
-                </div>
+              <p className="text-[var(--on-surface)] font-medium text-sm">Enterprise and high-volume pricing available for large DSA networks.</p>
+              <div className="mt-4">
+                <Link href="/contact"
+                  className="inline-flex items-center gap-1.5 border-2 border-[var(--on-surface)]/25 text-[var(--on-surface)] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm hover:bg-[var(--on-surface)]/5 hover:border-[var(--on-surface)]/50 transition-all group"
+                >
+                  Contact Cred2Tech for custom packages
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -531,7 +529,7 @@ export default function HomePage() {
                 DSA FAQ
               </h2>
             </div>
-            
+
             <DSAFaqAccordion />
           </div>
         </section>
@@ -574,12 +572,12 @@ export default function HomePage() {
                   className="inline-flex items-center justify-center gap-1.5 text-white font-bold px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-[0.9375rem] hover:scale-[1.02] transition-all shadow-[0_8px_24px_rgba(0,0,0,0.25)] group"
                   style={{ background: 'linear-gradient(135deg,#1565d8 0%,#0056a7 100%)' }}
                 >
-                  Register as a DSA Partner <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  Register as a DSA Partner <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                 </Link>
                 <Link href="/login" id="final-cta-msme"
                   className="inline-flex items-center justify-center gap-1.5 bg-[var(--on-surface)] text-[#001233] font-bold px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-[0.9375rem] hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(29,255,155,0.5)] transition-all group"
                 >
-                  Check My LAP Eligibility <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  Check My LAP Eligibility <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                 </Link>
               </div>
             </div>

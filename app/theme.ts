@@ -19,9 +19,9 @@
 // ─────────────────────────────────────────────
 export const colors = {
   // Light Mode
-  bg:           '#fcfcfc',
+  bg:           '#ffffff',
   surface:      '#ffffff',
-  surfaceLow:   '#f5f5f5',
+  surfaceLow:   '#ffffff',
   onSurface:    '#000000',
   onMuted:      '#555555',
   outline:      '#e5e5e5',

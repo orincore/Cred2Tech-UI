@@ -85,7 +85,7 @@ export default function HomePage() {
         <div className="absolute top-[-15%] right-[12%] w-[500px] h-[110%] pointer-events-none z-[50] animate-strobe-light"
           style={{
             background: mounted && resolvedTheme === 'light'
-              ? 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 20%, rgba(0,0,0,0.05) 60%, transparent 85%)'
+              ? 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 20%, rgba(0,0,0,0.05) 60%, transparent 85%)'
               : 'linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.12) 20%, rgba(255,255,255,0.05) 60%, transparent 85%)',
             clipPath: 'polygon(42% 0%, 58% 0%, 100% 100%, 0% 100%)',
             filter: 'blur(80px)',
@@ -95,7 +95,7 @@ export default function HomePage() {
         <div className="absolute top-[-15%] right-[14%] w-[350px] h-[100%] pointer-events-none z-[51] animate-strobe-light"
           style={{
             background: mounted && resolvedTheme === 'light'
-              ? 'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,0.08) 50%, transparent 75%)'
+              ? 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,0.08) 50%, transparent 75%)'
               : 'linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 15%, rgba(255,255,255,0.05) 50%, transparent 75%)',
             clipPath: 'polygon(44% 0%, 56% 0%, 90% 100%, 10% 100%)',
             filter: 'blur(40px)',
@@ -111,12 +111,12 @@ export default function HomePage() {
           }}
         />
         {/* Ambient haze */}
-        <div className={`absolute -top-[5%] right-[0%] w-[800px] h-[800px] bg-gradient-to-b ${mounted && resolvedTheme === 'light' ? 'from-black/15 via-black/8' : 'from-white/10 via-white/5'} to-transparent blur-[80px] pointer-events-none z-[3]`} />
+        <div className={`absolute -top-[5%] right-[0%] w-[800px] h-[800px] bg-gradient-to-b ${mounted && resolvedTheme === 'light' ? 'from-black/[0.02] via-black/[0.01]' : 'from-white/10 via-white/5'} to-transparent blur-[80px] pointer-events-none z-[3]`} />
 
         {/* Perspective Grid Floor */}
         <div className="absolute bottom-0 left-0 w-full h-[50%] z-0 pointer-events-none"
           style={{ perspective: '1200px' }}>
-          <div className="absolute inset-0 opacity-[0.12]"
+          <div className={`absolute inset-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-[0.05]' : 'opacity-[0.12]'}`}
             style={{
               backgroundImage: `linear-gradient(${mounted && resolvedTheme === 'light' ? '#000000' : '#ffffff'} 1px, transparent 1px), linear-gradient(90deg, ${mounted && resolvedTheme === 'light' ? '#000000' : '#ffffff'} 1px, transparent 1px)`,
               backgroundSize: '60px 60px',
@@ -183,13 +183,13 @@ export default function HomePage() {
               <TravelingBorderButton href="/register-dsa">
                 Register as DSA Partner
               </TravelingBorderButton>
-
-              {/* Secondary Button to keep content intact */}
-              <Link href="/login"
-                className="inline-flex items-center justify-center gap-2 bg-transparent text-[var(--on-muted)] hover:text-[var(--on-surface)] transition-colors duration-500 px-10 py-4 font-bold text-[17px] rounded-[14px] border border-transparent hover:border-[var(--outline)]"
+              <TravelingBorderButton 
+                href="/login" 
+                solid={true}
+                className="shadow-xl"
               >
-                <span>Check Loan Eligibility</span>
-              </Link>
+                Check Loan Eligibility
+              </TravelingBorderButton>
             </div>
           </div>
 
@@ -260,7 +260,7 @@ export default function HomePage() {
             <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)]/80 to-transparent z-10" />
             <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[var(--bg)] via-[var(--bg)]/80 to-transparent z-10" />
 
-            <div className="marquee-track flex items-center h-full min-w-max" id="lender-marquee">
+            <div className="marquee-track marquee-slow flex items-center h-full min-w-max" id="lender-marquee">
               {[...lenders, ...lenders, ...lenders, ...lenders].map((lender, i) => (
                 <div
                   key={`${lender.name}-${i}`}
@@ -277,16 +277,14 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          <p className="mt-8 text-slate-400 text-[10px] font-(family-name:--font-jb-mono) uppercase tracking-widest text-center">
-            Empanelment in progress — logos updated as lenders are confirmed
-          </p>
+
         </div>
       </section>
 
       {/* ══ S3 — WHY CRED2TECH ══ */}
       <section id="why-cred2tech" className="py-14 sm:py-18 lg:py-20 relative overflow-hidden bg-[var(--surface-low)]">
-        <div className="px-orb w-[300px] h-[300px] bg-[var(--on-surface)]/20 absolute top-[-50px] right-[-60px] z-0" id="orb-s1" />
-        <div className="px-orb w-[220px] h-[220px] bg-white/30 absolute bottom-[-40px] left-[5%] z-0" id="orb-s2" />
+        <div className={`px-orb w-[300px] h-[300px] absolute top-[-50px] right-[-60px] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'bg-[var(--on-surface)]/20 opacity-100'}`} id="orb-s1" />
+        <div className={`px-orb w-[220px] h-[220px] absolute bottom-[-40px] left-[5%] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'bg-white/30 opacity-100'}`} id="orb-s2" />
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header with Title Left and Arrows Right */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
@@ -303,26 +301,22 @@ export default function HomePage() {
               </p>
             </div>
             {/* Navigation Arrows - Right Side */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2.5 sm:gap-3 mt-4 sm:mt-0">
               <button
                 onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: -360, behavior: 'smooth' })}
-                className="w-10 h-10 flex items-center justify-center bg-white border-2 border-[var(--outline)] text-[var(--on-surface)] hover:bg-[var(--surface-low)] hover:text-[var(--on-surface)] transition-all duration-300 shadow-lg"
+                className={`w-10 h-10 flex items-center justify-center border transition-all duration-300 shadow-lg rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-[#e5e5e5] border-[#e5e5e5] text-black' : 'bg-white/5 border-white/10 text-white'} hover:scale-105 active:scale-95`}
                 aria-label="Scroll left"
                 suppressHydrationWarning
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
+                <span className="material-symbols-outlined text-[20px]">arrow_back</span>
               </button>
               <button
                 onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: 360, behavior: 'smooth' })}
-                className="w-10 h-10 flex items-center justify-center bg-[var(--on-surface)] border-2 border-[var(--on-surface)] text-white hover:bg-[var(--surface-low)] hover:border-[var(--surface-low)] transition-all duration-300 shadow-lg"
+                className={`w-10 h-10 flex items-center justify-center border transition-all duration-300 shadow-lg rounded-full ${mounted && resolvedTheme === 'light' ? 'bg-[#e5e5e5] border-[#e5e5e5] text-black' : 'bg-white border-white text-black'} hover:scale-105 active:scale-95`}
                 aria-label="Scroll right"
                 suppressHydrationWarning
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
+                <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
               </button>
             </div>
           </div>
@@ -421,12 +415,16 @@ export default function HomePage() {
       {/* ══ S4 — FOR DSA AGENTS ══ */}
       <section
         id="for-dsas"
-        className="py-14 sm:py-18 lg:py-20 relative overflow-hidden"
-        style={{ background: colors.dark.surface }}
+        className="py-14 sm:py-18 lg:py-20 relative overflow-hidden transition-colors duration-500 border-y border-[var(--outline)]"
+        style={{ background: mounted && resolvedTheme === 'light' ? '#ffffff' : colors.dark.surface }}
       >
-        <div className="px-orb w-[350px] h-[350px] absolute top-[-70px] right-[-50px] z-0" id="orb-p1" style={{ background: colors.dark.surfaceLow }} />
-        <div className="px-orb w-[220px] h-[220px] absolute bottom-[-40px] left-[10%] z-0" id="orb-p2" style={{ background: colors.dark.surface }} />
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '28px 28px' }} />
+        {/* Theme-aware orbs */}
+        <div className={`px-orb w-[400px] h-[400px] absolute top-[-100px] right-[-100px] z-0 blur-[100px] transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'opacity-20'}`}
+          style={{ background: mounted && resolvedTheme === 'light' ? '#000000' : '#ffffff' }} />
+        <div className={`px-orb w-[300px] h-[300px] absolute bottom-[-100px] left-[5%] z-0 blur-[80px] transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'opacity-10'}`}
+          style={{ background: mounted && resolvedTheme === 'light' ? '#000000' : '#ffffff' }} />
+
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1.5px,transparent 1.5px)', backgroundSize: '32px 32px' }} />
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -434,49 +432,42 @@ export default function HomePage() {
             {/* Left */}
             <div className="relative">
               <div className="relative z-10">
-                <p className="font-(family-name:--font-jb-mono) text-sm sm:text-base font-bold tracking-[0.18em] uppercase text-[var(--on-surface)] mb-3">For DSA Agents</p>
-                <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2.75rem] text-white mb-4 leading-tight">
+                <p className="font-(family-name:--font-jb-mono) text-sm sm:text-base font-bold tracking-[0.18em] uppercase text-[var(--on-surface)] mb-3 opacity-60">For DSA Agents</p>
+                <h2 className={`font-(family-name:--font-outfit) font-bold text-2xl sm:text-3xl lg:text-[2.75rem] mb-5 leading-tight transition-colors duration-500 ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>
                   Run your lending <br className="hidden lg:block" /> business like a pro.
                 </h2>
-                <p className="text-white/80 text-sm sm:text-[1rem] leading-relaxed mb-6 sm:mb-8 max-w-lg">
+                <p className={`text-sm sm:text-[1.05rem] leading-relaxed mb-8 max-w-lg transition-colors duration-500 font-light ${mounted && resolvedTheme === 'light' ? 'text-black/70' : 'text-white/80'}`}>
                   Cred2Tech is the all-in-one OS for DSAs. Manage sourcing, teams, and commissions while using credit packages for instant eligibility checks.
                 </p>
-                <Link href="/login" id="dsa-section-cta"
-                  className="inline-flex items-center gap-1.5 bg-[var(--surface-low)] text-[var(--on-surface)] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:shadow-[0_0_24px_rgba(11,33,71,0.4)] hover:scale-[1.02] transition-all group"
-                >
-                  Register as a DSA Partner <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                </Link>
+                <TravelingBorderButton href="/login">
+                  Register as a DSA Partner
+                </TravelingBorderButton>
               </div>
 
               {/* Sub-bg Lottie */}
-              <div className="absolute -top-20 -left-20 w-80 h-80 opacity-10 pointer-events-none hidden xl:block">
+              <div className="absolute -top-20 -left-20 w-80 h-80 opacity-[0.04] pointer-events-none hidden xl:block">
                 <ClientOnly>
                   <LottiePlayer src="/lottie/data_admin_recolored.json" background="transparent" speed="0.8" loop autoplay />
                 </ClientOnly>
               </div>
             </div>
 
-            {/* Right — 4 Benefits with small Lottie accent */}
+            {/* Right — 4 Benefits */}
             <div className="relative">
-              <div className="absolute -bottom-10 -right-10 w-64 h-64 opacity-5 pointer-events-none hidden lg:block">
-                <ClientOnly>
-                  <LottiePlayer src="/lottie/data_recolored.json" background="transparent" speed="0.5" loop autoplay />
-                </ClientOnly>
-              </div>
-              <div className="grid grid-cols-1 gap-2.5 sm:gap-3 relative z-10">
+              <div className="grid grid-cols-1 gap-4 relative z-10">
                 {[
                   { icon: 'view_kanban', title: 'Entire pipeline in one view', desc: 'No more spreadsheets. Every case, every stage, every lender — tracked live.' },
                   { icon: 'bolt', title: 'Instant lender eligibility', desc: 'Run an MSME Loan eligibility check in minutes. Multiple lenders, one report.' },
                   { icon: 'wallet', title: 'Team & wallet management', desc: 'Purchase credit packages, allocate balance to teams, track consumption, and manage sub-DSA networks.' },
                   { icon: 'payments', title: 'Payout Tracking', desc: 'Know exactly what has been earned, what is pending, and what has been paid out.' },
                 ].map((item) => (
-                  <div key={item.title} className="flex items-start gap-4 bg-white/8 p-4 sm:p-5 border border-white/10 hover:bg-white/12 hover:border-white/20 transition-all duration-300">
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 bg-[var(--on-surface)]/15 border border-[var(--on-surface)]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="material-symbols-outlined text-[var(--on-surface)] text-xl sm:text-2xl">{item.icon}</span>
+                  <div key={item.title} className={`flex items-start gap-5 p-5 sm:p-6 border transition-all duration-500 rounded-2xl group/card ${mounted && resolvedTheme === 'light' ? 'bg-white/70 backdrop-blur-md border-black/5 hover:border-black/20 shadow-sm' : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/10'}`}>
+                    <div className={`w-12 h-12 border flex items-center justify-center flex-shrink-0 mt-0.5 rounded-xl transition-all duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-black/5 border-black/5 group-hover/card:bg-black group-hover/card:text-white' : 'bg-white/10 border-white/10 group-hover/card:bg-white group-hover/card:text-black'}`}>
+                      <span className="material-symbols-outlined text-2xl">{item.icon}</span>
                     </div>
                     <div>
-                      <h3 className="font-(family-name:--font-outfit) font-bold text-white text-[15px] sm:text-base mb-1">{item.title}</h3>
-                      <p className="text-white/70 text-xs sm:text-[0.875rem] leading-relaxed">{item.desc}</p>
+                      <h3 className={`font-(family-name:--font-outfit) font-bold text-base sm:text-lg mb-1.5 transition-colors ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>{item.title}</h3>
+                      <p className={`text-sm leading-relaxed transition-colors font-light ${mounted && resolvedTheme === 'light' ? 'text-black/60' : 'text-white/60'}`}>{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -487,59 +478,58 @@ export default function HomePage() {
       </section>
 
       {/* ══ S5 — FOR BUSINESS OWNERS ══ */}
-      <section id="for-msmes" className="py-14 sm:py-18 lg:py-20 bg-[var(--surface)] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(var(--on-surface) 1px,transparent 1px),linear-gradient(90deg,var(--on-surface) 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
-        <div className="px-orb w-[300px] h-[300px] bg-[var(--on-surface)] absolute top-[-60px] right-[-60px] z-0" id="orb-m1" />
-        <div className="px-orb w-[200px] h-[200px] bg-[var(--on-surface)] absolute bottom-[-40px] left-[5%] z-0" id="orb-m2" />
+      <section id="for-msmes" className="py-14 sm:py-18 lg:py-20 relative overflow-hidden transition-colors duration-500 bg-[var(--bg)]">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(var(--on-surface) 1.5px,transparent 1.5px),linear-gradient(90deg,var(--on-surface) 1.5px,transparent 1.5px)', backgroundSize: '48px 48px' }} />
+
+        {/* Theme-aware orbs */}
+        <div className={`px-orb w-[450px] h-[450px] absolute top-[-100px] left-[-100px] z-0 blur-[120px] transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'opacity-15'}`}
+          style={{ background: mounted && resolvedTheme === 'light' ? '#000000' : '#ffffff' }} />
+        <div className={`px-orb w-[350px] h-[350px] absolute bottom-[-100px] right-[5%] z-0 blur-[100px] transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'opacity-10'}`}
+          style={{ background: mounted && resolvedTheme === 'light' ? '#000000' : '#ffffff' }} />
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto mb-12 sm:mb-16 relative">
-            <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-48 h-48 opacity-[0.08] pointer-events-none">
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 relative">
+            <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-48 h-48 opacity-[0.05] pointer-events-none">
               <ClientOnly>
                 <LottiePlayer src="/lottie/data_msme_recolored.json" background="transparent" speed="0.7" loop autoplay />
               </ClientOnly>
             </div>
             <div className="relative z-10">
-              <p className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[var(--on-surface)] mb-3">For Business Owners</p>
-              <h2 className="font-(family-name:--font-outfit) font-bold text-2xl sm:text-3xl lg:text-[2.5rem] text-[var(--on-surface)] mb-5 leading-tight">
-                Your business deserves better credit.
+              <p className="font-(family-name:--font-jb-mono) text-sm sm:text-base font-bold tracking-[0.2em] uppercase text-[var(--on-surface)] mb-4 opacity-60">For Business Owners</p>
+              <h2 className="font-(family-name:--font-outfit) font-bold text-2xl sm:text-3xl lg:text-[3rem] text-[var(--on-surface)] mb-6 leading-tight">
+                Your business deserves <br /> better credit.
               </h2>
-              <p className="text-[var(--on-muted)] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+              <p className="text-[var(--on-muted)] text-sm sm:text-[1.05rem] leading-relaxed max-w-2xl mx-auto font-light">
                 Cred2Tech gives MSME owners a clear, honest picture of the Loan options available to them for a nominal fee.
               </p>
             </div>
           </div>
 
           {/* 4-Step Process */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-10 sm:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-12">
             {[
-              { step: '1', title: 'Eligibility check runs', desc: 'Bureau, ITR, GST, and bank data analysed in real time across multiple lenders.', icon: 'analytics', color: colors.onSurface },
-              { step: '2', title: 'Lender Matching', desc: 'Choose the best Loan offer; a Cred2Tech-empanelled agent handles the rest.', icon: 'handshake', color: colors.onSurface },
-              { step: '3', title: 'Document Vault', desc: 'All financial documents — ITR, GST, bank statements, PAN, Aadhaar, property papers — organised and accessible in one secure place.', icon: 'folder_shared', color: colors.onSurface },
-              { step: '4', title: 'Application Tracking', desc: 'Track case status in real time — from submission to sanction to disbursement.', icon: 'track_changes', color: colors.onSurface },
+              { step: '01', title: 'Eligibility check runs', desc: 'Bureau, ITR, GST, and bank data analysed in real time across multiple lenders.', icon: 'analytics' },
+              { step: '02', title: 'Lender Matching', desc: 'Choose the best Loan offer; a Cred2Tech-empanelled agent handles the rest.', icon: 'handshake' },
+              { step: '03', title: 'Document Vault', desc: 'All financial documents — ITR, GST, PAN, property papers — organised securely.', icon: 'folder_shared' },
+              { step: '04', title: 'Application Tracking', desc: 'Track case status in real time — from submission to disbursement.', icon: 'track_changes' },
             ].map((item) => (
-              <div key={item.step} className="bg-[var(--surface-low)] p-5 sm:p-6 border border-[var(--outline)] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                <div
-                  className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center mb-4"
-                  style={{ background: item.color + '15', border: `1.5px solid ${item.color}35` }}
-                >
-                  <span className="material-symbols-outlined text-lg sm:text-xl" style={{ color: item.color }}>{item.icon}</span>
+              <div key={item.step} className={`group/step p-6 sm:p-8 border transition-all duration-500 rounded-3xl ${mounted && resolvedTheme === 'light' ? 'bg-white/40 backdrop-blur-sm border-black/5 hover:border-black/15 shadow-sm' : 'bg-white/5 border-white/5 hover:border-white/10'}`}>
+                <div className={`w-12 h-12 flex items-center justify-center mb-6 rounded-xl transition-all duration-500 ${mounted && resolvedTheme === 'light' ? 'bg-black/5 text-black group-hover/step:bg-black group-hover/step:text-white' : 'bg-white/10 text-white group-hover/step:bg-white group-hover/step:text-black'}`}>
+                  <span className="material-symbols-outlined text-2xl">{item.icon}</span>
                 </div>
-                <div className="font-(family-name:--font-jb-mono) text-2xl sm:text-3xl font-black mb-2" style={{ color: item.color }}>
+                <div className={`font-(family-name:--font-jb-mono) text-3xl sm:text-4xl font-black mb-4 transition-colors opacity-10 group-hover/step:opacity-20 ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>
                   {item.step}
                 </div>
-                <h3 className="font-(family-name:--font-outfit) font-bold text-base sm:text-lg text-[var(--on-surface)] mb-1.5">{item.title}</h3>
-                <p className="text-[var(--on-muted)] text-xs sm:text-[0.8125rem] leading-relaxed">{item.desc}</p>
+                <h3 className="font-(family-name:--font-outfit) font-bold text-lg sm:text-xl text-[var(--on-surface)] mb-2.5">{item.title}</h3>
+                <p className="text-[var(--on-muted)] text-[13px] sm:text-[14px] leading-relaxed font-light">{item.desc}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center">
-            <Link href="/login" id="msme-section-cta"
-              className="inline-flex items-center gap-1.5 bg-[var(--on-surface)] text-white px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:bg-[var(--surface-low)] hover:shadow-[0_8px_24px_rgba(11,33,71,0.3)] hover:scale-[1.02] transition-all group"
-            >
-              Check My Eligibility <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-            </Link>
+            <TravelingBorderButton href="/login" showIcon={true}>
+              Check My Eligibility
+            </TravelingBorderButton>
           </div>
         </div>
       </section>
@@ -551,12 +541,12 @@ export default function HomePage() {
       >
         {/* Subtle Light-themed Background Effects */}
         <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="px-orb w-[600px] h-[600px] bg-[var(--on-surface)]/25 absolute top-[-200px] right-[-100px] z-0" id="orb-pr1" />
-        <div className="px-orb w-[500px] h-[500px] bg-[var(--on-surface)]/5 absolute bottom-[-150px] left-[-80px] z-0" id="orb-pr2" />
+        <div className={`px-orb w-[600px] h-[600px] absolute top-[-200px] right-[-100px] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'bg-[var(--on-surface)]/25 opacity-100'}`} id="orb-pr1" />
+        <div className={`px-orb w-[500px] h-[500px] absolute bottom-[-150px] left-[-80px] z-0 transition-opacity duration-500 ${mounted && resolvedTheme === 'light' ? 'opacity-0' : 'bg-[var(--on-surface)]/5 opacity-100'}`} id="orb-pr2" />
 
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div
-            className="max-w-4xl mx-auto p-8 sm:p-14 border border-white shadow-[0_32px_80px_-20px_rgba(0,63,125,0.12)] relative overflow-hidden"
+            className="max-w-4xl mx-auto p-8 sm:p-14 border border-white shadow-[0_32px_80px_-20px_rgba(0,0,0,0.12)] relative overflow-hidden rounded-3xl"
             style={{
               background: 'rgba(255, 255, 255, 0.7)',
               backdropFilter: 'blur(32px)',
@@ -565,12 +555,12 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-br from-white to-transparent pointer-events-none" />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--on-surface)]/5 border border-[var(--on-surface)]/15 mb-6">
-                <span className="w-1.5 h-1.5 bg-[var(--on-surface)] shadow-[0_0_6px_rgba(11,33,71,0.3)]" />
-                <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[var(--on-surface)]">On the Horizon</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-black/5 border border-black/10 mb-6 rounded-full">
+                <span className="w-1.5 h-1.5 bg-black rounded-full" />
+                <span className="font-(family-name:--font-jb-mono) text-[11px] font-bold tracking-[0.2em] uppercase text-black/60">On the Horizon</span>
               </div>
 
-              <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[var(--on-surface)] mb-6 leading-tight">
+              <h2 className="font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-black mb-6 leading-tight">
                 Never miss a government <br className="hidden sm:block" /> scheme again.
               </h2>
 
@@ -580,29 +570,27 @@ export default function HomePage() {
                 </ClientOnly>
               </div>
 
-              <p className="text-[var(--on-muted)] text-sm sm:text-base lg:text-[1.05rem] leading-relaxed mb-10 max-w-2xl mx-auto">
+              <p className="text-black/70 text-sm sm:text-base lg:text-[1.05rem] leading-relaxed mb-10 max-w-2xl mx-auto">
                 India has hundreds of central and state government schemes for MSMEs — subsidies, credit guarantees, grants, and incentives. Most businesses never find them.
-                <span className="text-[var(--on-surface)] font-bold"> We're building a first-of-its-kind Government Scheme Identification Engine </span>
+                <span className="text-black font-bold"> We're building a first-of-its-kind Government Scheme Identification Engine </span>
                 that maps your business profile to every scheme you qualify for.
               </p>
 
-              <form id="notify-form" className="flex flex-col xs:flex-row gap-3 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
-                <div className="flex-1 relative group">
-                  <input
-                    type="email"
-                    placeholder="Enter your email address"
-                    className="w-full px-5 py-3 sm:py-4 bg-white border border-[var(--outline)]/10 text-[var(--on-surface)] placeholder-[var(--on-surface)]/30 text-sm outline-none focus:border-[var(--outline)]/40 transition-all shadow-sm"
-                    required
-                    suppressHydrationWarning
-                  />
+              <form id="notify-form" className="max-w-md mx-auto mt-8" onSubmit={(e) => e.preventDefault()}>
+                <div className="relative flex items-center p-1.5 bg-black/5 border border-black/10 rounded-2xl focus-within:ring-2 focus-within:ring-black/5 transition-all">
+                  <div className="flex-1 flex items-center pl-3">
+                    <span className="material-symbols-outlined text-[20px] text-black/30 mr-2">mail</span>
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      className="w-full bg-transparent border-none focus:outline-none text-black text-[0.9375rem] placeholder:text-black/30"
+                      required
+                    />
+                  </div>
+                  <TravelingBorderButton type="submit" size="sm" showIcon={false} theme="light" className="shrink-0">
+                    Notify Me
+                  </TravelingBorderButton>
                 </div>
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center gap-2 bg-[var(--on-surface)] text-white px-6 py-3 sm:py-4 font-bold text-[14px] hover:bg-[var(--surface-low)] hover:shadow-[0_8px_30px_rgba(11,33,71,0.25)] hover:scale-[1.02] active:scale-95 transition-all whitespace-nowrap group"
-                  suppressHydrationWarning
-                >
-                  Notify Me <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                </button>
               </form>
             </div>
           </div>
@@ -612,23 +600,25 @@ export default function HomePage() {
       {/* ══ S8 — FINAL CTA ══ */}
       <section
         id="final-cta"
-        className="py-14 sm:py-18 lg:py-20 relative overflow-hidden text-center"
-        style={{ background: colors.dark.surface }}
+        className="py-14 sm:py-18 lg:py-20 relative overflow-hidden text-center transition-colors duration-500"
+        style={{ background: mounted && resolvedTheme === 'light' ? '#ffffff' : colors.dark.surface }}
       >
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '28px 28px' }} />
 
         {/* Marquee */}
-        <div className="marquee-wrap mb-10 sm:mb-12 border-y border-white/10 py-3.5 overflow-hidden">
-          <div className="marquee-track" id="marquee-inner">
-            {['FAST TRACK', '✦', 'DSA Network', '✦', 'No Processing Fee', '✦', 'Top Lender Offers', '✦', 'MSME Specific', '✦', 'Quick Disbursal', '✦', 'FAST TRACK', '✦', 'DSA Network', '✦', 'No Processing Fee'].map((item, i) => (
-              <span
-                key={i}
-                className={item === '✦'
-                  ? 'text-[var(--on-surface)] text-sm'
-                  : 'font-(family-name:--font-jb-mono) font-bold text-[10px] sm:text-xs text-white/25 uppercase tracking-widest'}
-              >
-                {item}
-              </span>
+        <div className="marquee-wrap mb-10 sm:mb-12 border-y border-white/10 py-3.5 overflow-hidden opacity-40">
+          <div className="marquee-track marquee-fast">
+            {[...Array(6)].map((_, groupIdx) => (
+              <React.Fragment key={groupIdx}>
+                {['Top Lender Offers', '✦', 'MSME Specific', '✦', 'Quick Disbursal', '✦', 'FAST TRACK'].map((item, i) => (
+                  <span key={`${groupIdx}-${i}`} className={`font-(family-name:--font-jb-mono) text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase whitespace-nowrap ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>
+                    {item}
+                  </span>
+                ))}
+                <span className={`font-(family-name:--font-jb-mono) text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>
+                  ✦
+                </span>
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -636,24 +626,19 @@ export default function HomePage() {
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-2xl mx-auto">
             <p className="font-(family-name:--font-jb-mono) text-sm sm:text-base font-bold tracking-[0.18em] uppercase text-[var(--on-surface)] mb-3">Get Started Today</p>
-            <h2 className="font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2rem] text-white mb-3 sm:mb-4 leading-tight">
+            <h2 className={`font-(family-name:--font-outfit) font-bold text-xl sm:text-2xl lg:text-[2rem] mb-3 sm:mb-4 leading-tight transition-colors ${mounted && resolvedTheme === 'light' ? 'text-black' : 'text-white'}`}>
               Credit, Simplified. For every DSA who closes it and every MSME that deserves it.
             </h2>
-            <p className="text-white/55 text-sm sm:text-[0.9375rem] mb-8 sm:mb-10 leading-relaxed">
+            <p className={`text-sm sm:text-[0.9375rem] mb-8 sm:mb-10 leading-relaxed transition-colors ${mounted && resolvedTheme === 'light' ? 'text-black/60' : 'text-white/55'}`}>
               DSA agents and MSMEs across India are already using Cred2Tech to access smarter credit faster.
             </p>
-            <div className="flex flex-col xs:flex-row justify-center gap-2.5 sm:gap-3">
-              <Link href="/login" id="final-cta-dsa"
-                className="inline-flex items-center justify-center gap-1.5 text-white font-bold px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-[0.9375rem] hover:scale-[1.02] transition-all shadow-[0_8px_24px_rgba(0,0,0,0.25)] group"
-                style={{ background: colors.dark.surfaceLow }}
-              >
-                Register as a DSA <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-              </Link>
-              <Link href="/login" id="final-cta-msme"
-                className="inline-flex items-center justify-center gap-1.5 bg-[var(--surface-low)] text-[var(--on-surface)] font-bold px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-[0.9375rem] hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(11,33,71,0.5)] transition-all group"
-              >
-                Check My Loan Eligibility <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-              </Link>
+            <div className="flex flex-col xs:flex-row justify-center gap-4">
+              <TravelingBorderButton href="/login">
+                Register as a DSA Partner
+              </TravelingBorderButton>
+              <TravelingBorderButton href="/login" className="!bg-transparent">
+                Check My Loan Eligibility
+              </TravelingBorderButton>
             </div>
           </div>
         </div>
