@@ -406,3 +406,188 @@ img {
     clip-path: inset(0 0 0 0);
   }
 }
+
+/* ── Parallax Float ── */
+@keyframes parallax-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-24px) rotate(1.5deg); }
+  66% { transform: translateY(12px) rotate(-1deg); }
+}
+.parallax-float { animation: parallax-float 12s ease-in-out infinite; }
+.parallax-float-slow { animation: parallax-float 18s ease-in-out infinite reverse; }
+.parallax-float-med { animation: parallax-float 14s ease-in-out infinite 3s; }
+
+/* ── Shimmer sweep ── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, var(--on-surface) 0%, var(--on-surface) 35%, #a0c4ff 50%, var(--on-surface) 65%, var(--on-surface) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ── Gradient border spin ── */
+@keyframes border-spin {
+  from { --angle: 0deg; }
+  to { --angle: 360deg; }
+}
+
+/* ── Bento card hover lift ── */
+@keyframes bento-lift {
+  from { transform: translateY(0) scale(1); }
+  to { transform: translateY(-6px) scale(1.01); }
+}
+
+/* ── Number count up ── */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(20px) scale(0.85); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.count-up-anim { animation: count-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* ── Gradient mesh shift ── */
+@keyframes mesh-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.mesh-bg {
+  background-size: 300% 300%;
+  animation: mesh-shift 20s ease infinite;
+}
+
+/* ── Noise texture overlay ── */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* ── Scroll reveal (intersection observer) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Stagger delays ── */
+.delay-100 { transition-delay: 0.1s; }
+.delay-150 { transition-delay: 0.15s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-250 { transition-delay: 0.25s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-350 { transition-delay: 0.35s; }
+.delay-400 { transition-delay: 0.4s; }
+.delay-500 { transition-delay: 0.5s; }
+.delay-600 { transition-delay: 0.6s; }
+
+/* ── Bento grid ── */
+.bento-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bento-card:hover {
+  transform: translateY(-5px) scale(1.01);
+}
+
+/* ── Glow pulse ── */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+.glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
+.glow-pulse-slow { animation: glow-pulse 7s ease-in-out infinite; }
+
+/* ── Timeline step connector ── */
+@keyframes line-draw {
+  from { scaleX: 0; transform-origin: left; }
+  to { scaleX: 1; }
+}
+
+/* ── Floating particles ── */
+@keyframes float-up {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-120px) translateX(var(--float-x, 20px)) scale(0.3); opacity: 0; }
+}
+.float-particle { animation: float-up var(--dur, 5s) ease-out var(--delay, 0s) infinite; }
+
+/* ── Section blend divider ── */
+.section-divider {
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+}
+
+/* ── Pulsing ring ── */
+@keyframes ring-pulse {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.ring-pulse { animation: ring-pulse 2.5s ease-out infinite; }
+.ring-pulse-delay { animation: ring-pulse 2.5s ease-out 1.2s infinite; }
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--on-surface) 0%, #6b9fff 50%, var(--on-surface) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s linear infinite;
+}
+
+/* ── Scroll progress line ── */
+.scroll-line {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+/* ── CTA background pulse ── */
+@keyframes cta-pulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.05); }
+}
+.cta-orb { animation: cta-pulse 6s ease-in-out infinite; }
+.cta-orb-2 { animation: cta-pulse 8s ease-in-out infinite 2s; }

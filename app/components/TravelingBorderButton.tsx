@@ -66,7 +66,7 @@ export const TravelingBorderButton = ({ href, onClick, type = 'button', children
   
   const baseStyle = {
     background: solid 
-      ? (isLight ? '#000000' : '#ffffff') 
+      ? (isLight ? '#0a1628' : '#ffffff') 
       : (isLight ? 'rgba(0,0,0,0.03)' : 'rgba(255,255,255,0.03)'),
     border: `2px solid ${solid ? 'transparent' : (isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)')}`,
   };

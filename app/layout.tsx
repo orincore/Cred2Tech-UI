@@ -79,7 +79,7 @@ export default function RootLayout({
       <body suppressHydrationWarning className="min-h-screen flex flex-col transition-colors duration-300 bg-[var(--bg)] text-[var(--on-surface)]">
         <ThemeProvider 
           attribute="class" 
-          defaultTheme="light" 
+          defaultTheme="dark" 
           disableTransitionOnChange
         >
           <Script src="/lottie/lottie-player.js" strategy="beforeInteractive" id="global-lottie-player" />
