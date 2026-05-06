@@ -528,19 +528,21 @@ export default function HomePage() {
                 India has hundreds of MSME schemes subsidies, guarantees, grants, and incentives yet most businesses miss them. Cred2Tech is building a first-of-its-kind engine that identifies every scheme a business may qualify for and guides them through the application journey.
               </p>
               <div className="reveal" style={{ transitionDelay: '0.3s' }}>
-                <form id="notify-form" onSubmit={(e) => e.preventDefault()}>
-                  <div className="flex items-center border border-[var(--outline)] rounded-xl overflow-hidden bg-[var(--bg)]">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="flex-1 bg-transparent px-4 py-3.5 text-sm text-[var(--on-surface)] placeholder:text-[var(--on-muted)] focus:outline-none"
-                      required
-                    />
-                    <TravelingBorderButton type="submit" size="sm" showIcon={false} className="shrink-0 m-1.5" solid={true}>
-                      Notify Me When It Launches
-                    </TravelingBorderButton>
-                  </div>
-                </form>
+                <ClientOnly>
+                  <form id="notify-form" onSubmit={(e) => e.preventDefault()}>
+                    <div className="flex items-center border border-[var(--outline)] rounded-xl overflow-hidden bg-[var(--bg)]">
+                      <input
+                        type="email"
+                        placeholder="Enter your email"
+                        className="flex-1 bg-transparent px-4 py-3.5 text-sm text-[var(--on-surface)] placeholder:text-[var(--on-muted)] focus:outline-none"
+                        required
+                      />
+                      <TravelingBorderButton type="submit" size="sm" showIcon={false} className="shrink-0 m-1.5" solid={true}>
+                        Notify Me When It Launches
+                      </TravelingBorderButton>
+                    </div>
+                  </form>
+                </ClientOnly>
               </div>
             </div>
 

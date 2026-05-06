@@ -261,7 +261,7 @@ export default function MSMEPage() {
           {/* Buttons positioned near bottom section */}
           <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-2">
             <TravelingBorderButton href="/login" size="sm">
-              Check My LAP Eligibility
+              Check My Loan Eligibility
             </TravelingBorderButton>
           </div>
 

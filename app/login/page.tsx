@@ -3,12 +3,8 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 import { useRouter } from 'next/navigation';
-import theme from '../theme';
+import { useTheme } from 'next-themes';
 import { countries } from '../lib/countries';
-
-
-
-const { colors, fonts, gradients, shadows, radii } = theme;
 
 type Role = 'dsa' | 'msme';
 type BtnState = 'idle' | 'loading' | 'success';
@@ -25,10 +21,16 @@ const roles: { key: Role; icon: string; label: string }[] = [
 
 export default function LoginPage() {
   const router = useRouter();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [role, setRole] = useState<Role>('dsa');
   const [heading, setHeading] = useState(roleData.dsa.h);
   const [sub, setSub]         = useState(roleData.dsa.s);
   const [headingVisible, setHeadingVisible] = useState(true);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // email/pwd form
   const [email, setEmail]       = useState('');
@@ -140,64 +142,59 @@ export default function LoginPage() {
 
   return (
     <div>
-    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center relative overflow-hidden font-(family-name:--font-inter)"
-      style={{ background: 'linear-gradient(135deg, #0b2147 0%, #050b18 100%)' }}>
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center relative overflow-hidden font-(family-name:--font-inter) bg-[var(--bg)] transition-colors duration-500">
 
       {/* grid */}
-      <div className="absolute inset-0 pointer-events-none z-0"
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.06]"
         style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)',
+          backgroundImage: 'linear-gradient(var(--on-surface) 1px,transparent 1px),linear-gradient(90deg,var(--on-surface) 1px,transparent 1px)',
           backgroundSize: '56px 56px'
         }} />
 
       {/* orbs */}
-      <div className="absolute w-[500px] h-[500px] rounded-full top-[-140px] left-[-120px] opacity-80 pointer-events-none z-0"
-        style={{ background: '#0d3a8e', filter: 'blur(70px)' }} />
-      <div className="absolute w-[320px] h-[320px] rounded-full bottom-[-80px] right-[-60px] pointer-events-none z-0"
-        style={{ background: 'rgba(29,255,155,.2)', filter: 'blur(70px)' }} />
+      <div className="absolute w-[500px] h-[500px] rounded-full top-[-140px] left-[-120px] opacity-80 pointer-events-none z-0 bg-[var(--on-surface)]/10 blur-[70px]" />
+      <div className="absolute w-[320px] h-[320px] rounded-full bottom-[-80px] right-[-60px] pointer-events-none z-0 bg-[var(--on-surface)]/5 blur-[70px]" />
 
       {/* MAIN CONTAINER: Centered wrapper */}
       <div className="relative z-10 w-full px-4 flex justify-center lg:mt-24">
         
         {/* WIDE CARD WRAPPER */}
-        <div className="relative w-full max-w-[440px] lg:max-w-[900px] bg-white rounded-[20px] animate-[cardIn_.7s_ease_both] flex overflow-hidden shadow-[0_24px_80px_rgba(0,10,25,0.12)] border border-[#e5e7eb]">
+        <div className="relative w-full max-w-[440px] lg:max-w-[900px] bg-[var(--surface)] rounded-[20px] animate-[cardIn_.7s_ease_both] flex overflow-hidden shadow-[0_24px_80px_rgba(0,10,25,0.12)] border border-[var(--outline)]">
              
           {/* LEFT SIDE: FORM CONTENT */}
-          <div className="w-full lg:w-[440px] shrink-0 z-10 bg-white relative border-r border-[#e5e7eb] flex flex-col justify-start p-6 sm:p-8 lg:pt-[2.6rem] lg:px-[2.8rem] lg:pb-[2.2rem] min-h-[500px] sm:min-h-[580px]">
+          <div className="w-full lg:w-[440px] shrink-0 z-10 bg-[var(--surface)] relative border-r border-[var(--outline)] flex flex-col justify-start p-6 sm:p-8 lg:pt-[2.6rem] lg:px-[2.8rem] lg:pb-[2.2rem] min-h-[500px] sm:min-h-[580px]">
 
         {/* Logo */}
         <div className="flex items-center gap-2.5 mb-8">
-          <div className="w-[30px] h-[30px] rounded-lg flex items-center justify-center relative" style={{background: '#0b2147'}}>
-            <div className="absolute inset-[2px] bg-white rounded-[5px]" />
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="relative z-10">
-              <path d="M2.5 7h3.5M8 3.5l3.5 3.5L8 10.5" stroke="var(--on-surface)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+          <div className="relative w-36 h-auto sm:w-40 lg:w-48 shrink-0">
+            <img
+              src={mounted && (resolvedTheme === 'light') ? "/logos/black-logo.png" : "/logos/white-logo.png"}
+              alt="Cred2Tech"
+              className="w-full h-full object-contain"
+            />
           </div>
-          <span className="font-black text-[1.15rem] tracking-[-0.03em] text-[var(--on-surface)]">
-            Cred<span className="text-[var(--on-surface)]">2</span>Tech
-          </span>
         </div>
 
         {/* Heading */}
         <div className={`transition-all duration-180 ${headingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1.5'}`}>
-          <h1 className="font-bold text-[1.6rem] sm:text-[1.9rem] text-[#1b1c1c] tracking-[-0.04em] leading-[1.1]">{heading}</h1>
-          <p className="text-[0.8rem] sm:text-[0.85rem] text-[#424751] mt-1.5 mb-5 sm:mb-6">{sub}</p>
+          <h1 className="font-bold text-[1.6rem] sm:text-[1.9rem] text-[var(--on-surface)] tracking-[-0.04em] leading-[1.1]">{heading}</h1>
+          <p className="text-[0.8rem] sm:text-[0.85rem] text-[var(--on-muted)] mt-1.5 mb-5 sm:mb-6">{sub}</p>
         </div>
 
         {/* Role tabs */}
-        <div className="flex bg-[#f6f3f2] border border-[#c2c6d3] rounded-[10px] p-[3px] mb-6 relative">
+        <div className="flex bg-[var(--surface-low)] border border-[var(--outline)] rounded-[10px] p-[3px] mb-6 relative">
           <div className="absolute top-[3px] left-[3px] bottom-[3px] rounded-[8px] pointer-events-none transition-transform duration-300 ease-out"
             style={{ 
               width: 'calc((100% - 6px) / 2)',
               transform: `translateX(${['dsa','msme'].indexOf(role) * 100}%)`,
-              background: '#0b2147', 
+              background: 'var(--on-surface)', 
               boxShadow: '0 2px 8px rgba(0,63,125,.3)'
             }} />
           {roles.map((r) => (
             <button key={r.key}
               onClick={() => switchRole(r.key)}
               suppressHydrationWarning
-              className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-1 text-[0.72rem] font-semibold rounded-[7px] relative z-10 transition-colors duration-250 whitespace-nowrap cursor-pointer border-0 bg-transparent ${role === r.key ? 'text-white' : 'text-[#424751] hover:text-[var(--on-surface)]'}`}>
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-1 text-[0.72rem] font-semibold rounded-[7px] relative z-10 transition-colors duration-250 whitespace-nowrap cursor-pointer border-0 bg-transparent ${role === r.key ? 'text-[var(--bg)]' : 'text-[var(--on-muted)] hover:text-[var(--on-surface)]'}`}>
               <span className="material-symbols-outlined text-[14px]">{r.icon}</span>
               {r.label}
             </button>
@@ -209,47 +206,45 @@ export default function LoginPage() {
           <div className="transition-all duration-280">
             {/* Email */}
             <div className="mb-3.5">
-              <div className="flex items-center gap-2.5 bg-[#f6f3f2] border-[1.5px] border-[#c2c6d3] rounded-[10px] px-3.5 h-[50px] focus-within:border-[#a8c8ff] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,63,125,.08)] transition-all relative overflow-hidden group">
-                <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">person</span>
+              <div className="flex items-center gap-2.5 bg-[var(--surface-low)] border-[1.5px] border-[var(--outline)] rounded-[10px] px-3.5 h-[50px] focus-within:border-[var(--on-surface)] focus-within:bg-[var(--surface)] focus-within:shadow-[0_0_0_3px_rgba(78,84,200,.08)] transition-all relative overflow-hidden group">
+                <span className="material-symbols-outlined text-[17px] text-[var(--on-muted)] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">person</span>
                 <input value={email} onChange={e => setEmail(e.target.value)}
                   type="email" placeholder="Email address" autoComplete="email"
                   suppressHydrationWarning
-                  className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[#1b1c1c] placeholder-[#727783] font-(family-name:--font-inter)"/>
+                  className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[var(--on-surface)] placeholder-[var(--on-muted)] font-(family-name:--font-inter)"/>
                 {/* bottom line */}
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px]"
-                  style={{ background: 'linear-gradient(90deg, #0b2147, #122a55)' }} />
+                <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px] bg-gradient-to-r from-[var(--on-surface)] to-[var(--on-surface)]" />
               </div>
             </div>
 
             {/* Password */}
             <div className="mb-1">
-              <div className="flex items-center gap-2.5 bg-[#f6f3f2] border-[1.5px] border-[#c2c6d3] rounded-[10px] px-3.5 h-[50px] focus-within:border-[#a8c8ff] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,63,125,.08)] transition-all relative overflow-hidden group">
-                <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">lock</span>
+              <div className="flex items-center gap-2.5 bg-[var(--surface-low)] border-[1.5px] border-[var(--outline)] rounded-[10px] px-3.5 h-[50px] focus-within:border-[var(--on-surface)] focus-within:bg-[var(--surface)] focus-within:shadow-[0_0_0_3px_rgba(78,84,200,.08)] transition-all relative overflow-hidden group">
+                <span className="material-symbols-outlined text-[17px] text-[var(--on-muted)] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">lock</span>
                 <input value={password} onChange={e => setPassword(e.target.value)}
                   type={showPwd ? 'text' : 'password'} placeholder="Password" autoComplete="current-password"
                   suppressHydrationWarning
-                  className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[#1b1c1c] placeholder-[#727783] font-(family-name:--font-inter)"/>
+                  className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[var(--on-surface)] placeholder-[var(--on-muted)] font-(family-name:--font-inter)"/>
                 <button onClick={() => setShowPwd(p => !p)} type="button"
-                  className="text-[#727783] hover:text-[var(--on-surface)] transition-colors shrink-0 cursor-pointer bg-transparent border-0">
+                  className="text-[var(--on-muted)] hover:text-[var(--on-surface)] transition-colors shrink-0 cursor-pointer bg-transparent border-0">
                   <span className="material-symbols-outlined text-[16px]">{showPwd ? 'visibility_off' : 'visibility'}</span>
                 </button>
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px]"
-                  style={{ background: 'linear-gradient(90deg, #0b2147, #122a55)' }} />
+                <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px] bg-gradient-to-r from-[var(--on-surface)] to-[var(--on-surface)]" />
               </div>
             </div>
 
             <div className="flex justify-end mb-4">
-              <Link href="/forgot-password" className="text-[0.72rem] font-semibold text-[var(--surface-low)] hover:text-[var(--on-surface)] hover:underline transition-colors">Forgot password?</Link>
+              <Link href="/forgot-password" className="text-[0.72rem] font-semibold text-[var(--on-muted)] hover:text-[var(--on-surface)] hover:underline transition-colors">Forgot password?</Link>
             </div>
 
             {/* Sign In button */}
             <button onClick={handleLogin} disabled={loginState === 'loading'}
               suppressHydrationWarning
-              className={`w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white flex items-center justify-center gap-2 relative overflow-hidden transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)] ${loginState === 'success' ? 'bg-[var(--on-surface)]' : 'bg-[var(--on-surface)] hover:bg-[var(--surface-low)] hover:-translate-y-px hover:shadow-[0_8px_24px_rgba(11,33,71,.32)]'}`}>
-              {loginState === 'loading' && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
+              className={`w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-[var(--bg)] flex items-center justify-center gap-2 relative overflow-hidden transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)] bg-[var(--on-surface)] hover:bg-[var(--on-surface)]/90 hover:-translate-y-px hover:shadow-[0_8px_24px_rgba(11,33,71,.32)]`}>
+              {loginState === 'loading' && <div className="w-4 h-4 border-2 border-[var(--bg)]/30 border-t-[var(--bg)] rounded-full animate-spin" />}
               {loginState === 'success' && (
                 <>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--bg)" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                   <span>Access Granted</span>
@@ -264,14 +259,14 @@ export default function LoginPage() {
             </button>
 
             {/* Trust */}
-            <div className="flex items-center justify-center gap-1.5 mt-3 text-[0.68rem] text-[#727783]">
+            <div className="flex items-center justify-center gap-1.5 mt-3 text-[0.68rem] text-[var(--on-muted)]">
               <span className="material-symbols-outlined text-[13px] text-[var(--on-surface)]">lock</span>
               256-bit encryption · Trusted by 10,000+ businesses
             </div>
 
-            <p className="text-center text-[0.78rem] text-[#424751] mt-3">
+            <p className="text-center text-[0.78rem] text-[var(--on-muted)] mt-3">
               New to the platform?
-              <Link href="#" className="text-[var(--surface-low)] font-bold ml-1 hover:text-[var(--on-surface)] hover:underline transition-colors">Register as Partner</Link>
+              <Link href="#" className="text-[var(--on-surface)] font-bold ml-1 hover:text-[var(--on-surface)]/80 hover:underline transition-colors">Register as Partner</Link>
             </p>
           </div>
         )}
@@ -285,39 +280,38 @@ export default function LoginPage() {
               <div>
                 <div className="flex gap-2 mb-1">
                   {/* dial code — 32% */}
-                  <div className="flex items-center bg-[#f6f3f2] border-[1.5px] border-[#c2c6d3] rounded-[10px] pl-3 pr-2 h-[50px] focus-within:border-[#a8c8ff] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,63,125,.08)] transition-all relative group" style={{ flex: '0 0 32%' }}>
+                  <div className="flex items-center bg-[var(--surface-low)] border-[1.5px] border-[var(--outline)] rounded-[10px] pl-3 pr-2 h-[50px] focus-within:border-[var(--on-surface)] focus-within:bg-[var(--surface)] focus-within:shadow-[0_0_0_3px_rgba(78,84,200,.08)] transition-all relative group" style={{ flex: '0 0 32%' }}>
                     <select value={dialCode} onChange={e => setDialCode(e.target.value)}
-                      className="w-full bg-transparent border-0 outline-none text-[0.88rem] font-semibold text-[#424751] font-(family-name:--font-inter) appearance-none cursor-pointer z-10 relative">
+                      className="w-full bg-transparent border-0 outline-none text-[0.88rem] font-semibold text-[var(--on-surface)] font-(family-name:--font-inter) appearance-none cursor-pointer z-10 relative">
                       {countries.map(country => (
                         <option key={country.code} value={country.dialCode}>
                           {country.emoji} {country.dialCode}
                         </option>
                       ))}
                     </select>
-                    <span className="material-symbols-outlined text-[18px] text-[#727783] absolute right-2 pointer-events-none group-focus-within:text-[var(--on-surface)] transition-colors">expand_more</span>
+                    <span className="material-symbols-outlined text-[18px] text-[var(--on-muted)] absolute right-2 pointer-events-none group-focus-within:text-[var(--on-surface)] transition-colors">expand_more</span>
                   </div>
                   {/* phone — 70% */}
-                  <div className="flex items-center gap-2.5 bg-[#f6f3f2] border-[1.5px] border-[#c2c6d3] rounded-[10px] px-3.5 h-[50px] focus-within:border-[#a8c8ff] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(0,63,125,.08)] transition-all flex-1 relative overflow-hidden group">
-                    <span className="material-symbols-outlined text-[17px] text-[#727783] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">smartphone</span>
+                  <div className="flex items-center gap-2.5 bg-[var(--surface-low)] border-[1.5px] border-[var(--outline)] rounded-[10px] px-3.5 h-[50px] focus-within:border-[var(--on-surface)] focus-within:bg-[var(--surface)] focus-within:shadow-[0_0_0_3px_rgba(78,84,200,.08)] transition-all flex-1 relative overflow-hidden group">
+                    <span className="material-symbols-outlined text-[17px] text-[var(--on-muted)] group-focus-within:text-[var(--on-surface)] transition-colors shrink-0">smartphone</span>
                     <input value={phone} onChange={e => setPhone(e.target.value)}
                       type="tel" placeholder="Mobile number" maxLength={10} autoComplete="tel"
                       suppressHydrationWarning
-                      className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[#1b1c1c] placeholder-[#727783] font-(family-name:--font-inter)"/>
-                    <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px]"
-                      style={{ background: 'linear-gradient(90deg, #0b2147, #122a55)' }} />
+                      className="flex-1 bg-transparent border-0 outline-none text-[0.88rem] text-[var(--on-surface)] placeholder-[var(--on-muted)] font-(family-name:--font-inter)"/>
+                    <div className="absolute bottom-0 left-0 h-[2px] w-0 group-focus-within:w-full transition-all duration-350 rounded-b-[10px] bg-gradient-to-r from-[var(--on-surface)] to-[var(--on-surface)]" />
                   </div>
                 </div>
-                <p className="text-[0.7rem] text-[#727783] mb-4">OTP will be sent to this number via SMS</p>
+                <p className="text-[0.7rem] text-[var(--on-muted)] mb-4">OTP will be sent to this number via SMS</p>
 
                 <button onClick={handleSendOtp} disabled={sendState === 'loading'}
-                  className="w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white bg-[var(--on-surface)] hover:bg-[var(--surface-low)] hover:-translate-y-px flex items-center justify-center gap-2 transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)]">
+                  className="w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-[var(--bg)] bg-[var(--on-surface)] hover:bg-[var(--on-surface)]/90 hover:-translate-y-px flex items-center justify-center gap-2 transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)]">
                   {sendState === 'loading'
-                    ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ? <div className="w-4 h-4 border-2 border-[var(--bg)]/30 border-t-[var(--bg)] rounded-full animate-spin" />
                     : <><span>Send OTP</span><span className="material-symbols-outlined text-[16px]">send</span></>}
                 </button>
-                <p className="text-center text-[0.78rem] text-[#424751] mt-3">
+                <p className="text-center text-[0.78rem] text-[var(--on-muted)] mt-3">
                   New to the platform?
-                  <Link href="#" className="text-[var(--surface-low)] font-bold ml-1 hover:text-[var(--on-surface)] hover:underline transition-colors">Register as Partner</Link>
+                  <Link href="#" className="text-[var(--on-surface)] font-bold ml-1 hover:text-[var(--on-surface)]/80 hover:underline transition-colors">Register as Partner</Link>
                 </p>
               </div>
             )}
@@ -326,13 +320,13 @@ export default function LoginPage() {
             {otpStep === 2 && (
               <div>
                 {/* Banner */}
-                <div className="flex items-center gap-2 px-3 py-2.5 bg-[#d6e3ff] border border-[#a8c8ff] rounded-[9px] mb-4 text-[0.78rem] text-[var(--on-surface)] font-semibold">
+                <div className="flex items-center gap-2 px-3 py-2.5 bg-[var(--surface-low)] border border-[var(--outline)] rounded-[9px] mb-4 text-[0.78rem] text-[var(--on-surface)] font-semibold">
                   <span className="material-symbols-outlined text-[15px] shrink-0">check_circle</span>
                   OTP sent to <strong className="ml-1">{phoneMask}</strong>
-                  <button onClick={() => setOtpStep(1)} className="ml-auto text-[0.7rem] font-bold text-[var(--surface-low)] underline cursor-pointer bg-transparent border-0">Change</button>
+                  <button onClick={() => setOtpStep(1)} className="ml-auto text-[0.7rem] font-bold text-[var(--on-muted)] underline cursor-pointer bg-transparent border-0">Change</button>
                 </div>
 
-                <p className="text-[0.62rem] font-semibold tracking-[0.12em] uppercase text-[#727783] mb-2.5">Enter 6-digit OTP</p>
+                <p className="text-[0.62rem] font-semibold tracking-[0.12em] uppercase text-[var(--on-muted)] mb-2.5">Enter 6-digit OTP</p>
 
                 {/* OTP boxes */}
                 <div className="flex gap-2 justify-center mb-3.5">
@@ -345,34 +339,34 @@ export default function LoginPage() {
                       onPaste={handleOtpPaste}
                       type="text" inputMode="numeric" pattern="[0-9]*" maxLength={1}
                       suppressHydrationWarning
-                      className={`w-10 h-12 sm:w-12 sm:h-14 text-center border-[1.5px] rounded-[12px] text-[1.1rem] font-bold transition-all outline-none ${d && !otpError ? 'border-[var(--on-surface)] bg-[#d6e3ff] text-[var(--on-surface)]' : 'border-[#c2c6d3] bg-[#f6f3f2] text-[#1b1c1c]'} focus:border-[#a8c8ff] focus:bg-white focus:shadow-[0_0_0_3px_rgba(0,63,125,.09)] focus:scale-[1.04]`}
+                      className={`w-10 h-12 sm:w-12 sm:h-14 text-center border-[1.5px] rounded-[12px] text-[1.1rem] font-bold transition-all outline-none ${d && !otpError ? 'border-[var(--on-surface)] bg-[var(--surface-low)] text-[var(--on-surface)]' : 'border-[var(--outline)] bg-[var(--surface-low)] text-[var(--on-surface)]'} focus:border-[var(--on-surface)] focus:bg-[var(--surface)] focus:shadow-[0_0_0_3px_rgba(78,84,200,.09)] focus:scale-[1.04]`}
                     />
                   ))}
                 </div>
 
                 <div className="flex justify-between items-center mb-4 text-[0.72rem]">
-                  <span className="text-[#727783]">Expires in <strong className="text-[var(--on-surface)]">{timer}</strong></span>
+                  <span className="text-[var(--on-muted)]">Expires in <strong className="text-[var(--on-surface)]">{timer}</strong></span>
                   <button onClick={() => { setOtp(['','','','','','']); startTimer(120); otpRefs.current[0]?.focus(); }}
                     disabled={!resendActive}
-                    className={`font-semibold cursor-pointer bg-transparent border-0 transition-all ${resendActive ? 'text-[var(--surface-low)] opacity-100 hover:text-[var(--on-surface)] hover:underline' : 'text-[#727783] opacity-40 cursor-not-allowed'}`}>
+                    className={`font-semibold cursor-pointer bg-transparent border-0 transition-all ${resendActive ? 'text-[var(--on-muted)] opacity-100 hover:text-[var(--on-surface)] hover:underline' : 'text-[var(--on-muted)] opacity-40 cursor-not-allowed'}`}>
                     Resend OTP
                   </button>
                 </div>
 
                 <button onClick={handleVerify} disabled={verifyState === 'loading'}
                   suppressHydrationWarning
-                  className={`w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-white flex items-center justify-center gap-2 transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)] ${verifyState === 'success' ? 'bg-[var(--on-surface)]' : 'bg-[var(--on-surface)] hover:bg-[var(--surface-low)] hover:-translate-y-px'}`}>
-                  {verifyState === 'loading' && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
+                  className={`w-full h-12 rounded-[10px] font-bold text-[0.8rem] tracking-[0.06em] uppercase text-[var(--bg)] flex items-center justify-center gap-2 transition-all cursor-pointer border-0 shadow-[0_4px_16px_rgba(11,33,71,.28)] bg-[var(--on-surface)] hover:bg-[var(--on-surface)]/90 hover:-translate-y-px`}>
+                  {verifyState === 'loading' && <div className="w-4 h-4 border-2 border-[var(--bg)]/30 border-t-[var(--bg)] rounded-full animate-spin" />}
                   {verifyState === 'success' && (
-                    <><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Verified</span></>
+                    <><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--bg)" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Verified</span></>
                   )}
                   {verifyState === 'idle' && (
                     <><span>Verify &amp; Sign In</span><span className="material-symbols-outlined text-[16px]">verified</span></>
                   )}
                 </button>
-                <p className="text-center text-[0.78rem] text-[#424751] mt-3">
+                <p className="text-center text-[0.78rem] text-[var(--on-muted)] mt-3">
                   New to the platform?
-                  <Link href="#" className="text-[var(--surface-low)] font-bold ml-1 hover:text-[var(--on-surface)] hover:underline transition-colors">Register as Partner</Link>
+                  <Link href="#" className="text-[var(--on-surface)] font-bold ml-1 hover:text-[var(--on-surface)]/80 hover:underline transition-colors">Register as Partner</Link>
                 </p>
               </div>
             )}
@@ -382,9 +376,9 @@ export default function LoginPage() {
           </div>
 
           {/* RIGHT SIDE: ANIMATION (Inside the card) */}
-          <div className="hidden lg:flex flex-1 items-center justify-center bg-[#f6f3f2] relative overflow-hidden">
+          <div className="hidden lg:flex flex-1 items-center justify-center bg-[var(--surface-low)] relative overflow-hidden">
             {/* Soft inner glow matching brand */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#d6e3ff]/60 to-transparent opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--on-surface)]/10 to-transparent opacity-80" />
             
             {(() => {
               const LottiePlayer = 'lottie-player' as any;

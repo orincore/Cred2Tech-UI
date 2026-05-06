@@ -36,7 +36,7 @@ export default function Header() {
                     <Link href="/" className="flex items-center gap-2 flex-shrink-0 sm:gap-3">
                         <div className="relative w-36 h-auto sm:w-40 lg:w-48 shrink-0">
                             <img
-                                src={mounted && (theme === 'light' || resolvedTheme === 'light') ? "/logos/credtech-footer-logo.png" : "/logos/logo.png"}
+                                src={mounted && (theme === 'light' || resolvedTheme === 'light') ? "/logos/black-logo.png" : "/logos/white-logo.png"}
                                 alt="Cred2Tech"
                                 className="w-full h-full object-contain"
                             />
@@ -96,13 +96,25 @@ export default function Header() {
                                 <div className={`absolute bottom-1 left-5 right-5 h-0.5 rounded-full ${mounted && (theme === 'light' || resolvedTheme === 'light') ? 'bg-black' : 'bg-white'}`}></div>
                             )}
                         </Link>
+
+                        {/* Contact Us */}
+                        <Link href="/contact" className={`px-5 py-2 text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 relative 
+                            ${mounted && (theme === 'light' || resolvedTheme === 'light')
+                                ? (pathname === '/contact' ? 'text-black' : 'text-black/60 hover:text-black')
+                                : (pathname === '/contact' ? 'text-white' : 'text-white hover:text-white')
+                            }`}>
+                            Contact Us
+                            {pathname === '/contact' && (
+                                <div className={`absolute bottom-1 left-5 right-5 h-0.5 rounded-full ${mounted && (theme === 'light' || resolvedTheme === 'light') ? 'bg-black' : 'bg-white'}`}></div>
+                            )}
+                        </Link>
                     </div>
 
-                    {/* Theme Toggle & Contact Us Button (desktop only) */}
+                    {/* Theme Toggle & Login Button (desktop only) */}
                     <div className="hidden lg:flex items-center gap-4">
                         <ThemeToggle />
-                        <TravelingBorderButton href="/contact" size="sm" showIcon={false}>
-                            Contact Us
+                        <TravelingBorderButton href="/login" size="sm" showIcon={false}>
+                            Login
                         </TravelingBorderButton>
                     </div>
                     {/* Mobile hamburger */}

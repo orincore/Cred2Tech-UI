@@ -19,9 +19,9 @@ export default function Footer() {
       <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 grid grid-cols-2 sm:grid-cols-5 gap-8 sm:gap-10 items-start">
         {/* Company Info */}
         <div className="col-span-2 sm:col-span-2 space-y-5">
-          <div className="w-40 h-14 m-0 p-0 transition-all duration-300">
+          <div className="w-56 h-20 m-0 p-0 transition-all duration-300">
             <img 
-              src={isLight ? "/logos/credtech-footer-logo.png" : "/logos/logo.png"} 
+              src={isLight ? "/logos/black-logo.png" : "/logos/white-logo.png"} 
               alt="Cred2Tech" 
               className="w-full h-full object-contain object-left" 
             />

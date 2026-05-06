@@ -527,7 +527,7 @@ export default function HomePage() {
                   Register as a DSA Partner
                 </TravelingBorderButton>
                 <TravelingBorderButton href="/login" solid={false} showIcon={true} size="sm">
-                  Check My LAP Eligibility
+                  Check My Loan Eligibility
                 </TravelingBorderButton>
               </div>
               {/* Trust line with icons */}
