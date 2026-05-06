@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const LENDERS = [
   { name: 'HDFC Bank', amount: '₹45L', rate: '9.5%', badge: 'BEST RATE', badgeColor: 'var(--on-surface)', logo: '/images/hdfc.png' },
@@ -136,8 +137,8 @@ export default function LoanEligibilityWidget() {
                   }}
                 >
                   <div className="flex items-center gap-2 lg:gap-3">
-                    <div className="w-7 h-7 lg:w-8 lg:h-8 bg-white rounded flex items-center justify-center flex-shrink-0 overflow-hidden p-0.5">
-                      <img src={lender.logo} alt={lender.name} className="w-full h-full object-contain" />
+                    <div className="w-7 h-7 lg:w-8 lg:h-8 bg-white rounded flex items-center justify-center flex-shrink-0 overflow-hidden p-0.5 relative">
+                      <Image src={lender.logo} alt={lender.name} fill className="object-contain" />
                     </div>
                     <div>
                       <p className="text-white text-[11px] lg:text-xs font-bold leading-none">{lender.name}</p>

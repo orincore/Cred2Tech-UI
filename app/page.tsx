@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Script from 'next/script';
 import { ThreeDCard } from './components/ThreeDCard';
 import { TravelingBorderButton } from './components/TravelingBorderButton';
@@ -325,12 +326,15 @@ export default function HomePage() {
                 <div
                   key={`${lender.name}-${i}`}
                   className="flex shrink-0 items-center justify-center px-1 sm:px-2"
-                  style={{ height: '48px' }}
+                  style={{ height: '64px' }}
                 >
-                  <img
+                  <Image
                     src={lender.image}
                     alt={lender.name}
-                    className="h-full w-auto object-contain brightness-100 contrast-100"
+                    width={160}
+                    height={64}
+                    sizes="160px"
+                    className="object-contain brightness-100 contrast-100"
                     loading="eager"
                   />
                 </div>
@@ -362,13 +366,13 @@ export default function HomePage() {
             {/* Left — stacked feature rows */}
             <div className="space-y-0 divide-y divide-[var(--outline)]">
               {[
-                { title: '🎯 Intelligent Matching', desc: 'An AI enabled algorithm analyses ITR, GST, bank statements, and bureau data to identify the lender most likely to approve the case at the best rate.', video: '/images/Intelligent Matching.mp4' },
-                { title: '🔐 Secure & Private', desc: 'Customer financial data is fetched via secure, authorised APIs with explicit consent at every step. Nothing is shared without authorisation. Data remains fully encrypted at all times. The Cred2Tech platform team has no access to the financial data, name, or contact details of any customer onboarded through a DSA.', video: '/images/Secure & Private.mp4' },
-                { title: '⚡ Fast. Simple. Digital.', desc: 'From eligibility check to lender introduction completed in minutes, not days or weeks. No branch visits. No paperwork piles.', video: '/images/Fast Simple Digital.mp4' },
-                { title: '📊 Full Transparency', desc: 'See exactly which lenders are available, at what loan amount, and at what interest rate before an application is even submitted.', video: '/images/Full Transparency.mp4' },
+                { title: 'Intelligent Matching', desc: 'An AI enabled algorithm analyses ITR, GST, bank statements, and bureau data to identify the lender most likely to approve the case at the best rate.', video: '/images/Intelligent Matching.mp4' },
+                { title: 'Secure & Private', desc: 'Customer financial data is fetched via secure, authorised APIs with explicit consent at every step. Nothing is shared without authorisation. Data remains fully encrypted at all times. The Cred2Tech platform team has no access to the financial data, name, or contact details of any customer onboarded through a DSA.', video: '/images/Secure & Private.mp4' },
+                { title: 'Fast. Simple. Digital.', desc: 'From eligibility check to lender introduction completed in minutes, not days or weeks. No branch visits. No paperwork piles.', video: '/images/Fast Simple Digital.mp4' },
+                { title: 'Full Transparency', desc: 'See exactly which lenders are available, at what loan amount, and at what interest rate before an application is even submitted.', video: '/images/Full Transparency.mp4' },
               ].map((item, i) => (
                 <div key={item.title} className="reveal group flex items-start gap-5 py-7" style={{ transitionDelay: `${i * 0.08}s` }}>
-                  <div className="w-16 h-16 shrink-0 rounded-xl overflow-hidden border border-[var(--outline)] bg-white">
+                  <div className="w-35 h-35 shrink-0 rounded-xl overflow-hidden border border-[var(--outline)] bg-white">
                     <ClientOnly>
                       <video src={item.video} autoPlay loop muted playsInline className="w-full h-full object-contain" />
                     </ClientOnly>
@@ -382,8 +386,15 @@ export default function HomePage() {
             </div>
 
             {/* Right — single large illustration */}
-            <div className="reveal sticky top-24 w-full aspect-square max-w-xl mx-auto lg:mx-0  overflow-hidden" style={{ transitionDelay: '0.12s' }}>
-              <img src="/animation-svg.svg" alt="Credit the way it should have always worked" className="w-full h-full object-contain" />
+            <div className="reveal sticky top-24 w-full max-w-2xl mx-auto lg:mx-0 h-[600px] overflow-hidden" style={{ transitionDelay: '0.12s' }}>
+              <Image 
+                src="/animation-svg.svg" 
+                alt="Credit the way it should have always worked" 
+                width={1000}
+                height={1000}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="w-full h-full object-contain" 
+              />
             </div>
 
           </div>

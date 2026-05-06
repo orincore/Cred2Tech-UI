@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
 import { useTheme } from 'next-themes';
@@ -35,10 +36,15 @@ export default function Header() {
                     {/* ── LOGO ── */}
                     <Link href="/" className="flex items-center gap-2 flex-shrink-0 sm:gap-3">
                         <div className="relative w-36 h-auto sm:w-40 lg:w-48 shrink-0">
-                            <img
+                            <Image
                                 src={mounted && (theme === 'light' || resolvedTheme === 'light') ? "/logos/black-logo.png" : "/logos/white-logo.png"}
                                 alt="Cred2Tech"
-                                className="w-full h-full object-contain"
+                                width={192}
+                                height={48}
+                                sizes="(max-width: 640px) 144px, (max-width: 1024px) 160px, 192px"
+                                className="object-contain"
+                                priority
+                                style={{ height: 'auto' }}
                             />
                         </div>
                     </Link>

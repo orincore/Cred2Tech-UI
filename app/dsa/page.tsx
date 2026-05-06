@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Script from 'next/script';
 import { useTheme } from 'next-themes';
 import LoanEligibilityWidget from '@/app/components/LoanEligibilityWidget';
@@ -172,10 +173,13 @@ export default function HomePage() {
           {/* ═══ HERO IMAGE ═══ */}
           <div className="absolute right-8 top-[5%] w-[650px] h-[650px] hidden lg:block z-20 pointer-events-auto">
             <div className="w-full h-full relative">
-              <img
+              <Image
                 src="/hero3.png"
                 alt="Cred2Tech DSA Platform"
-                className="w-full h-full object-contain"
+                fill
+                sizes="650px"
+                className="object-contain"
+                priority
               />
               {/* Blur overlay for edge blending */}
               <div

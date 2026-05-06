@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Script from 'next/script';
 import { useTheme } from 'next-themes';
 import { TravelingBorderButton } from '../components/TravelingBorderButton';
@@ -161,12 +162,14 @@ export default function HowItWorksPage() {
 
         {/* Right-side image */}
         <div className="hidden md:block absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-[2]">
-          <div className="relative w-[450px] lg:w-[580px] xl:w-[650px]">
+          <div className="relative w-[450px] lg:w-[580px] xl:w-[650px] aspect-[4/3]">
             {mounted && (
-              <img
+              <Image
                 src={resolvedTheme === 'dark' ? '/images/howitworksdark.png' : '/images/howitworks.png'}
                 alt="How It Works"
-                className="w-full h-auto object-contain"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 580px, 650px"
+                className="object-contain"
               />
             )}
             {/* soft vignette */}

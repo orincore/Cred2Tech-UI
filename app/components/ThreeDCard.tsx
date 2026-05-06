@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 interface ThreeDCardProps {
   imageSrc: string;
@@ -74,14 +75,18 @@ export function ThreeDCard({ imageSrc, className = "", depth = 40 }: ThreeDCardP
           
           {/* Content Image — bright white icons */}
           <div className="absolute inset-0 flex items-center justify-center p-5">
-            <img 
-              src={imageSrc} 
-              alt="Card content" 
-              className="w-[75%] h-[75%] object-contain"
-              style={{ 
-                filter: 'brightness(2) contrast(1.2) drop-shadow(0 5px 15px rgba(0,0,0,0.4))',
-              }}
-            />
+            <div className="relative w-[75%] h-[75%]">
+              <Image 
+                src={imageSrc} 
+                alt="Card content" 
+                fill
+                sizes="80px"
+                className="object-contain"
+                style={{ 
+                  filter: 'brightness(2) contrast(1.2) drop-shadow(0 5px 15px rgba(0,0,0,0.4))',
+                }}
+              />
+            </div>
           </div>
 
           {/* Diagonal glossy reflection stripe */}

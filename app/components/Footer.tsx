@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTheme } from 'next-themes';
 
 export default function Footer() {
@@ -19,11 +20,13 @@ export default function Footer() {
       <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 grid grid-cols-2 sm:grid-cols-5 gap-8 sm:gap-10 items-start">
         {/* Company Info */}
         <div className="col-span-2 sm:col-span-2 space-y-5">
-          <div className="w-56 h-20 m-0 p-0 transition-all duration-300">
-            <img 
+          <div className="relative w-56 h-20 m-0 p-0 transition-all duration-300">
+            <Image 
               src={isLight ? "/logos/black-logo.png" : "/logos/white-logo.png"} 
               alt="Cred2Tech" 
-              className="w-full h-full object-contain object-left" 
+              fill
+              sizes="224px"
+              className="object-contain object-left" 
             />
           </div>
           <div className="space-y-1 text-xs text-[var(--on-muted)] leading-relaxed">

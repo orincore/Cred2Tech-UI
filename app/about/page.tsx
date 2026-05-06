@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Script from 'next/script';
 import { useTheme } from 'next-themes';
 import { TravelingBorderButton } from '../components/TravelingBorderButton';
@@ -137,11 +138,13 @@ export default function AboutPage() {
 
         {/* Right-side portrait (about visual) */}
         <div className="hidden md:block absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-[2]">
-          <div className="relative w-[450px] lg:w-[580px] xl:w-[650px]">
-            <img
+          <div className="relative w-[450px] lg:w-[580px] xl:w-[650px] aspect-[4/3]">
+            <Image
               src="/images/about us.png"
               alt="Cred2Tech Team"
-              className="w-full h-auto object-contain"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 580px, 650px"
+              className="object-contain"
             />
             {/* soft vignette */}
             <div className="absolute inset-0" style={{
@@ -229,11 +232,13 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-center">
               {/* Left side - Image */}
               <div className="relative lg:col-span-2">
-                <div className="relative rounded-3xl overflow-hidden">
-                  <img
+                <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
+                  <Image
                     src="/images/vision.png"
                     alt="Cred2Tech Vision"
-                    className="w-full h-auto object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 40vw, 30vw"
+                    className="object-cover"
                   />
                 </div>
                 {/* Decorative elements */}
@@ -384,10 +389,12 @@ export default function AboutPage() {
 
                 {/* LEFT — Portrait Image */}
                 <div className="relative lg:w-[38%] flex-shrink-0 min-h-[360px] sm:min-h-[400px] lg:min-h-0 bg-gradient-to-br from-[var(--on-surface)] to-[#001233] overflow-hidden">
-                  <img
+                  <Image
                     src="/images/Bobby.jpg"
                     alt="Bobby Thomas M"
-                    className="absolute inset-0 w-full h-full object-cover object-top lg:object-center opacity-90 group-hover:scale-[1.03] transition-transform duration-700"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 38vw"
+                    className="object-cover object-top lg:object-center opacity-90 group-hover:scale-[1.03] transition-transform duration-700"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                   />
               
@@ -436,10 +443,12 @@ export default function AboutPage() {
 
                 {/* RIGHT — Portrait Image (rendered first on mobile via flex-col, visually right on desktop via row-reverse) */}
                 <div className="relative lg:w-[38%] flex-shrink-0 min-h-[360px] sm:min-h-[400px] lg:min-h-0 bg-gradient-to-bl from-[#001233] to-[var(--on-surface)] overflow-hidden">
-                  <img
+                  <Image
                     src="/images/Sunil.jpg"
                     alt="Sunil Agarwal"
-                    className="absolute inset-0 w-full h-full object-cover object-top lg:object-center opacity-90 group-hover:scale-[1.03] transition-transform duration-700"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 38vw"
+                    className="object-cover object-top lg:object-center opacity-90 group-hover:scale-[1.03] transition-transform duration-700"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                   />
                   

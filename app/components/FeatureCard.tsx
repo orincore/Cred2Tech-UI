@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 
 // Wrapper to avoid JSX IntrinsicElements TypeScript errors for the custom web component
 const LottiePlayer = (props: any) => {
@@ -67,7 +68,7 @@ export function FeatureCard({ item, index, fullImage = false }: FeatureCardProps
         <>
           {/* Full-bleed image background */}
           <div className="absolute inset-0 w-full h-full">
-            <img src={item.image!} alt={item.title} className="w-full h-full object-cover" />
+            <Image src={item.image!} alt={item.title} fill className="object-cover" />
             {/* Dark overlay */}
             <div className="absolute inset-0 bg-black/30" />
           </div>
@@ -114,10 +115,12 @@ export function FeatureCard({ item, index, fullImage = false }: FeatureCardProps
                   style={{ width: '100%', height: '100%' }}
                 />
               ) : item.image ? (
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-contain"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-contain"
                 />
               ) : (
                 <video
