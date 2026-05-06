@@ -139,7 +139,7 @@ export default function HomePage() {
       >
         {/* ═══ STROBE / SPOTLIGHT CONE — Visible V-beam from top ═══ */}
         {/* Wide outer cone glow */}
-        <div className="absolute top-[-15%] right-[12%] w-[500px] h-[110%] pointer-events-none z-[50] animate-strobe-light"
+        <div className="hidden lg:block absolute top-[-15%] right-[12%] w-[500px] h-[110%] pointer-events-none z-[50] animate-strobe-light"
           style={{
             background: 'linear-gradient(to bottom, rgba(140,170,255,0.7) 0%, rgba(100,130,255,0.3) 20%, rgba(78,84,200,0.08) 60%, transparent 85%)',
             clipPath: 'polygon(42% 0%, 58% 0%, 100% 100%, 0% 100%)',
@@ -147,7 +147,7 @@ export default function HomePage() {
           }}
         />
         {/* Bright inner core */}
-        <div className="absolute top-[-15%] right-[14%] w-[350px] h-[100%] pointer-events-none z-[51] animate-strobe-light"
+        <div className="hidden lg:block absolute top-[-15%] right-[14%] w-[350px] h-[100%] pointer-events-none z-[51] animate-strobe-light"
           style={{
             background: 'linear-gradient(to bottom, rgba(200,220,255,0.8) 0%, rgba(160,180,255,0.35) 15%, rgba(120,140,255,0.1) 50%, transparent 75%)',
             clipPath: 'polygon(44% 0%, 56% 0%, 90% 100%, 10% 100%)',
@@ -167,7 +167,7 @@ export default function HomePage() {
         {/* Perspective Grid Floor */}
         <div className="absolute bottom-0 left-0 w-full h-[50%] z-0 pointer-events-none"
           style={{ perspective: '1200px' }}>
-          <div className="absolute inset-0 opacity-[0.18]"
+          <div className="absolute inset-0 opacity-[0.35]"
             style={{
               backgroundImage: 'linear-gradient(#4E54C8 1px, transparent 1px), linear-gradient(90deg, #4E54C8 1px, transparent 1px)',
               backgroundSize: '60px 60px',
@@ -221,29 +221,40 @@ export default function HomePage() {
             </div>
 
             {/* Headline */}
-            <h1 className="font-(family-name:--font-outfit) font-bold text-[3rem] sm:text-[3.5rem] lg:text-[4rem] leading-[1.1] tracking-tight text-[var(--on-surface)] transition-colors duration-500 mb-4">
-              The smartest way to close 
-              MSME credit
+            <h1 className="font-(family-name:--font-outfit) font-bold text-[2rem] sm:text-[2.5rem] md:text-[2.75rem] lg:text-[3rem] xl:text-[3.25rem] leading-[1.1] tracking-tight text-[var(--on-surface)] transition-colors duration-500 mb-4">
+              The smartest way to close MSME credit and for businesses to find it.
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg sm:text-[1.15rem] text-[var(--on-muted)] transition-colors duration-500 max-w-lg mb-8 leading-relaxed font-light">
-              AI-powered matching connects Indian MSMEs and DSAs with ideal lenders in minutes, not weeks.
+              Cred2Tech uses proprietary algorithms to match Indian MSMEs and DSAs with ideal lenders in minutes.
             </p>
-            <div className="flex flex-wrap items-center gap-5 mb-8">
-              <TravelingBorderButton href="/register-dsa">
-                Register as DSA Partner
-              </TravelingBorderButton>
+          </div>
 
-              {/* Secondary Button to keep content intact */}
-              <TravelingBorderButton href="/login" solid={true} showIcon={true}>
-                Check Loan Eligibility
-              </TravelingBorderButton>
-            </div>
+          {/* Buttons positioned near bottom section */}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-2">
+            <TravelingBorderButton href="/register-dsa" size="sm">
+              Register as a DSA Partner
+            </TravelingBorderButton>
+
+            {/* Secondary Button to keep content intact */}
+            <TravelingBorderButton href="/login" solid={true} showIcon={true} size="sm">
+              Check My Loan Eligibility
+            </TravelingBorderButton>
+
+            {/* Request Demo Button */}
+            <TravelingBorderButton href="/login" solid={false} showIcon={false} size="sm">
+              Request a Demo
+            </TravelingBorderButton>
+          </div>
+
+          {/* Trust Line */}
+          <div className="text-sm text-[var(--on-muted)] mt-5 font-semibold">
+            Your data stays private. Secure. Confidential.
           </div>
 
           {/* Bottom 3-Column Section matched exactly from image */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 mt-auto pt-8 pb-4 w-full relative z-10 border-t border-[var(--outline)] md:border-none text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 mt-auto pt-2 pb-4 w-full relative z-10 border-t border-[var(--outline)] md:border-none text-left">
 
             {/* Col 1 */}
             <div className="pr-8 relative">
@@ -251,10 +262,10 @@ export default function HomePage() {
                 <div className="w-8 h-8 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500 p-1.5">
                   <span className="material-symbols-outlined text-[16px]">lock</span>
                 </div>
-                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">Bank-grade Security</h3>
+                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">Secure Data Protection</h3>
               </div>
               <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-11">
-                Direct API integrations with banks <br className="hidden md:block" /> with complete data encryption.
+                Your data is protected with <br className="hidden md:block" /> industry-standard encryption.
               </p>
               {/* Divider */}
               <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--outline)] transition-colors duration-500" />
@@ -266,7 +277,7 @@ export default function HomePage() {
                 <div className="w-8 h-8 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500 p-1.5">
                   <span className="material-symbols-outlined text-[16px]">speed</span>
                 </div>
-                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">5-min Eligibility</h3>
+                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">10-min Eligibility</h3>
               </div>
               <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-11">
                 Run comprehensive matching checks <br className="hidden md:block" /> in minutes, not weeks.
@@ -279,10 +290,10 @@ export default function HomePage() {
             <div className="px-0 md:pl-8 relative">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-8 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500 p-1.5 font-bold text-[16px]">C</div>
-                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">RBI Compliant</h3>
+                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">Professional Standards</h3>
               </div>
               <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-11">
-                Reliable lending transactions <br className="hidden md:block" /> backed by audit trails.
+                Following industry best practices <br className="hidden md:block" /> for reliable operations.
               </p>
             </div>
 
@@ -337,7 +348,7 @@ export default function HomePage() {
           {/* Header */}
           <div className="mb-14 sm:mb-18 max-w-xl">
             <p className="reveal text-xs font-bold tracking-[0.2em] uppercase text-[var(--on-muted)] mb-4">Why Cred2Tech</p>
-            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[var(--on-surface)] leading-[1.1] mb-4" style={{ transitionDelay: '0.1s' }}>
+            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-2xl sm:text-2.5rem lg:text-[2.25rem] text-[var(--on-surface)] leading-[1.1] mb-4" style={{ transitionDelay: '0.1s' }}>
               Credit the way it should have always worked.
             </h2>
             <p className="reveal text-[var(--on-muted)] text-base leading-relaxed" style={{ transitionDelay: '0.18s' }}>
@@ -351,10 +362,10 @@ export default function HomePage() {
             {/* Left — stacked feature rows */}
             <div className="space-y-0 divide-y divide-[var(--outline)]">
               {[
-                { title: 'Intelligent Matching', desc: 'An AI enabled algorithm analyses ITR, GST, bank statements, and bureau data to identify the lender most likely to approve the case at the best rate.', video: '/images/Intelligent Matching.mp4' },
-                { title: 'Secure & Private', desc: 'Customer financial data is fetched via secure, authorised APIs. Data remains fully encrypted, and the platform team has no access to customer details.', video: '/images/Secure & Private.mp4' },
-                { title: 'Fast. Simple. Digital.', desc: 'From eligibility check to lender introduction completed in minutes, not days or weeks. No branch visits. No paperwork piles.', video: '/images/Fast Simple Digital.mp4' },
-                { title: 'Full Transparency', desc: 'See exactly which lenders are available, at what loan amount, and at what interest rate before an application is even submitted. No hidden fees or surprises.', video: '/images/Full Transparency.mp4' },
+                { title: '🎯 Intelligent Matching', desc: 'An AI enabled algorithm analyses ITR, GST, bank statements, and bureau data to identify the lender most likely to approve the case at the best rate.', video: '/images/Intelligent Matching.mp4' },
+                { title: '🔐 Secure & Private', desc: 'Customer financial data is fetched via secure, authorised APIs with explicit consent at every step. Nothing is shared without authorisation. Data remains fully encrypted at all times. The Cred2Tech platform team has no access to the financial data, name, or contact details of any customer onboarded through a DSA.', video: '/images/Secure & Private.mp4' },
+                { title: '⚡ Fast. Simple. Digital.', desc: 'From eligibility check to lender introduction completed in minutes, not days or weeks. No branch visits. No paperwork piles.', video: '/images/Fast Simple Digital.mp4' },
+                { title: '📊 Full Transparency', desc: 'See exactly which lenders are available, at what loan amount, and at what interest rate before an application is even submitted.', video: '/images/Full Transparency.mp4' },
               ].map((item, i) => (
                 <div key={item.title} className="reveal group flex items-start gap-5 py-7" style={{ transitionDelay: `${i * 0.08}s` }}>
                   <div className="w-16 h-16 shrink-0 rounded-xl overflow-hidden border border-[var(--outline)] bg-white">
@@ -363,7 +374,7 @@ export default function HomePage() {
                     </ClientOnly>
                   </div>
                   <div>
-                    <h3 className="font-(family-name:--font-outfit) font-bold text-lg text-[var(--on-surface)] mb-1.5">{item.title}</h3>
+                    <h3 className="font-(family-name:--font-outfit) font-bold text-base sm:text-lg text-[var(--on-surface)] mb-1.5">{item.title}</h3>
                     <p className="text-[var(--on-muted)] text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
@@ -389,7 +400,7 @@ export default function HomePage() {
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="reveal text-xs font-bold tracking-[0.2em] uppercase text-[var(--on-muted)] mb-4">For DSA Agents</p>
-            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[var(--on-surface)] leading-[1.1] mb-4" style={{ transitionDelay: '0.1s' }}>
+            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-2xl sm:text-2.5rem lg:text-[2.25rem] text-[var(--on-surface)] leading-[1.1] mb-4" style={{ transitionDelay: '0.1s' }}>
               Run your lending business like a pro.
             </h2>
             <p className="reveal text-[var(--on-muted)] text-base leading-relaxed" style={{ transitionDelay: '0.18s' }}>
@@ -406,7 +417,7 @@ export default function HomePage() {
               { value: 0, suffix: '', label: 'Commission hidden' },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center justify-center py-8 px-4 text-center">
-                <span className="font-(family-name:--font-outfit) font-bold text-[2rem] sm:text-[2.5rem] text-[var(--on-surface)] leading-none mb-1.5">
+                <span className="font-(family-name:--font-outfit) font-bold text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] lg:text-[2.25rem] text-[var(--on-surface)] leading-none mb-1.5">
                   {stat.value === 0 ? '₹0' : <CountUp value={stat.value} suffix={stat.suffix} duration={1500} revealed={statsRevealed} />}
                 </span>
                 <span className="text-xs text-[var(--on-muted)] font-medium">{stat.label}</span>
@@ -417,7 +428,7 @@ export default function HomePage() {
           {/* Feature grid — illustration left, text right */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-px border border-[var(--outline)] rounded-2xl overflow-hidden">
             {[
-              { video: '/images/case management.mp4', title: 'Entire pipeline in one view', desc: 'No more spreadsheets. Every case, every stage, every lender — tracked live.' },
+              { video: '/images/case management.mp4', title: 'Entire pipeline in one view', desc: 'No more spreadsheets. Every case, every stage, every lender tracked live.' },
               { video: '/images/Lender Matching.mp4', title: 'Instant lender eligibility', desc: 'Run an MSME Loan eligibility check in minutes. Multiple lenders, one report.' },
               { video: '/images/team management.mp4', title: 'Team & wallet management', desc: 'Purchase credit packages, allocate balance to teams, track consumption, and manage sub-DSA networks.' },
               { video: '/images/wallet management.mp4', title: 'Payout Tracking', desc: 'Know exactly what has been earned, what is pending, and what has been paid out.' },
@@ -431,7 +442,7 @@ export default function HomePage() {
                   </ClientOnly>
                 </div>
                 <div className="p-6 flex flex-col justify-center">
-                  <h3 className="font-(family-name:--font-outfit) font-bold text-base sm:text-lg text-[var(--on-surface)] mb-2">{item.title}</h3>
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-sm sm:text-base text-[var(--on-surface)] mb-2">{item.title}</h3>
                   <p className="text-[var(--on-muted)] text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </div>
@@ -439,7 +450,7 @@ export default function HomePage() {
           </div>
 
           <div className="reveal mt-12 flex justify-center" style={{ transitionDelay: '0.3s' }}>
-            <TravelingBorderButton href="/login" solid={true}>
+            <TravelingBorderButton href="/login" solid={true} size="sm">
               Register as a DSA Partner
             </TravelingBorderButton>
           </div>
@@ -453,7 +464,7 @@ export default function HomePage() {
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="reveal text-xs font-bold tracking-[0.2em] uppercase text-[var(--on-muted)] mb-4">For Business Owners</p>
-            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[var(--on-surface)] leading-[1.1] mb-4" style={{ transitionDelay: '0.1s' }}>
+            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-2xl sm:text-2.5rem lg:text-[2.25rem] text-[var(--on-surface)] leading-[1.1] mb-4" style={{ transitionDelay: '0.1s' }}>
               Your business deserves better credit.
             </h2>
             <p className="reveal text-[var(--on-muted)] text-base leading-relaxed" style={{ transitionDelay: '0.18s' }}>
@@ -466,8 +477,8 @@ export default function HomePage() {
             {[
               { video: '/images/Intelligent Matching.mp4', step: '01', title: 'Eligibility check runs', desc: 'Bureau, ITR, GST, and bank data analysed in real time across multiple lenders.' },
               { video: '/images/Lender Matching.mp4', step: '02', title: 'Lender Matching', desc: 'Choose the best Loan offer; a Cred2Tech-empanelled agent handles the rest.' },
-              { video: '/images/Document Vault.mp4', step: '03', title: 'Document Vault', desc: 'All financial documents — ITR, GST, bank statements, PAN, Aadhaar, property papers — organised and accessible in one secure place.' },
-              { video: '/images/Application Tracking.mp4', step: '04', title: 'Application Tracking', desc: 'Track case status in real time — from submission to sanction to disbursement.' },
+              { video: '/images/Document Vault.mp4', step: '03', title: 'Document Vault', desc: 'All financial documents ITR, GST, bank statements, PAN, Aadhaar, property papers organised and accessible in one secure place.' },
+              { video: '/images/Application Tracking.mp4', step: '04', title: 'Application Tracking', desc: 'Track case status in real time from submission to sanction to disbursement.' },
             ].map((item, i) => (
               <div key={item.step}
                 className="reveal group flex flex-col sm:flex-row items-stretch bg-[var(--surface)] border-b border-[var(--outline)] last:border-b-0"
@@ -491,8 +502,8 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="reveal mt-12 flex justify-center" style={{ transitionDelay: '0.3s' }}>
-            <TravelingBorderButton href="/login" showIcon={true} solid={true}>
+          <div className="reveal mt-8 flex justify-center" style={{ transitionDelay: '0.3s' }}>
+            <TravelingBorderButton href="/login" showIcon={true} solid={true} size="sm">
               Check My Eligibility
             </TravelingBorderButton>
           </div>
@@ -510,14 +521,11 @@ export default function HomePage() {
             {/* Left — text */}
             <div>
               <p className="reveal text-xs font-bold tracking-[0.2em] uppercase text-[var(--on-muted)] mb-6">On the Horizon</p>
-              <h2 className="reveal font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.1] mb-6 text-[var(--on-surface)]" style={{ transitionDelay: '0.1s' }}>
+              <h2 className="reveal font-(family-name:--font-outfit) font-bold text-2xl sm:text-2.5rem lg:text-[2.25rem] leading-[1.1] mb-6 text-[var(--on-surface)]" style={{ transitionDelay: '0.1s' }}>
                 Never miss a government scheme again.
               </h2>
               <p className="reveal text-[var(--on-muted)] text-base leading-relaxed mb-4" style={{ transitionDelay: '0.18s' }}>
-                India has hundreds of central and state government schemes for MSMEs — subsidies, credit guarantees, grants, and incentives. Most businesses never find them.
-              </p>
-              <p className="reveal text-[var(--on-surface)] text-base leading-relaxed font-medium mb-10" style={{ transitionDelay: '0.24s' }}>
-                We're building a first-of-its-kind Government Scheme Identification Engine that maps your business profile to every scheme you qualify for.
+                India has hundreds of MSME schemes subsidies, guarantees, grants, and incentives yet most businesses miss them. Cred2Tech is building a first-of-its-kind engine that identifies every scheme a business may qualify for and guides them through the application journey.
               </p>
               <div className="reveal" style={{ transitionDelay: '0.3s' }}>
                 <form id="notify-form" onSubmit={(e) => e.preventDefault()}>
@@ -529,7 +537,7 @@ export default function HomePage() {
                       required
                     />
                     <TravelingBorderButton type="submit" size="sm" showIcon={false} className="shrink-0 m-1.5" solid={true}>
-                      Notify Me
+                      Notify Me When It Launches
                     </TravelingBorderButton>
                   </div>
                 </form>
@@ -558,17 +566,17 @@ export default function HomePage() {
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <p className="reveal text-xs font-bold tracking-[0.2em] uppercase text-[var(--on-muted)] mb-6">Get Started Today</p>
-            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-3xl sm:text-4xl lg:text-[2.75rem] mb-5 leading-[1.1] text-[var(--on-surface)]" style={{ transitionDelay: '0.1s' }}>
+            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-2xl sm:text-2.5rem lg:text-[2.25rem] mb-5 leading-[1.1] text-[var(--on-surface)]" style={{ transitionDelay: '0.1s' }}>
               Credit, Simplified. For every DSA who closes it and every MSME that deserves it.
             </h2>
             <p className="reveal text-[var(--on-muted)] text-base leading-relaxed mb-12" style={{ transitionDelay: '0.18s' }}>
               DSA agents and MSMEs across India are already using Cred2Tech to access smarter credit faster.
             </p>
             <div className="reveal flex flex-col sm:flex-row justify-center gap-4 mb-14" style={{ transitionDelay: '0.24s' }}>
-              <TravelingBorderButton href="/register-dsa" solid={true}>
-                Register as a DSA Partner
+              <TravelingBorderButton href="/register-dsa" solid={true} size="sm">
+                Register as a DSA
               </TravelingBorderButton>
-              <TravelingBorderButton href="/login" solid={false} showIcon={true}>
+              <TravelingBorderButton href="/login" solid={false} showIcon={true} size="sm">
                 Check My Loan Eligibility
               </TravelingBorderButton>
             </div>
@@ -576,17 +584,17 @@ export default function HomePage() {
             <div className="reveal border-t border-[var(--outline)] pt-10 mb-12 flex flex-wrap items-center justify-center gap-8 text-sm text-[var(--on-muted)]" style={{ transitionDelay: '0.3s' }}>
               <span className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[16px]">lock</span>
-                Bank-grade Security
+                Secure Data Protection
               </span>
               <span className="w-1 h-1 rounded-full bg-[var(--outline)]" />
               <span className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[16px]">verified_user</span>
-                RBI Compliant
+                Professional Standards
               </span>
               <span className="w-1 h-1 rounded-full bg-[var(--outline)]" />
               <span className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[16px]">timer</span>
-                5-min Eligibility Checks
+                10-min Eligibility Checks
               </span>
             </div>
           </div>

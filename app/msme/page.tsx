@@ -1,10 +1,14 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
-import { colors } from '@/app/theme';
+import { useTheme } from 'next-themes';
+import { ThreeDCard } from '../components/ThreeDCard';
+import { TravelingBorderButton } from '../components/TravelingBorderButton';
+import { MarqueeTicker } from '../components/MarqueeTicker';
 import LoanEligibilityWidget from '@/app/components/LoanEligibilityWidget';
-import Ribbon3D from '@/app/components/Ribbon3D';
+import Faq from '@/app/components/Faq';
+import { FeatureCard } from '@/app/components/FeatureCard';
 
 // Lottie Player Component
 const LottiePlayer = (props: any) => {
@@ -22,354 +26,327 @@ function ClientOnly({ children }: { children: React.ReactNode }) {
 const steps = [
   {
     title: 'Register & Verify',
-    description: 'Create an account with business PAN and mobile number. OTP verified. Under 2 minutes.',
+    description: 'Instantly create an account with business PAN and mobile number.',
   },
   {
     title: 'Pay Eligibility Fee',
-    description: 'A one time fee of ₹1,000 is charged to initiate the eligibility check.',
+    description: 'A one-time fee of ₹1,000 is charged to initiate the eligibility check.',
   },
   {
     title: 'Consent & Fetch',
-    description: 'Authorise the platform to fetch ITR, GST returns, and bank statement data via secure, authorised APIs. Explicit consent is obtained at every step.',
-  },
-  {
-    title: 'Bureau Analysis',
-    description: 'A soft bureau inquiry analyses credit obligations. This does not affect the CIBIL score.',
+    description: 'Authorise the platform to fetch Bureau, ITR, GST returns, and bank statement data via secure, authorised APIs. Explicit consent is obtained at every step.',
   },
   {
     title: 'Eligibility Report Generated',
-    description: 'A detailed report is generated showing LAP eligibility across multiple lenders loan amount, indicative rate, and lender suitability.',
+    description: 'A detailed report is generated showing eligibility across multiple lenders loan amount, indicative rate, and lender suitability.',
   },
   {
     title: 'Sit Back. Relax. Loan On the Way.',
-    description: 'Choose the preferred lender. A Cred2Tech empanelled DSA partner is assigned to service the application through to disbursement.',
+    description: 'Choose the preferred lender. A Cred2Tech-empanelled DSA partner is assigned to service the application through to disbursement.',
   },
 ];
 
 const features = [
   {
-    icon: 'analytics',
-    title: 'LAP Eligibility Report',
-    description: 'A detailed report covering Loan Against Property eligibility across multiple lenders loan amount, tenor, indicative ROI, and eligibility confidence score.',
+    title: 'Eligibility Report',
+    desc: 'A detailed report covering Loan eligibility across multiple lenders loan amount, tenor, indicative ROI, and eligibility confidence score.',
+    col: 'col-span-1',
+    video: null,
+    lottie: 'https://assets9.lottiefiles.com/packages/lf20_5njp3vgg.json',
   },
   {
-    icon: 'account_balance',
     title: 'Lender Matching',
-    description: 'See which lenders are right for the profile Banks and NBFCs ranked by best fit for the LAP application.',
+    desc: 'See which lenders are right for the profile Banks and NBFCs ranked by best fit for the application.',
+    col: 'col-span-1',
+    video: '/images/Lender Matching.mp4',
+    lottie: null,
   },
   {
-    icon: 'folder_copy',
     title: 'Document Vault',
-    description: 'All financial documents ITR, GST, bank statements, PAN, Aadhaar, property papers organised and accessible in one secure place.',
+    desc: 'All financial documents ITR, GST, bank statements, PAN, Aadhaar, property papers organised and accessible in one secure place.',
+    col: 'col-span-1',
+    video: '/images/Document Vault.mp4',
+    lottie: null,
   },
   {
-    icon: 'track_changes',
     title: 'Application Tracking',
-    description: 'Track case status in real time from submission to sanction to disbursement.',
+    desc: 'Track case status in real time from submission to sanction to disbursement.',
+    col: 'col-span-1',
+    video: '/images/Application Tracking.mp4',
+    lottie: null,
   },
   {
-    icon: 'shield_lock',
-    title: 'Privacy First Design',
-    description: 'Data is yours. Authorised APIs are used with explicit consent before fetching any financial data. Cred2Tech does not share data without user authorisation. The Cred2Tech platform team has no access to the financial data, name, or contact details of any customer whether onboarded directly or through a DSA partner.',
+    title: 'Privacy-First Design',
+    desc: 'Data is yours. Authorised APIs are used with explicit consent before fetching any financial data. Cred2Tech does not share data without user authorisation.',
+    col: 'col-span-1',
+    video: '/images/privacy.mp4',
+    lottie: null,
   },
   {
-    icon: 'account_balance_wallet',
     title: 'Government Schemes  🔜',
-    description: 'Discover central and state government schemes applicable to the business subsidies, guarantees, grants all in one place. Coming soon.',
+    desc: 'Discover central and state government schemes applicable to the business subsidies, guarantees, grants all in one place. Coming soon.',
+    col: 'col-span-1',
+    video: '/images/Govt Schemes.mp4',
+    lottie: null,
+    badge: 'Coming Soon',
   },
-];
-
-const audience = [
-  'Sole proprietors and micro businesses with immovable property',
-  'Small and medium manufacturing and trading units',
-  'Service businesses logistics, IT, healthcare, hospitality',
-  'Businesses with 2+ years of operations seeking working capital or expansion finance against property',
 ];
 
 const faqs = [
   {
-    question: 'How much does the eligibility check cost?',
-    answer: 'A one time fee of ₹1,000 applies for MSMEs registering directly on the platform. For MSMEs onboarded through a DSA partner, the check is facilitated by the DSA using their purchased credit package.',
+    q: 'How much does the eligibility check cost?',
+    a: 'A one-time fee of ₹1,000 applies for MSMEs registering directly on the platform. For MSMEs onboarded through a DSA partner, the check is facilitated by the DSA.',
   },
   {
-    question: 'Will a third party be involved in the loan process?',
-    answer: 'Yes. MSMEs registering directly on Cred2Tech are serviced by a Cred2Tech empanelled DSA partner. The MSME remains fully in control of their application and data throughout the process.',
+    q: 'Will a third party be involved in the loan process?',
+    a: 'Yes. MSMEs registering directly on Cred2Tech are serviced by a Cred2Tech-empanelled DSA partner. The MSME remains fully in control of their application and data throughout the process.',
   },
   {
-    question: 'Does checking eligibility affect the credit score?',
-    answer: 'No. The eligibility check uses a soft bureau inquiry and does not impact the CIBIL score.',
+    q: 'Does checking eligibility affect the credit score?',
+    a: 'No. The eligibility check uses a soft bureau inquiry and does not impact the score.',
   },
   {
-    question: 'Which lenders are available on the platform?',
-    answer: 'Cred2Tech works with a curated panel of leading banks and NBFCs for Loan Against Property. The full list is displayed in the eligibility report.',
+    q: 'Which lenders are available on the platform?',
+    a: 'Cred2Tech works with a curated panel of leading banks and NBFCs for Loan Against Property. The full list is displayed in the eligibility report.',
   },
   {
-    question: 'Is the data submitted to the platform secure?',
-    answer: 'Yes. All data is encrypted and consent driven. Data is never shared without explicit user authorisation. The Cred2Tech platform team has no access to the financial data, name, or contact details of any customer onboarded on the platform. Data sovereignty remains with the user.',
+    q: 'Is the data submitted to the platform secure?',
+    a: 'Yes. All data is encrypted and consent-driven. Data is never shared without explicit user authorisation.',
   },
   {
-    question: 'Who handles the loan after a lender is chosen?',
-    answer: 'Once a lender is selected, a Cred2Tech empanelled DSA partner takes over the servicing of the application from document collection through to disbursement. Sit back, relax loan on the way.',
+    q: 'Who handles the loan after a lender is chosen?',
+    a: 'Once a lender is selected, a Cred2Tech-empanelled DSA partner takes over the servicing of the application from document collection through to disbursement. Sit back, relax loan on the way.',
   },
 ];
 
-function MsmeFaqAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  return (
-    <div className="space-y-3 max-w-3xl mx-auto">
-      {faqs.map((faq, i) => {
-        const isOpen = openIndex === i;
-        return (
-          <div key={i} className="bg-white border border-[var(--on-surface)]/10 shadow-sm overflow-hidden transition-shadow hover:shadow-md">
-            <button
-              suppressHydrationWarning
-              className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
-              onClick={() => setOpenIndex(isOpen ? null : i)}
-            >
-              <span className="font-(family-name:--font-outfit) font-bold text-[var(--on-surface)] text-base sm:text-lg leading-snug">{faq.question}</span>
-              <span className={`flex-shrink-0 w-7 h-7 rounded-full border-2 border-[var(--on-surface)]/20 flex items-center justify-center transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[var(--on-surface)] border-[var(--on-surface)]' : ''}`}>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={isOpen ? 'var(--on-surface)' : 'var(--on-surface)'} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-              </span>
-            </button>
-            <div style={{ maxHeight: isOpen ? '400px' : '0', transition: 'max-height 0.35s cubic-bezier(0.22,1,0.36,1)', overflow: 'hidden' }}>
-              <p className="px-6 pb-5 text-sm sm:text-base text-[#424751] leading-relaxed border-t border-[var(--on-surface)]/5 pt-4">{faq.answer}</p>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
 export default function MSMEPage() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  const lenders = [
+    { name: 'HDFC Bank', image: '/banks logo/HDFC_Bank_Logo.svg.png' },
+    { name: 'Axis Bank', image: '/banks logo/axis bank.jpg' },
+    { name: 'Kotak Mahindra', image: '/banks logo/Kotak_Mahindra_Bank_logo.png' },
+    { name: 'Bank of Baroda', image: '/banks logo/BankOfBarodaLogo.svg' },
+    { name: 'Yes Bank', image: '/banks logo/Yes-Bank-New-Logo-Vector.svg-.png' },
+    { name: 'IDFC First', image: '/banks logo/Logo_of_IDFC_First_Bank.svg.png' },
+  ];
+
   useEffect(() => {
-    (window as any).__MSME_UNMOUNTED = false;
-    if (window.gsap && window.ScrollTrigger && window.THREE) {
-      setTimeout(() => {
-        if (!(window as any).__MSME_UNMOUNTED) window.dispatchEvent(new Event('libs-ready'));
-      }, 150);
-    }
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     const bar = document.createElement('div');
     bar.id = 'scroll-bar';
-    bar.style.cssText = 'position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--on-surface),var(--surface-low));z-index:9999;pointer-events:none;transition:width 0.1s;';
+    bar.style.cssText = 'position:fixed;top:0;left:0;height:2px;width:0%;background:var(--on-surface);z-index:9999;pointer-events:none;transition:width 0.1s;';
     document.body.prepend(bar);
     const onScroll = () => {
       bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
-      (window as any).__MSME_UNMOUNTED = true;
-      window.removeEventListener('scroll', onScroll);
       bar.remove();
       document.getElementById('scroll-bar')?.remove();
-      if (window.ScrollTrigger) window.ScrollTrigger.killAll();
     };
   }, []);
 
-  return (
-    <div className="bg-[#fcf9f8] text-[#1b1c1c] font-(family-name:--font-inter) overflow-x-clip">
-      <Script
-        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-        strategy="afterInteractive"
-        onLoad={() => {
-          const st = document.createElement('script');
-          st.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js';
-          st.onload = () => {
-            const three = document.createElement('script');
-            three.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js';
-            three.onload = () => { window.dispatchEvent(new Event('libs-ready')); };
-            document.head.appendChild(three);
-          };
-          document.head.appendChild(st);
-        }}
-      />
+  // Intersection observer for scroll-reveal elements
+  useEffect(() => {
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    revealEls.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [mounted]);
 
+  return (
+    <div className="bg-[var(--bg)] text-[var(--on-surface)] font-(family-name:--font-inter) overflow-x-clip selection:bg-black selection:text-white">
+
+      {/* ══ S1 — HERO ══ */}
       <section
         id="hero-section"
-        className="relative min-h-screen flex items-center overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg,#0a1628 0%,#0d2d6b 35%,#1565d8 70%,#0a1628 100%)',
-        }}
+        className="relative h-screen flex flex-col justify-center overflow-hidden transition-colors duration-500"
       >
-        <canvas id="ribbon-canvas" className="absolute inset-0 w-full h-full pointer-events-none z-0" />
-        <div className="hidden lg:block px-orb w-[400px] h-[400px] bg-[#0d3a8e] absolute top-[-100px] left-[-150px] z-0" id="orb-h1" />
-        <div className="hidden lg:block px-orb w-[300px] h-[300px] bg-[var(--on-surface)] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
-        <div className="hidden lg:block px-orb w-[200px] h-[200px] bg-[#00aaff] absolute top-[35%] left-[45%] z-0" id="orb-h3" />
-        <div className="px-grid z-0" id="hero-grid" />
+        {/* ═══ STROBE / SPOTLIGHT CONE — Visible V-beam from top ═══ */}
+        {/* Wide outer cone glow */}
+        <div className="hidden lg:block absolute top-[-15%] right-[12%] w-[500px] h-[110%] pointer-events-none z-[50] animate-strobe-light"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(140,170,255,0.7) 0%, rgba(100,130,255,0.3) 20%, rgba(78,84,200,0.08) 60%, transparent 85%)',
+            clipPath: 'polygon(42% 0%, 58% 0%, 100% 100%, 0% 100%)',
+            filter: 'blur(80px)',
+          }}
+        />
+        {/* Bright inner core */}
+        <div className="hidden lg:block absolute top-[-15%] right-[14%] w-[350px] h-[100%] pointer-events-none z-[51] animate-strobe-light"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(200,220,255,0.8) 0%, rgba(160,180,255,0.35) 15%, rgba(120,140,255,0.1) 50%, transparent 75%)',
+            clipPath: 'polygon(44% 0%, 56% 0%, 90% 100%, 10% 100%)',
+            filter: 'blur(40px)',
+          }}
+        />
+        {/* Ground splash — where the light hits */}
+        <div className="absolute bottom-[15%] right-[10%] w-[600px] h-[200px] pointer-events-none z-[3]"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(100,140,255,0.25) 0%, rgba(78,84,200,0.08) 40%, transparent 70%)',
+            filter: 'blur(30px)',
+          }}
+        />
+        {/* Ambient haze */}
+        <div className="absolute -top-[5%] right-[0%] w-[800px] h-[800px] bg-gradient-to-b from-blue-500/15 via-indigo-500/5 to-transparent blur-[80px] pointer-events-none z-[3]" />
 
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 pt-28 pb-16 lg:pt-0 lg:pb-0 lg:min-h-screen">
-          {/* LEFT — Copy */}
-          <div className="order-2 lg:order-1 text-center lg:text-left">
-            <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[var(--on-surface)] mb-4 px-3 py-1 border border-[var(--on-surface)]/30 bg-[var(--on-surface)]/10">
-              FOR BUSINESS OWNERS
-            </span>
+        {/* Perspective Grid Floor */}
+        <div className="absolute bottom-0 left-0 w-full h-[50%] z-0 pointer-events-none"
+          style={{ perspective: '1200px' }}>
+          <div className="absolute inset-0 opacity-[0.35]"
+            style={{
+              backgroundImage: 'linear-gradient(#4E54C8 1px, transparent 1px), linear-gradient(90deg, #4E54C8 1px, transparent 1px)',
+              backgroundSize: '60px 60px',
+              transform: 'rotateX(65deg)',
+              transformOrigin: 'center bottom',
+              maskImage: 'linear-gradient(to top, white 0%, transparent 70%)',
+              WebkitMaskImage: 'linear-gradient(to top, white 0%, transparent 70%)',
+            }} />
+        </div>
 
-            <h1 className="font-(family-name:--font-outfit) font-extrabold text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.75rem] leading-[1.05] tracking-tight text-white mb-6 sm:mb-8">
+        {/* ═══ HERO IMAGE ═══ */}
+        <div className="absolute right-8 top-[5%] w-[650px] h-[650px] hidden lg:block z-20 pointer-events-auto">
+          <div className="w-full h-full relative">
+            <img
+              src="/hero2.png"
+              alt="Cred2Tech MSME Platform"
+              className="w-full h-full object-contain"
+            />
+            {/* Blur overlay for edge blending */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 90%)',
+                WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 90%)',
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-4 relative z-10 flex flex-col justify-between h-full text-left">
+
+          <div className="max-w-2xl mt-12 lg:mt-16 self-start w-full">
+            {/* Badge */}
+            <div className="mb-4">
+              <span className="inline-flex items-center text-[#4a8df8] font-(family-name:--font-jb-mono) text-sm font-medium tracking-wide">
+                FOR MSME
+              </span>
+            </div>
+
+            {/* Headline */}
+            <h1 className="font-(family-name:--font-outfit) font-bold text-[1.75rem] sm:text-[2.25rem] md:text-[2.5rem] lg:text-[2.75rem] xl:text-[3rem] leading-[1.1] tracking-tight text-[var(--on-surface)] transition-colors duration-500 mb-4">
               Find the right Loan for your business.
             </h1>
 
-            <p className="text-sm sm:text-base lg:text-[1.05rem] text-white/80 max-w-lg mx-auto lg:mx-0 mb-6 sm:mb-8 leading-relaxed">
-              A Loan shouldn't mean weeks of uncertainty. Cred2Tech shows MSMEs exactly which lenders will consider them — plus likely terms. Get the entire report for as low as ₹1,000.
-            </p>
-
-            <div className="flex flex-col xs:flex-row justify-center lg:justify-start gap-3 mb-4 sm:mb-5">
-              <Link
-                href="/login"
-                className="inline-flex items-center justify-center gap-1.5 bg-[var(--on-surface)] text-[#001233] px-5 py-2.5 sm:px-6 sm:py-3 font-bold text-sm sm:text-[0.9375rem] hover:shadow-[0_0_28px_rgba(29,255,155,0.5)] hover:scale-[1.02] transition-all whitespace-nowrap group"
-              >
-                Check My LAP Eligibility ₹1,000
-                <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-              </Link>
-            </div>
-
-            <p className="flex items-center justify-center lg:justify-start gap-1.5 text-white/45 text-xs font-(family-name:--font-jb-mono)">
-              <span className="material-symbols-outlined text-[14px]">lock</span>
-              Consent driven. Secure. No unwanted calls.
+            {/* Subheadline */}
+            <p className="text-lg sm:text-[1.15rem] text-[var(--on-muted)] transition-colors duration-500 max-w-lg mb-8 leading-relaxed font-light">
+              A Loan shouldn't mean weeks of uncertainty. Cred2Tech shows MSMEs exactly which lenders will consider them plus likely terms. Get the entire report for as low as: ₹1,000.
             </p>
           </div>
 
-          {/* RIGHT — Widget */}
-          <div className="order-1 lg:order-2 relative flex justify-center items-center -mt-20 sm:-mt-4 lg:mt-0">
-            <LoanEligibilityWidget />
+          {/* Buttons positioned near bottom section */}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-2">
+            <TravelingBorderButton href="/login" size="sm">
+              Check My LAP Eligibility
+            </TravelingBorderButton>
           </div>
-        </div>
-      </section>
 
-      {/* ══ MSME STATS STRIP ══ */}
-      <section className="py-8 sm:py-10 bg-[var(--on-surface)] overflow-hidden relative">
-        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '24px 24px' }} />
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-white/10 text-center">
-            {[
-              { value: '₹1,000', label: 'One-time Eligibility Check', icon: 'receipt' },
-              { value: 'Soft Pull', label: 'No Credit Score Impact', icon: 'shield_lock' },
-              { value: 'Multi-Lender', label: 'Best Rate Matched', icon: 'compare_arrows' },
-              { value: '100%', label: 'Data Privacy Guaranteed', icon: 'lock' },
-            ].map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center text-center lg:px-8 group">
-                <span className="material-symbols-outlined text-[var(--on-surface)]/60 text-2xl mb-2 group-hover:text-[var(--on-surface)] transition-colors duration-300">{stat.icon}</span>
-                <div className="font-(family-name:--font-outfit) text-xl sm:text-2xl lg:text-3xl font-black text-white leading-none mb-1">{stat.value}</div>
-                <div className="font-(family-name:--font-jb-mono) text-[9px] sm:text-[10px] font-bold tracking-[0.16em] uppercase text-white/40">{stat.label}</div>
-              </div>
-            ))}
+          {/* Button subtext */}
+          <div className="text-sm text-[var(--on-muted)] mb-2">
+            Consent-driven. Secure. No unwanted calls.
           </div>
-        </div>
-      </section>
 
-      <section id="msme-how" className="py-10 sm:py-12 lg:py-16 bg-[var(--surface-low)] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl mb-12">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[var(--on-surface)]">
-              How It Works — MSME Detail
-            </span>
-            <h2 className="font-(family-name:--font-outfit) text-[1.8rem] sm:text-[2.2rem] lg:text-[2.6rem] font-bold text-[var(--on-surface)] mt-4">
-              THE LAP JOURNEY
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-7">
-            {steps.map((step, idx) => (
-              <div
-                key={step.title}
-                className="group relative overflow-hidden bg-white p-6 sm:p-7 border border-[#e8e4e1] shadow-[0_6px_24px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_top_left,var(--on-surface)_0%,transparent_55%)] transition-opacity group-hover:opacity-[0.16]" />
-                <div className="relative z-10">
-                  <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.3em] text-[#1565d8]/80 uppercase">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="mt-3 font-(family-name:--font-outfit) text-xl font-semibold text-[var(--on-surface)]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 text-sm sm:text-base text-[#424751] leading-relaxed">
-                    {step.description}
-                  </p>
+          {/* Bottom 3-Column Section matched exactly from home page */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 mt-auto pt-2 pb-4 w-full relative z-10 border-t border-[var(--outline)] md:border-none text-left">
+
+            {/* Col 1 */}
+            <div className="pr-8 relative">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-8 h-8 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500 p-1.5">
+                  <span className="material-symbols-outlined text-[16px]">lock</span>
                 </div>
+                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">Secure Data Protection</h3>
               </div>
-            ))}
+              <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-11">
+                Your data is protected with <br className="hidden md:block" /> industry-standard encryption.
+              </p>
+              {/* Divider */}
+              <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--outline)] transition-colors duration-500" />
+            </div>
+
+            {/* Col 2 */}
+            <div className="px-0 md:px-8 relative">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-8 h-8 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500 p-1.5">
+                  <span className="material-symbols-outlined text-[16px]">speed</span>
+                </div>
+                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">10-min Eligibility</h3>
+              </div>
+              <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-11">
+                Run comprehensive matching checks <br className="hidden md:block" /> in minutes, not weeks.
+              </p>
+              {/* Divider */}
+              <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-12 bg-[var(--outline)] transition-colors duration-500" />
+            </div>
+
+            {/* Col 3 */}
+            <div className="px-0 md:pl-8 relative">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-8 h-8 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500 p-1.5 font-bold text-[16px]">C</div>
+                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">Professional Standards</h3>
+              </div>
+              <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-11">
+                Following industry best practices <br className="hidden md:block" /> for reliable operations.
+              </p>
+            </div>
+
           </div>
+
         </div>
       </section>
 
-      <section id="msme-features" className="py-10 sm:py-12 lg:py-16 bg-[var(--on-surface)] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: 'linear-gradient(var(--on-surface) 1px,transparent 1px),linear-gradient(90deg,var(--on-surface) 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--on-surface)]/20 to-transparent" />
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Header with Title Left and Arrows Right */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
-            <div>
-              <span className="inline-flex items-center gap-2 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-[0.12em] uppercase text-[var(--on-surface)] mb-3 px-5 py-2.5 bg-white border-2 border-[var(--on-surface)] shadow-[0_4px_20px_rgba(0,109,63,0.15)]">
-                <span className="w-2 h-2 bg-[var(--on-surface)]" />
-                Features — MSME Portal
-              </span>
-              <h2 className="font-(family-name:--font-outfit) text-[1.8rem] sm:text-[2.2rem] lg:text-[2.6rem] font-bold text-[#001233] leading-tight uppercase tracking-wide">
-                Features
-              </h2>
-            </div>
-            {/* Navigation Arrows - Right Side */}
-            <div className="flex items-center gap-2">
-              <button 
-                onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: -360, behavior: 'smooth' })}
-                className="w-10 h-10 flex items-center justify-center bg-white border-2 border-[var(--on-surface)] text-[var(--on-surface)] hover:bg-[var(--on-surface)] hover:text-white transition-all duration-300 shadow-lg"
-                aria-label="Scroll left"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button 
-                onClick={() => document.getElementById('feature-carousel')?.scrollBy({ left: 360, behavior: 'smooth' })}
-                className="w-10 h-10 flex items-center justify-center bg-[var(--on-surface)] border-2 border-[var(--on-surface)] text-white hover:bg-[var(--surface-low)] hover:border-[var(--surface-low)] transition-all duration-300 shadow-lg"
-                aria-label="Scroll right"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
+      {/* ══ S2 — MSME BENEFITS ══ */}
+      <section id="msme-benefits" className="py-10 sm:py-14 bg-[var(--bg)] border-b border-[var(--outline)] transition-colors duration-500">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="reveal text-xs font-bold tracking-[0.2em] uppercase text-[var(--on-muted)] mb-4">Social Proof</p>
+          <h2 className="reveal font-(family-name:--font-outfit) font-bold text-base sm:text-lg lg:text-xl text-[var(--on-surface)] mb-3" style={{ transitionDelay: '0.1s' }}>
+            Matched with lenders you can trust
+          </h2>
+          <p className="reveal text-[var(--on-muted)] max-w-xl mx-auto mb-8 text-sm leading-relaxed" style={{ transitionDelay: '0.18s' }}>
+            Cred2Tech connects agents and MSME to leading banks, NBFCs, and digital lenders all through a single eligibility check.
+          </p>
 
-          {/* Feature Carousel */}
-          <div className="relative overflow-visible">
-            {/* Carousel Container */}
-            <div id="feature-carousel" className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 px-2 -mx-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-              {features.map((feature, index) => (
-                <div key={feature.title} className="snap-start shrink-0 w-[300px] sm:w-[340px] group relative overflow-hidden bg-white p-6 sm:p-7 rounded-2xl border border-black/[0.05] shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1">
-                  <div className="w-[120px] h-[120px] mb-4 overflow-hidden rounded-lg">
-                    <ClientOnly>
-                      {index === 0 ? (
-                        <LottiePlayer 
-                          src="https://assets9.lottiefiles.com/packages/lf20_5njp3vgg.json"
-                          background="transparent" 
-                          speed="1" 
-                          loop 
-                          autoplay 
-                          style={{ width: '120px', height: '120px' }} 
-                        />
-                      ) : (
-                        <video 
-                          src={
-                            index === 1 ? "/images/Lender Matching.mp4" :
-                            index === 2 ? "/images/Document Vault.mp4" :
-                            index === 3 ? "/images/Application Tracking.mp4" :
-                            index === 4 ? "/images/privacy.mp4" :
-                            "/images/Govt Schemes.mp4"
-                          } 
-                          autoPlay 
-                          loop 
-                          muted 
-                          playsInline
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                    </ClientOnly>
-                  </div>
-                  <h3 className="font-(family-name:--font-outfit) text-lg sm:text-xl font-semibold text-[var(--on-surface)] leading-tight">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-[#424751] leading-relaxed">
-                    {feature.description}
-                  </p>
+          <div className="reveal marquee-wrap mt-10 overflow-hidden relative h-16 sm:h-20" style={{ transitionDelay: '0.24s' }}>
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r z-10 from-[var(--surface)] via-[var(--surface)]/80 to-transparent" />
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l z-10 from-[var(--surface)] via-[var(--surface)]/80 to-transparent" />
+
+            <div className="marquee-track marquee-fast flex items-center h-full min-w-max" id="lender-marquee">
+              {[...lenders, ...lenders, ...lenders, ...lenders].map((lender, i) => (
+                <div
+                  key={`${lender.name}-${i}`}
+                  className="flex shrink-0 items-center justify-center px-1 sm:px-2"
+                  style={{ height: '48px' }}
+                >
+                  <img
+                    src={lender.image}
+                    alt={lender.name}
+                    className="h-full w-auto object-contain brightness-100 contrast-100"
+                    loading="eager"
+                  />
                 </div>
               ))}
             </div>
@@ -377,55 +354,77 @@ export default function MSMEPage() {
         </div>
       </section>
 
-      <section id="msme-faq" className="py-10 sm:py-12 lg:py-16 bg-[#f0f7ff] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-10 sm:mb-14">
-            <span className="font-(family-name:--font-jb-mono) text-[10px] font-bold tracking-[0.22em] uppercase text-[var(--on-surface)]">
-              MSME FAQ
-            </span>
-            <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[var(--on-surface)]">
-              MSME FAQ
+      {/* ══ S3 — HOW IT WORKS ══ */}
+      <section id="msme-how" className="py-20 sm:py-28 lg:py-32 relative overflow-hidden transition-colors duration-500 bg-[var(--bg)]">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-14 sm:mb-18 max-w-xl">
+            <p className="reveal text-xs font-bold tracking-[0.2em] uppercase text-[var(--on-muted)] mb-4">How It Works — MSME Detail</p>
+            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-lg sm:text-xl lg:text-[2rem] text-[var(--on-surface)] leading-[1.1] mb-4" style={{ transitionDelay: '0.1s' }}>
+              THE LOAN JOURNEY
             </h2>
           </div>
-          <MsmeFaqAccordion />
+
+          <div className="space-y-px border border-[var(--outline)] rounded-2xl overflow-hidden">
+            {steps.map((step, idx) => (
+              <div
+                key={step.title}
+                className="reveal group flex flex-col sm:flex-row items-stretch bg-[var(--surface)] border-b border-[var(--outline)] last:border-b-0"
+                style={{ transitionDelay: `${idx * 0.09}s` }}
+              >
+                {/* Step number */}
+                <div className="flex items-center justify-center sm:justify-start px-6 sm:px-8 py-4 sm:py-0 sm:w-20 shrink-0 border-b sm:border-b-0 sm:border-r border-[var(--outline)]">
+                  <span className="font-(family-name:--font-outfit) font-bold text-2xl text-[var(--on-surface)]/20 select-none">{String(idx + 1).padStart(2, '0')}</span>
+                </div>
+                {/* Text */}
+                <div className="px-6 py-6 flex flex-col justify-center">
+                  <h3 className="font-(family-name:--font-outfit) font-bold text-base sm:text-lg text-[var(--on-surface)] mb-1.5">{step.title}</h3>
+                  <p className="text-[var(--on-muted)] text-sm leading-relaxed max-w-lg">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <Script id="widget-anim-script" strategy="afterInteractive">{`
-(function(){
- const items=[0,1,2].map(i=>document.getElementById('widget-lender-'+i));
- function show(i){if(!items[i])return;items[i].style.transition='opacity 0.45s ease,transform 0.45s ease';items[i].style.opacity='1';items[i].style.transform='translateY(0)';}
- function hide(i){if(!items[i])return;items[i].style.transition='none';items[i].style.opacity='0';items[i].style.transform='translateY(6px)';}
- function run(){setTimeout(()=>show(0),600);setTimeout(()=>show(1),1150);setTimeout(()=>show(2),1700);setTimeout(()=>{[0,1,2].forEach(hide);setTimeout(run,400);},5200);}
- if(items.some(Boolean)) run();
-})();
-      `}</Script>
+      {/* ══ S4 — FEATURES ══ */}
+      <section id="msme-features" className="py-20 sm:py-28 lg:py-32 relative overflow-hidden transition-colors duration-500 border-t border-[var(--outline)] bg-[var(--surface)]">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="reveal text-xs font-bold tracking-[0.2em] uppercase text-[var(--on-muted)] mb-4">Features</p>
+            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-lg sm:text-xl lg:text-[2rem] text-[var(--on-surface)] leading-[1.1] mb-4" style={{ transitionDelay: '0.1s' }}>
+              Everything you need for your loan journey
+            </h2>
+            <p className="reveal text-[var(--on-muted)] text-base leading-relaxed" style={{ transitionDelay: '0.18s' }}>
+              Powerful tools designed specifically for MSMEs to find the right loan at the best rate.
+            </p>
+          </div>
 
-      <Ribbon3D />
+          {/* Feature Grid — Portrait Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 px-12 sm:px-24 lg:px-48">
+            {features.map((item, i) => (
+              <FeatureCard key={item.title} item={item} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <Script id="msme-parallax" strategy="afterInteractive">{`
-(function(){
-  function initParallax(){
-    if(!window.gsap||!window.ScrollTrigger)return;
-    const orbH1=document.getElementById('orb-h1'),orbH2=document.getElementById('orb-h2'),orbH3=document.getElementById('orb-h3'),heroGrid=document.getElementById('hero-grid');
-    if(orbH1)gsap.to(orbH1,{opacity:0.55,duration:1.5,ease:'power2.out'});
-    if(orbH2)gsap.to(orbH2,{opacity:0.15,duration:1.5,delay:0.2,ease:'power2.out'});
-    if(orbH3)gsap.to(orbH3,{opacity:0.10,duration:1.5,delay:0.4,ease:'power2.out'});
-    if(heroGrid)gsap.to(heroGrid,{opacity:1,duration:1});
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.to('#orb-h1',{scrollTrigger:{trigger:'#hero-section',start:'top top',end:'bottom top',scrub:true},y:60});
-    gsap.to('#orb-h2',{scrollTrigger:{trigger:'#hero-section',start:'top top',end:'bottom top',scrub:true},y:-40});
-    gsap.to('#hero-grid',{scrollTrigger:{trigger:'#hero-section',start:'top top',end:'bottom top',scrub:true},y:20});
-  }
-  window.addEventListener('libs-ready',initParallax,{once:true});
-})();
-      `}</Script>
+      {/* ══ FAQ ══ */}
+      <section id="msme-faq" className="py-20 sm:py-28 lg:py-32 relative overflow-hidden transition-colors duration-500 bg-[var(--bg)] border-t border-[var(--outline)]">
+        <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <h2 className="reveal font-(family-name:--font-outfit) font-bold text-lg sm:text-xl lg:text-[2rem] text-[var(--on-surface)] leading-[1.1] mb-4" style={{ transitionDelay: '0.1s' }}>
+              Frequently Asked Questions
+            </h2>
+            <p className="reveal text-[var(--on-muted)] text-base leading-relaxed" style={{ transitionDelay: '0.18s' }}>
+              Everything you need to know about MSME loans on Cred2Tech.
+            </p>
+          </div>
+          <Faq faqs={faqs} />
+        </div>
+      </section>
+
       <style>{`
-.px-orb{position:absolute;border-radius:50%;pointer-events:none;will-change:transform;filter:blur(70px);opacity:0;}
-.px-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);background-size:52px 52px;will-change:transform;}
 .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
-@media(max-width:1023px){.px-orb{opacity:0.08!important;}}
       `}</style>
     </div>
   );
