@@ -119,7 +119,7 @@ export default function Header() {
                     {/* Theme Toggle & Login Button (desktop only) */}
                     <div className="hidden lg:flex items-center gap-4">
                         <ThemeToggle />
-                        <TravelingBorderButton href="https://app.cred2tech.com/register-dsa" size="sm" showIcon={false} target="_blank" rel="noopener noreferrer">
+                        <TravelingBorderButton href="https://app.cred2tech.com" size="sm" showIcon={false} target="_blank" rel="noopener noreferrer">
                             Login
                         </TravelingBorderButton>
                     </div>
