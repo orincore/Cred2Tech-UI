@@ -119,7 +119,7 @@ export default function Header() {
                     {/* Theme Toggle & Login Button (desktop only) */}
                     <div className="hidden lg:flex items-center gap-4">
                         <ThemeToggle />
-                        <TravelingBorderButton href="/login" size="sm" showIcon={false}>
+                        <TravelingBorderButton href="https://app.cred2tech.com/register-dsa" size="sm" showIcon={false} target="_blank" rel="noopener noreferrer">
                             Login
                         </TravelingBorderButton>
                     </div>
@@ -184,11 +184,11 @@ export default function Header() {
 
                     <div className="h-px bg-[var(--outline)] my-5" />
 
-                    <Link href="/login" onClick={() => setMobileMenuOpen(false)}
+                    <a href="https://app.cred2tech.com" onClick={() => setMobileMenuOpen(false)} target="_blank" rel="noopener noreferrer"
                         className="flex items-center justify-center gap-2 px-5 py-4 font-(family-name:--font-inter) text-[15px] font-medium text-white rounded-xl bg-gradient-to-r from-[#4E54C8] to-[#8F94FB] shadow-[0_0_20px_rgba(78,84,200,0.4)]">
                         Get Started
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                    </Link>
+                    </a>
                 </div>
             )}
         </header>

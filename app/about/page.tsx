@@ -401,9 +401,7 @@ export default function AboutPage() {
                   {/* Gradient overlay on right edge for blend */}
                   <div className="hidden lg:block absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent" />
                   {/* Badge */}
-                  <div className="absolute top-5 left-5">
-                    <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-widest uppercase bg-[var(--on-surface)] text-[var(--bg)] px-2.5 py-1">CO-FOUNDER</span>
-                  </div>
+                 
                   
                 </div>
 
@@ -413,7 +411,7 @@ export default function AboutPage() {
                   <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '20px 20px' }} />
                   <div className="relative z-10">
                     <p className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[var(--on-surface)] mb-2">Co-Founder</p>
-                    <h3 className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-bold text-[var(--on-surface)] mb-1">Bobby Thomas M — Co-Founder</h3>
+                    <h3 className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-bold text-[var(--on-surface)] mb-1">Bobby Thomas M</h3>
 
                     <p className="text-sm sm:text-base text-[var(--on-muted)] leading-relaxed mb-4">
                       Bobby brings over two decades of experience across housing finance, MSME lending, construction finance, and digital distribution. Over the course of his career, he has held senior leadership roles at leading financial institutions, where he has built and scaled lending businesses while navigating diverse market cycles and customer segments.
@@ -454,10 +452,7 @@ export default function AboutPage() {
                   
                   {/* Gradient overlay on left edge for blend */}
                   <div className="hidden lg:block absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent" />
-                  {/* Badge */}
-                  <div className="absolute top-5 right-5">
-                    <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-widest uppercase bg-[var(--on-surface)] text-[var(--bg)] px-2.5 py-1">CO-FOUNDER</span>
-                  </div>
+                 
                   
                 </div>
 
@@ -466,7 +461,7 @@ export default function AboutPage() {
                   <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '20px 20px' }} />
                   <div className="relative z-10">
                     <p className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.2em] uppercase text-[var(--on-surface)] mb-2">Co-Founder</p>
-                    <h3 className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-bold text-[var(--on-surface)] mb-1">Sunil Agarwal — Co-Founder</h3>
+                    <h3 className="font-(family-name:--font-outfit) text-2xl sm:text-3xl font-bold text-[var(--on-surface)] mb-1">Sunil Agarwal</h3>
 
                     <p className="text-sm sm:text-base text-[var(--on-muted)] leading-relaxed mb-4">
                       Sunil Agarwal is the Co-founder of Cred2Tech, building a technology-first platform to make MSME credit simpler, faster, and more accessible.

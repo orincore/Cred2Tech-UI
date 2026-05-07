@@ -13,9 +13,11 @@ interface TravelingBorderButtonProps {
   size?: 'sm' | 'normal';
   theme?: 'light' | 'dark';
   solid?: boolean;
+  target?: string;
+  rel?: string;
 }
 
-export const TravelingBorderButton = ({ href, onClick, type = 'button', children, className = '', showIcon = true, size = 'normal', theme: themeOverride, solid = false }: TravelingBorderButtonProps) => {
+export const TravelingBorderButton = ({ href, onClick, type = 'button', children, className = '', showIcon = true, size = 'normal', theme: themeOverride, solid = false, target, rel }: TravelingBorderButtonProps) => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -72,6 +74,17 @@ export const TravelingBorderButton = ({ href, onClick, type = 'button', children
   };
 
   if (href) {
+    // Check if it's an external link
+    const isExternal = href.startsWith('http') || href.startsWith('https');
+    
+    if (isExternal) {
+      return (
+        <a href={href} className={baseClasses} style={baseStyle} onClick={onClick} target={target || '_blank'} rel={rel || 'noopener noreferrer'}>
+          {content}
+        </a>
+      );
+    }
+    
     return (
       <Link href={href} className={baseClasses} style={baseStyle} onClick={onClick}>
         {content}
