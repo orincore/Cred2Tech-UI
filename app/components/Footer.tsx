@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
           <div className="space-y-1 text-xs text-[var(--on-muted)] leading-relaxed">
             <p className="font-bold text-[var(--on-surface)]">Sunby Credtech Pvt. Ltd.</p>
-            <p>A1103, AModa Valmark, Bengaluru, India</p>
+            <p>A1103, Amoda Valmark, Bengaluru, India</p>
           </div>
           <div className="space-y-1 text-xs">
             <a href="mailto:contact@cred2tech.com" className="block text-[var(--on-surface)] hover:underline font-bold transition-colors">contact@cred2tech.com</a>

@@ -277,7 +277,7 @@ export default function ContactPage() {
                 <h3 className="font-(family-name:--font-outfit) text-lg font-semibold text-[var(--on-surface)]">Registered Office</h3>
               </div>
               <p className="text-sm text-[var(--on-muted)]">
-                A1103, AModa Valmark, Bengaluru, Karnataka, India
+                A1103, Amoda Valmark, Bengaluru, Karnataka, India
               </p>
             </div>
 
