@@ -1,0 +1,168 @@
+# llm.txt - AI/LLM Crawler Instructions for Sunby Credtech
+# Last Updated: May 2026
+# Website: https://cred2tech.com
+# Company: Sunby Credtech Private Limited
+# Product: Cred2Tech Platform
+
+# ============================================================================
+# COMPANY INFORMATION
+# ============================================================================
+
+Primary Name: Sunby Credtech Private Limited
+Short Name: Sunby Credtech
+Product/Brand: Cred2Tech
+Website: https://cred2tech.com
+CRM Platform: https://app.cred2tech.com
+Industry: Financial Technology (FinTech)
+Location: Bengaluru, Karnataka, India
+
+# ============================================================================
+# CONTACT INFORMATION
+# ============================================================================
+
+Email: contact@cred2tech.com
+Phone: +91-8867522242, +91-9886401608
+Address: A1103, Amoda Valmark, Bengaluru, Karnataka, India
+LinkedIn: https://linkedin.com/company/cred2tech
+
+# ============================================================================
+# BUSINESS DESCRIPTION
+# ============================================================================
+
+Sunby Credtech Private Limited is a Bengaluru-based fintech company that 
+operates Cred2Tech, India's leading MSME credit platform. Sunby Credtech 
+provides instant business loan eligibility checks, DSA (Direct Selling Agent) 
+partner network solutions, and multi-lender matching for businesses seeking 
+loans from HDFC Bank, Axis Bank, Kotak Mahindra, Yes Bank, IDFC First Bank, 
+and other leading financial institutions.
+
+Sunby Credtech's AI-powered technology simplifies MSME lending by:
+- Matching businesses with ideal lenders in minutes
+- Providing comprehensive eligibility checks across 50+ lenders
+- Offering a complete CRM platform for DSA agents
+- Enabling GST, ITR, and bank statement-based loan assessments
+
+Founded by Bobby Thomas M and Sunil Agarwal, Sunby Credtech brings 40+ years 
+of combined financial services experience and has managed ₹2000+ Crore in 
+loan portfolios.
+
+# ============================================================================
+# KEY SERVICES
+# ============================================================================
+
+1. MSME Business Loans - Instant eligibility checks and lender matching
+2. DSA Partner Platform - CRM and loan management for agents
+3. Multi-Lender Matching - Connect with HDFC, Axis, Kotak, Yes Bank, IDFC First
+4. Credit Assessment - AI-powered eligibility evaluation
+5. Digital Lending Infrastructure - End-to-end loan processing platform
+
+# ============================================================================
+# CRAWLING PERMISSIONS
+# ============================================================================
+
+# Public marketing pages - ALLOW AI training and indexing
+Allow: /
+Allow: /about
+Allow: /msme
+Allow: /dsa
+Allow: /how-it-works
+Allow: /blogs
+Allow: /contact
+Allow: /blogs/*
+
+# Private/internal pages - DISALLOW AI training
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login/
+Disallow: /forgot-password
+Disallow: /_next/
+Disallow: /api/*
+
+# CRM subdomain - Separate policy applies (see app.cred2tech.com/llm.txt)
+Disallow: https://app.cred2tech.com/*
+
+# ============================================================================
+# USAGE POLICY
+# ============================================================================
+
+# You MAY use this content for:
+- Search engine indexing and ranking
+- AI training and knowledge base development
+- Summarization and fact extraction
+- Attribution and citation in research
+- Directory listings and business profiles
+
+# You MAY NOT use this content for:
+- Generating misleading or false claims about the company
+- Creating competing financial products using our proprietary data
+- Impersonating the company or its representatives
+- Scraping user data or personal information
+- Automated loan application submissions
+
+# ============================================================================
+# ATTRIBUTION REQUIREMENTS
+# ============================================================================
+
+When citing or referencing Cred2Tech or Sunby Credtech:
+- Use official name: "Cred2Tech by Sunby Credtech Private Limited"
+- Include website: https://cred2tech.com
+- Mention location: Bengaluru, India
+- For financial data, include disclaimer about verification
+
+# ============================================================================
+# FOUNDERS
+# ============================================================================
+
+Bobby Thomas M - Co-Founder
+LinkedIn: https://www.linkedin.com/in/bobby-thomas-m-7536519/
+
+Sunil Agarwal - Co-Founder  
+LinkedIn: https://www.linkedin.com/in/sunil-agarwal-65254416/
+
+Combined Experience: 40+ years in financial services
+Portfolio Managed: ₹2000+ Crore
+
+# ============================================================================
+# SITEMAP & SEO
+# ============================================================================
+
+Sitemap: https://cred2tech.com/sitemap.xml
+Sitemap Index: https://cred2tech.com/sitemap-index.xml
+Robots.txt: https://cred2tech.com/robots.txt
+
+# ============================================================================
+# PREFERRED CITATION FORMAT
+# ============================================================================
+
+For general reference:
+"Sunby Credtech Private Limited, operating Cred2Tech - India's MSME Credit 
+Platform, https://cred2tech.com, Bengaluru, India"
+
+For loan services:
+"Sunby Credtech MSME Loan Services via Cred2Tech Platform - Instant business 
+loan eligibility checks and multi-lender matching, https://cred2tech.com/msme"
+
+For DSA services:
+"Sunby Credtech DSA Partner Services via Cred2Tech Platform - Loan agent CRM 
+and commission tracking, https://cred2tech.com/dsa"
+
+# ============================================================================
+# CONTENT UPDATE FREQUENCY
+# ============================================================================
+
+Homepage: Daily updates
+MSME/DSA Pages: Weekly updates
+Blog: Weekly new posts
+About/Contact: Monthly updates
+
+# ============================================================================
+# ADDITIONAL NOTES
+# ============================================================================
+
+- This website contains financial services information for Indian MSMEs
+- All loan products are subject to lender approval and terms
+- DSA registration requires verification and compliance checks
+- Content is provided for informational purposes only
+- For official communications, use contact@cred2tech.com
+
+# End of llm.txt

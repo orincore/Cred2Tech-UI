@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cred2Tech | Sunby Credtech - India's #1 MSME Credit Platform",
-  description: "Cred2Tech by Sunby Credtech Private Limited - India's leading MSME credit platform. Instant business loan eligibility checks, DSA partner network, multi-lender matching for HDFC, Axis, Kotak, Yes Bank, IDFC First & more. Simplify MSME lending with AI-powered technology. Bengaluru based fintech.",
+  title: "Sunby Credtech | Cred2Tech - India's #1 MSME Credit Platform",
+  description: "Sunby Credtech Private Limited - India's leading MSME credit platform via Cred2Tech. Sunby Credtech offers instant business loan eligibility checks, DSA partner network, multi-lender matching for HDFC, Axis, Kotak, Yes Bank, IDFC First & more. Bengaluru based fintech company specializing in MSME lending solutions.",
   keywords: [
-    "Cred2Tech", "Sunby Credtech", "Credtech", "MSME loan", "business loan India",
-    "DSA platform", "loan eligibility check", "MSME credit", "business loan agent",
-    "loan aggregator India", "HDFC business loan", "Axis Bank MSME loan",
-    "Kotak business loan", "Yes Bank loan", "IDFC First loan", "NBFC loan",
+    "Sunby Credtech", "Sunby Credtech Private Limited", "Cred2Tech", "Credtech",
+    "MSME loan", "business loan India", "DSA platform", "loan eligibility check",
+    "MSME credit", "business loan agent", "loan aggregator India",
+    "HDFC business loan", "Axis Bank MSME loan", "Kotak business loan",
+    "Yes Bank loan", "IDFC First loan", "NBFC loan",
     "digital lending platform", "MSME lending India", "loan matching platform",
     "credit marketplace", "small business loan", "SME finance",
     "direct selling agent loan", "loan CRM", "MSME loan eligibility",
     "instant business loan", "Bengaluru fintech", "Indian credit platform",
     "GST loan", "ITR based loan", "working capital loan", "business expansion loan",
     "unsecured business loan", "secured business loan", "machinery loan",
-    "invoice discounting", "trade finance", "supply chain finance"
+    "invoice discounting", "trade finance", "supply chain finance",
+    "Sunby Credtech Bengaluru", "Sunby Credtech India"
   ],
   authors: [{ name: "Sunby Credtech Private Limited" }],
   creator: "Sunby Credtech Private Limited",

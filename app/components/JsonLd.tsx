@@ -10,8 +10,12 @@ export function OrganizationJsonLd({ siteUrl = "https://cred2tech.com" }: Organi
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Cred2Tech",
-    "alternateName": "Sunby Credtech Private Limited",
+    "name": "Sunby Credtech Private Limited",
+    "alternateName": ["Cred2Tech", "Sunby Credtech"],
+    "brand": {
+      "@type": "Brand",
+      "name": "Cred2Tech"
+    },
     "url": siteUrl,
     "logo": {
       "@type": "ImageObject",
@@ -19,7 +23,7 @@ export function OrganizationJsonLd({ siteUrl = "https://cred2tech.com" }: Organi
       "width": 512,
       "height": 512,
     },
-    "description": "India's leading MSME credit platform. Instant business loan eligibility checks, DSA partner network, multi-lender matching.",
+    "description": "Sunby Credtech Private Limited operates Cred2Tech, India's leading MSME credit platform. Sunby Credtech offers instant business loan eligibility checks, DSA partner network, and multi-lender matching for HDFC, Axis, Kotak, Yes Bank and IDFC First.",
     "founders": [
       {
         "@type": "Person",
@@ -65,8 +69,9 @@ export function OrganizationJsonLd({ siteUrl = "https://cred2tech.com" }: Organi
     ],
     "email": "contact@cred2tech.com",
     "keywords": [
-      "Cred2Tech", "Sunby Credtech", "MSME loan", "business loan India",
-      "DSA platform", "loan eligibility", "MSME credit"
+      "Sunby Credtech", "Sunby Credtech Private Limited", "Cred2Tech",
+      "MSME loan", "business loan India", "DSA platform",
+      "loan eligibility", "MSME credit", "Bengaluru fintech"
     ],
   };
 
@@ -91,8 +96,8 @@ export function WebsiteJsonLd({
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Cred2Tech - Sunby Credtech",
-    "alternateName": "Sunby Credtech Private Limited",
+    "name": "Sunby Credtech - Cred2Tech",
+    "alternateName": ["Cred2Tech", "Sunby Credtech Private Limited"],
     "url": siteUrl,
     "potentialAction": {
       "@type": "SearchAction",
@@ -104,7 +109,8 @@ export function WebsiteJsonLd({
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Cred2Tech",
+      "name": "Sunby Credtech Private Limited",
+      "alternateName": "Cred2Tech",
       "logo": {
         "@type": "ImageObject",
         "url": `${siteUrl}/logos/favicon.png`,
@@ -129,12 +135,13 @@ export function ServiceJsonLd({ siteUrl = "https://cred2tech.com" }: ServiceJson
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "FinancialProduct",
-    "name": "Cred2Tech MSME Loan Platform",
-    "alternateName": "Sunby Credtech Business Loan Services",
-    "description": "AI-powered MSME loan eligibility platform connecting businesses with HDFC, Axis, Kotak, and other leading lenders. Instant eligibility checks for business loans.",
+    "name": "Sunby Credtech MSME Loan Platform - Cred2Tech",
+    "alternateName": ["Cred2Tech Loan Platform", "Sunby Credtech Business Services"],
+    "description": "Sunby Credtech Private Limited offers AI-powered MSME loan eligibility through Cred2Tech platform. Connect with HDFC, Axis, Kotak, Yes Bank, and IDFC First for instant business loan eligibility checks.",
     "provider": {
       "@type": "Organization",
-      "name": "Cred2Tech - Sunby Credtech Private Limited",
+      "name": "Sunby Credtech Private Limited",
+      "alternateName": "Cred2Tech",
       "url": siteUrl,
     },
     "areaServed": {
@@ -200,8 +207,8 @@ export function LocalBusinessJsonLd({ siteUrl = "https://cred2tech.com" }: Local
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "FinancialService",
-    "name": "Cred2Tech - Sunby Credtech",
-    "alternateName": "Sunby Credtech Private Limited",
+    "name": "Sunby Credtech Private Limited - Cred2Tech",
+    "alternateName": ["Sunby Credtech", "Cred2Tech"],
     "image": `${siteUrl}/og-image.png`,
     "@id": siteUrl,
     "url": siteUrl,
