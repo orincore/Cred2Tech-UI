@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cred2tech.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.cred2tech.com";
   const crmUrl = "https://app.cred2tech.com";
   const currentDate = new Date();
   
@@ -22,19 +22,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Main marketing pages - highest priority
   const mainPages = [
     {
-      url: siteUrl,
+      url: `${siteUrl}/`,
       lastModified: currentDate,
       changeFrequency: "daily" as const,
       priority: 1.0,
     },
     {
-      url: `${siteUrl}/msme`,
+      url: `${siteUrl}/msme/`,
       lastModified: currentDate,
       changeFrequency: "daily" as const,
       priority: 0.95,
     },
     {
-      url: `${siteUrl}/dsa`,
+      url: `${siteUrl}/dsa/`,
       lastModified: currentDate,
       changeFrequency: "daily" as const,
       priority: 0.95,
@@ -44,19 +44,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Information pages - high priority
   const infoPages = [
     {
-      url: `${siteUrl}/about`,
+      url: `${siteUrl}/about/`,
       lastModified: currentDate,
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/how-it-works`,
+      url: `${siteUrl}/how-it-works/`,
       lastModified: currentDate,
       changeFrequency: "weekly" as const,
       priority: 0.85,
     },
     {
-      url: `${siteUrl}/blogs`,
+      url: `${siteUrl}/blogs/`,
       lastModified: currentDate,
       changeFrequency: "weekly" as const,
       priority: 0.8,
@@ -66,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Engagement pages - medium priority
   const engagementPages = [
     {
-      url: `${siteUrl}/contact`,
+      url: `${siteUrl}/contact/`,
       lastModified: currentDate,
       changeFrequency: "monthly" as const,
       priority: 0.7,
@@ -97,7 +97,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Generate blog post URLs
   const blogUrls = blogPosts.map((post) => ({
-    url: `${siteUrl}/blogs/${post.slug}`,
+    url: `${siteUrl}/blogs/${post.slug}/`,
     lastModified: post.lastModified,
     changeFrequency: "monthly" as const,
     priority: 0.65,
@@ -114,7 +114,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 export function generateCrossDomainSitemapIndex() {
   return {
     sitemaps: [
-      "https://cred2tech.com/sitemap.xml",
+      "https://www.cred2tech.com/sitemap.xml",
       "https://app.cred2tech.com/sitemap.xml", // CRM subdomain
     ],
   };

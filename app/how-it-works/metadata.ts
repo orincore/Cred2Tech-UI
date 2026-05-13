@@ -15,6 +15,6 @@ export const metadata: Metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://cred2tech.com/how-it-works/",
+    canonical: "https://www.cred2tech.com/how-it-works/",
   },
 };

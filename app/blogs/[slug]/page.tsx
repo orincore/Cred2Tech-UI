@@ -162,10 +162,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
   
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cred2tech.com";
+  const siteUrl = "https://www.cred2tech.com";
   
   return {
-    title: `${post.title} | Cred2Tech Blog`,
+    title: `${post.title} | Sunby Credtech Blog`,
     description: post.intro.slice(0, 160),
     keywords: post.keywords,
     openGraph: {
@@ -174,7 +174,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: "article",
       publishedTime: post.publishedDate,
       modifiedTime: post.modifiedDate,
-      authors: ["Cred2Tech - Sunby Credtech"],
+      authors: ["Sunby Credtech Private Limited"],
       tags: post.tag.split(" · "),
     },
     twitter: {

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cred2tech.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.cred2tech.com";
   const crmUrl = "https://app.cred2tech.com";
   
   return {
@@ -9,6 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        crawlDelay: 1,
         disallow: [
           "/admin/",
           "/api/",
@@ -33,8 +34,8 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin/", "/forgot-password", "/login/"],
       },
     ],
-    sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
+    sitemap: `https://www.cred2tech.com/sitemap.xml`,
+    host: "www.cred2tech.com",
     // Note: CRM sitemap is at https://app.cred2tech.com/sitemap.xml
     // Cross-domain sitemap index should be submitted separately to Search Console
   };

@@ -27,7 +27,7 @@ const hikasami = localFont({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cred2tech.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.cred2tech.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: `${siteUrl}/`,
+    url: `https://www.cred2tech.com/`,
     siteName: "Sunby Credtech - Cred2Tech",
     title: "Sunby Credtech | Cred2Tech - India's #1 MSME Credit Platform",
     description: "Sunby Credtech Private Limited - India's leading MSME credit platform through Cred2Tech. Instant business loan eligibility checks, DSA network, multi-lender matching. Bengaluru based fintech.",
@@ -89,9 +89,9 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
   },
   alternates: {
-    canonical: `${siteUrl}/`,
+    canonical: `https://www.cred2tech.com/`,
     languages: {
-      'en-IN': `${siteUrl}/`,
+      'en-IN': `https://www.cred2tech.com/`,
     },
   },
   icons: {

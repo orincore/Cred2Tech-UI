@@ -57,9 +57,9 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
   },
   alternates: {
-    canonical: "https://cred2tech.com/",
+    canonical: "https://www.cred2tech.com/",
     languages: {
-      'en-IN': "https://cred2tech.com/",
+      'en-IN': "https://www.cred2tech.com/",
     },
   },
 };

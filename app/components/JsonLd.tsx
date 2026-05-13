@@ -6,7 +6,7 @@ interface OrganizationJsonLdProps {
   siteUrl?: string;
 }
 
-export function OrganizationJsonLd({ siteUrl = "https://cred2tech.com" }: OrganizationJsonLdProps) {
+export function OrganizationJsonLd({ siteUrl = "https://www.cred2tech.com" }: OrganizationJsonLdProps) {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -90,8 +90,8 @@ interface WebsiteJsonLdProps {
 }
 
 export function WebsiteJsonLd({ 
-  siteUrl = "https://cred2tech.com",
-  searchUrl = "https://cred2tech.com/search?q={search_term_string}"
+  siteUrl = "https://www.cred2tech.com",
+  searchUrl = "https://www.cred2tech.com/search?q={search_term_string}"
 }: WebsiteJsonLdProps) {
   const websiteSchema = {
     "@context": "https://schema.org",
@@ -131,7 +131,7 @@ interface ServiceJsonLdProps {
   siteUrl?: string;
 }
 
-export function ServiceJsonLd({ siteUrl = "https://cred2tech.com" }: ServiceJsonLdProps) {
+export function ServiceJsonLd({ siteUrl = "https://www.cred2tech.com" }: ServiceJsonLdProps) {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "FinancialProduct",
@@ -203,7 +203,7 @@ interface LocalBusinessJsonLdProps {
   siteUrl?: string;
 }
 
-export function LocalBusinessJsonLd({ siteUrl = "https://cred2tech.com" }: LocalBusinessJsonLdProps) {
+export function LocalBusinessJsonLd({ siteUrl = "https://www.cred2tech.com" }: LocalBusinessJsonLdProps) {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "FinancialService",
