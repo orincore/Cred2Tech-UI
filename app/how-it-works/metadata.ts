@@ -14,4 +14,7 @@ export const metadata: Metadata = {
     description: "Sunby Credtech simple 4-step process: Eligibility check → Lender matching → Application → Disbursement. Get your MSME loan in 10 minutes via Cred2Tech.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://cred2tech.com/how-it-works/",
+  },
 };

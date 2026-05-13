@@ -35,12 +35,11 @@ export const metadata: Metadata = {
     default: "Sunby Credtech | Cred2Tech - India's #1 MSME Credit Platform",
     template: "%s | Sunby Credtech - Cred2Tech",
   },
-  description: "Sunby Credtech Private Limited presents Cred2Tech - India's leading MSME credit platform. Sunby Credtech offers instant business loan eligibility checks, DSA partner network, multi-lender matching for HDFC, Axis, Kotak & more. Bengaluru based fintech company specializing in MSME lending.",
+  description: "Sunby Credtech Private Limited presents Cred2Tech - India's leading MSME credit platform. Sunby Credtech offers instant business loan eligibility checks, DSA partner network, and multi-lender matching with leading banks and NBFCs. Bengaluru based fintech company specializing in MSME lending.",
   keywords: [
     "Sunby Credtech", "Sunby Credtech Private Limited", "Cred2Tech", "Credtech",
     "MSME loan", "business loan India", "DSA platform", "loan eligibility check",
     "MSME credit", "business loan agent", "loan aggregator India",
-    "HDFC business loan", "Axis Bank MSME loan", "Kotak business loan",
     "NBFC loan", "digital lending platform", "MSME lending India",
     "loan matching platform", "credit marketplace", "small business loan",
     "SME finance", "direct selling agent loan", "loan CRM", "MSME loan eligibility",

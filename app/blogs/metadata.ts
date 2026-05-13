@@ -14,4 +14,7 @@ export const metadata: Metadata = {
     description: "Perspectives from Sunby Credtech on MSME credit, the role of DSAs, and the digital infrastructure powering India's lending ecosystem via Cred2Tech.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://cred2tech.com/blogs/",
+  },
 };

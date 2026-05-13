@@ -137,7 +137,7 @@ export function ServiceJsonLd({ siteUrl = "https://cred2tech.com" }: ServiceJson
     "@type": "FinancialProduct",
     "name": "Sunby Credtech MSME Loan Platform - Cred2Tech",
     "alternateName": ["Cred2Tech Loan Platform", "Sunby Credtech Business Services"],
-    "description": "Sunby Credtech Private Limited offers AI-powered MSME loan eligibility through Cred2Tech platform. Connect with HDFC, Axis, Kotak, Yes Bank, and IDFC First for instant business loan eligibility checks.",
+    "description": "Sunby Credtech Private Limited offers AI-powered MSME loan eligibility through Cred2Tech platform. Connect with 50+ leading banks and NBFCs for instant business loan eligibility checks.",
     "provider": {
       "@type": "Organization",
       "name": "Sunby Credtech Private Limited",

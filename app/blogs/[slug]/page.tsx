@@ -183,7 +183,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.intro.slice(0, 160),
     },
     alternates: {
-      canonical: `${siteUrl}/blogs/${slug}`,
+      canonical: `${siteUrl}/blogs/${slug}/`,
     },
   };
 }

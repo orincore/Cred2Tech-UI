@@ -14,4 +14,7 @@ export const metadata: Metadata = {
     description: "Contact Sunby Credtech for DSA registration, MSME loans, or partnerships. Phone: +91 8867522242, +91 9886401608. Bengaluru office.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://cred2tech.com/contact/",
+  },
 };

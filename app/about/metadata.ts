@@ -14,4 +14,7 @@ export const metadata: Metadata = {
     description: "Sunby Credtech - Founded by industry veterans with 40+ years combined experience. Building India's largest MSME financial marketplace via Cred2Tech platform.",
     type: "website",
   },
+  alternates: {
+    canonical: "https://cred2tech.com/about/",
+  },
 };
