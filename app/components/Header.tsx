@@ -116,11 +116,11 @@ export default function Header() {
                         </Link>
                     </div>
 
-                    {/* Theme Toggle & Login Button (desktop only) */}
+                    {/* Theme Toggle & Get Started Button (desktop only) */}
                     <div className="hidden lg:flex items-center gap-4">
                         <ThemeToggle />
                         <TravelingBorderButton href="https://app.cred2tech.com" size="sm" showIcon={false} target="_blank" rel="noopener noreferrer">
-                            Login
+                            Get Started
                         </TravelingBorderButton>
                     </div>
                     {/* Mobile theme toggle & hamburger */}

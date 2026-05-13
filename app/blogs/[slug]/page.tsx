@@ -1,9 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from "next";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "../../components/JsonLd";
 
 type Section = { heading?: string; sub?: string; paragraphs: string[] };
-type Post = { title: string; tag: string; readTime: string; intro: string; sections: Section[]; conclusion: string[] };
+type Post = { 
+  title: string; 
+  tag: string; 
+  readTime: string; 
+  intro: string; 
+  sections: Section[]; 
+  conclusion: string[];
+  keywords?: string[];
+  publishedDate?: string;
+  modifiedDate?: string;
+};
 
 const POSTS: Record<string, Post> = {
   'bridging-the-gap-digital-renaissance-of-indian-msmes': {
@@ -72,6 +84,9 @@ const POSTS: Record<string, Post> = {
       'As India advances toward its $5 trillion economy ambition, solving the MSME credit gap is no longer optional — it is foundational. The convergence of digital infrastructure, progressive regulation, and innovative lending models is creating a once-in-a-generation opportunity.',
       'The real unlock, however, lies in execution: scaling adoption, improving data reliability, and aligning incentives across the ecosystem. If done right, India won’t just bridge the MSME credit gap — it could redefine how emerging markets approach small business financing.',
     ],
+    keywords: ["MSME credit gap", "digital lending India", "GST loan", "UPI transactions", "Account Aggregator", "ULI", "TReDS", "business loan India"],
+    publishedDate: "2024-01-15",
+    modifiedDate: "2024-01-15",
   },
   'empowering-the-engine-of-india-vital-role-of-dsas': {
     title: 'Empowering the Engine of India: The Vital Role of DSAs in MSME Credit',
@@ -130,8 +145,48 @@ const POSTS: Record<string, Post> = {
       'As India advances toward its ambition of becoming a $5 trillion economy, solving the MSME credit gap will be pivotal. DSAs — especially when augmented with digital tools, data-driven underwriting, and lender marketplaces — can play a transformative role.',
       'By converting "unserved demand" into "bankable opportunities", DSAs are not just enabling credit — they are unlocking economic potential at the grassroots.',
     ],
+    keywords: ["DSA India", "Direct Selling Agent", "MSME credit", "loan distribution", "credit facilitator", "lender matching", "NBFC lending", "business loan agent"],
+    publishedDate: "2024-02-01",
+    modifiedDate: "2024-02-01",
   },
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = POSTS[slug];
+  
+  if (!post) {
+    return {
+      title: "Article Not Found | Cred2Tech",
+      description: "The requested article could not be found.",
+    };
+  }
+  
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cred2tech.com";
+  
+  return {
+    title: `${post.title} | Cred2Tech Blog`,
+    description: post.intro.slice(0, 160),
+    keywords: post.keywords,
+    openGraph: {
+      title: post.title,
+      description: post.intro.slice(0, 160),
+      type: "article",
+      publishedTime: post.publishedDate,
+      modifiedTime: post.modifiedDate,
+      authors: ["Cred2Tech - Sunby Credtech"],
+      tags: post.tag.split(" · "),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.intro.slice(0, 160),
+    },
+    alternates: {
+      canonical: `${siteUrl}/blogs/${slug}`,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return Object.keys(POSTS).map((slug) => ({ slug }));
@@ -142,7 +197,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = POSTS[slug];
   if (!post) notFound();
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cred2tech.com";
+  const postUrl = `${siteUrl}/blogs/${slug}`;
+
   return (
+    <>
+      <ArticleJsonLd
+        title={post.title}
+        description={post.intro}
+        url={postUrl}
+        image={`${siteUrl}/og-image.png`}
+        datePublished={post.publishedDate || new Date().toISOString()}
+        dateModified={post.modifiedDate || post.publishedDate || new Date().toISOString()}
+        authorName="Cred2Tech - Sunby Credtech"
+        keywords={post.keywords}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: siteUrl },
+          { name: "Blog", url: `${siteUrl}/blogs` },
+          { name: post.title, url: postUrl },
+        ]}
+      />
     <main className="bg-[#fcf9f8] text-[#1b1c1c] font-(family-name:--font-inter)">
       {/* Hero */}
       <section
@@ -213,5 +289,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </article>
     </main>
+    </>
   );
 }

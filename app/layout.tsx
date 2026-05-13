@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
 import { ThemeProvider } from "./components/ThemeProvider";
 import theme from "./theme";
+import { OrganizationJsonLd, WebsiteJsonLd, ServiceJsonLd, LocalBusinessJsonLd } from "./components/JsonLd";
 
 // Hikasami — the only typeface used across the entire site.
 // All three legacy CSS variables (--font-outfit / --font-inter / --font-jb-mono)
@@ -26,14 +27,93 @@ const hikasami = localFont({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://cred2tech.com";
+
 export const metadata: Metadata = {
-  title: "Cred2Tech · Credit, Simplified.",
-  description: "Cred2Tech — The complete platform for MSME lending agents",
-  icons: {
-    icon: "/logos/favicon.png",
-    shortcut: "/logos/favicon.png",
-    apple: "/logos/favicon.png",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Cred2Tech | Sunby Credtech - India's MSME Credit Platform",
+    template: "%s | Cred2Tech - Sunby Credtech",
   },
+  description: "Cred2Tech by Sunby Credtech Private Limited - India's leading MSME credit platform. Instant business loan eligibility checks, DSA partner network, multi-lender matching for HDFC, Axis, Kotak & more. Simplify MSME lending with AI-powered technology.",
+  keywords: [
+    "Cred2Tech", "Sunby Credtech", "Credtech", "MSME loan", "business loan India",
+    "DSA platform", "loan eligibility check", "MSME credit", "business loan agent",
+    "loan aggregator India", "HDFC business loan", "Axis Bank MSME loan",
+    "Kotak business loan", "NBFC loan", "digital lending platform",
+    "MSME lending India", "loan matching platform", "credit marketplace",
+    "small business loan", "SME finance", "direct selling agent loan",
+    "loan CRM", "MSME loan eligibility", "instant business loan",
+    "Bengaluru fintech", "Indian credit platform", "GST loan",
+    "ITR based loan", "working capital loan", "business expansion loan"
+  ],
+  authors: [{ name: "Sunby Credtech Private Limited" }],
+  creator: "Sunby Credtech Private Limited",
+  publisher: "Sunby Credtech Private Limited",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: `${siteUrl}/`,
+    siteName: "Cred2Tech - Sunby Credtech",
+    title: "Cred2Tech | Sunby Credtech - India's MSME Credit Platform",
+    description: "India's leading MSME credit platform by Sunby Credtech. Instant business loan eligibility checks, DSA network, multi-lender matching. Simplify MSME lending with AI-powered technology.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Cred2Tech - India's MSME Credit Platform by Sunby Credtech",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cred2Tech | Sunby Credtech - India's MSME Credit Platform",
+    description: "India's leading MSME credit platform. Instant business loan eligibility checks, DSA network, multi-lender matching.",
+    images: ["/og-image.png"],
+    creator: "@cred2tech",
+    site: "@cred2tech",
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+  },
+  alternates: {
+    canonical: `${siteUrl}/`,
+    languages: {
+      'en-IN': `${siteUrl}/`,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/logos/favicon.png", type: "image/png" },
+    ],
+    shortcut: "/logos/favicon.png",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/safari-pinned-tab.svg",
+        color: "#0a1628",
+      },
+    ],
+  },
+  manifest: "/site.webmanifest",
+  category: "finance",
+  classification: "Financial Services, MSME Lending, Business Loans",
 };
 
 export default function RootLayout({
@@ -82,6 +162,12 @@ export default function RootLayout({
           defaultTheme="dark" 
           disableTransitionOnChange
         >
+          {/* JSON-LD Structured Data */}
+          <OrganizationJsonLd siteUrl={siteUrl} />
+          <WebsiteJsonLd siteUrl={siteUrl} />
+          <ServiceJsonLd siteUrl={siteUrl} />
+          <LocalBusinessJsonLd siteUrl={siteUrl} />
+          
           <Script src="/lottie/lottie-player.js" strategy="beforeInteractive" id="global-lottie-player" />
           <Header />
           <PageTransition>

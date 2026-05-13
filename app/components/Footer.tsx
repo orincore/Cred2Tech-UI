@@ -96,7 +96,7 @@ export default function Footer() {
       {/* Footer Bottom Bar */}
       <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 mt-8 sm:mt-10 pt-4 border-t border-[var(--outline)]/5">
         <p className="text-[10px] text-[var(--on-muted)] text-center tracking-wide">
-          © {currentYear} Sunby Credtech Private Limited. All rights reserved. | CIN: [To be added] | Built in Bengaluru
+          © {currentYear} Sunby Credtech Private Limited. All rights reserved. | CIN: U62099KA2026PTC216769 | Built in Bengaluru, India 🇮🇳
         </p>
       </div>
     </footer>

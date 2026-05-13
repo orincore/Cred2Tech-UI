@@ -118,7 +118,7 @@ export default function AboutPage() {
       {/* Hero Section — Unique, high-contrast About hero */}
       <section
         id="hero-section"
-        className="relative h-[92vh] md:h-screen flex flex-col justify-center overflow-hidden transition-colors duration-500"
+        className="relative min-h-[92vh] md:min-h-screen flex flex-col overflow-hidden transition-colors duration-500"
       >
         {/* Circular wave motif behind content */}
         <div className="pointer-events-none absolute -right-20 md:right-0 top-0 bottom-0 w-[720px] md:w-[860px] opacity-[0.25]">
@@ -137,13 +137,13 @@ export default function AboutPage() {
         </div>
 
         {/* Right-side portrait (about visual) */}
-        <div className="hidden md:block absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-[2]">
+        <div className="hidden xl:block absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-[2]">
           <div className="relative w-[450px] lg:w-[580px] xl:w-[650px] aspect-[4/3]">
             <Image
               src="/images/about us.png"
               alt="Cred2Tech Team"
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 580px, 650px"
+              sizes="(max-width: 1024px) 580px, 650px"
               className="object-contain"
             />
             {/* soft vignette */}
@@ -157,20 +157,33 @@ export default function AboutPage() {
         {/* Content */}
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-6 relative z-10">
           <div className="max-w-2xl lg:max-w-3xl">
-            <div className="mb-4">
+            <div className="mb-3 sm:mb-4">
               <span className="inline-flex items-center bg-[var(--on-surface)] text-[var(--bg)] px-2.5 py-1 font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold tracking-widest uppercase">
                 About Cred2Tech
               </span>
             </div>
-            <h1 className="font-(family-name:--font-outfit) font-bold text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] leading-[1.05] tracking-tight text-[var(--on-surface)] mb-4">
+            <h1 className="font-(family-name:--font-outfit) font-bold text-[1.75rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] leading-[1.05] tracking-tight text-[var(--on-surface)] mb-4">
               Building the intelligence layer that makes the entire lending ecosystem work better.
             </h1>
-            <p className="text-base sm:text-lg text-[var(--on-muted)] max-w-xl mb-6 leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--on-muted)] max-w-xl mb-6 sm:mb-8 leading-relaxed">
               We’re building the intelligence and workflow layer that powers simpler, faster, more transparent lending for MSMEs, DSAs, and lenders.
             </p>
+          </div>
 
+          {/* ═══ HERO IMAGE — Mobile/Tablet inline version ═══ */}
+          <div className="xl:hidden w-full max-w-2xl mx-auto mb-6 sm:mb-8 relative z-20 pointer-events-auto aspect-[4/3]">
+            <Image
+              src="/images/about us.png"
+              alt="Cred2Tech Team"
+              fill
+              sizes="(max-width: 1280px) 100vw, 672px"
+              className="object-contain"
+            />
+          </div>
+
+          <div className="max-w-2xl lg:max-w-3xl">
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-2">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-4 sm:mb-2">
               <TravelingBorderButton href="/contact" size="sm">
                 Let's Talk
               </TravelingBorderButton>
@@ -421,7 +434,7 @@ export default function AboutPage() {
                     </p>
 
                     <div className="flex flex-wrap gap-2">
-                      <a href="#" className="inline-flex items-center gap-2 text-base font-semibold px-2.5 py-1 bg-[var(--on-surface)]/5 text-[var(--on-surface)] border border-[var(--on-surface)]/15 hover:bg-[var(--on-surface)]/10 transition-colors">
+                      <a href="https://www.linkedin.com/in/bobby-thomas-m-7536519/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-base font-semibold px-2.5 py-1 bg-[var(--on-surface)]/5 text-[var(--on-surface)] border border-[var(--on-surface)]/15 hover:bg-[var(--on-surface)]/10 transition-colors">
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                         </svg>
@@ -474,7 +487,7 @@ export default function AboutPage() {
                     </p>
 
                     <div className="flex flex-wrap gap-2">
-                      <a href="#" className="inline-flex items-center gap-2 text-base font-semibold px-2.5 py-1 bg-[var(--on-surface)]/5 text-[var(--on-surface)] border border-[var(--on-surface)]/15 hover:bg-[var(--on-surface)]/10 transition-colors">
+                      <a href="https://www.linkedin.com/in/sunil-agarwal-65254416/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-base font-semibold px-2.5 py-1 bg-[var(--on-surface)]/5 text-[var(--on-surface)] border border-[var(--on-surface)]/15 hover:bg-[var(--on-surface)]/10 transition-colors">
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                         </svg>

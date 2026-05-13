@@ -175,11 +175,11 @@ export default function MSMEPage() {
       {/* ══ S1 — HERO ══ */}
       <section
         id="hero-section"
-        className="relative h-screen flex flex-col justify-center overflow-hidden transition-colors duration-500"
+        className="relative min-h-screen flex flex-col overflow-hidden transition-colors duration-500"
       >
         {/* ═══ STROBE / SPOTLIGHT CONE — Visible V-beam from top ═══ */}
         {/* Wide outer cone glow */}
-        <div className="hidden lg:block absolute top-[-15%] right-[12%] w-[500px] h-[110%] pointer-events-none z-[50] animate-strobe-light"
+        <div className="hidden xl:block absolute top-[-15%] right-[12%] w-[500px] h-[110%] pointer-events-none z-[50] animate-strobe-light"
           style={{
             background: 'linear-gradient(to bottom, rgba(140,170,255,0.7) 0%, rgba(100,130,255,0.3) 20%, rgba(78,84,200,0.08) 60%, transparent 85%)',
             clipPath: 'polygon(42% 0%, 58% 0%, 100% 100%, 0% 100%)',
@@ -187,7 +187,7 @@ export default function MSMEPage() {
           }}
         />
         {/* Bright inner core */}
-        <div className="hidden lg:block absolute top-[-15%] right-[14%] w-[350px] h-[100%] pointer-events-none z-[51] animate-strobe-light"
+        <div className="hidden xl:block absolute top-[-15%] right-[14%] w-[350px] h-[100%] pointer-events-none z-[51] animate-strobe-light"
           style={{
             background: 'linear-gradient(to bottom, rgba(200,220,255,0.8) 0%, rgba(160,180,255,0.35) 15%, rgba(120,140,255,0.1) 50%, transparent 75%)',
             clipPath: 'polygon(44% 0%, 56% 0%, 90% 100%, 10% 100%)',
@@ -219,7 +219,7 @@ export default function MSMEPage() {
         </div>
 
         {/* ═══ HERO IMAGE ═══ */}
-        <div className="absolute right-8 top-[5%] w-[650px] h-[650px] hidden lg:block z-20 pointer-events-auto">
+        <div className="absolute right-8 top-[5%] w-[650px] h-[650px] hidden xl:block z-20 pointer-events-auto">
           <div className="w-full h-full relative">
             <Image
               src="/hero2.png"
@@ -241,11 +241,11 @@ export default function MSMEPage() {
         </div>
 
         {/* Main Content */}
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-4 relative z-10 flex flex-col justify-between h-full text-left">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-4 relative z-10 flex flex-col justify-start lg:justify-between flex-1 min-h-0 text-left">
 
-          <div className="max-w-2xl mt-12 lg:mt-16 self-start w-full">
+          <div className="max-w-2xl mt-8 sm:mt-12 lg:mt-16 self-start w-full">
             {/* Badge */}
-            <div className="mb-4">
+            <div className="mb-3 sm:mb-4">
               <span className="inline-flex items-center text-[#4a8df8] font-(family-name:--font-jb-mono) text-sm font-medium tracking-wide">
                 FOR MSME
               </span>
@@ -257,13 +257,25 @@ export default function MSMEPage() {
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg sm:text-[1.15rem] text-[var(--on-muted)] transition-colors duration-500 max-w-lg mb-8 leading-relaxed font-light">
+            <p className="text-base sm:text-lg sm:text-[1.15rem] text-[var(--on-muted)] transition-colors duration-500 max-w-lg mb-6 sm:mb-8 leading-relaxed font-light">
               A Loan shouldn't mean weeks of uncertainty. Cred2Tech shows MSMEs exactly which lenders will consider them plus likely terms. Get the entire report for as low as: ₹1,000.
             </p>
           </div>
 
+          {/* ═══ HERO IMAGE — Mobile/Tablet inline version ═══ */}
+          <div className="xl:hidden w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-full md:max-w-2xl md:h-[460px] mx-auto mb-6 sm:mb-8 relative z-20 pointer-events-auto">
+            <Image
+              src="/hero2.png"
+              alt="Cred2Tech MSME Platform"
+              fill
+              sizes="(max-width: 640px) 260px, (max-width: 768px) 340px, (max-width: 1280px) 100vw"
+              className="object-contain"
+              priority
+            />
+          </div>
+
           {/* Buttons positioned near bottom section */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-2">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-4 sm:mb-2">
             <TravelingBorderButton href="/login" size="sm">
               Check My Loan Eligibility
             </TravelingBorderButton>
@@ -275,15 +287,15 @@ export default function MSMEPage() {
           </div>
 
           {/* Bottom 3-Column Section matched exactly from home page */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 mt-auto pt-2 pb-4 w-full relative z-10 border-t border-[var(--outline)] md:border-none text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 mt-auto pt-4 sm:pt-2 pb-6 sm:pb-4 w-full relative z-10 border-t border-[var(--outline)] md:border-none text-left">
 
             {/* Col 1 */}
-            <div className="pr-8 relative">
+            <div className="pr-0 md:pr-8 relative">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-8 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500 p-1.5">
                   <span className="material-symbols-outlined text-[16px]">lock</span>
                 </div>
-                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">Secure Data Protection</h3>
+                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-sm sm:text-base">Secure Data Protection</h3>
               </div>
               <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-11">
                 Your data is protected with <br className="hidden md:block" /> industry-standard encryption.
@@ -298,7 +310,7 @@ export default function MSMEPage() {
                 <div className="w-8 h-8 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500 p-1.5">
                   <span className="material-symbols-outlined text-[16px]">speed</span>
                 </div>
-                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">10-min Eligibility</h3>
+                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-sm sm:text-base">10-min Eligibility</h3>
               </div>
               <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-11">
                 Run comprehensive matching checks <br className="hidden md:block" /> in minutes, not weeks.
@@ -311,7 +323,7 @@ export default function MSMEPage() {
             <div className="px-0 md:pl-8 relative">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-8 rounded-sm bg-[var(--on-surface)] flex items-center justify-center text-[var(--bg)] transition-colors duration-500 p-1.5 font-bold text-[16px]">C</div>
-                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-base">Professional Standards</h3>
+                <h3 className="text-[var(--on-surface)] transition-colors duration-500 font-semibold text-sm sm:text-base">Professional Standards</h3>
               </div>
               <p className="text-[var(--on-muted)] transition-colors duration-500 text-sm leading-relaxed pl-11">
                 Following industry best practices <br className="hidden md:block" /> for reliable operations.
@@ -335,8 +347,8 @@ export default function MSMEPage() {
           </p>
 
           <div className="reveal marquee-wrap mt-10 overflow-hidden relative h-16 sm:h-20" style={{ transitionDelay: '0.24s' }}>
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r z-10 from-[var(--surface)] via-[var(--surface)]/80 to-transparent" />
-            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l z-10 from-[var(--surface)] via-[var(--surface)]/80 to-transparent" />
+            <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r z-10 from-[var(--surface)] via-[var(--surface)]/80 to-transparent" />
+            <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l z-10 from-[var(--surface)] via-[var(--surface)]/80 to-transparent" />
 
             <div className="marquee-track marquee-fast flex items-center h-full min-w-max" id="lender-marquee">
               {[...lenders, ...lenders, ...lenders, ...lenders].map((lender, i) => (
@@ -404,7 +416,7 @@ export default function MSMEPage() {
           </div>
 
           {/* Feature Grid — Portrait Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 px-12 sm:px-24 lg:px-48">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 px-6 sm:px-12 lg:px-24">
             {features.map((item, i) => (
               <FeatureCard key={item.title} item={item} index={i} />
             ))}
