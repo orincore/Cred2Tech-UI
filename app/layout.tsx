@@ -127,6 +127,19 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
+        {/* Google Analytics 4 (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-0V9EX82J7Z"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0V9EX82J7Z');
+          `}
+        </Script>
         {/* Alias every legacy font variable to Hikasami so the entire site uses one typeface. Also inject dynamic color variables from theme.ts */}
         <style dangerouslySetInnerHTML={{
           __html: `
