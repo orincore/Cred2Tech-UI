@@ -155,7 +155,7 @@ export function HomePageFixture() {
   );
 }
 
-export function Sourcing PartnerPageFixture() {
+export function SourcingPartnerPageFixture() {
   return (
     <div className="bg-[#fcf9f8] text-[#1b1c1c] overflow-x-clip">
       <MarketingHero eyebrow="For Sourcing Partner Agents & Partners" />
