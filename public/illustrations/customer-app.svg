@@ -1,0 +1,61 @@
+<svg width="220" height="260" viewBox="0 0 220 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ca-phone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="1" stop-color="#fbfcff" />
+    </linearGradient>
+    <radialGradient id="ca-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#1dc683" stop-opacity="0.16" />
+      <stop offset="1" stop-color="#1dc683" stop-opacity="0" />
+    </radialGradient>
+    <filter id="ca-shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#0a1628" flood-opacity="0.18" />
+    </filter>
+    <filter id="ca-row-shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0a1628" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <circle cx="110" cy="120" r="105" fill="url(#ca-glow)" />
+
+  <g filter="url(#ca-shadow)">
+    <rect x="30" y="10" width="160" height="240" rx="32" fill="url(#ca-phone)" />
+    <rect x="30.5" y="10.5" width="159" height="239" rx="31.5" stroke="#e7ebf2" />
+  </g>
+
+  <rect x="95" y="24" width="30" height="8" rx="4" fill="#e7ebf2" />
+
+  <rect x="150" y="40" width="3" height="8" rx="1.5" fill="#c7cedb" />
+  <rect x="156" y="37" width="3" height="11" rx="1.5" fill="#c7cedb" />
+  <rect x="162" y="34" width="3" height="14" rx="1.5" fill="#c7cedb" />
+  <rect x="170" y="36" width="14" height="10" rx="5" fill="none" stroke="#c7cedb" stroke-width="1.4" />
+
+  <g filter="url(#ca-row-shadow)">
+    <rect x="46" y="70" width="128" height="40" rx="12" fill="#ffffff" />
+    <rect x="46" y="70" width="3" height="40" rx="1.5" fill="#1dc683" />
+  </g>
+  <rect x="56" y="76" width="28" height="28" rx="8" fill="#e6f9f1" />
+  <path d="M63 90l4.5 4.5L77 84.5" stroke="#1dc683" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <text x="94" y="94" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="700" fill="#0a1628">Loan Eligible</text>
+  <path d="M158 87l3 3 6-6" stroke="#1dc683" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+  <g filter="url(#ca-row-shadow)">
+    <rect x="46" y="122" width="128" height="40" rx="12" fill="#ffffff" />
+    <rect x="46" y="122" width="3" height="40" rx="1.5" fill="#4a8df8" />
+  </g>
+  <rect x="56" y="128" width="28" height="28" rx="8" fill="#eaf1ff" />
+  <path d="M62 149v-8M68 149v-10M74 149v-6M62 141l6-6 6 4" stroke="#4a8df8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <text x="94" y="146" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="700" fill="#0a1628">Schemes Found</text>
+  <path d="M158 139l3 3 6-6" stroke="#4a8df8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+  <g filter="url(#ca-row-shadow)">
+    <rect x="46" y="174" width="128" height="40" rx="12" fill="#ffffff" />
+    <rect x="46" y="174" width="3" height="40" rx="1.5" fill="#8f6bff" />
+  </g>
+  <rect x="56" y="180" width="28" height="28" rx="8" fill="#f1ecff" />
+  <path d="M63 190h14M70 190v10M60 190v9a1.5 1.5 0 0 0 1.5 1.5h17a1.5 1.5 0 0 0 1.5-1.5v-9M65 190c-1.6-3.2-3.4-4.5-4.8-4.5-1.7 0-2.7 1.4-2.7 2.6 0 1.6 2.6 1.9 7.5 1.9m0 0c1.6-3.2 3.4-4.5 4.8-4.5 1.7 0 2.7 1.4 2.7 2.6 0 1.6-2.6 1.9-7.5 1.9" stroke="#8f6bff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <text x="94" y="198" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="700" fill="#0a1628">Best Offers</text>
+  <path d="M158 191l3 3 6-6" stroke="#8f6bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+  <rect x="80" y="232" width="60" height="4" rx="2" fill="#e7ebf2" />
+</svg>

@@ -1,0 +1,465 @@
+.hero {
+  /* Hero-local accent trio (the diagram's blue / green / purple) */
+  --hb: #2563eb;
+  --hg: #149a58;
+  --hp: #6a3de8;
+
+  position: relative;
+  overflow: hidden;
+  padding: 138px 0 84px;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+[data-theme='light'] .hero {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__reveal {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__reveal {
+    opacity: 1;
+  }
+}
+
+/* ── Head ── */
+.hero__head {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 46px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.5vw, 42px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  max-width: 920px;
+}
+
+.hero__title-accent {
+  display: block;
+  color: var(--hb);
+}
+
+.hero__lead {
+  margin-top: 14px;
+  font-size: clamp(15px, 1.25vw, 17px);
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+/* ── Flow diagram: side card / connectors / solution stack ── */
+.hero__flow {
+  display: flex;
+  align-items: stretch;
+}
+
+/* ── Side cards (Sourcing Partner / Customer) ──
+   Fixed light tints regardless of site theme — like every product excerpt
+   on this site, they depict the platform's own light surface. */
+.hero__side {
+  flex: 0 0 292px;
+  width: 292px;
+  display: flex;
+  flex-direction: column;
+  background: #ecf2fe;
+  border-radius: 20px;
+  padding: 24px;
+  color: #10233f;
+  color-scheme: light;
+}
+
+.hero__side--customer {
+  background: #e9f4ee;
+}
+
+.hero__side-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hero__side-title {
+  font-family: var(--font-display);
+  font-size: 25px;
+  line-height: 1.16;
+  font-weight: 700;
+  color: #10233f;
+}
+
+.hero__side-sub {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #5c6b80;
+  margin-top: 5px;
+}
+
+.hero__side-badge {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__side-badge svg {
+  width: 27px;
+  height: 27px;
+}
+
+.hero__side-badge--green {
+  border-color: rgba(20, 154, 88, 0.2);
+}
+
+.hero__side-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #4b5c72;
+  margin-top: 16px;
+}
+
+.hero__side-art {
+  margin: auto -24px -24px;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+  padding-top: 18px;
+}
+
+.hero__side-art img {
+  display: block;
+  width: 100%;
+  height: 224px;
+  object-fit: cover;
+}
+
+/* ── Solution stack (middle) ── */
+.hero__stack {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero__solution {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #ffffff;
+  border: 1px solid #e6ebf4;
+  border-radius: 16px;
+  padding: 16px 22px 16px 18px;
+  color-scheme: light;
+  cursor: pointer;
+  box-shadow: 0 8px 22px -16px rgba(15, 30, 60, 0.25);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.hero__solution:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -16px rgba(15, 30, 60, 0.3);
+}
+
+.hero__solution-tile {
+  flex-shrink: 0;
+  width: 74px;
+  height: 74px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__solution-tile svg {
+  width: 46px;
+  height: 46px;
+}
+
+.tone-blue .hero__solution-tile {
+  background: #e7eefe;
+}
+
+.tone-green .hero__solution-tile {
+  background: #e5f4ec;
+}
+
+.tone-purple .hero__solution-tile {
+  background: #ede7fd;
+}
+
+.hero__solution-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero__solution-copy h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.22;
+  font-weight: 700;
+  color: #10233f;
+  max-width: 240px;
+  margin-bottom: 5px;
+}
+
+.hero__solution-copy p {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #5c6b80;
+  max-width: 250px;
+}
+
+.hero__solution-chev {
+  flex-shrink: 0;
+  width: 21px;
+  height: 21px;
+  color: var(--hb);
+}
+
+/* ── Connectors ──
+   Each column draws three lines from staggered origin dots on the side
+   card's edge (35% / 50% / 65%) to the vertical centers of the three
+   solution cards, ending in arrowheads. Built from bordered boxes so the
+   elbow positions track the real card heights via calc. The right-hand
+   column is the same DOM mirrored with scaleX(-1). */
+.hero__conn {
+  position: relative;
+  flex: 0 0 84px;
+  width: 84px;
+  opacity: 0;
+  animation: hero-conn-fade 0.7s var(--ease-out) 0.55s forwards;
+}
+
+@keyframes hero-conn-fade {
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__conn {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+.hero__conn svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hero__conn-path {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 7 7;
+  animation: hero-dash 0.3s linear infinite;
+}
+
+/* Both variants draw their path left-to-right in absolute coordinates
+   (see elbow() in Hero.tsx), but the "out" (right) connector's arrowhead
+   points left, back into the solution stack — so its dashes need to run
+   in reverse to actually march toward that arrowhead instead of away
+   from it. */
+.hero__conn--out .hero__conn-path {
+  animation-direction: reverse;
+}
+
+.hero__conn-line--b .hero__conn-path { stroke: var(--hb); }
+.hero__conn-line--g .hero__conn-path { stroke: var(--hg); }
+.hero__conn-line--p .hero__conn-path { stroke: var(--hp); }
+
+.hero__conn-line--b .hero__conn-mark { fill: var(--hb); }
+.hero__conn-line--g .hero__conn-mark { fill: var(--hg); }
+.hero__conn-line--p .hero__conn-mark { fill: var(--hp); }
+
+/* Dashes march toward the arrowhead (paths are drawn origin -> arrow). */
+@keyframes hero-dash {
+  to { stroke-dashoffset: -14; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__conn-path {
+    animation: none;
+  }
+}
+
+/* ── Trust bar ── */
+.hero__trust {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 26px;
+  background: #ffffff;
+  border: 1px solid #e6ebf4;
+  border-radius: 16px;
+  color-scheme: light;
+  box-shadow: 0 8px 22px -18px rgba(15, 30, 60, 0.22);
+}
+
+.hero__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px;
+  border-left: 1px solid #edf1f7;
+}
+
+.hero__trust-item:first-child {
+  border-left: none;
+}
+
+.hero__trust-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+}
+
+.hero__trust-item h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.tone-blue h4 { color: var(--hb); }
+.tone-green h4 { color: var(--hg); }
+.tone-purple h4 { color: var(--hp); }
+
+.hero__trust-item p {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #5c6b80;
+}
+
+/* ── Dark mode ──────────────────────────────────────────────────
+   The Sourcing Partner / Customer side cards (.hero__side) show
+   opaque illustration PNGs with a baked-in light background, so
+   they stay fixed-light in both themes — like real product shots.
+   The solution stack and trust bar are plain icon + text chrome,
+   so they follow the site's real theme instead of staying light. */
+[data-theme='dark'] .hero__solution {
+  background: var(--surface);
+  border-color: var(--outline);
+  box-shadow: 0 8px 22px -16px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='dark'] .hero__solution:hover {
+  box-shadow: 0 14px 30px -16px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme='dark'] .tone-blue .hero__solution-tile {
+  background: color-mix(in srgb, var(--hb) 20%, transparent);
+}
+
+[data-theme='dark'] .tone-green .hero__solution-tile {
+  background: color-mix(in srgb, var(--hg) 20%, transparent);
+}
+
+[data-theme='dark'] .tone-purple .hero__solution-tile {
+  background: color-mix(in srgb, var(--hp) 20%, transparent);
+}
+
+[data-theme='dark'] .hero__solution-copy h3 {
+  color: var(--text);
+}
+
+[data-theme='dark'] .hero__solution-copy p {
+  color: var(--muted);
+}
+
+[data-theme='dark'] .hero__trust {
+  background: var(--surface);
+  border-color: var(--outline);
+  box-shadow: 0 8px 22px -18px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .hero__trust-item {
+  border-left-color: var(--outline);
+  border-top-color: var(--outline);
+}
+
+[data-theme='dark'] .hero__trust-item p {
+  color: var(--muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1080px) {
+  .hero__side {
+    flex-basis: 260px;
+    width: 260px;
+  }
+
+  .hero__conn {
+    flex-basis: 56px;
+    width: 56px;
+  }
+}
+
+@media (max-width: 980px) {
+  .hero__flow {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero__conn {
+    display: none;
+  }
+
+  .hero__side {
+    width: 100%;
+    flex: none;
+  }
+
+  .hero__trust {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero__trust-item:nth-child(3) {
+    border-left: none;
+  }
+
+  .hero__trust-item:nth-child(n + 3) {
+    border-top: 1px solid #edf1f7;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding: 122px 0 64px;
+  }
+
+  .hero__trust {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__trust-item {
+    border-left: none;
+  }
+
+  .hero__trust-item:nth-child(n + 2) {
+    border-top: 1px solid #edf1f7;
+  }
+}
+
+/* Shared .btn / .btn--solid / .btn--ghost classes now live in ../home.css,
+   scoped to .home-v2 so they can't leak into the rest of the site. */

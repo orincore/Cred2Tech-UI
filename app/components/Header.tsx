@@ -28,13 +28,22 @@ export default function Header() {
         };
     }, [pathname]);
 
+    const handleLogoClick = () => {
+        // Next.js doesn't scroll-reset when the Link's href matches the
+        // current route, so clicking the logo while already on the
+        // homepage (but scrolled down) would otherwise do nothing.
+        if (pathname === '/') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
     return (
         <header id="site-header" className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 ${scrolled ? 'bg-[var(--surface)]/90 backdrop-blur-md py-2 shadow-sm' : 'bg-transparent py-4'}`}>
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
                 <nav id="header-nav" className="flex justify-between items-center h-[48px] sm:h-[56px]">
 
                     {/* ── LOGO ── */}
-                    <Link href="/" className="flex items-center gap-2 flex-shrink-0 sm:gap-3">
+                    <Link href="/" onClick={handleLogoClick} className="flex items-center gap-2 flex-shrink-0 sm:gap-3">
                         <div className="relative w-36 h-auto sm:w-40 lg:w-48 shrink-0">
                             <Image
                                 src={mounted && (theme === 'light' || resolvedTheme === 'light') ? "/logos/black-logo.png" : "/logos/white-logo.png"}
@@ -55,26 +64,14 @@ export default function Header() {
                             ? 'bg-white/70 border-black/5' 
                             : 'bg-[var(--surface-low)]/80 border-white/5'}`}>
                         
-                        {/* For DSA */}
-                        <Link href="/dsa" suppressHydrationWarning className={`px-5 py-2 text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 relative
+                        {/* Home */}
+                        <Link href="/" suppressHydrationWarning className={`px-5 py-2 text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 relative
                             ${mounted && (theme === 'light' || resolvedTheme === 'light')
-                                ? (pathname === '/dsa' ? 'text-black' : 'text-black/60 hover:text-black')
-                                : (pathname === '/dsa' ? 'text-white' : 'text-white hover:text-white')
+                                ? (pathname === '/' ? 'text-black' : 'text-black/60 hover:text-black')
+                                : (pathname === '/' ? 'text-white' : 'text-white hover:text-white')
                             }`}>
-                            For DSA
-                            {pathname === '/dsa' && (
-                                <div className={`absolute bottom-1 left-5 right-5 h-0.5 rounded-full ${mounted && (theme === 'light' || resolvedTheme === 'light') ? 'bg-black' : 'bg-white'}`}></div>
-                            )}
-                        </Link>
-
-                        {/* For MSME */}
-                        <Link href="/msme" suppressHydrationWarning className={`px-5 py-2 text-[14px] font-medium font-(family-name:--font-inter) transition-all duration-300 relative
-                            ${mounted && (theme === 'light' || resolvedTheme === 'light')
-                                ? (pathname === '/msme' ? 'text-black' : 'text-black/60 hover:text-black')
-                                : (pathname === '/msme' ? 'text-white' : 'text-white hover:text-white')
-                            }`}>
-                            For MSME
-                            {pathname === '/msme' && (
+                            Home
+                            {pathname === '/' && (
                                 <div className={`absolute bottom-1 left-5 right-5 h-0.5 rounded-full ${mounted && (theme === 'light' || resolvedTheme === 'light') ? 'bg-black' : 'bg-white'}`}></div>
                             )}
                         </Link>
@@ -167,10 +164,8 @@ export default function Header() {
                 <div id="mobile-nav-drawer" className="fixed top-[72px] left-4 right-4 max-h-[80vh] overflow-y-auto bg-[var(--bg)] border border-[var(--outline)] p-5 z-[999] shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300 rounded-2xl"
                 >
                     <div className="flex flex-col gap-1">
-                        <Link href="/dsa" onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 text-[16px] font-medium rounded-xl ${pathname === '/dsa' ? 'bg-[var(--surface)] text-[var(--on-surface)]' : 'text-[var(--on-muted)] hover:bg-[var(--surface)]'
-                            }`}>For DSA</Link>
-                        <Link href="/msme" onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 text-[16px] font-medium rounded-xl ${pathname === '/msme' ? 'bg-[var(--surface)] text-[var(--on-surface)]' : 'text-[var(--on-muted)] hover:bg-[var(--surface)]'
-                            }`}>For MSME</Link>
+                        <Link href="/" onClick={() => setMobileMenuOpen(false)} className={`block px-4 py-3 text-[16px] font-medium rounded-xl ${pathname === '/' ? 'bg-[var(--surface)] text-[var(--on-surface)]' : 'text-[var(--on-muted)] hover:bg-[var(--surface)]'
+                            }`}>Home</Link>
 
                         <div className="h-px bg-[var(--outline)] my-3 mx-2" />
 

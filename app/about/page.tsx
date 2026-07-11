@@ -403,19 +403,14 @@ export default function AboutPage() {
                 {/* LEFT — Portrait Image */}
                 <div className="relative lg:w-[38%] flex-shrink-0 min-h-[360px] sm:min-h-[400px] lg:min-h-0 bg-gradient-to-br from-[var(--on-surface)] to-[#001233] overflow-hidden">
                   <Image
-                    src="/images/Bobby.jpg"
+                    src="/Bobby.jpg"
                     alt="Bobby Thomas M"
                     fill
                     sizes="(max-width: 1024px) 100vw, 38vw"
-                    className="object-cover object-top lg:object-center opacity-90 group-hover:scale-[1.03] transition-transform duration-700"
+                    className="object-cover object-top lg:object-center"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                   />
               
-                  {/* Gradient overlay on right edge for blend */}
-                  <div className="hidden lg:block absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent" />
-                  {/* Badge */}
-                 
-                  
                 </div>
 
                 {/* RIGHT — Info */}
@@ -455,18 +450,13 @@ export default function AboutPage() {
                 {/* RIGHT — Portrait Image (rendered first on mobile via flex-col, visually right on desktop via row-reverse) */}
                 <div className="relative lg:w-[38%] flex-shrink-0 min-h-[360px] sm:min-h-[400px] lg:min-h-0 bg-gradient-to-bl from-[#001233] to-[var(--on-surface)] overflow-hidden">
                   <Image
-                    src="/images/Sunil.jpg"
+                    src="/Sunil.jpg"
                     alt="Sunil Agarwal"
                     fill
                     sizes="(max-width: 1024px) 100vw, 38vw"
-                    className="object-cover object-top lg:object-center opacity-90 group-hover:scale-[1.03] transition-transform duration-700"
+                    className="object-cover object-top lg:object-center"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                   />
-                  
-                  {/* Gradient overlay on left edge for blend */}
-                  <div className="hidden lg:block absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent" />
-                 
-                  
                 </div>
 
                 {/* LEFT — Info */}

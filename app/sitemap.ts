@@ -27,18 +27,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily" as const,
       priority: 1.0,
     },
-    {
-      url: `${siteUrl}/msme/`,
-      lastModified: currentDate,
-      changeFrequency: "daily" as const,
-      priority: 0.95,
-    },
-    {
-      url: `${siteUrl}/dsa/`,
-      lastModified: currentDate,
-      changeFrequency: "daily" as const,
-      priority: 0.95,
-    },
   ];
 
   // Information pages - high priority

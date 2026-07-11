@@ -1,0 +1,795 @@
+/* ── Lender flow: "One Platform. Multiple Lenders." ──────────────
+   A fixed-light band (like the product excerpts) reproducing the
+   3-step partner -> platform -> lenders explainer. */
+.lf {
+  --lf-navy: #16214a;
+  --lf-blue: #2144cf;
+  --lf-blue-bright: #2b62e9;
+  --lf-green: #1e6b4a;
+  --lf-purple: #5b4bc4;
+  --lf-ink: #14204a;
+  --lf-mid: #33406b;
+  --lf-border: #e4e9f5;
+
+  background: #ffffff;
+  color-scheme: light;
+  color: var(--lf-ink);
+  padding: 44px 0 0;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Head ── */
+.lf__head {
+  position: relative;
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.lf__title {
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2.4vw, 29px);
+  line-height: 1.18;
+  font-weight: 700;
+  color: var(--lf-navy);
+}
+
+.lf__title span {
+  display: block;
+  color: var(--lf-blue);
+}
+
+.lf__logo {
+  height: 52px;
+  width: auto;
+  margin-top: 16px;
+}
+
+.lf__rule {
+  position: absolute;
+  height: 2px;
+  width: min(12%, 130px);
+}
+
+.lf__rule--l {
+  left: 0;
+  top: 18px;
+  background: var(--lf-navy);
+}
+
+.lf__rule--l::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lf-blue-bright);
+}
+
+.lf__rule--r {
+  right: 0;
+  top: 40px;
+  background: var(--lf-green);
+}
+
+.lf__rule--r::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1f9d55;
+}
+
+/* ── Step cards row ── */
+.lf__steps {
+  display: grid;
+  grid-template-columns: 1fr 44px 1.3fr 44px 1fr;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.lf__card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid var(--lf-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px -20px rgba(16, 30, 70, 0.35);
+}
+
+.lf__card-head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 15px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.lf__card-head--navy { background: #17255c; }
+.lf__card-head--blue { background: var(--lf-blue-bright); }
+.lf__card-head--green { background: var(--lf-green); }
+
+.lf__num {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.lf__card-head--navy .lf__num { color: #17255c; }
+.lf__card-head--blue .lf__num { color: var(--lf-blue-bright); }
+.lf__card-head--green .lf__num { color: var(--lf-green); }
+
+/* ── Step 1: onboarding ── */
+.lf__photo {
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-height: 300px;
+  object-fit: cover;
+}
+
+.lf__duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--lf-border);
+}
+
+.lf__duo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  padding: 16px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--lf-ink);
+}
+
+.lf__duo-item + .lf__duo-item {
+  border-left: 1px solid var(--lf-border);
+}
+
+.lf__duo-item svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* ── Step 2: data pool ── */
+.lf__pool {
+  position: relative;
+  flex: 1;
+  min-height: 340px;
+}
+
+.lf__pool-links {
+  position: absolute;
+  inset: 0;
+}
+
+.lf__link {
+  fill: none;
+  stroke: #8fa8e8;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 1.5 6;
+  animation: lf-dash 0.6s linear infinite;
+}
+
+@keyframes lf-dash {
+  to { stroke-dashoffset: -7.5; }
+}
+
+.lf__vault {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 286px;
+  width: auto;
+}
+
+.lf__chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 96px;
+  padding: 8px 9px;
+  background: #ffffff;
+  border: 1px solid var(--lf-border);
+  border-radius: 12px;
+  box-shadow: 0 6px 14px -10px rgba(16, 30, 70, 0.4);
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--lf-ink);
+}
+
+.lf__chip svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.lf__chip--gst { left: 14px; top: 24px; }
+.lf__chip--pan { left: 14px; top: 134px; }
+.lf__chip--itr { left: 14px; top: 244px; }
+.lf__chip--bank { right: 14px; top: 76px; }
+.lf__chip--bureau { right: 14px; top: 194px; }
+
+.lf__feats {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--lf-border);
+}
+
+.lf__feats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: 13px 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--lf-ink);
+}
+
+.lf__feats li + li {
+  border-left: 1px solid var(--lf-border);
+}
+
+.lf__feats svg {
+  width: 21px;
+  height: 21px;
+}
+
+/* ── Step 3: eligible lenders ── */
+.lf__offers {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 12px 0;
+}
+
+.lf__offers-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.lf__offers-top h3 {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--lf-navy);
+  white-space: nowrap;
+}
+
+.lf__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #edf1fc;
+  color: var(--lf-blue);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.lf__sort svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* Each row is a distinct rank in a best-match-sorted list — the top row
+   gets a corner tag and a tinted border so that claim is visible, not
+   just stated in the header pill above. The tag is absolutely positioned
+   so it doesn't compete with the name/terms columns for the row's (tight)
+   horizontal space. */
+.lf__offer {
+  position: relative;
+  display: grid;
+  grid-template-columns: 34px 1fr auto 14px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e8edf6;
+  border-radius: 12px;
+  padding: 10px 12px;
+  transition: border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+}
+
+.lf__offer:hover {
+  border-color: var(--lf-blue-bright);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px -16px rgba(16, 30, 70, 0.35);
+}
+
+.lf__offer + .lf__offer {
+  margin-top: 9px;
+}
+
+.lf__offer--top {
+  border-color: #c9d9fb;
+  background: #f7f9ff;
+}
+
+.lf__offer--top::after {
+  content: 'Best Match';
+  position: absolute;
+  top: -8px;
+  right: 14px;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: var(--lf-blue-bright);
+  padding: 2.5px 8px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(43, 98, 233, 0.35);
+}
+
+.lf__offer-bank {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #e7f3ec;
+  color: var(--lf-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lf__offer-bank svg {
+  width: 18px;
+  height: 18px;
+}
+
+.lf__offer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.lf__offer-name {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--lf-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lf__offer-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lf__offer-badge {
+  font-style: normal;
+  background: #e8f5ee;
+  color: var(--lf-green);
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.lf__offer-product {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--lf-blue);
+  white-space: nowrap;
+}
+
+.lf__offer-product.is-risk {
+  color: #d64545;
+}
+
+.lf__offer-terms {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 62px;
+}
+
+.lf__offer-term {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  line-height: 1.2;
+}
+
+.lf__offer-term small {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--lf-mid);
+  white-space: nowrap;
+}
+
+.lf__offer-term b {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--lf-ink);
+  white-space: nowrap;
+}
+
+.lf__chev {
+  width: 14px;
+  height: 14px;
+}
+
+.lf__viewall {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: calc(100% + 22px);
+  margin-left: -11px;
+  margin-right: -11px;
+  border: none;
+  border-top: 1px solid var(--lf-border);
+  background: transparent;
+  padding: 13px 10px;
+  color: var(--lf-blue);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.lf__viewall svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ── Arrows between steps ── */
+.lf__arrow {
+  align-self: center;
+  width: 44px;
+  height: 36px;
+}
+
+.lf__arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lf__arrow--blue { color: var(--lf-blue-bright); }
+.lf__arrow--green { color: var(--lf-green); }
+
+/* ── How It Helps Everyone ── */
+.lf__help {
+  position: relative;
+  margin-top: 28px;
+  background: #ffffff;
+  border: 1px solid var(--lf-border);
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 26px 4px 20px;
+}
+
+.lf__help-title {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  padding: 0 16px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--lf-navy);
+  white-space: nowrap;
+}
+
+.lf__help-cell {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 0 20px;
+}
+
+.lf__help-cell + .lf__help-cell {
+  border-left: 1px solid #e9eef7;
+}
+
+.lf__help-cell h4 {
+  font-size: 13.5px;
+  font-weight: 800;
+  margin-bottom: 9px;
+  padding-top: 3px;
+}
+
+.tone-blue h4 { color: var(--lf-blue); }
+.tone-green h4 { color: var(--lf-green); }
+.tone-purple h4 { color: var(--lf-blue); }
+.tone-secure h4 { color: var(--lf-blue); }
+
+.lf__help-cell ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.lf__help-cell li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--lf-ink);
+}
+
+.lf__help-cell li svg {
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+}
+
+.lf__help-cell p {
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--lf-ink);
+  max-width: 220px;
+}
+
+.lf__help-icon {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lf__help-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.lf__help-icon--blue { background: var(--lf-blue-bright); }
+.lf__help-icon--green { background: var(--lf-green); }
+.lf__help-icon--purple { background: var(--lf-purple); }
+
+.lf__help-shield {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+}
+
+.lf__help-shield svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Dark mode ──────────────────────────────────────────────────
+   The onboarding photo (.lf__photo) and vault illustration (.lf__vault,
+   which has real alpha transparency) fill their frames naturally and
+   need no special handling. Everything else here — card chrome, chip
+   labels, offer rows, "How It Helps Everyone", and the outer band
+   background — is plain marketing UI, so it follows the site's real
+   theme instead of being stuck light regardless of it. */
+[data-theme='dark'] .lf {
+  background: var(--bg);
+}
+
+[data-theme='dark'] .lf__title {
+  color: var(--text);
+}
+
+[data-theme='dark'] .lf__title span {
+  color: var(--accent);
+}
+
+[data-theme='dark'] .lf__rule--l,
+[data-theme='dark'] .lf__rule--r {
+  background: var(--outline);
+}
+
+[data-theme='dark'] .lf__card {
+  background: var(--surface);
+  border-color: var(--outline);
+  box-shadow: 0 12px 28px -20px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme='dark'] .lf__duo {
+  border-top-color: var(--outline);
+}
+
+[data-theme='dark'] .lf__duo-item {
+  color: var(--text);
+}
+
+[data-theme='dark'] .lf__duo-item + .lf__duo-item {
+  border-left-color: var(--outline);
+}
+
+[data-theme='dark'] .lf__chip {
+  background: var(--surface);
+  border-color: var(--outline);
+  color: var(--text);
+  box-shadow: 0 6px 14px -10px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme='dark'] .lf__feats {
+  border-top-color: var(--outline);
+}
+
+[data-theme='dark'] .lf__feats li {
+  color: var(--text);
+}
+
+[data-theme='dark'] .lf__feats li + li {
+  border-left-color: var(--outline);
+}
+
+[data-theme='dark'] .lf__offers-top h3 {
+  color: var(--text);
+}
+
+[data-theme='dark'] .lf__sort {
+  background: color-mix(in srgb, var(--lf-blue) 20%, transparent);
+  color: var(--accent);
+}
+
+[data-theme='dark'] .lf__offer {
+  border-color: var(--outline);
+}
+
+[data-theme='dark'] .lf__offer--top {
+  border-color: color-mix(in srgb, var(--lf-blue-bright) 55%, var(--outline));
+  background: color-mix(in srgb, var(--lf-blue-bright) 10%, transparent);
+}
+
+[data-theme='dark'] .lf__offer-bank {
+  background: color-mix(in srgb, var(--lf-green) 20%, transparent);
+  color: var(--success);
+}
+
+[data-theme='dark'] .lf__offer-name {
+  color: var(--text);
+}
+
+[data-theme='dark'] .lf__offer-badge {
+  background: color-mix(in srgb, var(--lf-green) 20%, transparent);
+  color: var(--success);
+}
+
+[data-theme='dark'] .lf__offer-term small {
+  color: var(--muted);
+}
+
+[data-theme='dark'] .lf__offer-term b {
+  color: var(--text);
+}
+
+[data-theme='dark'] .lf__viewall {
+  border-top-color: var(--outline);
+}
+
+[data-theme='dark'] .lf__help {
+  background: var(--surface);
+  border-color: var(--outline);
+}
+
+[data-theme='dark'] .lf__help-title {
+  background: var(--surface);
+  color: var(--text);
+}
+
+[data-theme='dark'] .lf__help-cell + .lf__help-cell {
+  border-left-color: var(--outline);
+}
+
+[data-theme='dark'] .lf__help-cell li {
+  color: var(--text);
+}
+
+[data-theme='dark'] .lf__help-cell p {
+  color: var(--muted);
+}
+
+/* ── Bottom accent bar ── */
+.lf__base {
+  margin-top: 32px;
+  height: 10px;
+  background: var(--lf-navy);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1120px) {
+  .lf__steps {
+    grid-template-columns: 1fr;
+  }
+
+  .lf__arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+    height: 32px;
+    width: 40px;
+  }
+
+  .lf__photo {
+    max-height: 340px;
+  }
+
+  .lf__help {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 24px;
+  }
+
+  .lf__help-cell:nth-child(4) {
+    border-left: none;
+  }
+
+  .lf__rule {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .lf {
+    padding-top: 36px;
+  }
+
+  .lf__help {
+    grid-template-columns: 1fr;
+  }
+
+  .lf__help-cell {
+    border-left: none !important;
+  }
+
+  .lf__offer {
+    grid-template-columns: 32px 1fr auto 12px;
+    gap: 8px;
+    padding: 9px 10px;
+  }
+
+  .lf__chip--bank,
+  .lf__chip--bureau {
+    right: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lf__link {
+    animation: none;
+  }
+}

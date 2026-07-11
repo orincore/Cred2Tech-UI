@@ -1,0 +1,490 @@
+/* ── Scheme engine: "Discover Government Schemes Your Business
+   Qualifies For." ─────────────────────────────────────────────
+   Fixed-light explainer band: 3 numbered step cards with cropped
+   illustration assets, a trust strip, and a closing note. */
+.se {
+  --se-navy: #16214a;
+  --se-green: #17a34a;
+  --se-blue: #2563eb;
+  --se-purple: #7c3aed;
+  --se-ink: #1d2947;
+  --se-gray: #46536f;
+  --se-border: #e7ebf5;
+
+  background: linear-gradient(180deg, #fbfcff 0%, #f4f6fc 100%);
+  color-scheme: light;
+  color: var(--se-ink);
+  padding: 84px 0 64px;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Head ── */
+.se__head {
+  text-align: center;
+  max-width: 780px;
+  margin-bottom: 0 auto 48px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -60px;
+}
+
+.se__title {
+  font-size: clamp(30px, 3.3vw, 46px);
+  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--se-navy);
+}
+
+.se__title span {
+  display: block;
+  color: var(--se-green);
+}
+
+.se__sub {
+  margin-top: 18px;
+  font-size: 17.5px;
+  line-height: 1.55;
+  font-weight: 500;
+  color: #33405e;
+}
+
+/* ── Step cards ── */
+.se__steps {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr 40px 1fr;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.se__card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid var(--se-border);
+  border-radius: 16px;
+  padding: 26px 24px 18px;
+  box-shadow: 0 16px 34px -26px rgba(20, 32, 76, 0.35);
+}
+
+.se__card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.se__num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.se__num--blue { background: var(--se-blue); }
+.se__num--green { background: #158f47; }
+.se__num--purple { background: var(--se-purple); }
+
+.se__card-head h3 {
+  font-size: 19px;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--se-navy);
+  padding-top: 3px;
+}
+
+.se__card-desc {
+  margin: 14px 0 16px;
+  padding-left: 56px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  font-weight: 500;
+  color: var(--se-gray);
+}
+
+/* Illustration area */
+.se__scene {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 200px;
+  margin-bottom: 14px;
+}
+
+.se__scene img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.se__scene--fetch {
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.se__scene--fetch img {
+  width: 66%;
+  align-self: flex-end;
+}
+
+.se__chips {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 12px;
+}
+
+.se__chip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #fff;
+  border: 1px solid var(--se-border);
+  border-radius: 12px;
+  padding: 10px 11px;
+  box-shadow: 0 10px 22px -16px rgba(20, 32, 76, 0.3);
+}
+
+.se__chip-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1.5px solid #dbe4f6;
+}
+
+.se__chip-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.se__chip b {
+  flex: 1;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--se-navy);
+}
+
+.se__check {
+  flex: none;
+  width: 19px;
+  height: 19px;
+}
+
+/* Card foot strip */
+.se__foot {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: auto;
+}
+
+.se__foot--blue { background: #edf3fd; }
+.se__foot--green { background: #e9f6ee; }
+.se__foot--purple { background: #f1edfb; }
+
+.se__foot-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.se__foot--blue .se__foot-icon { background: #fff; }
+.se__foot--green .se__foot-icon { background: #d9efe2; }
+.se__foot--purple .se__foot-icon { background: #e4dbf7; }
+
+.se__foot-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.se__foot p {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--se-ink);
+}
+
+/* Arrows between cards */
+.se__arrow {
+  align-self: center;
+  width: 34px;
+}
+
+.se__arrow svg {
+  width: 100%;
+  display: block;
+}
+
+.se__arrow--blue { color: var(--se-blue); }
+.se__arrow--green { color: var(--se-green); }
+
+/* ── Divider ── */
+.se__divider {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 52px 0 24px;
+}
+
+.se__divider::before,
+.se__divider::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: #c9d6ee;
+}
+
+.se__divider span {
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 800;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+/* ── Trust strip ── */
+.se__trust {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: #ffffff;
+  border: 1px solid var(--se-border);
+  border-radius: 16px;
+  padding: 30px 10px;
+  box-shadow: 0 18px 40px -30px rgba(20, 32, 76, 0.3);
+}
+
+.se__trust-cell {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0 18px;
+  border-right: 1px solid #e6ebf5;
+}
+
+.se__trust-cell:last-child {
+  border-right: 0;
+}
+
+.se__trust-icon {
+  flex: none;
+  width: 34px;
+  height: 34px;
+}
+
+.se__trust-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.se__trust-icon.tone-blue { color: var(--se-blue); }
+.se__trust-icon.tone-green { color: var(--se-green); }
+
+.se__trust-cell h4 {
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--se-navy);
+  margin-bottom: 7px;
+}
+
+.se__trust-cell p {
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 500;
+  color: var(--se-gray);
+}
+
+/* ── Closing note ── */
+.se__note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 34px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--se-navy);
+}
+
+.se__note .se__check {
+  width: 22px;
+  height: 22px;
+}
+
+/* ── Dark mode ──────────────────────────────────────────────────
+   The illustration PNGs themselves (scheme-fetch/discover/support)
+   are opaque with a baked-in light background, so they can't be
+   recolored — instead they get a deliberate light inset "frame"
+   (background + padding on the <img>) so they read as an intentional
+   framed illustration rather than a mismatched light rectangle. The
+   rest of each card (chrome, heading, chips, foot strip) goes fully
+   dark along with the section background, divider and trust strip. */
+[data-theme='dark'] .se {
+  background: var(--bg);
+}
+
+[data-theme='dark'] .se__card {
+  background: var(--surface);
+  border-color: var(--outline);
+  box-shadow: 0 16px 34px -26px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme='dark'] .se__card-head h3 {
+  color: var(--text);
+}
+
+[data-theme='dark'] .se__card-desc {
+  color: var(--muted);
+}
+
+[data-theme='dark'] .se__scene img {
+  background: #f4f6fc;
+  padding: 14px;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+[data-theme='dark'] .se__scene--fetch img {
+  padding: 10px;
+  border-radius: 12px;
+}
+
+[data-theme='dark'] .se__chip {
+  background: var(--surface);
+  border-color: var(--outline);
+}
+
+[data-theme='dark'] .se__chip-icon {
+  border-color: var(--outline);
+}
+
+[data-theme='dark'] .se__chip b {
+  color: var(--text);
+}
+
+[data-theme='dark'] .se__foot--blue {
+  background: color-mix(in srgb, var(--se-blue) 18%, transparent);
+}
+
+[data-theme='dark'] .se__foot--green {
+  background: color-mix(in srgb, var(--se-green) 18%, transparent);
+}
+
+[data-theme='dark'] .se__foot--purple {
+  background: color-mix(in srgb, var(--se-purple) 18%, transparent);
+}
+
+[data-theme='dark'] .se__foot-icon {
+  background: var(--surface);
+}
+
+[data-theme='dark'] .se__foot p {
+  color: var(--text);
+}
+
+[data-theme='dark'] .se__title {
+  color: var(--text);
+}
+
+[data-theme='dark'] .se__title span {
+  color: var(--success);
+}
+
+[data-theme='dark'] .se__sub {
+  color: var(--muted);
+}
+
+[data-theme='dark'] .se__divider::before,
+[data-theme='dark'] .se__divider::after {
+  background: var(--outline);
+}
+
+[data-theme='dark'] .se__divider span {
+  color: var(--accent);
+}
+
+[data-theme='dark'] .se__trust {
+  background: var(--surface);
+  border-color: var(--outline);
+}
+
+[data-theme='dark'] .se__trust-cell {
+  border-right-color: var(--outline);
+}
+
+[data-theme='dark'] .se__trust-cell h4 {
+  color: var(--text);
+}
+
+[data-theme='dark'] .se__trust-cell p {
+  color: var(--muted);
+}
+
+[data-theme='dark'] .se__note {
+  color: var(--text);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1080px) {
+  .se__steps {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .se__arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+    width: 30px;
+  }
+
+  .se__trust {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 22px;
+  }
+
+  .se__trust-cell {
+    border-right: 0;
+    padding: 0;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1080px) {
+  .se__trust {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 30px;
+  }
+}
+
+@media (max-width: 560px) {
+  .se {
+    padding: 60px 0 48px;
+  }
+
+  .se__card-desc {
+    padding-left: 0;
+  }
+
+  .se__scene--fetch {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .se__scene--fetch img {
+    width: 100%;
+  }
+}

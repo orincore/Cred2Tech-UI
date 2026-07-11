@@ -1,0 +1,90 @@
+/* Ported from Cred2Tech v2 website (src/styles/theme.css).
+   Scoped to `.home-v2` instead of `:root` so these tokens never leak
+   into the rest of the Cred2Tech-UI site, which has its own theme system. */
+@font-face {
+  font-family: 'Hikasami';
+  src: url('/fonts/Hikasami-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hikasami';
+  src: url('/fonts/Hikasami-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hikasami';
+  src: url('/fonts/Hikasami-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hikasami';
+  src: url('/fonts/Hikasami-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+.home-v2,
+html[data-theme='dark'] .home-v2 {
+  /* Cred2Tech dark palette, default theme for this build */
+  --bg: #0a1628;
+  --surface: #101c38;
+  --surface-low: #162048;
+  --surface-high: #1e2a5c;
+  --outline: #24315f;
+  --text: #e6edf7;
+  --muted: #8b9bb8;
+  --muted-dim: #5b6a8c;
+
+  --accent: #4a8df8;
+  --accent-soft: #8fa8ff;
+  --accent-dim: rgba(74, 141, 248, 0.14);
+  --success: #34d399;
+  --success-dim: rgba(52, 211, 153, 0.14);
+
+  --nav-glass: rgba(10, 22, 40, 0.72);
+  --glow-a: rgba(74, 141, 248, 0.35);
+  --glow-b: rgba(52, 211, 153, 0.16);
+  --scrollbar-track: var(--bg);
+  --scrollbar-thumb: var(--surface-high);
+
+  color-scheme: dark;
+}
+
+/* Cred2Tech light palette, the brand's original light theme */
+html[data-theme='light'] .home-v2 {
+  --bg: #eef4ff;
+  --surface: #ffffff;
+  --surface-low: #e0eaff;
+  --surface-high: #d3e0ff;
+  --outline: #c7d2fe;
+  --text: #0a1628;
+  --muted: #4a5d73;
+  --muted-dim: #7d8fa8;
+
+  --accent: #2f6fe0;
+  --accent-soft: #4a8df8;
+  --accent-dim: rgba(47, 111, 224, 0.08);
+  --success: #17a06b;
+  --success-dim: rgba(23, 160, 107, 0.1);
+
+  --nav-glass: rgba(255, 255, 255, 0.72);
+  --glow-a: rgba(74, 141, 248, 0.22);
+  --glow-b: rgba(23, 160, 107, 0.12);
+  --scrollbar-track: var(--bg);
+  --scrollbar-thumb: #b9c9ee;
+
+  color-scheme: light;
+}
+
+.home-v2 {
+  --font-display: 'Hikasami', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --container: 1280px;
+}

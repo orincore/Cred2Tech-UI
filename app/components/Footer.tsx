@@ -62,8 +62,6 @@ export default function Footer() {
         <div className="space-y-4">
           <h4 className="font-bold text-[var(--on-surface)] text-[10px] uppercase tracking-[0.2em]">Products</h4>
           <ul className="space-y-2 text-xs text-[var(--on-muted)]">
-            <li><Link href="/dsa" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">For DSAs</Link></li>
-            <li><Link href="/msme" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">For MSMEs</Link></li>
             <li><span className="opacity-50">Business Loans (Soon)</span></li>
             <li><span className="opacity-50">Govt Schemes (Soon)</span></li>
           </ul>
