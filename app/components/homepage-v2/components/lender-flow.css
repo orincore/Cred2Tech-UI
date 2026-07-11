@@ -785,7 +785,11 @@
 }
 
 [data-theme='dark'] .lf__help-cell p {
-  color: var(--muted);
+  color: var(--text);
+}
+
+[data-theme='dark'] .lf__help-cell.tone-secure p {
+  color: #ffffff;
 }
 
 /* ── Bottom accent bar ── */
