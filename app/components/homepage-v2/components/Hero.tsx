@@ -91,7 +91,7 @@ export function Hero() {
         
         </div>
 
-        <div className="container">
+        <div className="container hero__flow-wrap">
           <div className="hero__flow">
             <aside className="hero__side hero__side--partner hero__reveal">
               <div className="hero__side-head">
@@ -161,7 +161,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="container">
+        <div className="container hero__trust-wrap">
           <ul className="hero__trust hero__reveal">
             {TRUST.map((t) => (
               <li className={`hero__trust-item tone-${t.tone}`} key={t.title}>

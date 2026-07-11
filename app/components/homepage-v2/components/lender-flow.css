@@ -10,25 +10,57 @@
   --lf-ink: #14204a;
   --lf-mid: #33406b;
   --lf-border: #e4e9f5;
+  /* Reserves the fixed site header's tallest state (py-4 + logo) so the
+     section's own height budget never has to guess where the header ends. */
+  --lf-header-h: 88px;
 
   background: #ffffff;
   color-scheme: light;
   color: var(--lf-ink);
-  padding: 44px 0 0;
   font-family: 'Inter', system-ui, sans-serif;
+
+  /* The whole point: the section's box is exactly one screen tall, with
+     padding-top reserving space for the fixed header (mirrors .hero — a
+     real, ordinary scroll stopping anywhere near this section must clear
+     the header on its own; scroll-margin-top only helps for anchor/
+     scrollIntoView jumps, not everyday wheel scrolling). Every block
+     below is a flex item sharing what's left of that budget, so it fits
+     on any viewport height without per-screen tuning. min-height is a
+     hard floor for degenerate viewports (shorter than the header plus
+     ~560px of content), where it gracefully reverts to needing a scroll
+     rather than crushing the content unreadably. */
+  height: 100vh;
+  min-height: calc(560px + var(--lf-header-h));
+  max-height: calc(1080px + var(--lf-header-h));
+  padding-top: var(--lf-header-h);
+  padding-bottom: clamp(10px, 2.4vh, 28px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  scroll-margin-top: var(--lf-header-h);
+}
+
+.lf > .container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 /* ── Head ── */
 .lf__head {
   position: relative;
   text-align: center;
-  margin-bottom: 26px;
+  flex: 0 0 auto;
+  padding-top: clamp(4px, 1.5vh, 14px);
+  padding-bottom: clamp(4px, 1.2vh, 12px);
 }
 
 .lf__title {
   font-family: var(--font-display);
-  font-size: clamp(21px, 2.4vw, 29px);
-  line-height: 1.18;
+  font-size: clamp(18px, 1.9vw, 24px);
+  line-height: 1.15;
   font-weight: 700;
   color: var(--lf-navy);
 }
@@ -86,10 +118,15 @@
   background: #1f9d55;
 }
 
-/* ── Step cards row ── */
+/* ── Step cards row ──
+   This row is the flexible middle: it takes whatever height is left over
+   after the head/help/base blocks claim their (small, ~fixed) space, and
+   each card stretches to fill it via grid's default align-items: stretch. */
 .lf__steps {
+  flex: 1 1 auto;
+  min-height: 0;
   display: grid;
-  grid-template-columns: 1fr 44px 1.3fr 44px 1fr;
+  grid-template-columns: 1fr 36px 1.3fr 36px 1fr;
   gap: 10px;
   align-items: stretch;
 }
@@ -97,6 +134,7 @@
 .lf__card {
   display: flex;
   flex-direction: column;
+  min-height: 0;
   background: #ffffff;
   border: 1px solid var(--lf-border);
   border-radius: 14px;
@@ -107,10 +145,10 @@
 .lf__card-head {
   display: flex;
   align-items: center;
-  gap: 11px;
-  padding: 12px 15px;
+  gap: 10px;
+  padding: 7px 14px;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.005em;
 }
@@ -121,14 +159,14 @@
 
 .lf__num {
   flex-shrink: 0;
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 12.5px;
   font-weight: 800;
 }
 
@@ -140,12 +178,13 @@
 .lf__photo {
   display: block;
   width: 100%;
-  flex: 1;
-  min-height: 300px;
+  flex: 1 1 0;
+  min-height: 0;
   object-fit: cover;
 }
 
 .lf__duo {
+  flex: 0 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-top: 1px solid var(--lf-border);
@@ -155,12 +194,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   text-align: center;
-  padding: 16px 10px;
-  font-size: 13px;
+  padding: 10px 10px;
+  font-size: 12px;
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.25;
   color: var(--lf-ink);
 }
 
@@ -169,15 +208,15 @@
 }
 
 .lf__duo-item svg {
-  width: 26px;
-  height: 26px;
+  width: 21px;
+  height: 21px;
 }
 
 /* ── Step 2: data pool ── */
 .lf__pool {
   position: relative;
-  flex: 1;
-  min-height: 340px;
+  flex: 1 1 0;
+  min-height: 0;
 }
 
 .lf__pool-links {
@@ -203,40 +242,46 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  height: 286px;
+  height: 80%;
+  max-height: 260px;
   width: auto;
 }
 
+/* Positioned by percentage of the (fluid) pool height, rather than a
+   pixel value tuned for one screen, so chips stay put proportionally as
+   the section grows or shrinks to fit the viewport. PoolLinks mirrors
+   these same fractions in JS to keep the connector lines anchored. */
 .lf__chip {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 7px;
-  width: 96px;
-  padding: 8px 9px;
+  gap: 6px;
+  width: 92px;
+  padding: 6px 8px;
   background: #ffffff;
   border: 1px solid var(--lf-border);
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0 6px 14px -10px rgba(16, 30, 70, 0.4);
-  font-size: 11.5px;
+  font-size: 10.5px;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--lf-ink);
 }
 
 .lf__chip svg {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
 }
 
-.lf__chip--gst { left: 14px; top: 24px; }
-.lf__chip--pan { left: 14px; top: 134px; }
-.lf__chip--itr { left: 14px; top: 244px; }
-.lf__chip--bank { right: 14px; top: 76px; }
-.lf__chip--bureau { right: 14px; top: 194px; }
+.lf__chip--gst { left: 14px; top: 7%; }
+.lf__chip--pan { left: 14px; top: 40%; }
+.lf__chip--itr { left: 14px; top: 72%; }
+.lf__chip--bank { right: 14px; top: 22%; }
+.lf__chip--bureau { right: 14px; top: 57%; }
 
 .lf__feats {
+  flex: 0 0 auto;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -247,12 +292,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   text-align: center;
-  padding: 13px 4px;
-  font-size: 11.5px;
+  padding: 8px 4px;
+  font-size: 10.5px;
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.25;
   color: var(--lf-ink);
 }
 
@@ -261,24 +306,44 @@
 }
 
 .lf__feats svg {
-  width: 21px;
-  height: 21px;
+  width: 18px;
+  height: 18px;
 }
 
 /* ── Step 3: eligible lenders ── */
 .lf__offers {
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 14px 12px 0;
+  padding: 10px 12px 0;
 }
 
 .lf__offers-top {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+}
+
+/* Fills whatever room is left in the card; if a very short viewport can't
+   fit every row it scrolls internally here rather than pushing the card
+   (and the section) past the viewport. padding-top (plus a matching
+   negative margin so layout doesn't shift) gives the first row's "Best
+   Match" tag — which pokes above the row via a negative `top` — room to
+   render instead of being clipped by this scroll container's own edge. */
+.lf__offer-list {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding-top: 10px;
+  margin-top: -10px;
 }
 
 .lf__offers-top h3 {
@@ -313,13 +378,14 @@
    horizontal space. */
 .lf__offer {
   position: relative;
+  flex: 0 0 auto;
   display: grid;
-  grid-template-columns: 34px 1fr auto 14px;
+  grid-template-columns: 30px 1fr auto 14px;
   align-items: center;
   gap: 10px;
   border: 1px solid #e8edf6;
   border-radius: 12px;
-  padding: 10px 12px;
+  padding: 7px 12px;
   transition: border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
 
@@ -327,10 +393,6 @@
   border-color: var(--lf-blue-bright);
   transform: translateY(-1px);
   box-shadow: 0 10px 22px -16px rgba(16, 30, 70, 0.35);
-}
-
-.lf__offer + .lf__offer {
-  margin-top: 9px;
 }
 
 .lf__offer--top {
@@ -355,9 +417,9 @@
 }
 
 .lf__offer-bank {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
   background: #e7f3ec;
   color: var(--lf-green);
   display: flex;
@@ -366,14 +428,14 @@
 }
 
 .lf__offer-bank svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .lf__offer-info {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   min-width: 0;
 }
 
@@ -463,9 +525,9 @@
   border: none;
   border-top: 1px solid var(--lf-border);
   background: transparent;
-  padding: 13px 10px;
+  padding: 9px 10px;
   color: var(--lf-blue);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
 }
 
@@ -477,8 +539,8 @@
 /* ── Arrows between steps ── */
 .lf__arrow {
   align-self: center;
-  width: 44px;
-  height: 36px;
+  width: 36px;
+  height: 30px;
 }
 
 .lf__arrow svg {
@@ -493,23 +555,24 @@
 /* ── How It Helps Everyone ── */
 .lf__help {
   position: relative;
-  margin-top: 28px;
+  flex: 0 0 auto;
+  margin-top: clamp(18px, 2.4vh, 26px);
   background: #ffffff;
   border: 1px solid var(--lf-border);
   border-radius: 14px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 26px 4px 20px;
+  padding: clamp(8px, 1.6vh, 16px) 4px clamp(6px, 1.2vh, 12px);
 }
 
 .lf__help-title {
   position: absolute;
-  top: -10px;
+  top: -9px;
   left: 50%;
   transform: translateX(-50%);
   background: #ffffff;
   padding: 0 16px;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 800;
   color: var(--lf-navy);
   white-space: nowrap;
@@ -517,9 +580,9 @@
 
 .lf__help-cell {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   align-items: flex-start;
-  padding: 0 20px;
+  padding: 0 18px;
 }
 
 .lf__help-cell + .lf__help-cell {
@@ -527,10 +590,10 @@
 }
 
 .lf__help-cell h4 {
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 800;
-  margin-bottom: 9px;
-  padding-top: 3px;
+  margin-bottom: 6px;
+  padding-top: 2px;
 }
 
 .tone-blue h4 { color: var(--lf-blue); }
@@ -542,36 +605,36 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 5px;
 }
 
 .lf__help-cell li {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
+  gap: 7px;
+  font-size: 11.5px;
   font-weight: 600;
   color: var(--lf-ink);
 }
 
 .lf__help-cell li svg {
   flex-shrink: 0;
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
 }
 
 .lf__help-cell p {
-  font-size: 12.5px;
+  font-size: 11.5px;
   font-weight: 500;
-  line-height: 1.55;
+  line-height: 1.45;
   color: var(--lf-ink);
   max-width: 220px;
 }
 
 .lf__help-icon {
   flex-shrink: 0;
-  width: 54px;
-  height: 54px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -579,8 +642,8 @@
 }
 
 .lf__help-icon svg {
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
 }
 
 .lf__help-icon--blue { background: var(--lf-blue-bright); }
@@ -589,8 +652,8 @@
 
 .lf__help-shield {
   flex-shrink: 0;
-  width: 54px;
-  height: 54px;
+  width: 40px;
+  height: 40px;
 }
 
 .lf__help-shield svg {
@@ -727,15 +790,43 @@
 
 /* ── Bottom accent bar ── */
 .lf__base {
-  margin-top: 32px;
-  height: 10px;
+  flex: 0 0 auto;
+  margin-top: clamp(6px, 1.2vh, 12px);
+  height: 6px;
   background: var(--lf-navy);
 }
 
-/* ── Responsive ── */
+/* ── Responsive ──
+   Below this width the steps stack into a single column, which is
+   naturally taller than one screen — so the viewport-fit sizing above
+   (fixed section height, flex-filled panels) is turned back into normal
+   auto-height content that the page scrolls to reach, same as any other
+   section. */
 @media (max-width: 1120px) {
+  .lf {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .lf > .container {
+    display: block;
+  }
+
+  .lf__head,
+  .lf__steps,
+  .lf__help,
+  .lf__base {
+    flex: none;
+  }
+
   .lf__steps {
     grid-template-columns: 1fr;
+  }
+
+  .lf__card {
+    min-height: 0;
   }
 
   .lf__arrow {
@@ -746,7 +837,23 @@
   }
 
   .lf__photo {
+    flex: none;
+    min-height: 260px;
     max-height: 340px;
+  }
+
+  .lf__pool {
+    flex: none;
+    min-height: 260px;
+  }
+
+  .lf__offers {
+    flex: none;
+  }
+
+  .lf__offer-list {
+    flex: none;
+    overflow: visible;
   }
 
   .lf__help {

@@ -14,7 +14,14 @@
   background: linear-gradient(180deg, #fbfcff 0%, #f4f6fc 100%);
   color-scheme: light;
   color: var(--se-ink);
-  padding: 84px 0 64px;
+  /* .se__head below has margin-top: -60px (tightens the gap after
+     PartnerWorkspace in the original design) — net effective clearance
+     above the title is this minus that, so it's padded well past the
+     fixed header's height rather than the original 84px, which left
+     only ~24px and let the header sit on top of "Discover Government
+     Schemes" once this section can be the first thing in view (via the
+     scroll-stack cover from PartnerWorkspace). */
+  padding: 150px 0 64px;
   font-family: 'Inter', system-ui, sans-serif;
 }
 

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Sunby Credtech | Cred2Tech - India's #1 MSME Credit Platform",
-  description: "Sunby Credtech Private Limited - India's leading MSME credit platform via Cred2Tech. Sunby Credtech offers instant business loan eligibility checks, DSA partner network, and multi-lender matching with 50+ leading banks and NBFCs. Bengaluru based fintech company specializing in MSME lending solutions.",
+  description: "Sunby Credtech Private Limited - India's leading MSME credit platform via Cred2Tech. Sunby Credtech offers instant business loan eligibility checks, Sourcing Partner partner network, and multi-lender matching with 50+ leading banks and NBFCs. Bengaluru based fintech company specializing in MSME lending solutions.",
   keywords: [
     "Sunby Credtech", "Sunby Credtech Private Limited", "Cred2Tech", "Credtech",
-    "MSME loan", "business loan India", "DSA platform", "loan eligibility check",
+    "MSME loan", "business loan India", "Sourcing Partner platform", "loan eligibility check",
     "MSME credit", "business loan agent", "loan aggregator India",
     "NBFC loan", "bank loan", "digital lending platform", "MSME lending India",
     "loan matching platform", "credit marketplace", "small business loan",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     siteName: "Sunby Credtech - Cred2Tech",
     title: "Sunby Credtech | Cred2Tech - India's #1 MSME Credit Platform",
-    description: "India's leading MSME credit platform by Sunby Credtech. Instant business loan eligibility checks, DSA network, multi-lender matching with 50+ banks and NBFCs.",
+    description: "India's leading MSME credit platform by Sunby Credtech. Instant business loan eligibility checks, Sourcing Partner network, multi-lender matching with 50+ banks and NBFCs.",
     images: [
       {
         url: "/og-image.png",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Cred2Tech | Sunby Credtech - India's MSME Credit Platform",
-    description: "India's leading MSME credit platform. Instant business loan eligibility checks, DSA network, multi-lender matching.",
+    description: "India's leading MSME credit platform. Instant business loan eligibility checks, Sourcing Partner network, multi-lender matching.",
     images: ["/og-image.png"],
     creator: "@cred2tech",
     site: "@cred2tech",

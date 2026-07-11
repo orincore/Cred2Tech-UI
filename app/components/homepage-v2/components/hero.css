@@ -3,11 +3,28 @@
   --hb: #2563eb;
   --hg: #149a58;
   --hp: #6a3de8;
+  /* Reserves the fixed site header's tallest state (py-4 + logo) so the
+     hero's height budget doesn't have to guess where the header ends. */
+  --hero-header-h: 88px;
 
   position: relative;
-  overflow: hidden;
-  padding: 138px 0 84px;
   font-family: 'Inter', system-ui, sans-serif;
+
+  /* This is the first thing anyone sees, at scroll position 0 — there's
+     no scrolling-into-view to lean on, so the section is sized to exactly
+     one screen (padding-top clearing the fixed header) and every block
+     below shares that fixed budget via flex, instead of fixed px picked
+     for one screen size. min-height is a floor for very short viewports,
+     where it gracefully asks for a scroll rather than crushing content. */
+  height: 100vh;
+  min-height: 640px;
+  max-height: 1200px;
+  padding-top: var(--hero-header-h);
+  padding-bottom: clamp(10px, 2.4vh, 28px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 [data-theme='light'] .hero {
@@ -17,6 +34,11 @@
 .hero__inner {
   position: relative;
   z-index: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero__reveal {
@@ -31,17 +53,18 @@
 
 /* ── Head ── */
 .hero__head {
+  flex: 0 0 auto;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 46px;
+  padding-bottom: clamp(12px, 2.5vh, 32px);
 }
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(30px, 3.5vw, 42px);
-  line-height: 1.2;
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.18;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--text);
@@ -50,6 +73,7 @@
 
 .hero__title-accent {
   display: block;
+  margin-bottom: clamp(10px, 2vh, 22px);
   color: var(--hb);
 }
 
@@ -61,8 +85,24 @@
   max-width: 640px;
 }
 
-/* ── Flow diagram: side card / connectors / solution stack ── */
+/* ── Flow diagram: side card / connectors / solution stack ──
+   This wrapper + .hero__flow sit in the flexible middle, but are capped
+   at a comfortable max-height instead of stretching to claim every last
+   pixel of a tall viewport — .hero__inner's justify-content: center then
+   turns any leftover room into balanced space above/below rather than
+   bulking up the cards. On short viewports it still shrinks (min-height:
+   0, flex-shrink allowed) so the section as a whole keeps fitting. */
+.hero__flow-wrap {
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 460px;
+  display: flex;
+  flex-direction: column;
+}
+
 .hero__flow {
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   align-items: stretch;
 }
@@ -73,6 +113,7 @@
 .hero__side {
   flex: 0 0 292px;
   width: 292px;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   background: #ecf2fe;
@@ -137,7 +178,9 @@
 }
 
 .hero__side-art {
-  margin: auto -24px -24px;
+  flex: 1 1 0;
+  min-height: 60px;
+  margin: 0 -24px -24px;
   border-radius: 0 0 20px 20px;
   overflow: hidden;
   padding-top: 18px;
@@ -146,7 +189,7 @@
 .hero__side-art img {
   display: block;
   width: 100%;
-  height: 224px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -154,20 +197,22 @@
 .hero__stack {
   flex: 1;
   min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 
 .hero__solution {
   flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   gap: 18px;
   background: #ffffff;
   border: 1px solid #e6ebf4;
   border-radius: 16px;
-  padding: 16px 22px 16px 18px;
+  padding: 14px 22px 14px 18px;
   color-scheme: light;
   cursor: pointer;
   box-shadow: 0 8px 22px -16px rgba(15, 30, 60, 0.25);
@@ -304,11 +349,15 @@
 }
 
 /* ── Trust bar ── */
+.hero__trust-wrap {
+  flex: 0 0 auto;
+}
+
 .hero__trust {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 26px;
+  margin-top: clamp(10px, 2.2vh, 26px);
   background: #ffffff;
   border: 1px solid #e6ebf4;
   border-radius: 16px;
@@ -320,7 +369,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 20px 24px;
+  padding: clamp(10px, 1.8vh, 20px) 24px;
   border-left: 1px solid #edf1f7;
 }
 
@@ -415,7 +464,35 @@
   }
 }
 
+/* Below this width the flow stacks into a single column (side card, then
+   solution list, then the other side card), which is naturally taller
+   than one screen — so the viewport-fit sizing above is turned back into
+   normal auto-height content the page scrolls to reach, same as any
+   other section. */
 @media (max-width: 980px) {
+  .hero {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+    padding-top: calc(var(--hero-header-h) + 34px);
+    padding-bottom: 64px;
+  }
+
+  .hero__inner {
+    flex: none;
+  }
+
+  .hero__head,
+  .hero__flow-wrap,
+  .hero__trust-wrap {
+    flex: none;
+  }
+
+  .hero__flow-wrap {
+    max-height: none;
+  }
+
   .hero__flow {
     flex-direction: column;
     gap: 16px;
@@ -427,6 +504,22 @@
 
   .hero__side {
     width: 100%;
+    flex: none;
+  }
+
+  .hero__side-art {
+    flex: none;
+  }
+
+  .hero__side-art img {
+    height: 224px;
+  }
+
+  .hero__stack {
+    flex: none;
+  }
+
+  .hero__solution {
     flex: none;
   }
 
@@ -444,10 +537,6 @@
 }
 
 @media (max-width: 560px) {
-  .hero {
-    padding: 122px 0 64px;
-  }
-
   .hero__trust {
     grid-template-columns: 1fr;
   }

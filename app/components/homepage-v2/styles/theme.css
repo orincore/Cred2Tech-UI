@@ -27,34 +27,13 @@
 }
 
 .home-v2,
-html[data-theme='dark'] .home-v2 {
-  /* Cred2Tech dark palette, default theme for this build */
-  --bg: #0a1628;
-  --surface: #101c38;
-  --surface-low: #162048;
-  --surface-high: #1e2a5c;
-  --outline: #24315f;
-  --text: #e6edf7;
-  --muted: #8b9bb8;
-  --muted-dim: #5b6a8c;
-
-  --accent: #4a8df8;
-  --accent-soft: #8fa8ff;
-  --accent-dim: rgba(74, 141, 248, 0.14);
-  --success: #34d399;
-  --success-dim: rgba(52, 211, 153, 0.14);
-
-  --nav-glass: rgba(10, 22, 40, 0.72);
-  --glow-a: rgba(74, 141, 248, 0.35);
-  --glow-b: rgba(52, 211, 153, 0.16);
-  --scrollbar-track: var(--bg);
-  --scrollbar-thumb: var(--surface-high);
-
-  color-scheme: dark;
-}
-
-/* Cred2Tech light palette, the brand's original light theme */
 html[data-theme='light'] .home-v2 {
+  /* Cred2Tech light palette — the site's default theme. Unconditional
+     (bare .home-v2, not gated behind the data-theme attribute) so this
+     is what renders before ThemeSync's effect has had a chance to mirror
+     next-themes' resolved theme onto data-theme, instead of flashing
+     dark first (or worse, staying dark if that effect is ever delayed
+     or doesn't fire). */
   --bg: #eef4ff;
   --surface: #ffffff;
   --surface-low: #e0eaff;
@@ -77,6 +56,33 @@ html[data-theme='light'] .home-v2 {
   --scrollbar-thumb: #b9c9ee;
 
   color-scheme: light;
+}
+
+/* Cred2Tech dark palette, applied once ThemeSync mirrors the real theme
+   (toggled from the site Header) onto data-theme. */
+html[data-theme='dark'] .home-v2 {
+  --bg: #0a1628;
+  --surface: #101c38;
+  --surface-low: #162048;
+  --surface-high: #1e2a5c;
+  --outline: #24315f;
+  --text: #e6edf7;
+  --muted: #8b9bb8;
+  --muted-dim: #5b6a8c;
+
+  --accent: #4a8df8;
+  --accent-soft: #8fa8ff;
+  --accent-dim: rgba(74, 141, 248, 0.14);
+  --success: #34d399;
+  --success-dim: rgba(52, 211, 153, 0.14);
+
+  --nav-glass: rgba(10, 22, 40, 0.72);
+  --glow-a: rgba(74, 141, 248, 0.35);
+  --glow-b: rgba(52, 211, 153, 0.16);
+  --scrollbar-track: var(--bg);
+  --scrollbar-thumb: var(--surface-high);
+
+  color-scheme: dark;
 }
 
 .home-v2 {

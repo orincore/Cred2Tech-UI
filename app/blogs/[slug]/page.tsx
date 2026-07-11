@@ -88,43 +88,43 @@ const POSTS: Record<string, Post> = {
     publishedDate: "2024-01-15",
     modifiedDate: "2024-01-15",
   },
-  'empowering-the-engine-of-india-vital-role-of-dsas': {
-    title: 'Empowering the Engine of India: The Vital Role of DSAs in MSME Credit',
-    tag: 'DSA · Distribution',
+  'empowering-the-engine-of-india-vital-role-of-Sourcing Partners': {
+    title: 'Empowering the Engine of India: The Vital Role of Sourcing Partners in MSME Credit',
+    tag: 'Sourcing Partner · Distribution',
     readTime: '6 min read',
     intro:
-      'In the vast landscape of the Indian economy, Micro, Small, and Medium Enterprises (MSMEs) form a critical backbone — contributing ~30% to GDP and over 40% of exports, while employing more than 110 million people. Yet, despite their economic importance, MSMEs face a persistent structural challenge: a credit gap estimated at ₹25–30 lakh crore in recent years. At the center of bridging this gap is a relatively underappreciated player — the Direct Selling Agent (DSA) — acting as a key enabler between underserved entrepreneurs and formal financial institutions.',
+      'In the vast landscape of the Indian economy, Micro, Small, and Medium Enterprises (MSMEs) form a critical backbone — contributing ~30% to GDP and over 40% of exports, while employing more than 110 million people. Yet, despite their economic importance, MSMEs face a persistent structural challenge: a credit gap estimated at ₹25–30 lakh crore in recent years. At the center of bridging this gap is a relatively underappreciated player — the Direct Selling Agent (Sourcing Partner) — acting as a key enabler between underserved entrepreneurs and formal financial institutions.',
     sections: [
       {
         heading: 'The Bridge to Financial Inclusion',
         paragraphs: [
-          'A DSA is not merely a middleman; they function as a last-mile distribution and advisory layer for lenders.',
-          'For MSME owners — especially in semi-urban and non-metro regions — the formal lending process can be opaque, documentation-heavy, and time-consuming. DSAs simplify this journey by offering assisted access to credit, often through doorstep engagement.',
+          'A Sourcing Partner is not merely a middleman; they function as a last-mile distribution and advisory layer for lenders.',
+          'For MSME owners — especially in semi-urban and non-metro regions — the formal lending process can be opaque, documentation-heavy, and time-consuming. Sourcing Partners simplify this journey by offering assisted access to credit, often through doorstep engagement.',
           'Their strength lies in local context and language familiarity, which improves trust and communication; on-ground presence, bridging the gap where branch networks or digital adoption are limited; and handholding through processes, especially for first-time borrowers with thin or no formal credit history. This role is particularly critical in a market where a large portion of MSMEs remain informal or under-documented.',
         ],
       },
       {
         heading: 'Beyond Lead Generation: The Real Value Add',
         paragraphs: [
-          'While traditionally viewed as lead generators, high-quality DSAs today operate closer to credit facilitators and originators. Their value extends across the lending lifecycle.',
+          'While traditionally viewed as lead generators, high-quality Sourcing Partners today operate closer to credit facilitators and originators. Their value extends across the lending lifecycle.',
         ],
       },
       {
         sub: 'Right Lender–Borrower Fit',
         paragraphs: [
-          'DSAs assess borrower profiles and align them with suitable lenders — public/private banks, NBFCs, or fintechs — based on risk appetite, collateral availability, and cash flow patterns. This reduces mismatches and improves approval probability.',
+          'Sourcing Partners assess borrower profiles and align them with suitable lenders — public/private banks, NBFCs, or fintechs — based on risk appetite, collateral availability, and cash flow patterns. This reduces mismatches and improves approval probability.',
         ],
       },
       {
         sub: 'Documentation & Process Management',
         paragraphs: [
-          'From KYC to financial collation, DSAs streamline documentation, helping reduce turnaround time (TAT) and error rates — key drivers of loan rejection in MSME lending.',
+          'From KYC to financial collation, Sourcing Partners streamline documentation, helping reduce turnaround time (TAT) and error rates — key drivers of loan rejection in MSME lending.',
         ],
       },
       {
         sub: 'Pre-screening & Quality Control',
         paragraphs: [
-          'Experienced DSAs filter out weak or ineligible cases early, improving conversion ratios for lenders and saving processing bandwidth.',
+          'Experienced Sourcing Partners filter out weak or ineligible cases early, improving conversion ratios for lenders and saving processing bandwidth.',
         ],
       },
       {
@@ -136,16 +136,16 @@ const POSTS: Record<string, Post> = {
       {
         heading: 'A Win–Win for the Ecosystem',
         paragraphs: [
-          'For lenders — both banks and NBFCs — DSAs serve as a scalable, variable-cost distribution channel. Instead of expanding physical branches, institutions leverage DSAs to penetrate geographies with limited direct presence, acquire customers at lower fixed cost (though commissions can be significant), and improve loan file quality through assisted sourcing.',
+          'For lenders — both banks and NBFCs — Sourcing Partners serve as a scalable, variable-cost distribution channel. Instead of expanding physical branches, institutions leverage Sourcing Partners to penetrate geographies with limited direct presence, acquire customers at lower fixed cost (though commissions can be significant), and improve loan file quality through assisted sourcing.',
           "However, it's worth noting that the model also requires strong governance and compliance oversight, as misaligned incentives can impact sourcing quality.",
         ],
       },
     ],
     conclusion: [
-      'As India advances toward its ambition of becoming a $5 trillion economy, solving the MSME credit gap will be pivotal. DSAs — especially when augmented with digital tools, data-driven underwriting, and lender marketplaces — can play a transformative role.',
-      'By converting "unserved demand" into "bankable opportunities", DSAs are not just enabling credit — they are unlocking economic potential at the grassroots.',
+      'As India advances toward its ambition of becoming a $5 trillion economy, solving the MSME credit gap will be pivotal. Sourcing Partners — especially when augmented with digital tools, data-driven underwriting, and lender marketplaces — can play a transformative role.',
+      'By converting "unserved demand" into "bankable opportunities", Sourcing Partners are not just enabling credit — they are unlocking economic potential at the grassroots.',
     ],
-    keywords: ["DSA India", "Direct Selling Agent", "MSME credit", "loan distribution", "credit facilitator", "lender matching", "NBFC lending", "business loan agent"],
+    keywords: ["Sourcing Partner India", "Direct Selling Agent", "MSME credit", "loan distribution", "credit facilitator", "lender matching", "NBFC lending", "business loan agent"],
     publishedDate: "2024-02-01",
     modifiedDate: "2024-02-01",
   },

@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     default: "Sunby Credtech | Cred2Tech - India's #1 MSME Credit Platform",
     template: "%s | Sunby Credtech - Cred2Tech",
   },
-  description: "Sunby Credtech Private Limited presents Cred2Tech - India's leading MSME credit platform. Sunby Credtech offers instant business loan eligibility checks, DSA partner network, and multi-lender matching with leading banks and NBFCs. Bengaluru based fintech company specializing in MSME lending.",
+  description: "Sunby Credtech Private Limited presents Cred2Tech - India's leading MSME credit platform. Sunby Credtech offers instant business loan eligibility checks, Sourcing Partner partner network, and multi-lender matching with leading banks and NBFCs. Bengaluru based fintech company specializing in MSME lending.",
   keywords: [
     "Sunby Credtech", "Sunby Credtech Private Limited", "Cred2Tech", "Credtech",
-    "MSME loan", "business loan India", "DSA platform", "loan eligibility check",
+    "MSME loan", "business loan India", "Sourcing Partner platform", "loan eligibility check",
     "MSME credit", "business loan agent", "loan aggregator India",
     "NBFC loan", "digital lending platform", "MSME lending India",
     "loan matching platform", "credit marketplace", "small business loan",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     url: `https://www.cred2tech.com/`,
     siteName: "Sunby Credtech - Cred2Tech",
     title: "Sunby Credtech | Cred2Tech - India's #1 MSME Credit Platform",
-    description: "Sunby Credtech Private Limited - India's leading MSME credit platform through Cred2Tech. Instant business loan eligibility checks, DSA network, multi-lender matching. Bengaluru based fintech.",
+    description: "Sunby Credtech Private Limited - India's leading MSME credit platform through Cred2Tech. Instant business loan eligibility checks, Sourcing Partner network, multi-lender matching. Bengaluru based fintech.",
     images: [
       {
         url: "/og-image.png",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sunby Credtech | Cred2Tech - India's MSME Credit Platform",
-    description: "Sunby Credtech - India's leading MSME credit platform. Instant business loan eligibility checks, DSA network, multi-lender matching.",
+    description: "Sunby Credtech - India's leading MSME credit platform. Instant business loan eligibility checks, Sourcing Partner network, multi-lender matching.",
     images: ["/og-image.png"],
     creator: "@cred2tech",
     site: "@cred2tech",
@@ -170,9 +170,9 @@ export default function RootLayout({
         }} />
       </head>
       <body suppressHydrationWarning className="min-h-screen flex flex-col transition-colors duration-300 bg-[var(--bg)] text-[var(--on-surface)]">
-        <ThemeProvider 
-          attribute="class" 
-          defaultTheme="dark" 
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
           disableTransitionOnChange
         >
           {/* JSON-LD Structured Data */}

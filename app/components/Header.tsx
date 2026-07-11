@@ -38,7 +38,7 @@ export default function Header() {
     };
 
     return (
-        <header id="site-header" className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 ${scrolled ? 'bg-[var(--surface)]/90 backdrop-blur-md py-2 shadow-sm' : 'bg-transparent py-4'}`}>
+        <header id="site-header" className={`fixed top-0 left-0 right-0 z-[1000] bg-transparent transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
                 <nav id="header-nav" className="flex justify-between items-center h-[48px] sm:h-[56px]">
 

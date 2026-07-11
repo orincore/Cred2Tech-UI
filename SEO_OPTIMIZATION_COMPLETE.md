@@ -12,7 +12,7 @@ All pages have been optimized for search engines with proper metadata, structure
 |------|-----|----------|--------|
 | Home | `/` | 1.0 | SSR Optimized |
 | MSME Loans | `/msme` | 0.95 | SSR Optimized |
-| DSA Platform | `/dsa` | 0.95 | SSR Optimized |
+| Sourcing Partner Platform | `/Sourcing Partner` | 0.95 | SSR Optimized |
 | About | `/about` | 0.9 | SSR Optimized |
 | How It Works | `/how-it-works` | 0.85 | SSR Optimized |
 | Blog | `/blogs` | 0.8 | SSR Optimized |
@@ -23,7 +23,7 @@ All pages have been optimized for search engines with proper metadata, structure
 | Post | URL | Priority | Status |
 |------|-----|----------|--------|
 | MSME Credit Gap | `/blogs/bridging-the-gap-digital-renaissance-of-indian-msmes` | 0.65 | SSG |
-| DSA Role | `/blogs/empowering-the-engine-of-india-vital-role-of-dsas` | 0.65 | SSG |
+| Sourcing Partner Role | `/blogs/empowering-the-engine-of-india-vital-role-of-Sourcing Partners` | 0.65 | SSG |
 
 ### CRM/Portal (Subdomain)
 
@@ -82,7 +82,7 @@ All pages have been optimized for search engines with proper metadata, structure
 ### Secondary Keywords (Services)
 - "MSME loan"
 - "business loan India"
-- "DSA platform"
+- "Sourcing Partner platform"
 - "loan eligibility check"
 - "MSME credit"
 - "direct selling agent"
@@ -115,7 +115,7 @@ Route (app)
 ├ ○ /blogs                  (Static - Blog listing)
 ├ ● /blogs/[slug]           (SSG - Blog posts)
 ├ ○ /contact                (Static - Contact page)
-├ ○ /dsa                    (Static - DSA platform)
+├ ○ /Sourcing Partner                    (Static - Sourcing Partner platform)
 ├ ○ /forgot-password        (Static - Password reset)
 ├ ○ /how-it-works          (Static - Process page)
 ├ ○ /msme                   (Static - MSME loans)
@@ -171,7 +171,7 @@ Route (app)
 ### New Files:
 - `/app/metadata.ts` - Home page metadata
 - `/app/about/metadata.ts` - About page metadata
-- `/app/dsa/metadata.ts` - DSA page metadata
+- `/app/Sourcing Partner/metadata.ts` - Sourcing Partner page metadata
 - `/app/msme/metadata.ts` - MSME page metadata
 - `/app/contact/metadata.ts` - Contact page metadata
 - `/app/blogs/metadata.ts` - Blog listing metadata

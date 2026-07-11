@@ -3,12 +3,34 @@
    laptop dashboard mockup with floating feature cards, and a 6-up
    feature strip underneath. */
 .pw {
+  /* Reserves the fixed site header's tallest state, same as .hero / .lf —
+     this is the third layer of the sticky scroll-stack (see .stack-item
+     in home.css), so it needs the same "one screen, header cleared by
+     padding-top rather than scroll position" sizing they use. */
+  --pw-header-h: 88px;
+
   background: var(--bg);
   color-scheme: light dark;
   color: var(--text);
-  padding: 52px 0 44px;
   font-family: 'Inter', system-ui, sans-serif;
+
+  height: 100vh;
+  min-height: calc(560px + var(--pw-header-h));
+  max-height: calc(1080px + var(--pw-header-h));
+  padding-top: var(--pw-header-h);
+  padding-bottom: clamp(10px, 2.4vh, 28px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+}
+
+.pw > .container {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 [data-theme='light'] .pw {
@@ -28,13 +50,33 @@
   --pw-border: #24315f;
 }
 
-/* ── Hero row ── */
+/* ── Hero row ──
+   The flexible middle: takes whatever height head/features leave over,
+   capped so it doesn't bulk up on tall screens (mirrors .hero__flow-wrap
+   — .pw > .container's justify-content: center turns extra room into
+   balanced space instead). */
 .pw__hero {
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 460px;
   display: grid;
   grid-template-columns: minmax(340px, 500px) 1fr;
   align-items: center;
   gap: 28px;
-  margin-bottom: 36px;
+  margin-bottom: clamp(16px, 3vh, 36px);
+}
+
+.pw__copy,
+.pw__stage {
+  height: 100%;
+  min-height: 0;
+}
+
+.pw__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .pw__pill {
@@ -126,26 +168,36 @@
   position: relative;
   padding: 12px 0;
   min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ── Laptop image ── */
+/* ── Laptop image ──
+   max-height (rather than a fixed width%) so it scales down to fit
+   whatever height .pw__hero ends up with instead of forcing the row
+   taller than its cap — object-fit: contain keeps the mockup's own
+   aspect ratio intact instead of cropping it. */
 .pw__laptop-image {
   position: relative;
   z-index: 1;
   width: 110%;
-  height: auto;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
   display: block;
   margin-left: -5%;
 }
 
 /* ── Feature strip ── */
 .pw__features {
+  flex: 0 0 auto;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   background: var(--surface);
   border: 1px solid var(--outline);
   border-radius: 16px;
-  padding: 22px 8px;
+  padding: clamp(12px, 2.2vh, 22px) 8px;
   box-shadow: 0 26px 50px -34px rgba(74, 141, 248, 0.15);
 }
 
@@ -196,7 +248,46 @@
   margin: 0 auto;
 }
 
-/* ── Responsive ── */
+/* ── Responsive ──
+   Below 1120px the stack-item wrapper (home.css) drops back to normal
+   (non-sticky) flow, same threshold as .hero / .lf — so this section's
+   own viewport-fit sizing is turned back into ordinary auto-height
+   content the page scrolls to reach. */
+@media (max-width: 1120px) {
+  .pw {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-top: 34px;
+    padding-bottom: 44px;
+    overflow: visible;
+  }
+
+  .pw > .container {
+    flex: none;
+    display: block;
+  }
+
+  .pw__hero {
+    flex: none;
+    max-height: none;
+  }
+
+  .pw__copy,
+  .pw__stage {
+    height: auto;
+  }
+
+  .pw__laptop-image {
+    height: auto;
+    max-height: none;
+  }
+
+  .pw__features {
+    flex: none;
+  }
+}
+
 @media (max-width: 1180px) {
   .pw__hero {
     grid-template-columns: 1fr;
@@ -204,6 +295,7 @@
   }
 
   .pw__copy {
+    align-items: center;
     text-align: center;
     justify-self: center;
     max-width: 560px;

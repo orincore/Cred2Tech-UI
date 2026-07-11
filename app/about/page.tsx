@@ -51,7 +51,7 @@ const brandValues = [
   {
     icon: 'fitness_center',
     title: 'Empowerment',
-    description: 'MSMEs and DSAs are given the tools to compete with anyone — regardless of the size of their balance sheet or their relationship network.',
+    description: 'MSMEs and Sourcing Partners are given the tools to compete with anyone — regardless of the size of their balance sheet or their relationship network.',
   },
   {
     icon: 'public',
@@ -62,10 +62,10 @@ const brandValues = [
 
 const privacyPoints = [
   'All customer data is fetched via secure, authorised APIs with explicit user consent at every step',
-  'The Cred2Tech platform team has no access to the financial data, name, or contact details of any customer onboarded by a DSA',
+  'The Cred2Tech platform team has no access to the financial data, name, or contact details of any customer onboarded by a Sourcing Partner',
   'Customer data is encrypted end-to-end and never shared without explicit user authorisation',
   'A soft bureau inquiry model protects customer credit scores no hard pulls during eligibility checks',
-  'Data sovereignty remains with the customer and the DSA partner at all times',
+  'Data sovereignty remains with the customer and the Sourcing Partner partner at all times',
 ];
 
 export default function AboutPage() {
@@ -166,7 +166,7 @@ export default function AboutPage() {
               Building the intelligence layer that makes the entire lending ecosystem work better.
             </h1>
             <p className="text-base sm:text-lg text-[var(--on-muted)] max-w-xl mb-6 sm:mb-8 leading-relaxed">
-              We’re building the intelligence and workflow layer that powers simpler, faster, more transparent lending for MSMEs, DSAs, and lenders.
+              We’re building the intelligence and workflow layer that powers simpler, faster, more transparent lending for MSMEs, Sourcing Partners, and lenders.
             </p>
           </div>
 
@@ -216,10 +216,10 @@ export default function AboutPage() {
 
             <div className="prose prose-lg max-w-none">
               <p className="text-lg sm:text-xl text-[var(--on-muted)] leading-relaxed mb-6">
-                To simplify and democratize access to credit & Schemes for MSMEs by building a unified, intelligent marketplace that seamlessly connects businesses, DSAs, and lenders.
+                To simplify and democratize access to credit & Schemes for MSMEs by building a unified, intelligent marketplace that seamlessly connects businesses, Sourcing Partners, and lenders.
               </p>
               <p className="text-base text-[var(--on-muted)] leading-relaxed mb-8">
-                To empower DSAs the backbone of MSME credit distribution with a professional, tech-enabled platform to source, process, and track loan applications across multiple lenders, while enabling MSMEs to discover the right financial products with clarity, speed, and confidence.
+                To empower Sourcing Partners the backbone of MSME credit distribution with a professional, tech-enabled platform to source, process, and track loan applications across multiple lenders, while enabling MSMEs to discover the right financial products with clarity, speed, and confidence.
               </p>
             </div>
           </div>
@@ -279,7 +279,7 @@ export default function AboutPage() {
                         Unified Credit Infrastructure
                       </h3>
                       <p className="text-[var(--on-muted)] text-sm lg:text-base leading-relaxed">
-                        We aim to build the definitive platform for DSAs, transforming them into a digitally empowered distribution network, and to integrate directly with lenders to create a seamless, end-to-end credit infrastructure where applications, approvals, and tracking happen in one unified ecosystem.
+                        We aim to build the definitive platform for Sourcing Partners, transforming them into a digitally empowered distribution network, and to integrate directly with lenders to create a seamless, end-to-end credit infrastructure where applications, approvals, and tracking happen in one unified ecosystem.
                       </p>
                     </div>
                   </div>
@@ -341,16 +341,16 @@ export default function AboutPage() {
                 Cred2Tech was born from insight gained over four decades in financial services.
               </p>
               <p className="text-base text-[var(--on-muted)] leading-relaxed mb-6">
-                The founders saw an opportunity to make MSME lending smarter, simpler, and more connected for businesses, DSAs, and lenders alike.
+                The founders saw an opportunity to make MSME lending smarter, simpler, and more connected for businesses, Sourcing Partners, and lenders alike.
               </p>
               <p className="text-base text-[var(--on-muted)] leading-relaxed mb-6">
-                They envisioned a platform where MSMEs can discover the right credit options with clarity, DSAs can manage their full workflow seamlessly, and lenders can receive better-prepared applications with greater transparency.
+                They envisioned a platform where MSMEs can discover the right credit options with clarity, Sourcing Partners can manage their full workflow seamlessly, and lenders can receive better-prepared applications with greater transparency.
               </p>
               <p className="text-base text-[var(--on-muted)] leading-relaxed mb-6">
                 What began as an idea has become a mission: to build the intelligence and infrastructure layer powering more efficient credit access.
               </p>
               <p className="text-base text-[var(--on-muted)] leading-relaxed">
-                Cred2Tech brings MSMEs, DSAs, and lenders together on a single platform designed to expand access to capital, strengthen financial inclusion, and help businesses grow.
+                Cred2Tech brings MSMEs, Sourcing Partners, and lenders together on a single platform designed to expand access to capital, strengthen financial inclusion, and help businesses grow.
               </p>
             </div>
           </div>
@@ -563,7 +563,7 @@ export default function AboutPage() {
                 Scalability & Architecture
               </h3>
               <p className="text-sm text-[var(--on-muted)] leading-relaxed mb-4">
-                The platform is built on a Modular Microservices Architecture, allowing horizontal scaling across different loan products Secured, Unsecured, and Working Capital without increasing operational overhead. The Channel-Partner-as-a-Service (CPaaS) model enables onboarding of thousands of DSAs, providing each with a digital Command Centre to manage their entire lead lifecycle.
+                The platform is built on a Modular Microservices Architecture, allowing horizontal scaling across different loan products Secured, Unsecured, and Working Capital without increasing operational overhead. The Channel-Partner-as-a-Service (CPaaS) model enables onboarding of thousands of Sourcing Partners, providing each with a digital Command Centre to manage their entire lead lifecycle.
               </p>
               <h4 className="font-semibold text-[var(--on-surface)] mb-2">National Infrastructure Vision</h4>
               <p className="text-sm text-[var(--on-muted)] leading-relaxed">

@@ -119,29 +119,31 @@ export function LenderFlow() {
                 <h3>Eligible Lenders &amp; Offers</h3>
                 <span className="lf__sort">Sorted by Best Match <StarIcon /></span>
               </div>
-              {OFFERS.map((o, i) => (
-                <div className={`lf__offer ${i === 0 ? 'lf__offer--top' : ''}`} key={o.name}>
-                  <span className="lf__offer-bank"><BankGreenIcon /></span>
-                  <span className="lf__offer-info">
-                    <span className="lf__offer-name">{o.name}</span>
-                    <span className="lf__offer-tags">
-                      <em className="lf__offer-badge">{o.badge}</em>
-                      <i className={`lf__offer-product ${o.risk ? 'is-risk' : ''}`}>{o.product}</i>
+              <div className="lf__offer-list">
+                {OFFERS.slice(0, 3).map((o, i) => (
+                  <div className={`lf__offer ${i === 0 ? 'lf__offer--top' : ''}`} key={o.name}>
+                    <span className="lf__offer-bank"><BankGreenIcon /></span>
+                    <span className="lf__offer-info">
+                      <span className="lf__offer-name">{o.name}</span>
+                      <span className="lf__offer-tags">
+                        <em className="lf__offer-badge">{o.badge}</em>
+                        <i className={`lf__offer-product ${o.risk ? 'is-risk' : ''}`}>{o.product}</i>
+                      </span>
                     </span>
-                  </span>
-                  <span className="lf__offer-terms">
-                    <span className="lf__offer-term">
-                      <small>Up to</small>
-                      <b>{o.amount}</b>
+                    <span className="lf__offer-terms">
+                      <span className="lf__offer-term">
+                        <small>Up to</small>
+                        <b>{o.amount}</b>
+                      </span>
+                      <span className="lf__offer-term">
+                        <small>Rate</small>
+                        <b>{o.rate}</b>
+                      </span>
                     </span>
-                    <span className="lf__offer-term">
-                      <small>Rate</small>
-                      <b>{o.rate}</b>
-                    </span>
-                  </span>
-                  <ChevronRight />
-                </div>
-              ))}
+                    <ChevronRight />
+                  </div>
+                ))}
+              </div>
               <button type="button" className="lf__viewall">
                 View All Lenders &amp; Offers <ChevronDown />
               </button>
@@ -180,17 +182,23 @@ export function LenderFlow() {
 
 /**
  * Dotted data streams from the document chips into the central vault.
- * The pool box is measured so the curves anchor to the fixed chip slots
- * at any card width; dashes march toward the vault.
+ * The pool box is measured (both width and height, via ResizeObserver) so
+ * the curves keep anchoring to the chip slots — which are placed with
+ * percentage offsets in CSS — no matter how tall or short the section
+ * ends up being on a given screen.
  */
 function PoolLinks() {
   const ref = useRef<HTMLDivElement>(null);
   const [w, setW] = useState(0);
+  const [h, setH] = useState(0);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const ro = new ResizeObserver(() => setW(el.clientWidth));
+    const ro = new ResizeObserver(() => {
+      setW(el.clientWidth);
+      setH(el.clientHeight);
+    });
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
@@ -201,18 +209,19 @@ function PoolLinks() {
     return `M${x0} ${y0} C${x0 + bend} ${y0}, ${x1 - bend} ${y1}, ${x1} ${y1}`;
   };
 
+  // y-fractions mirror the .lf__chip--* top percentages in CSS.
   const links = [
-    curve(112, 43, cx - 74, 112),
-    curve(112, 153, cx - 78, 170),
-    curve(112, 263, cx - 74, 228),
-    curve(w - 112, 100, cx + 74, 135),
-    curve(w - 112, 213, cx + 74, 205),
+    curve(108, 0.13 * h, cx - 74, 0.33 * h),
+    curve(108, 0.45 * h, cx - 78, 0.5 * h),
+    curve(108, 0.78 * h, cx - 74, 0.67 * h),
+    curve(w - 108, 0.3 * h, cx + 74, 0.4 * h),
+    curve(w - 108, 0.63 * h, cx + 74, 0.6 * h),
   ];
 
   return (
     <div className="lf__pool-links" ref={ref} aria-hidden="true">
-      {w > 0 && (
-        <svg width={w} height={340} viewBox={`0 0 ${w} 340`}>
+      {w > 0 && h > 0 && (
+        <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
           {links.map((d, i) => (
             <path key={i} className="lf__link" d={d} />
           ))}

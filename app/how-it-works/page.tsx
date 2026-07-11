@@ -51,15 +51,15 @@ const msmeSteps = [
   {
     number: '05',
     title: 'Sit Back. Relax. Loan On the Way.',
-    description: 'Choose the preferred lender. A Cred2Tech-empanelled DSA partner is assigned to service the application through to disbursement.',
+    description: 'Choose the preferred lender. A Cred2Tech-empanelled Sourcing Partner partner is assigned to service the application through to disbursement.',
   },
 ];
 
-const dsaSteps = [
+const sourcingPartnerSteps = [
   {
     number: '01',
     title: 'Register & Onboard',
-    description: 'Sign up as a DSA partner. Complete the profile, configure the team, and get access to the dashboard.',
+    description: 'Sign up as a Sourcing Partner partner. Complete the profile, configure the team, and get access to the dashboard.',
   },
   {
     number: '02',
@@ -69,7 +69,7 @@ const dsaSteps = [
   {
     number: '03',
     title: 'Purchase a Credit Package',
-    description: 'Buy credits from the wallet. Allocate balance to agents and sub-DSAs as needed.',
+    description: 'Buy credits from the wallet. Allocate balance to agents and sub-Sourcing Partners as needed.',
   },
   {
     number: '04',
@@ -304,16 +304,16 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      {/* DSA Section */}
-      <section id="dsa-steps" className="py-10 sm:py-12 lg:py-16 bg-[var(--surface)] border-b border-[var(--outline)] relative overflow-hidden transition-colors duration-500">
+      {/* Sourcing Partner Section */}
+      <section id="Sourcing Partner-steps" className="py-10 sm:py-12 lg:py-16 bg-[var(--surface)] border-b border-[var(--outline)] relative overflow-hidden transition-colors duration-500">
         <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: 'radial-gradient(var(--on-surface) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-10 sm:mb-14">
             <span className="font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.22em] uppercase text-[var(--on-surface)]">
-              For DSA — (Step by Step)
+              For Sourcing Partner — (Step by Step)
             </span>
             <h2 className="mt-4 font-(family-name:--font-outfit) text-[1.9rem] sm:text-[2.3rem] font-bold text-[var(--on-surface)]">
-              THE DSA OPERATING FLOW
+              THE Sourcing Partner OPERATING FLOW
             </h2>
             <p className="mt-4 text-base sm:text-lg text-[var(--on-muted)] max-w-2xl mx-auto leading-relaxed">
               Onboard a customer, run Loan eligibility, and make the introduction — in one seamless flow.
@@ -322,12 +322,12 @@ export default function HowItWorksPage() {
 
           <div className="relative space-y-4 sm:space-y-6">
             {/* Connecting line */}
-            <div className="hidden lg:block absolute left-[4.5rem] top-0 bottom-0 w-px bg-gradient-to-b from-[var(--on-surface)] via-[var(--on-surface)]/30 to-transparent dsa-progress-line" />
-            {dsaSteps.map((step, idx) => (
+            <div className="hidden lg:block absolute left-[4.5rem] top-0 bottom-0 w-px bg-gradient-to-b from-[var(--on-surface)] via-[var(--on-surface)]/30 to-transparent Sourcing Partner-progress-line" />
+            {sourcingPartnerSteps.map((step, idx) => (
               <div
                 key={step.number}
                 data-step={idx}
-                className="step-card-dsa group relative overflow-hidden bg-[var(--bg)] border border-[var(--outline)] p-6 sm:p-7 lg:p-8 transition-all duration-500 hover:scale-[1.02] hover:border-[var(--on-surface)]/30 hover:shadow-[0_20px_60px_rgba(11,33,71,0.08)] rounded-2xl"
+                className="step-card-Sourcing Partner group relative overflow-hidden bg-[var(--bg)] border border-[var(--outline)] p-6 sm:p-7 lg:p-8 transition-all duration-500 hover:scale-[1.02] hover:border-[var(--on-surface)]/30 hover:shadow-[0_20px_60px_rgba(11,33,71,0.08)] rounded-2xl"
               >
                 {/* Glow effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[var(--on-surface)]/5 via-transparent to-[var(--on-surface)]/5 pointer-events-none" />
@@ -352,7 +352,7 @@ export default function HowItWorksPage() {
 
           <div className="mt-10 sm:mt-12 text-center">
             <TravelingBorderButton href="/login" size="sm">
-              Become a DSA Partner
+              Become a Sourcing Partner Partner
             </TravelingBorderButton>
           </div>
         </div>

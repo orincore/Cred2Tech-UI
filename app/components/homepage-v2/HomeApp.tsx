@@ -21,9 +21,20 @@ export default function HomeApp() {
     <>
       <ThemeSync />
       <div className="home-v2">
-        <Hero />
-        <LenderFlow />
-        <PartnerWorkspace />
+        <div className="stack-container">
+          <div className="stack-item stack-item--1">
+            <Hero />
+          </div>
+          <div className="stack-gap" aria-hidden="true" />
+          <div className="stack-item stack-item--2">
+            <LenderFlow />
+          </div>
+          <div className="stack-gap" aria-hidden="true" />
+          <div className="stack-item stack-item--3">
+            <PartnerWorkspace />
+          </div>
+          <div className="stack-gap" aria-hidden="true" />
+        </div>
         <SchemeEngine />
       </div>
     </>

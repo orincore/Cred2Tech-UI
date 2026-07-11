@@ -155,10 +155,10 @@ export function HomePageFixture() {
   );
 }
 
-export function DsaPageFixture() {
+export function Sourcing PartnerPageFixture() {
   return (
     <div className="bg-[#fcf9f8] text-[#1b1c1c] overflow-x-clip">
-      <MarketingHero eyebrow="For DSA Agents & Partners" />
+      <MarketingHero eyebrow="For Sourcing Partner Agents & Partners" />
       <section className="border-b border-[#e8e4e1] bg-white py-10 sm:py-14">
         <SectionShell>
           <div className="mb-8 h-4 w-40 rounded-full bg-[#e8eef6]" />

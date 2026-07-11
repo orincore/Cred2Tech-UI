@@ -15,13 +15,13 @@ const posts = [
     tag: 'MSME · Credit',
   },
   {
-    slug: 'empowering-the-engine-of-india-vital-role-of-dsas',
-    title: 'Empowering the Engine of India: The Vital Role of DSAs in MSME Credit',
+    slug: 'empowering-the-engine-of-india-vital-role-of-Sourcing Partners',
+    title: 'Empowering the Engine of India: The Vital Role of Sourcing Partners in MSME Credit',
     excerpt:
-      'DSAs are not just lead generators — they function as a last-mile credit facilitation layer. How tech-enabled DSAs are converting unserved demand into bankable opportunities.',
+      'Sourcing Partners are not just lead generators — they function as a last-mile credit facilitation layer. How tech-enabled Sourcing Partners are converting unserved demand into bankable opportunities.',
     icon: 'groups',
     readTime: '6 min read',
-    tag: 'DSA · Distribution',
+    tag: 'Sourcing Partner · Distribution',
   },
 ];
 
@@ -47,7 +47,7 @@ export default function BlogsPage() {
               Insights from the Cred2Tech team
             </h1>
             <p className="text-base lg:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Perspectives on MSME credit, the role of DSAs, and the digital infrastructure powering India&apos;s lending ecosystem.
+              Perspectives on MSME credit, the role of Sourcing Partners, and the digital infrastructure powering India&apos;s lending ecosystem.
             </p>
           </div>
         </div>

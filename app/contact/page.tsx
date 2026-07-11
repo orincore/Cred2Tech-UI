@@ -70,7 +70,7 @@ export default function ContactPage() {
               Ready to simplify credit?
             </h1>
             <p className="text-base lg:text-lg text-[var(--on-muted)] max-w-2xl mx-auto leading-relaxed">
-              Whether the goal is to run a more efficient lending operation as a DSA, access a Loan as an MSME, join the lender panel, or explore a partnership — the Cred2Tech team is ready to connect.
+              Whether the goal is to run a more efficient lending operation as a Sourcing Partner, access a Loan as an MSME, join the lender panel, or explore a partnership — the Cred2Tech team is ready to connect.
             </p>
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function ContactPage() {
                   >
                     <option value="">Select your role</option>
                     <option value="msme">MSME Owner</option>
-                    <option value="dsa">DSA</option>
+                    <option value="Sourcing Partner">Sourcing Partner</option>
                     <option value="lender">Lender</option>
                     <option value="investor">Investor</option>
                     <option value="other">Other</option>
@@ -170,7 +170,7 @@ export default function ContactPage() {
                   >
                     <option value="">Select enquiry type</option>
                     <option value="loan">Loan Eligibility Check</option>
-                    <option value="dsa-reg">DSA Registration</option>
+                    <option value="Sourcing Partner-reg">Sourcing Partner Registration</option>
                     <option value="lender-partner">Lender Partnership</option>
                     <option value="general">General Enquiry</option>
                   </select>

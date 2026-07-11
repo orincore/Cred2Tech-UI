@@ -36,6 +36,78 @@
   padding: 0 24px;
 }
 
+/* ── Hero -> Lender-flow -> Partner-workspace stack transition ─────
+   Same technique as novio.in's own section stack (verified by reading
+   their rendered styles directly): each section is position: sticky,
+   stacked in DOM order with an increasing z-index — a sticky element
+   keeps its normal document-flow height/slot, so "stays frozen while
+   the next one slides up and covers it" is just each item locking to
+   its resting screen position and painting over the previous one once
+   scroll reaches it, no JS/animation timeline, just native scroll +
+   sticky. .hero / .lf / .pw each reserve the fixed header's height via
+   their own padding-top already, same as novio's sections do. Every
+   layer sticks flush at top: 0, so each active section fills the screen
+   right up to the header with no gap/peek of the previous layer showing
+   above it. SchemeEngine (the last section on the page) intentionally
+   sits outside .stack-container as ordinary flow content — it doesn't
+   need to fit one screen or take part in the cover effect, it's just
+   what the page scrolls to after the stack ends. Below 1120px sections
+   fall back to their normal (taller, stacked-card) mobile layouts,
+   which don't fit this illusion, so the stack is only wired up at
+   wider viewports. */
+.home-v2 .stack-container {
+  position: relative;
+}
+
+.home-v2 .stack-item {
+  position: sticky;
+  top: 0;
+}
+
+.home-v2 .stack-item--1 {
+  z-index: 10;
+}
+
+.home-v2 .stack-item--2 {
+  z-index: 11;
+}
+
+.home-v2 .stack-item--3 {
+  z-index: 12;
+}
+
+/* Placed after every stacked item (including the last). Without it, the
+   next item's natural document position starts the instant the current
+   one finishes covering the screen, so the cover begins the moment you
+   resume scrolling — no pause. This spacer delays that: the current
+   item stays sticky-frozen, filling the whole screen, for this much
+   extra scroll distance before the next one's reveal begins. For the
+   very last stacked item it does double duty — sticky positioning can
+   only hold an element inside its containing block, which would
+   otherwise end almost exactly at that item's own bottom edge, so
+   without this spacer the last item wouldn't be able to stick at all.
+   Always covered by a higher z-index stack-item while stuck; only
+   becomes visible briefly as that item finally releases. */
+.home-v2 .stack-gap {
+  height: 60vh;
+}
+
+@media (max-width: 1120px) {
+  .home-v2 .stack-item {
+    position: static;
+  }
+
+  .home-v2 .stack-gap {
+    display: none;
+  }
+}
+
+/* The stack effect is deliberately NOT disabled under prefers-reduced-
+   motion: unlike the animations below (which autoplay independently of
+   the user), position: sticky here only ever moves in direct 1:1
+   response to the user's own scroll input — functionally no different
+   from ordinary page scrolling, which reduced-motion doesn't disable
+   either. */
 @media (prefers-reduced-motion: reduce) {
   .home-v2 *,
   .home-v2 *::before,

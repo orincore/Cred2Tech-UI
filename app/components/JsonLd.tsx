@@ -23,7 +23,7 @@ export function OrganizationJsonLd({ siteUrl = "https://www.cred2tech.com" }: Or
       "width": 512,
       "height": 512,
     },
-    "description": "Sunby Credtech Private Limited operates Cred2Tech, India's leading MSME credit platform. Sunby Credtech offers instant business loan eligibility checks, DSA partner network, and multi-lender matching for HDFC, Axis, Kotak, Yes Bank and IDFC First.",
+    "description": "Sunby Credtech Private Limited operates Cred2Tech, India's leading MSME credit platform. Sunby Credtech offers instant business loan eligibility checks, Sourcing Partner partner network, and multi-lender matching for HDFC, Axis, Kotak, Yes Bank and IDFC First.",
     "founders": [
       {
         "@type": "Person",
@@ -70,7 +70,7 @@ export function OrganizationJsonLd({ siteUrl = "https://www.cred2tech.com" }: Or
     "email": "contact@cred2tech.com",
     "keywords": [
       "Sunby Credtech", "Sunby Credtech Private Limited", "Cred2Tech",
-      "MSME loan", "business loan India", "DSA platform",
+      "MSME loan", "business loan India", "Sourcing Partner platform",
       "loan eligibility", "MSME credit", "Bengaluru fintech"
     ],
   };
@@ -151,7 +151,7 @@ export function ServiceJsonLd({ siteUrl = "https://www.cred2tech.com" }: Service
     "category": "Business Loan",
     "audience": {
       "@type": "Audience",
-      "audienceType": "MSME Owners, DSA Agents, Business Owners",
+      "audienceType": "MSME Owners, Sourcing Partner Agents, Business Owners",
     },
     "offers": {
       "@type": "Offer",
@@ -174,8 +174,8 @@ export function ServiceJsonLd({ siteUrl = "https://www.cred2tech.com" }: Service
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "DSA Partner Platform",
-            "description": "Complete CRM and loan management system for DSA agents",
+            "name": "Sourcing Partner Partner Platform",
+            "description": "Complete CRM and loan management system for Sourcing Partner agents",
           },
         },
         {
