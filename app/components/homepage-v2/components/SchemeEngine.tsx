@@ -134,10 +134,7 @@ export function SchemeEngine() {
           ))}
         </div>
 
-        <p className="se__note">
-          <CheckCircle />
-          One platform. All relevant schemes. Real support.
-        </p>
+        
       </div>
     </section>
   );
