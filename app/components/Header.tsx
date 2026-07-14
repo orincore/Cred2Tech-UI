@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -11,9 +11,31 @@ import { TravelingBorderButton } from './TravelingBorderButton';
 export default function Header() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const dropdownCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const pathname = usePathname();
     const { theme, resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+
+    const openDropdown = () => {
+        if (dropdownCloseTimer.current) {
+            clearTimeout(dropdownCloseTimer.current);
+            dropdownCloseTimer.current = null;
+        }
+        setDropdownOpen(true);
+    };
+
+    const scheduleDropdownClose = () => {
+        dropdownCloseTimer.current = setTimeout(() => {
+            setDropdownOpen(false);
+        }, 300);
+    };
+
+    useEffect(() => {
+        return () => {
+            if (dropdownCloseTimer.current) clearTimeout(dropdownCloseTimer.current);
+        };
+    }, []);
 
     useEffect(() => {
         setMounted(true);
@@ -113,12 +135,34 @@ export default function Header() {
                         </Link>
                     </div>
 
-                    {/* Theme Toggle & Get Started Button (desktop only) */}
+                    {/* Theme Toggle & Get Started Dropdown (desktop only) */}
                     <div className="hidden lg:flex items-center gap-4">
                         <ThemeToggle />
-                        <TravelingBorderButton href="https://app.cred2tech.com" size="sm" showIcon={false} target="_blank" rel="noopener noreferrer">
-                            Get Started
-                        </TravelingBorderButton>
+                        <div className="relative" onMouseEnter={openDropdown} onMouseLeave={scheduleDropdownClose}>
+                            <TravelingBorderButton
+                                onClick={() => setDropdownOpen((v) => !v)}
+                                size="sm"
+                                showIcon={false}
+                            >
+                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                                    Get Started
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`shrink-0 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}>
+                                        <path d="m6 9 6 6 6-6" />
+                                    </svg>
+                                </span>
+                            </TravelingBorderButton>
+                            {dropdownOpen && (
+                                <div className="absolute right-0 mt-2 w-56 bg-[var(--surface)] border border-[var(--outline)] rounded-lg shadow-xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <a href="https://app.cred2tech.com/login" onClick={() => setDropdownOpen(false)} className="block px-4 py-3 text-sm text-[var(--on-surface)] hover:bg-[var(--surface-low)] transition-colors">
+                                        Sourcing Partner Login
+                                    </a>
+                                    <div className="border-t border-[var(--outline)]" />
+                                    <a href="https://scheme.cred2tech.com/" onClick={() => setDropdownOpen(false)} className="block px-4 py-3 text-sm text-[var(--on-surface)] hover:bg-[var(--surface-low)] transition-colors">
+                                        Govt Scheme Discovery
+                                    </a>
+                                </div>
+                            )}
+                        </div>
                     </div>
                     {/* Mobile theme toggle & hamburger */}
                     <div className="lg:hidden flex items-center gap-2">
@@ -179,11 +223,18 @@ export default function Header() {
 
                     <div className="h-px bg-[var(--outline)] my-5" />
 
-                    <a href="https://app.cred2tech.com" onClick={() => setMobileMenuOpen(false)} target="_blank" rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 px-5 py-4 font-(family-name:--font-inter) text-[15px] font-medium text-white rounded-xl bg-gradient-to-r from-[#4E54C8] to-[#8F94FB] shadow-[0_0_20px_rgba(78,84,200,0.4)]">
-                        Get Started
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                    </a>
+                    <div className="space-y-2">
+                        <a href="https://app.cred2tech.com/login" onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center justify-center gap-2 px-5 py-4 font-(family-name:--font-inter) text-[15px] font-medium text-white rounded-xl bg-gradient-to-r from-[#4E54C8] to-[#8F94FB] shadow-[0_0_20px_rgba(78,84,200,0.4)] transition-opacity hover:opacity-90">
+                            Sourcing Partner Login
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                        </a>
+                        <a href="https://scheme.cred2tech.com/" onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center justify-center gap-2 px-5 py-4 font-(family-name:--font-inter) text-[15px] font-medium text-white rounded-xl bg-gradient-to-r from-[#4E54C8] to-[#8F94FB] shadow-[0_0_20px_rgba(78,84,200,0.4)] transition-opacity hover:opacity-90">
+                            Govt Scheme Discovery
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                        </a>
+                    </div>
                 </div>
             )}
         </header>
