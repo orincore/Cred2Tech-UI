@@ -25,9 +25,9 @@ export function PartnerWorkspace() {
               &mdash; all from one place.
             </p>
             <div className="pw__actions">
-              <button type="button" className="pw__btn pw__btn--primary">
+              <a href="https://app.cred2tech.com" target="_blank" rel="noopener noreferrer" className="pw__btn pw__btn--primary">
                 Explore Workspace <ArrowRight />
-              </button>
+              </a>
               <button type="button" className="pw__btn pw__btn--ghost">
                 Watch Demo <PlayCircle />
               </button>

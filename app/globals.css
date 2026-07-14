@@ -4,28 +4,20 @@
 
 
 
-/* ── Custom Scrollbar ── */
-::-webkit-scrollbar {
-  width: 2px;
-  height: 4px;
+/* ── Hidden Scrollbar (scroll still works) ── */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--on-surface);
-  border-radius: 0;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--surface-low);
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--on-surface) var(--bg);
+  overflow-y: scroll;
 }
 
 /* Removed html/body overflow routing to allow native scroll matching for GSAP */

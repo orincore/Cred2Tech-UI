@@ -60,7 +60,9 @@ function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
   const target = document.querySelector(href);
   if (!target) return;
   e.preventDefault();
-  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const offset = 0;
+  const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top: targetPosition, behavior: 'smooth' });
 }
 
 export function Hero() {
@@ -219,11 +221,11 @@ function FlowLines({ variant }: { variant: 'in' | 'out' }) {
 
   // Rightward arrowhead, tip at the far edge (x=w) — used on the "in" side
   // so the arrow lands pointing at the solution stack.
-  const arrowRight = (y: number) => `${xEnd},${y - 5.2} ${w},${y} ${xEnd},${y + 5.2}`;
+  const arrowRight = (y: number) => `${xEnd},${y - 7.5} ${w},${y} ${xEnd},${y + 7.5}`;
   // Leftward arrowhead, tip at x=0 — used on the "out" side so the arrow
   // also lands pointing at the solution stack, just approaching from the
   // customer side instead.
-  const arrowLeft = (y: number) => `9,${y - 5.2} 0,${y} 9,${y + 5.2}`;
+  const arrowLeft = (y: number) => `12,${y - 7.5} 0,${y} 12,${y + 7.5}`;
 
   // Row order top -> bottom: blue (loan), purple (virtual workspace), green
   // (government scheme) — the middle row is always the straight line.
@@ -250,8 +252,8 @@ function FlowLines({ variant }: { variant: 'in' | 'out' }) {
           {lines.map((l) => (
             <g key={l.tone} className={`hero__conn-line hero__conn-line--${l.tone}`}>
               <path className="hero__conn-path" d={l.d} />
-              <circle className="hero__conn-mark" cx={originX} cy={l.originY} r="3.5" />
-              <polygon className="hero__conn-mark" points={arrow(l.tipY)} />
+              <circle className="hero__conn-mark hero__conn-dot" cx={originX} cy={l.originY} r="3.5" />
+              <polygon className="hero__conn-mark hero__conn-arrow" points={arrow(l.tipY)} />
             </g>
           ))}
         </svg>

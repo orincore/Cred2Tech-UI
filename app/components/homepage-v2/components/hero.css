@@ -314,10 +314,10 @@
 
 .hero__conn-path {
   fill: none;
-  stroke-width: 2;
+  stroke-width: 2.5;
   stroke-linecap: round;
-  stroke-dasharray: 7 7;
-  animation: hero-dash 0.3s linear infinite;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
 }
 
 /* Both variants draw their path left-to-right in absolute coordinates
@@ -333,9 +333,30 @@
 .hero__conn-line--g .hero__conn-path { stroke: var(--hg); }
 .hero__conn-line--p .hero__conn-path { stroke: var(--hp); }
 
-.hero__conn-line--b .hero__conn-mark { fill: var(--hb); }
-.hero__conn-line--g .hero__conn-mark { fill: var(--hg); }
-.hero__conn-line--p .hero__conn-mark { fill: var(--hp); }
+.hero__conn-dot {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+}
+
+.hero__conn-arrow {
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.14));
+}
+
+.hero__conn-line--b .hero__conn-dot { fill: var(--hb); }
+.hero__conn-line--g .hero__conn-dot { fill: var(--hg); }
+.hero__conn-line--p .hero__conn-dot { fill: var(--hp); }
+
+.hero__conn-line--b .hero__conn-arrow {
+  fill: #2563eb;
+  stroke: rgba(255, 255, 255, 0.9);
+}
+.hero__conn-line--g .hero__conn-arrow {
+  fill: #149a58;
+  stroke: rgba(255, 255, 255, 0.9);
+}
+.hero__conn-line--p .hero__conn-arrow {
+  fill: #6a3de8;
+  stroke: rgba(255, 255, 255, 0.9);
+}
 
 /* Dashes march toward the arrowhead (paths are drawn origin -> arrow). */
 @keyframes hero-dash {
