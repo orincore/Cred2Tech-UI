@@ -7,6 +7,7 @@ const SOLUTIONS = [
     id: 'loan',
     tone: 'blue',
     title: 'Instant Loan Eligibility Check',
+    short: 'Loan',
     desc: 'Check loan eligibility in real-time across multiple lenders.',
     Tile: GaugeTile,
     href: '#lender-flow',
@@ -15,6 +16,7 @@ const SOLUTIONS = [
     id: 'crm',
     tone: 'purple',
     title: 'Virtual Workspace',
+    short: 'Workspace',
     desc: 'Manage leads, track applications end to end.',
     Tile: CrmTile,
     href: '#partner-workspace',
@@ -23,6 +25,7 @@ const SOLUTIONS = [
     id: 'scheme',
     tone: 'green',
     title: 'Government Scheme Discovery',
+    short: 'Scheme',
     desc: 'Find and explore the best matching schemes for your customers.',
     Tile: GovTile,
     href: '#scheme-engine',
@@ -166,25 +169,34 @@ export function Hero() {
         <div className="container hero__mobile-summary hero__reveal">
           <div className="hero__mobile-diagram">
             <div className="hero__mobile-flow">
-              <span className="hero__mobile-icon hero__mobile-icon--node hero__mobile-icon--partner" title="Sourcing Partner">
-                <PartnerGlyph />
-              </span>
+              <div className="hero__mobile-node">
+                <span className="hero__mobile-icon hero__mobile-icon--node hero__mobile-icon--partner" title="Sourcing Partner">
+                  <PartnerGlyph />
+                </span>
+                <span className="hero__mobile-label">Partner</span>
+              </div>
 
               <FlowLines variant="in" />
 
               <div className="hero__mobile-stack">
                 {SOLUTIONS.map((s) => (
-                  <span className={`hero__mobile-icon hero__mobile-icon--solution tone-${s.tone}`} title={s.title} key={s.id}>
-                    <s.Tile />
-                  </span>
+                  <div className="hero__mobile-node" key={s.id}>
+                    <span className={`hero__mobile-icon hero__mobile-icon--solution tone-${s.tone}`} title={s.title}>
+                      <s.Tile />
+                    </span>
+                    <span className="hero__mobile-label">{s.short}</span>
+                  </div>
                 ))}
               </div>
 
               <FlowLines variant="out" />
 
-              <span className="hero__mobile-icon hero__mobile-icon--node hero__mobile-icon--customer" title="Customer">
-                <CustomerGlyph />
-              </span>
+              <div className="hero__mobile-node">
+                <span className="hero__mobile-icon hero__mobile-icon--node hero__mobile-icon--customer" title="Customer">
+                  <CustomerGlyph />
+                </span>
+                <span className="hero__mobile-label">Customer</span>
+              </div>
             </div>
           </div>
 
@@ -237,7 +249,7 @@ function FlowLines({ variant }: { variant: 'in' | 'out' }) {
   }, []);
 
   const { w, h } = dims;
-  const c1 = (h - 36) / 6; // vertical center of solution card 1 (and mirrored, card 3)
+  const c1 = (h - 64) / 6; // vertical center of solution card 1 (and mirrored, card 3)
   const c3 = h - c1;
   const xt = Math.min(46, Math.round(w * 0.55)); // where the elbows turn
   const xEnd = w - 9; // leave room for the arrowhead

@@ -456,7 +456,20 @@
 .hero__mobile-stack {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 32px;
+}
+
+/* The label is absolutely positioned below the icon so it never adds to
+   the node's box height — FlowLines measures this row's height and
+   centers its arrows purely on the icons (see the c1/c3 formula in
+   Hero.tsx), and a label participating in flex sizing would throw that
+   off by shifting each icon's true center. */
+.hero__mobile-node {
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero__mobile-icon {
@@ -466,8 +479,25 @@
   justify-content: center;
 }
 
-.hero__mobile-icon--node {
+.hero__mobile-label {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.hero__mobile-flow > .hero__mobile-node {
   align-self: center;
+}
+
+.hero__mobile-icon--node {
   width: 62px;
   height: 62px;
   border-radius: 50%;
@@ -693,6 +723,17 @@
   .hero__trust-item p {
     font-size: 11px;
     line-height: 1.3;
+  }
+
+  /* Drop the framing card on mobile — the icon diagram sits directly on
+     the page background instead of inside a bordered/shadowed box. */
+  .hero__mobile-diagram,
+  [data-theme='dark'] .hero__mobile-diagram {
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 8px 0 30px;
   }
 }
 
