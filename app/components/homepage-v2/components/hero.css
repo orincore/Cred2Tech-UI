@@ -421,6 +421,114 @@
   color: #5c6b80;
 }
 
+/* ── Mobile icon-only summary (see .hero__mobile-summary below) ──
+   Hidden on desktop, where the full Partner/solutions/Customer cards
+   (with copy, art and FlowLines) already tell the story in .hero__flow. */
+.hero__mobile-summary {
+  display: none;
+}
+
+/* The card that frames the whole diagram — without it the icons and
+   connector lines float directly on the page background with nothing
+   to anchor them, which is what read as unpolished. Same card language
+   (radius, border, shadow) as .hero__solution / .hero__trust. */
+.hero__mobile-diagram {
+  background: #ffffff;
+  border: 1px solid #e6ebf4;
+  border-radius: 22px;
+  padding: 30px 16px 28px;
+  box-shadow: 0 8px 22px -16px rgba(15, 30, 60, 0.22);
+  color-scheme: light;
+}
+
+/* Same left-to-right layout as desktop's .hero__flow — Partner, the real
+   FlowLines connector, the 3-solution stack, FlowLines again, Customer —
+   just at icon scale instead of full cards. align-items: stretch lets the
+   two FlowLines instances measure this row's real height (driven by
+   .hero__mobile-stack, its tallest child) via their own ResizeObserver,
+   exactly like they do on desktop. */
+.hero__mobile-flow {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.hero__mobile-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero__mobile-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__mobile-icon--node {
+  align-self: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #ecf2fe;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  box-shadow: 0 5px 12px -6px rgba(37, 99, 235, 0.38);
+}
+
+.hero__mobile-icon--node svg {
+  width: 29px;
+  height: 29px;
+}
+
+.hero__mobile-icon--customer {
+  background: #e9f4ee;
+  border-color: rgba(20, 154, 88, 0.22);
+  box-shadow: 0 5px 12px -6px rgba(20, 154, 88, 0.32);
+}
+
+.hero__mobile-icon--solution {
+  width: 58px;
+  height: 58px;
+  border-radius: 17px;
+}
+
+.hero__mobile-icon--solution svg {
+  width: 34px;
+  height: 34px;
+}
+
+.hero__mobile-icon.tone-blue {
+  background: #e7eefe;
+  box-shadow: 0 4px 10px -6px rgba(37, 99, 235, 0.3);
+}
+
+.hero__mobile-icon.tone-purple {
+  background: #ede7fd;
+  box-shadow: 0 4px 10px -6px rgba(106, 61, 232, 0.3);
+}
+
+.hero__mobile-icon.tone-green {
+  background: #e5f4ec;
+  box-shadow: 0 4px 10px -6px rgba(20, 154, 88, 0.3);
+}
+
+.hero__mobile-caption {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__mobile-caption strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
 /* ── Dark mode ──────────────────────────────────────────────────
    The Sourcing Partner / Customer side cards (.hero__side) show
    opaque illustration PNGs with a baked-in light background, so
@@ -431,6 +539,12 @@
   background: var(--surface);
   border-color: var(--outline);
   box-shadow: 0 8px 22px -16px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='dark'] .hero__mobile-diagram {
+  background: var(--surface);
+  border-color: var(--outline);
+  box-shadow: 0 8px 22px -16px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme='dark'] .hero__solution:hover {
@@ -446,6 +560,18 @@
 }
 
 [data-theme='dark'] .tone-purple .hero__solution-tile {
+  background: color-mix(in srgb, var(--hp) 20%, transparent);
+}
+
+[data-theme='dark'] .hero__mobile-icon.tone-blue {
+  background: color-mix(in srgb, var(--hb) 20%, transparent);
+}
+
+[data-theme='dark'] .hero__mobile-icon.tone-green {
+  background: color-mix(in srgb, var(--hg) 20%, transparent);
+}
+
+[data-theme='dark'] .hero__mobile-icon.tone-purple {
   background: color-mix(in srgb, var(--hp) 20%, transparent);
 }
 
@@ -496,8 +622,8 @@
     min-height: 0;
     max-height: none;
     overflow: visible;
-    padding-top: calc(var(--hero-header-h) + 34px);
-    padding-bottom: 64px;
+    padding-top: calc(var(--hero-header-h) + 20px);
+    padding-bottom: 40px;
   }
 
   .hero__inner {
@@ -510,42 +636,40 @@
     flex: none;
   }
 
+  .hero__head {
+    padding-bottom: 18px;
+  }
+
+  /* The full copy-heavy diagram (side cards, art, per-card titles/desc)
+     gives way to the icon-only .hero__mobile-summary below 980px. */
   .hero__flow-wrap {
-    max-height: none;
-  }
-
-  .hero__flow {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .hero__conn {
     display: none;
   }
 
-  .hero__side {
-    width: 100%;
-    flex: none;
+  .hero__mobile-summary {
+    display: block;
   }
 
-  .hero__side-art {
-    flex: none;
+  /* FlowLines is reused as-is inside .hero__mobile-flow (see Hero.tsx) —
+     only the connector's width shrinks to fit the icon-scale layout; the
+     component still measures its own real height via ResizeObserver, so
+     the elbow paths remain the exact same shape as desktop, just smaller. */
+  .hero__conn {
+    flex: 1 1 42px;
+    width: auto;
   }
 
-  .hero__side-art img {
-    height: 224px;
-  }
-
-  .hero__stack {
-    flex: none;
-  }
-
-  .hero__solution {
-    flex: none;
-  }
-
+  /* 2x2 grid, tightened padding/icon/type so all four fit in far less
+     height than the desktop row — this is a compact mobile summary, not
+     a shrunk copy of the desktop card. */
   .hero__trust {
     grid-template-columns: repeat(2, 1fr);
+    border-radius: 14px;
+  }
+
+  .hero__trust-item {
+    gap: 10px;
+    padding: 10px 12px;
   }
 
   .hero__trust-item:nth-child(3) {
@@ -555,19 +679,20 @@
   .hero__trust-item:nth-child(n + 3) {
     border-top: 1px solid #edf1f7;
   }
-}
 
-@media (max-width: 560px) {
-  .hero__trust {
-    grid-template-columns: 1fr;
+  .hero__trust-icon {
+    width: 28px;
+    height: 28px;
   }
 
-  .hero__trust-item {
-    border-left: none;
+  .hero__trust-item h4 {
+    font-size: 13px;
+    margin-bottom: 1px;
   }
 
-  .hero__trust-item:nth-child(n + 2) {
-    border-top: 1px solid #edf1f7;
+  .hero__trust-item p {
+    font-size: 11px;
+    line-height: 1.3;
   }
 }
 

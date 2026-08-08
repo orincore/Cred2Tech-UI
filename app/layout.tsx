@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
+import BfcacheRefresh from "./components/BfcacheRefresh";
 import { ThemeProvider } from "./components/ThemeProvider";
 import theme from "./theme";
 import { OrganizationJsonLd, WebsiteJsonLd, ServiceJsonLd, LocalBusinessJsonLd } from "./components/JsonLd";
@@ -182,6 +183,7 @@ export default function RootLayout({
           <LocalBusinessJsonLd siteUrl={siteUrl} />
           
           <Script src="/lottie/lottie-player.js" strategy="beforeInteractive" id="global-lottie-player" />
+          <BfcacheRefresh />
           <Header />
           <PageTransition>
             <main className="flex-1">{children}</main>

@@ -341,4 +341,25 @@
   .pw__side {
     display: none;
   }
+
+  /* Desktop-sized CTAs (14px/24px padding, 15.5px text) wrapped to two
+     lines and dominated the fold on narrow screens — shrink them down to
+     a compact mobile button size instead. */
+  .pw__actions {
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .pw__btn {
+    gap: 6px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+  }
+
+  .pw__btn svg,
+  .pw__btn--ghost svg {
+    width: 15px;
+    height: 15px;
+  }
 }

@@ -163,6 +163,36 @@ export function Hero() {
           </div>
         </div>
 
+        <div className="container hero__mobile-summary hero__reveal">
+          <div className="hero__mobile-diagram">
+            <div className="hero__mobile-flow">
+              <span className="hero__mobile-icon hero__mobile-icon--node hero__mobile-icon--partner" title="Sourcing Partner">
+                <PartnerGlyph />
+              </span>
+
+              <FlowLines variant="in" />
+
+              <div className="hero__mobile-stack">
+                {SOLUTIONS.map((s) => (
+                  <span className={`hero__mobile-icon hero__mobile-icon--solution tone-${s.tone}`} title={s.title} key={s.id}>
+                    <s.Tile />
+                  </span>
+                ))}
+              </div>
+
+              <FlowLines variant="out" />
+
+              <span className="hero__mobile-icon hero__mobile-icon--node hero__mobile-icon--customer" title="Customer">
+                <CustomerGlyph />
+              </span>
+            </div>
+          </div>
+
+          <p className="hero__mobile-caption">
+            We&apos;ve got everything you need to power your <strong>DSA</strong> and <strong>MSME</strong> business — all on one platform.
+          </p>
+        </div>
+
         <div className="container hero__trust-wrap">
           <ul className="hero__trust hero__reveal">
             {TRUST.map((t) => (

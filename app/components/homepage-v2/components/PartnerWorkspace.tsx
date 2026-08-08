@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import './partner-workspace.css';
 
 const FEATURES = [
@@ -28,14 +29,14 @@ export function PartnerWorkspace() {
               <a href="https://app.cred2tech.com" target="_blank" rel="noopener noreferrer" className="pw__btn pw__btn--primary">
                 Explore Workspace <ArrowRight />
               </a>
-              <button type="button" className="pw__btn pw__btn--ghost">
+              <Link href="/request-demo" className="pw__btn pw__btn--ghost">
                 Watch Demo <PlayCircle />
-              </button>
+              </Link>
             </div>
           </div>
 
           <div className="pw__stage">
-            <img src="/laptop-crm.png" alt="Cred2Tech dashboard showing pipeline management" className="pw__laptop-image" loading="lazy" />
+            <img src="/images/laptop.png" alt="Cred2Tech dashboard showing pipeline management" className="pw__laptop-image" loading="lazy" />
           </div>
         </div>
 

@@ -4,6 +4,14 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5001/api';
+
+// Underline-only, sharp-cornered field style — matches /request-demo's form
+// (no box, just a baseline that lights up on focus) instead of the boxed-
+// rounded style this page used before.
+const fieldClass = 'w-full bg-transparent border-0 border-b border-[var(--outline)] text-[var(--on-surface)] placeholder:text-[var(--on-muted)] focus:border-[var(--on-surface)] focus:outline-none transition-colors px-0 py-2 text-[15px]';
+const labelClass = 'block text-[11px] font-bold uppercase tracking-[0.08em] text-[var(--on-muted)] mb-1.5';
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -15,6 +23,8 @@ export default function ContactPage() {
     message: '',
   });
   const [showPopup, setShowPopup] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     (window as any).__CONTACT_UNMOUNTED = false;
@@ -34,20 +44,35 @@ export default function ContactPage() {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    setShowPopup(true);
-    // Reset form
-    setFormData({
-      fullName: '',
-      businessName: '',
-      mobileNumber: '',
-      email: '',
-      role: '',
-      helpType: '',
-      message: '',
-    });
+    setSubmitError('');
+    setIsSubmitting(true);
+    try {
+      const res = await fetch(`${API_BASE_URL}/contact-submissions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data?.error || 'Something went wrong. Please try again.');
+      }
+      setShowPopup(true);
+      setFormData({
+        fullName: '',
+        businessName: '',
+        mobileNumber: '',
+        email: '',
+        role: '',
+        helpType: '',
+        message: '',
+      });
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -80,17 +105,17 @@ export default function ContactPage() {
       <section id="contact-form" className="py-10 sm:py-12 lg:py-16 bg-[var(--bg)] border-b border-[var(--outline)] relative overflow-hidden transition-colors duration-500">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'linear-gradient(var(--on-surface) 1px,transparent 1px),linear-gradient(90deg,var(--on-surface) 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--outline)] to-transparent" />
-        <div className="w-full max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <form onSubmit={handleSubmit} className="bg-[var(--surface)] border border-[var(--outline)] p-6 sm:p-8 lg:p-10 rounded-2xl">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="w-full max-w-[640px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <form onSubmit={handleSubmit} className="bg-[var(--surface)] border border-[var(--outline)] p-5 sm:p-7">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
               {/* Full Name */}
               <div className="sm:col-span-2">
-                <label className="block text-sm font-semibold text-[var(--on-surface)] mb-2">Full Name</label>
+                <label className={labelClass}>Full Name</label>
                 <input
                   type="text"
                   value={formData.fullName}
                   onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                  className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--outline)] text-[var(--on-surface)] placeholder:text-[var(--on-muted)] focus:border-[var(--on-surface)] focus:outline-none transition-colors rounded-lg"
+                  className={fieldClass}
                   placeholder="Enter your full name"
                   required
                 />
@@ -98,12 +123,12 @@ export default function ContactPage() {
 
               {/* Business Name */}
               <div className="sm:col-span-2">
-                <label className="block text-sm font-semibold text-[var(--on-surface)] mb-2">Business Name</label>
+                <label className={labelClass}>Business Name</label>
                 <input
                   type="text"
                   value={formData.businessName}
                   onChange={(e) => setFormData({...formData, businessName: e.target.value})}
-                  className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--outline)] text-[var(--on-surface)] placeholder:text-[var(--on-muted)] focus:border-[var(--on-surface)] focus:outline-none transition-colors rounded-lg"
+                  className={fieldClass}
                   placeholder="Enter your business name"
                   required
                 />
@@ -111,12 +136,12 @@ export default function ContactPage() {
 
               {/* Mobile Number */}
               <div>
-                <label className="block text-sm font-semibold text-[var(--on-surface)] mb-2">Mobile Number</label>
+                <label className={labelClass}>Mobile Number</label>
                 <input
                   type="tel"
                   value={formData.mobileNumber}
                   onChange={(e) => setFormData({...formData, mobileNumber: e.target.value})}
-                  className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--outline)] text-[var(--on-surface)] placeholder:text-[var(--on-muted)] focus:border-[var(--on-surface)] focus:outline-none transition-colors rounded-lg"
+                  className={fieldClass}
                   placeholder="Enter your mobile number"
                   required
                 />
@@ -124,12 +149,12 @@ export default function ContactPage() {
 
               {/* Email Address */}
               <div>
-                <label className="block text-sm font-semibold text-[var(--on-surface)] mb-2">Email Address</label>
+                <label className={labelClass}>Email Address</label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--outline)] text-[var(--on-surface)] placeholder:text-[var(--on-muted)] focus:border-[var(--on-surface)] focus:outline-none transition-colors rounded-lg"
+                  className={fieldClass}
                   placeholder="Enter your email"
                   required
                 />
@@ -137,12 +162,12 @@ export default function ContactPage() {
 
               {/* I am a... */}
               <div>
-                <label className="block text-sm font-semibold text-[var(--on-surface)] mb-2">I am a...</label>
+                <label className={labelClass}>I am a...</label>
                 <div className="relative">
                   <select
                     value={formData.role}
                     onChange={(e) => setFormData({...formData, role: e.target.value})}
-                    className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--outline)] text-[var(--on-surface)] focus:border-[var(--on-surface)] focus:outline-none transition-colors appearance-none cursor-pointer pr-10 rounded-lg"
+                    className={`${fieldClass} appearance-none cursor-pointer pr-7`}
                     required
                   >
                     <option value="">Select your role</option>
@@ -152,20 +177,20 @@ export default function ContactPage() {
                     <option value="investor">Investor</option>
                     <option value="other">Other</option>
                   </select>
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                    <svg className="w-5 h-5 text-[var(--on-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <svg className="w-4 h-4 text-[var(--on-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                   </div>
                 </div>
               </div>
 
               {/* How can we help? */}
               <div>
-                <label className="block text-sm font-semibold text-[var(--on-surface)] mb-2">How can we help?</label>
+                <label className={labelClass}>How can we help?</label>
                 <div className="relative">
                   <select
                     value={formData.helpType}
                     onChange={(e) => setFormData({...formData, helpType: e.target.value})}
-                    className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--outline)] text-[var(--on-surface)] focus:border-[var(--on-surface)] focus:outline-none transition-colors appearance-none cursor-pointer pr-10 rounded-lg"
+                    className={`${fieldClass} appearance-none cursor-pointer pr-7`}
                     required
                   >
                     <option value="">Select enquiry type</option>
@@ -174,21 +199,21 @@ export default function ContactPage() {
                     <option value="lender-partner">Lender Partnership</option>
                     <option value="general">General Enquiry</option>
                   </select>
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                    <svg className="w-5 h-5 text-[var(--on-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <svg className="w-4 h-4 text-[var(--on-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                   </div>
                 </div>
               </div>
 
               {/* Message */}
               <div className="sm:col-span-2">
-                <label className="block text-sm font-semibold text-[var(--on-surface)] mb-2">Message (optional)</label>
+                <label className={labelClass}>Message (optional)</label>
                 <textarea
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  rows={4}
+                  rows={3}
                   maxLength={500}
-                  className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--outline)] text-[var(--on-surface)] placeholder:text-[var(--on-muted)] focus:border-[var(--on-surface)] focus:outline-none transition-colors resize-none rounded-lg"
+                  className="w-full px-3 py-2.5 bg-[var(--bg)] border border-[var(--outline)] text-[var(--on-surface)] placeholder:text-[var(--on-muted)] focus:border-[var(--on-surface)] focus:outline-none transition-colors resize-none text-[15px]"
                   placeholder="Tell us more about your requirements..."
                 />
                 <p className="text-xs text-[var(--on-muted)] mt-1 text-right">{formData.message.length}/500</p>
@@ -196,13 +221,19 @@ export default function ContactPage() {
             </div>
 
             {/* Submit Button */}
-            <div className="mt-8">
+            <div className="mt-6">
+              {submitError && (
+                <p className="mb-3 text-sm font-medium text-red-600" role="alert">{submitError}</p>
+              )}
               <button
                 type="submit"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[var(--on-surface)] text-[var(--bg)] px-8 py-4 font-bold text-sm sm:text-base hover:opacity-90 hover:scale-[1.02] transition-all group rounded-lg"
+                disabled={isSubmitting}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[var(--on-surface)] text-[var(--bg)] px-6 py-3 font-bold text-sm hover:opacity-90 transition-all group disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Submit
-                <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                {isSubmitting ? 'Submitting…' : 'Submit'}
+                {!isSubmitting && (
+                  <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                )}
               </button>
             </div>
           </form>
@@ -305,25 +336,25 @@ export default function ContactPage() {
       {/* Success Popup Modal */}
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-[var(--surface)] border border-[var(--outline)] rounded-2xl p-8 max-w-md w-full mx-4 shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
+          <div className="bg-[var(--surface)] border border-[var(--outline)] p-7 max-w-sm w-full mx-4 shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
             <div className="text-center">
               {/* Success Icon */}
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="material-symbols-outlined text-green-600 text-2xl">check_circle</span>
               </div>
-              
+
               {/* Success Message */}
-              <h3 className="text-xl font-semibold text-[var(--on-surface)] mb-2">
+              <h3 className="text-lg font-semibold text-[var(--on-surface)] mb-2">
                 Thank You!
               </h3>
-              <p className="text-[var(--on-muted)] mb-6">
+              <p className="text-sm text-[var(--on-muted)] mb-5">
                 The team will respond within 24 hours.
               </p>
-              
+
               {/* Close Button */}
               <button
                 onClick={() => setShowPopup(false)}
-                className="bg-[var(--on-surface)] text-[var(--bg)] px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                className="bg-[var(--on-surface)] text-[var(--bg)] px-6 py-2.5 font-semibold text-sm hover:opacity-90 transition-opacity"
               >
                 Got it
               </button>
