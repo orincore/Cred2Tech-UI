@@ -86,7 +86,7 @@ export default function ContactPage() {
         <div className="hidden lg:block px-orb w-[300px] h-[300px] bg-[var(--outline)] absolute bottom-[-80px] right-[5%] z-0" id="orb-h2" />
         <div className="px-grid z-0" id="hero-grid" />
 
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative z-10">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 lg:pb-20 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
             <span className="inline-block font-(family-name:--font-jb-mono) text-base font-bold tracking-[0.18em] uppercase text-[var(--on-muted)] mb-4 px-3 py-1 border border-[var(--outline)] bg-[var(--surface-low)]">
               Get Started

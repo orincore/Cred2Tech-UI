@@ -30,7 +30,7 @@ export function PartnerWorkspace() {
                 Explore Workspace <ArrowRight />
               </a>
               <Link href="/request-demo" className="pw__btn pw__btn--ghost">
-                Watch Demo <PlayCircle />
+                Request Demo <PlayCircle />
               </Link>
             </div>
           </div>
