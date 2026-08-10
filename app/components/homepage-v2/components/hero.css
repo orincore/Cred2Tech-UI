@@ -456,7 +456,7 @@
 .hero__mobile-stack {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 44px;
 }
 
 /* The label is absolutely positioned below the icon so it never adds to

@@ -76,20 +76,11 @@
   z-index: 12;
 }
 
-/* Placed after every stacked item (including the last). Without it, the
-   next item's natural document position starts the instant the current
-   one finishes covering the screen, so the cover begins the moment you
-   resume scrolling — no pause. This spacer delays that: the current
-   item stays sticky-frozen, filling the whole screen, for this much
-   extra scroll distance before the next one's reveal begins. For the
-   very last stacked item it does double duty — sticky positioning can
-   only hold an element inside its containing block, which would
-   otherwise end almost exactly at that item's own bottom edge, so
-   without this spacer the last item wouldn't be able to stick at all.
-   Always covered by a higher z-index stack-item while stuck; only
-   becomes visible briefly as that item finally releases. */
+/* Placed after every stacked item. Height is 0 so each section covers
+   the screen and the next one's reveal begins immediately after, with
+   no dead scroll distance/freeze in between. */
 .home-v2 .stack-gap {
-  height: 60vh;
+  height: 0;
 }
 
 @media (max-width: 1120px) {

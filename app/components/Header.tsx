@@ -197,6 +197,7 @@ export default function Header() {
                                 onClick={() => setDropdownOpen((v) => !v)}
                                 size="sm"
                                 showIcon={false}
+                                solid
                             >
                                 <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
                                     Get Started

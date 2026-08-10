@@ -361,8 +361,8 @@ export default function AboutPage() {
         <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-[var(--outline)] text-center">
             {[
-              { value: 40, suffix: '+', label: 'Years Combined Experience' },
-              { value: 2000, suffix: 'Cr+', label: 'Portfolio Managed' },
+              { value: 50, suffix: '+', label: 'Years Combined Experience' },
+              { value: 20000, suffix: 'Cr+', label: 'Portfolio Managed' },
               { value: 6, suffix: '+', label: 'Leading Institutions' },
               { value: 2, suffix: '', label: 'Co-Founders, 1 Mission' },
             ].map((stat) => (

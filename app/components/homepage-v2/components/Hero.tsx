@@ -7,7 +7,7 @@ const SOLUTIONS = [
     id: 'loan',
     tone: 'blue',
     title: 'Instant Loan Eligibility Check',
-    short: 'Loan',
+    short: <>Loan Eligibility<br />Check</>,
     desc: 'Check loan eligibility in real-time across multiple lenders.',
     Tile: GaugeTile,
     href: '#lender-flow',
@@ -16,7 +16,7 @@ const SOLUTIONS = [
     id: 'crm',
     tone: 'purple',
     title: 'Virtual Workspace',
-    short: 'Workspace',
+    short: <>Virtual<br />Workspace</>,
     desc: 'Manage leads, track applications end to end.',
     Tile: CrmTile,
     href: '#partner-workspace',
@@ -25,7 +25,7 @@ const SOLUTIONS = [
     id: 'scheme',
     tone: 'green',
     title: 'Government Scheme Discovery',
-    short: 'Scheme',
+    short: <>Govt<br />Schemes</>,
     desc: 'Find and explore the best matching schemes for your customers.',
     Tile: GovTile,
     href: '#scheme-engine',
@@ -173,7 +173,7 @@ export function Hero() {
                 <span className="hero__mobile-icon hero__mobile-icon--node hero__mobile-icon--partner" title="Sourcing Partner">
                   <PartnerGlyph />
                 </span>
-                <span className="hero__mobile-label">Partner</span>
+                <span className="hero__mobile-label">Sourcing<br />Partner</span>
               </div>
 
               <FlowLines variant="in" />
@@ -200,9 +200,7 @@ export function Hero() {
             </div>
           </div>
 
-          <p className="hero__mobile-caption">
-            We&apos;ve got everything you need to power your <strong>DSA</strong> and <strong>MSME</strong> business — all on one platform.
-          </p>
+         
         </div>
 
         <div className="container hero__trust-wrap">

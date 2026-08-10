@@ -17,7 +17,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full py-5 sm:py-6 border-t border-[var(--outline)] bg-[var(--bg)] transition-colors duration-500">
-      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 grid grid-cols-2 sm:grid-cols-5 gap-6 sm:gap-8 items-start">
+      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 grid grid-cols-2 sm:grid-cols-6 gap-6 sm:gap-8 items-start">
         {/* Company Info */}
         <div className="col-span-2 sm:col-span-2 space-y-3">
           <div className="relative w-36 h-10 m-0 p-0 transition-all duration-300">
@@ -58,11 +58,12 @@ export default function Footer() {
         </div>
 
         {/* Products */}
-        <div className="space-y-2.5">
+        <div className="col-span-2 sm:col-span-2 space-y-2.5">
           <h4 className="font-bold text-[var(--on-surface)] text-[10px] uppercase tracking-[0.2em]">Products</h4>
           <ul className="space-y-1.5 text-xs text-[var(--on-muted)]">
-            <li><Link href="/#lender-flow" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Business Loans</Link></li>
-            <li><Link href="/#scheme-engine" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Govt Schemes</Link></li>
+            <li><Link href="/#lender-flow" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Instant Loan Eligibility Check</Link></li>
+            <li><Link href="/#partner-workspace" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Virtual Workspace</Link></li>
+            <li><Link href="/#scheme-engine" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Government Scheme Discovery</Link></li>
           </ul>
         </div>
 
