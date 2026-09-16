@@ -51,6 +51,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // Legal pages - required for compliance, indexed for trust signals
+  const legalPages = [
+    {
+      url: `${siteUrl}/privacy-policy/`,
+      lastModified: new Date("2026-09-14"),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    },
+    {
+      url: `${siteUrl}/terms-of-use/`,
+      lastModified: new Date("2026-09-14"),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    },
+    {
+      url: `${siteUrl}/rate-card/`,
+      lastModified: new Date("2026-09-16"),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    },
+  ];
+
   // Engagement pages - medium priority
   const engagementPages = [
     {
@@ -95,7 +117,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // The CRM subdomain should have its own sitemap.xml at app.cred2tech.com/sitemap.xml
   // But we reference it in the crossdomain sitemap or robots.txt
 
-  return [...mainPages, ...infoPages, ...engagementPages, ...blogUrls];
+  return [...mainPages, ...infoPages, ...legalPages, ...engagementPages, ...blogUrls];
 }
 
 // Cross-domain sitemap index for reference

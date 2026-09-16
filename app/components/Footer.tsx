@@ -81,10 +81,10 @@ export default function Footer() {
         <div className="space-y-2.5">
           <h4 className="font-bold text-[var(--on-surface)] text-[10px] uppercase tracking-[0.2em]">Legal</h4>
           <ul className="space-y-1.5 text-xs text-[var(--on-muted)]">
-            <li><a href="#" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Terms of Use</a></li>
-            <li><a href="#" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Data Processing</a></li>
-            <li><a href="#" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Cookie Policy</a></li>
+            <li><Link href="/privacy-policy" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Privacy Policy</Link></li>
+            <li><Link href="/terms-of-use" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Terms of Use</Link></li>
+            <li><Link href="/rate-card" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Rate Card</Link></li>
+            <li><Link href="/privacy-policy#cookies" className="hover:text-[var(--on-surface)] transition-colors hover:underline underline-offset-4 decoration-[var(--outline)]">Cookie Policy</Link></li>
           </ul>
         </div>
       </div>
