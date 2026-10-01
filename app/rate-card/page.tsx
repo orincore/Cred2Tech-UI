@@ -138,7 +138,7 @@ export default function RateCardPage() {
             head={['Pull Type', 'Additional Pulls per Extra Co-Applicant']}
             rows={[
               ['Bureau Report', '1'],
-              ['Bank Statement Analysis', '2'],
+              ['Bank Statement Analysis', '1'],
               ['GST Analysis', '1'],
               ['ITR Analysis', '1'],
             ]}
