@@ -27,7 +27,14 @@ function CountUp({ value, suffix = '', duration = 2000, revealed = false }: { va
   return <>{count}{suffix}</>;
 }
 
-const msmeSteps = [
+type Step = {
+  number: string;
+  title: string;
+  description: string;
+  link?: { href: string; label: string };
+};
+
+const msmeSteps: Step[] = [
   {
     number: '01',
     title: 'Register & Verify',
@@ -37,6 +44,7 @@ const msmeSteps = [
     number: '02',
     title: 'Pay the Fee',
     description: 'A one-time fee of ₹1,000 is charged to initiate the eligibility check.',
+    link: { href: '/rate-card', label: 'View full Rate Card' },
   },
   {
     number: '03',
@@ -55,7 +63,7 @@ const msmeSteps = [
   },
 ];
 
-const sourcingPartnerSteps = [
+const sourcingPartnerSteps: Step[] = [
   {
     number: '01',
     title: 'Register & Onboard',
@@ -290,6 +298,14 @@ export default function HowItWorksPage() {
                     <p className="text-sm sm:text-base text-[var(--on-muted)] leading-relaxed">
                       {step.description}
                     </p>
+                    {step.link && (
+                      <Link
+                        href={step.link.href}
+                        className="inline-block mt-2 text-sm font-semibold text-[var(--on-surface)] underline hover:no-underline"
+                      >
+                        {step.link.label} →
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>

@@ -6,6 +6,7 @@ export { metadata } from './metadata';
 
 const TOC: TocItem[] = [
   { id: 'overview', label: 'Overview' },
+  { id: 'sourcing-partner-pricing', label: '1. Sourcing Partner Pricing' },
   { id: 'per-pull-charges', label: '1.1 Per-Pull Report Charges' },
   { id: 'bulk-discount', label: '1.2 Bulk Wallet Recharge Discount' },
   { id: 'workspace', label: '1.3 Sourcing Partner Workspace' },
@@ -33,6 +34,11 @@ export default function RateCardPage() {
           <P>
             Cred2Tech reserves the right to revise this Rate Card from time to time, in accordance with the notice requirements set out in the Sourcing Partner Agreement and the Terms of Use.
           </P>
+        </LegalSection>
+
+        {/* 1. SOURCING PARTNER PRICING */}
+        <LegalSection id="sourcing-partner-pricing" index="1." title="Sourcing Partner Pricing">
+          <P>The following pricing applies to Sourcing Partners for the use of the Cred2Tech Platform:</P>
         </LegalSection>
 
         {/* 1.1 PER-PULL CHARGES */}
@@ -118,7 +124,7 @@ export default function RateCardPage() {
             head={['Pull Type', 'Maximum Included per Case']}
             rows={[
               ['Bureau Report', '2'],
-              ['Bank Statement Analysis', '2'],
+              ['Bank Statement Analysis', '1'],
               ['GST Analysis', '1'],
               ['ITR Analysis', '2'],
             ]}
