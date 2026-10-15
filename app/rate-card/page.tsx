@@ -38,7 +38,7 @@ export default function RateCardPage() {
 
         {/* 1. SOURCING PARTNER PRICING */}
         <LegalSection id="sourcing-partner-pricing" index="1." title="Sourcing Partner Pricing">
-          <P>The following pricing applies to Sourcing Partners for the use of the Cred2Tech Platform:</P>
+          <P>For Sourcing Partners, for their rate cards.</P>
         </LegalSection>
 
         {/* 1.1 PER-PULL CHARGES */}
@@ -71,7 +71,7 @@ export default function RateCardPage() {
         {/* 1.3 WORKSPACE */}
         <LegalSection id="workspace" index="1.3" title="Sourcing Partner Workspace">
           <P>
-            Access to the Sourcing Partner Workspace is provided <strong className="text-[var(--on-surface)]">free of charge until 30 September 2027</strong>. With effect from 1 October 2027, continued access shall be charged at <strong className="text-[var(--on-surface)]">₹200 per month per Sourcing Partner</strong>.
+            Access to the Sourcing Partner Workspace is provided <strong className="text-[var(--on-surface)]">free of charge until 30 September 2027</strong>. With effect from 1 October 2027, continued access shall be charged <strong className="text-[var(--on-surface)]">starting from ₹200 per month per Sourcing Partner</strong>.
           </P>
         </LegalSection>
 

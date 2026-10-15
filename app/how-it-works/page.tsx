@@ -43,7 +43,7 @@ const msmeSteps: Step[] = [
   {
     number: '02',
     title: 'Pay the Fee',
-    description: 'A one-time fee of ₹1,000 is charged to initiate the eligibility check.',
+    description: 'A one-time fee is charged to initiate the eligibility check. Refer to our Rate Card for applicable pricing.',
     link: { href: '/rate-card', label: 'View full Rate Card' },
   },
   {
