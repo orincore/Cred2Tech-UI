@@ -24,7 +24,7 @@ const PLATFORM_LINKS = [
         Icon: MsmeIcon,
     },
     {
-        href: 'https://scheme.cred2tech.com/',
+        href: '/coming-soon',
         title: 'Govt Scheme Discovery',
         subtitle: 'Find schemes you qualify for',
         color: '#149a58',
@@ -49,6 +49,21 @@ function MsmeIcon() {
             <path d="M9 21v-6h6v6" />
             <path d="M9 12h.01M15 12h.01M12 8h.01" />
         </svg>
+    );
+}
+
+function PlatformLink({ href, className, onClick, children }: { href: string; className: string; onClick: () => void; children: React.ReactNode }) {
+    if (href.startsWith('http')) {
+        return (
+            <a href={href} onClick={onClick} className={className}>
+                {children}
+            </a>
+        );
+    }
+    return (
+        <Link href={href} onClick={onClick} className={className}>
+            {children}
+        </Link>
     );
 }
 
@@ -213,7 +228,7 @@ export default function Header() {
                                     </div>
                                     <div className="p-1.5 pt-0.5">
                                         {PLATFORM_LINKS.map((link) => (
-                                            <a
+                                            <PlatformLink
                                                 key={link.href}
                                                 href={link.href}
                                                 onClick={() => setDropdownOpen(false)}
@@ -233,7 +248,7 @@ export default function Header() {
                                                     className="shrink-0 text-[var(--on-muted)] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
                                                     <path d="m9 5.5 6.5 6.5L9 18.5" />
                                                 </svg>
-                                            </a>
+                                            </PlatformLink>
                                         ))}
                                     </div>
                                 </div>
@@ -302,7 +317,7 @@ export default function Header() {
                     <span className="block px-2 mb-2 text-[11px] font-semibold uppercase tracking-wide text-[var(--on-muted)]">Continue as</span>
                     <div className="space-y-1.5">
                         {PLATFORM_LINKS.map((link) => (
-                            <a
+                            <PlatformLink
                                 key={link.href}
                                 href={link.href}
                                 onClick={() => setMobileMenuOpen(false)}
@@ -321,7 +336,7 @@ export default function Header() {
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-[var(--on-muted)]">
                                     <path d="m9 5.5 6.5 6.5L9 18.5" />
                                 </svg>
-                            </a>
+                            </PlatformLink>
                         ))}
                     </div>
                 </div>
