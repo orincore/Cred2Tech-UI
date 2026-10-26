@@ -1,4 +1,8 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
+import { VideoModal } from '../../VideoModal';
 import './partner-workspace.css';
 
 const FEATURES = [
@@ -11,48 +15,87 @@ const FEATURES = [
 ];
 
 export function PartnerWorkspace() {
+  const [videoOpen, setVideoOpen] = useState(false);
+
   return (
-    <section id="partner-workspace" className="pw">
-      <div className="container">
-        <div className="pw__hero">
-          <div className="pw__copy">
-            <span className="pw__pill">Sourcing Partner Workspace</span>
-            <h2 className="pw__title">
-              Your Entire Business.
-              <span>One Powerful Workspace.</span>
-            </h2>
-            <p className="pw__sub">
-              Manage leads, track applications, collaborate with lenders and grow your earnings
-              &mdash; all from one place.
-            </p>
-            <div className="pw__actions">
-              <a href="https://app.cred2tech.com" target="_blank" rel="noopener noreferrer" className="pw__btn pw__btn--primary">
-                Explore Workspace <ArrowRight />
-              </a>
-              <Link href="/request-demo" className="pw__btn pw__btn--ghost">
-                Request Demo <PlayCircle />
-              </Link>
+    <>
+      <section id="partner-workspace" className="pw">
+        <div className="container">
+          <div className="pw__hero">
+            <div className="pw__copy">
+              <span className="pw__pill">Sourcing Partner Workspace</span>
+              <h2 className="pw__title">
+                Your Entire Business.
+                <span>One Powerful Workspace.</span>
+              </h2>
+              <p className="pw__sub">
+                Manage leads, track applications, collaborate with lenders and grow your earnings
+                &mdash; all from one place.
+              </p>
+              <div className="pw__actions">
+                <a href="https://app.cred2tech.com" target="_blank" rel="noopener noreferrer" className="pw__btn pw__btn--primary">
+                  Explore Workspace <ArrowRight />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setVideoOpen(true)}
+                  className="pw__btn pw__btn--ghost"
+                  aria-label="Watch Virtual Workspace walkthrough video"
+                >
+                  Watch Walkthrough <PlayCircle />
+                </button>
+                <Link href="/request-demo" className="pw__btn pw__btn--ghost">
+                  Request Demo
+                </Link>
+              </div>
+            </div>
+
+            <div className="pw__stage">
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => setVideoOpen(true)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setVideoOpen(true);
+                  }
+                }}
+                className="pw__stage-interactive"
+                aria-label="Play Cred2Tech Virtual Workspace video walkthrough"
+              >
+                <img src="/images/laptop.png" alt="Cred2Tech dashboard showing pipeline management" className="pw__laptop-image" loading="lazy" />
+                <div className="pw__stage-play">
+                  <span className="pw__stage-play-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+                  </span>
+                  <span>Watch Walkthrough</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="pw__stage">
-            <img src="/images/laptop.png" alt="Cred2Tech dashboard showing pipeline management" className="pw__laptop-image" loading="lazy" />
+          <div className="pw__features">
+            {FEATURES.map((f) => (
+              <div className="pw__feature" key={f.title}>
+                <span className={`pw__feature-icon tone-${f.tone}`}>
+                  <f.Icon />
+                </span>
+                <h3>{f.title}</h3>
+                <p>{f.sub}</p>
+              </div>
+            ))}
           </div>
         </div>
+      </section>
 
-        <div className="pw__features">
-          {FEATURES.map((f) => (
-            <div className="pw__feature" key={f.title}>
-              <span className={`pw__feature-icon tone-${f.tone}`}>
-                <f.Icon />
-              </span>
-              <h3>{f.title}</h3>
-              <p>{f.sub}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+      <VideoModal
+        isOpen={videoOpen}
+        onClose={() => setVideoOpen(false)}
+        videoId="BYADQeKFvqE"
+        title="Cred2Tech Virtual Workspace | Complete Platform Overview & Walkthrough"
+      />
+    </>
   );
 }
 

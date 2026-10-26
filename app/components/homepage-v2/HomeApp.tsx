@@ -4,6 +4,7 @@ import { ThemeSync } from './ThemeSync';
 import { Hero } from './components/Hero';
 import { LenderFlow } from './components/LenderFlow';
 import { PartnerWorkspace } from './components/PartnerWorkspace';
+import { WorkspaceVideoSection } from './components/WorkspaceVideoSection';
 import { SchemeEngine } from './components/SchemeEngine';
 import './home.css';
 import './styles/theme.css';
@@ -35,6 +36,7 @@ export default function HomeApp() {
           </div>
           <div className="stack-gap" aria-hidden="true" />
         </div>
+        <WorkspaceVideoSection />
         <SchemeEngine />
       </div>
     </>
