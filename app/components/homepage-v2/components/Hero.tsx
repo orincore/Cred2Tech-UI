@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { animate, stagger } from 'animejs';
 import './hero.css';
 
 const SOLUTIONS = [
@@ -69,25 +68,9 @@ function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
 }
 
 export function Hero() {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const playedIntro = useRef(false);
-
-  useEffect(() => {
-    if (!rootRef.current || playedIntro.current) return;
-    playedIntro.current = true;
-    const els = rootRef.current.querySelectorAll('.hero__reveal');
-    animate(els, {
-      opacity: [0, 1],
-      translateY: [18, 0],
-      duration: 680,
-      delay: stagger(70, { start: 120 }),
-      ease: 'outExpo',
-    });
-  }, []);
-
   return (
     <section id="top" className="hero">
-      <div className="hero__inner" ref={rootRef}>
+      <div className="hero__inner">
         <div className="container hero__head">
           <h1 className="hero__title hero__reveal">
             One Platform. Three Powerful Solutions.
@@ -180,12 +163,17 @@ export function Hero() {
 
               <div className="hero__mobile-stack">
                 {SOLUTIONS.map((s) => (
-                  <div className="hero__mobile-node" key={s.id}>
+                  <a
+                    href={s.href}
+                    onClick={(e) => scrollToSection(e, s.href)}
+                    className="hero__mobile-node hero__mobile-node--link"
+                    key={s.id}
+                  >
                     <span className={`hero__mobile-icon hero__mobile-icon--solution tone-${s.tone}`} title={s.title}>
                       <s.Tile />
                     </span>
                     <span className="hero__mobile-label">{s.short}</span>
-                  </div>
+                  </a>
                 ))}
               </div>
 
