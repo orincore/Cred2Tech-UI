@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Script from 'next/script';
 import { useTheme } from 'next-themes';
 import { TravelingBorderButton } from '../components/TravelingBorderButton';
+import { VideoSection } from '../components/VideoSection';
 
 // Count-up animation component
 function CountUp({ value, suffix = '', duration = 2000, revealed = false }: { value: number, suffix?: string, duration?: number, revealed?: boolean }) {
@@ -223,6 +224,9 @@ export default function HowItWorksPage() {
               <TravelingBorderButton href="/login" size="sm">
                 Get Started
               </TravelingBorderButton>
+              <TravelingBorderButton href="#case-journey-video" size="sm">
+                Watch Journey Video
+              </TravelingBorderButton>
               <TravelingBorderButton href="#msme-steps" size="sm">
                 Learn More
               </TravelingBorderButton>
@@ -257,6 +261,32 @@ export default function HowItWorksPage() {
           </div>
         </div>
       </section>
+
+      {/* Case Journey Video Section */}
+      <VideoSection
+        id="case-journey-video"
+        badge="Platform Journey Walkthrough"
+        title="Cred2Tech Case Journey"
+        subtitle="Explore the Complete Journey on the Cred2Tech Platform"
+        description="Watch our step-by-step walkthrough demonstrating how a credit application moves through instant PAN/GST data fetch, AI-powered multi-lender eligibility analysis, Sourcing Partner allocation, and final disbursement."
+        videoId="jArb2TSHPzc"
+        videoTitle="Cred2Tech Case Journey | Explore the Complete Journey on the Cred2Tech Platform"
+        youtubeUrl="https://www.youtube.com/watch?v=jArb2TSHPzc"
+        highlights={[
+          {
+            title: 'Instant Data Verification',
+            description: 'Automated Bureau soft pull, ITR, GST, and bank statement verification with full user consent.',
+          },
+          {
+            title: 'Multi-Lender Match Engine',
+            description: 'Compare eligibility, loan amounts, and indicative interest rates across 50+ lenders in seconds.',
+          },
+          {
+            title: 'End-to-End Tracking',
+            description: 'Live visibility through Login → Sanction → Disbursement with assigned Sourcing Partner support.',
+          },
+        ]}
+      />
 
       {/* MSME Section */}
       <section id="msme-steps" className="py-10 sm:py-12 lg:py-16 bg-[var(--bg)] border-b border-[var(--outline)] relative overflow-hidden transition-colors duration-500">
