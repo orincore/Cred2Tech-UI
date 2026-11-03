@@ -114,11 +114,19 @@
 
 .pw__actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
   margin-top: 30px;
 }
 
+/* The copy column is capped at 500-560px (.pw__hero's grid-template-columns),
+   which isn't wide enough to hold all three CTAs on one line at this size —
+   forcing them into one row made each button's own label wrap to two lines
+   instead, nearly doubling every button's height. flex-wrap above lets the
+   group itself wrap (third button drops to its own row) while nowrap here
+   keeps every individual button's text — and so its height — single-line
+   and consistent. */
 .pw__btn {
   display: inline-flex;
   align-items: center;
@@ -127,6 +135,7 @@
   border-radius: 9px;
   font-size: 15.5px;
   font-weight: 700;
+  white-space: nowrap;
   border: 0;
   transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
