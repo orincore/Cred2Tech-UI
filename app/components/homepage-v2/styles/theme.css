@@ -1,30 +1,12 @@
 /* Ported from Cred2Tech v2 website (src/styles/theme.css).
    Scoped to `.home-v2` instead of `:root` so these tokens never leak
    into the rest of the Cred2Tech-UI site, which has its own theme system. */
-@font-face {
-  font-family: 'Hikasami';
-  src: url('/fonts/Hikasami-Regular.otf') format('opentype');
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Hikasami';
-  src: url('/fonts/Hikasami-Medium.otf') format('opentype');
-  font-weight: 500;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Hikasami';
-  src: url('/fonts/Hikasami-SemiBold.otf') format('opentype');
-  font-weight: 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Hikasami';
-  src: url('/fonts/Hikasami-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-display: swap;
-}
+/* Hikasami is loaded once, site-wide, by next/font in app/layout.tsx (preloaded,
+   with a size-adjusted fallback so the swap doesn't move text). A second
+   @font-face for the same files used to live here: it wasn't preloaded, so on
+   slow mobile networks the headings rendered in the system font first and then
+   re-wrapped when it arrived. --font-display below now points at the next/font
+   family instead. */
 
 .home-v2,
 html[data-theme='light'] .home-v2 {
@@ -60,6 +42,10 @@ html[data-theme='light'] .home-v2 {
 
 /* Cred2Tech dark palette, applied once ThemeSync mirrors the real theme
    (toggled from the site Header) onto data-theme. */
+/* `html.dark` is set by next-themes' blocking script before first paint, whereas
+   data-theme only arrives after hydration. Matching both means a returning dark
+   mode visitor never sees a light frame that snaps to dark on a slow device. */
+html.dark .home-v2,
 html[data-theme='dark'] .home-v2 {
   --bg: #0a1628;
   --surface: #101c38;
@@ -86,7 +72,7 @@ html[data-theme='dark'] .home-v2 {
 }
 
 .home-v2 {
-  --font-display: 'Hikasami', system-ui, sans-serif;
+  --font-display: var(--font-hikasami), system-ui, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);

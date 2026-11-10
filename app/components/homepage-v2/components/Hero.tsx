@@ -58,6 +58,12 @@ const TRUST = [
   },
 ] as const;
 
+/* Pre-measurement sizes for the connector columns (see FlowLines). Desktop:
+   84px column, flow height capped around 460px. Mobile: three 58px icons with
+   two 44px gaps = 262px tall, width flexes with the screen (roughly 65-100px). */
+const DESKTOP_FLOW = { w: 84, h: 420 } as const;
+const MOBILE_FLOW = { w: 80, h: 262 } as const;
+
 function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
   const target = document.querySelector(href);
   if (!target) return;
@@ -100,7 +106,7 @@ export function Hero() {
               </div>
             </aside>
 
-            <FlowLines variant="in" />
+            <FlowLines variant="in" fallback={DESKTOP_FLOW} />
 
             <div className="hero__stack">
               {SOLUTIONS.map((s) => (
@@ -124,7 +130,7 @@ export function Hero() {
               ))}
             </div>
 
-            <FlowLines variant="out" />
+            <FlowLines variant="out" fallback={DESKTOP_FLOW} />
 
             <aside className="hero__side hero__side--customer hero__reveal">
               <div className="hero__side-head">
@@ -159,7 +165,7 @@ export function Hero() {
                 <span className="hero__mobile-label">Sourcing<br />Partner</span>
               </div>
 
-              <FlowLines variant="in" />
+              <FlowLines variant="in" fallback={MOBILE_FLOW} />
 
               <div className="hero__mobile-stack">
                 {SOLUTIONS.map((s) => (
@@ -177,7 +183,7 @@ export function Hero() {
                 ))}
               </div>
 
-              <FlowLines variant="out" />
+              <FlowLines variant="out" fallback={MOBILE_FLOW} />
 
               <div className="hero__mobile-node">
                 <span className="hero__mobile-icon hero__mobile-icon--node hero__mobile-icon--customer" title="Customer">
@@ -220,7 +226,14 @@ export function Hero() {
  * The column is measured with a ResizeObserver and drawn as exact-pixel
  * SVG paths so the animated dashes flow smoothly around the elbows.
  */
-function FlowLines({ variant }: { variant: 'in' | 'out' }) {
+function FlowLines({
+  variant,
+  fallback,
+}: {
+  variant: 'in' | 'out';
+  /** Approximate size used until the real one is measured (see below). */
+  fallback: { w: number; h: number };
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [dims, setDims] = useState({ w: 0, h: 0 });
 
@@ -234,7 +247,15 @@ function FlowLines({ variant }: { variant: 'in' | 'out' }) {
     return () => ro.disconnect();
   }, []);
 
-  const { w, h } = dims;
+  // Until the ResizeObserver reports a real size (which needs hydration, so
+  // on a slow phone that can be seconds after first paint), draw from the
+  // fallback size and let the SVG stretch to fill its box. The server HTML and
+  // the first client render therefore both contain the connectors, instead of
+  // an empty gap that pops in late. Once measured it switches to the exact,
+  // pixel-true drawing below.
+  const measured = dims.w > 0 && dims.h > 0;
+  const w = measured ? dims.w : fallback.w;
+  const h = measured ? dims.h : fallback.h;
   const c1 = (h - 64) / 6; // vertical center of solution card 1 (and mirrored, card 3)
   const c3 = h - c1;
   const xt = Math.min(46, Math.round(w * 0.55)); // where the elbows turn
@@ -275,17 +296,33 @@ function FlowLines({ variant }: { variant: 'in' | 'out' }) {
 
   return (
     <div className={`hero__conn hero__conn--${variant}`} ref={ref} aria-hidden="true">
-      {w > 0 && h > 0 && (
-        <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
+      <svg
+        width="100%"
+        height="100%"
+        viewBox={`0 0 ${w} ${h}`}
+        preserveAspectRatio={measured ? undefined : 'none'}
+        // Always out of the layout flow, and sized only by its box. The column's
+        // height is decided by the solution icons (the row stretches this box to
+        // match) and the SVG merely fills it. If the SVG were in flow, any browser
+        // that can't resolve `height: 100%` here would size it from its viewBox
+        // aspect ratio instead, so a late change in column width (slow fonts,
+        // images, hydration) would rescale it, the observer below would measure
+        // the new bigger height, and the row would lock in tall: the lines then
+        // float far below the icons and Partner/Customer sit in empty space.
+        style={{ position: 'absolute', inset: 0 }}
+      >
           {lines.map((l) => (
             <g key={l.tone} className={`hero__conn-line hero__conn-line--${l.tone}`}>
-              <path className="hero__conn-path" d={l.d} />
+              <path
+                className="hero__conn-path"
+                d={l.d}
+                vectorEffect={measured ? undefined : 'non-scaling-stroke'}
+              />
               <circle className="hero__conn-mark hero__conn-dot" cx={originX} cy={l.originY} r="3.5" />
               <polygon className="hero__conn-mark hero__conn-arrow" points={arrow(l.tipY)} />
             </g>
           ))}
-        </svg>
-      )}
+      </svg>
     </div>
   );
 }
