@@ -221,7 +221,7 @@ export default function HowItWorksPage() {
           <div className="max-w-2xl lg:max-w-3xl">
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-4 sm:mb-2">
-              <TravelingBorderButton href="/login" size="sm">
+              <TravelingBorderButton href="https://app.cred2tech.com" size="sm">
                 Get Started
               </TravelingBorderButton>
               <TravelingBorderButton href="#case-journey-video" size="sm">
