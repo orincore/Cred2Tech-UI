@@ -20,6 +20,15 @@ html {
   overflow-y: scroll;
 }
 
+/* ThemeLogo renders both logo variants and this shows the one for the active theme.
+   `html.dark` is set by next-themes' blocking script before first paint, so
+   there is no JS swap and no flash of the wrong logo. Only the hidden variant
+   gets display:none, so the visible image keeps its normal display value. */
+html:not(.dark) .theme-logo--dark,
+html.dark .theme-logo--light {
+  display: none;
+}
+
 /* Removed html/body overflow routing to allow native scroll matching for GSAP */
 /* ── 3D Credit Card ── */
 @keyframes card-float {

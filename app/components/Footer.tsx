@@ -1,19 +1,10 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { useTheme } from 'next-themes';
+import ThemeLogo from './ThemeLogo';
 
 export default function Footer() {
-  const { theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const currentYear = new Date().getFullYear();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isLight = mounted && (theme === 'light' || resolvedTheme === 'light');
 
   return (
     <footer className="w-full py-5 sm:py-6 border-t border-[var(--outline)] bg-[var(--bg)] transition-colors duration-500">
@@ -21,9 +12,7 @@ export default function Footer() {
         {/* Company Info */}
         <div className="col-span-2 sm:col-span-2 space-y-3">
           <div className="relative w-36 h-10 m-0 p-0 transition-all duration-300">
-            <Image
-              src={isLight ? "/logos/black-logo.png" : "/logos/white-logo.png"}
-              alt="Cred2Tech"
+            <ThemeLogo
               fill
               sizes="144px"
               className="object-contain object-left"

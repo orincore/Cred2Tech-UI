@@ -2,11 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './ThemeToggle';
 import { useTheme } from 'next-themes';
 import { TravelingBorderButton } from './TravelingBorderButton';
+import ThemeLogo from './ThemeLogo';
 
 const PLATFORM_LINKS = [
     {
@@ -136,14 +136,15 @@ export default function Header() {
                     {/* ── LOGO ── */}
                     <Link href="/" onClick={handleLogoClick} className="flex items-center gap-2 flex-shrink-0 sm:gap-3">
                         <div className="relative w-36 h-auto sm:w-40 lg:w-48 shrink-0">
-                            <Image
-                                src={mounted && (theme === 'dark' || resolvedTheme === 'dark') ? "/logos/white-logo.png" : "/logos/black-logo.png"}
-                                alt="Cred2Tech"
+                            <ThemeLogo
+                                // 3:2, the logo files' real aspect ratio (2400x1600). It used to be
+                                // declared 192x48, which made Next warn about a modified aspect ratio
+                                // (the rendered size comes from CSS and `height: auto`, so it's unchanged).
                                 width={192}
-                                height={48}
+                                height={128}
                                 sizes="(max-width: 640px) 144px, (max-width: 1024px) 160px, 192px"
                                 className="object-contain"
-                                priority
+                                fetchPriority="high"
                                 style={{ height: 'auto' }}
                             />
                         </div>
