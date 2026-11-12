@@ -88,7 +88,7 @@ const POSTS: Record<string, Post> = {
     publishedDate: "2024-01-15",
     modifiedDate: "2024-01-15",
   },
-  'empowering-the-engine-of-india-vital-role-of-Sourcing Partners': {
+  'empowering-the-engine-of-india-vital-role-of-sourcing-partners': {
     title: 'Empowering the Engine of India: The Vital Role of Sourcing Partners in MSME Credit',
     tag: 'Sourcing Partner · Distribution',
     readTime: '6 min read',

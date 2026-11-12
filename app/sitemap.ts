@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       publishedDate: new Date("2024-01-15"),
     },
     {
-      slug: "empowering-the-engine-of-india-vital-role-of-Sourcing Partners",
+      slug: "empowering-the-engine-of-india-vital-role-of-sourcing-partners",
       lastModified: new Date("2024-02-01"),
       publishedDate: new Date("2024-02-01"),
     },

@@ -7,6 +7,7 @@ import Script from 'next/script';
 import { useTheme } from 'next-themes';
 import { TravelingBorderButton } from '../components/TravelingBorderButton';
 import { VideoSection } from '../components/VideoSection';
+import { APP_URLS } from '../lib/app-urls';
 
 // Count-up animation component
 function CountUp({ value, suffix = '', duration = 2000, revealed = false }: { value: number, suffix?: string, duration?: number, revealed?: boolean }) {
@@ -221,7 +222,7 @@ export default function HowItWorksPage() {
           <div className="max-w-2xl lg:max-w-3xl">
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-4 sm:mb-2">
-              <TravelingBorderButton href="https://app.cred2tech.com" size="sm">
+              <TravelingBorderButton href={APP_URLS.home} size="sm">
                 Get Started
               </TravelingBorderButton>
               <TravelingBorderButton href="#case-journey-video" size="sm">
@@ -343,7 +344,7 @@ export default function HowItWorksPage() {
           </div>
 
           <div className="mt-10 sm:mt-12 text-center">
-            <TravelingBorderButton href="/login" size="sm">
+            <TravelingBorderButton href={APP_URLS.msmeLogin} size="sm">
               Start your Loan Journey
             </TravelingBorderButton>
           </div>
@@ -397,8 +398,8 @@ export default function HowItWorksPage() {
           </div>
 
           <div className="mt-10 sm:mt-12 text-center">
-            <TravelingBorderButton href="/login" size="sm">
-              Become a Sourcing Partner Partner
+            <TravelingBorderButton href={APP_URLS.partnerLogin} size="sm">
+              Become a Sourcing Partner
             </TravelingBorderButton>
           </div>
         </div>

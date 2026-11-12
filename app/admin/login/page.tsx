@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import theme from '../../theme';
+import { APP_URLS } from '../../lib/app-urls';
 
 const { colors, gradients } = theme;
 
@@ -140,7 +141,7 @@ export default function AdminLoginPage() {
             {/* Back to main login */}
             <p className="text-center text-[0.78rem] text-[#424751] mt-6">
               Not an admin?
-              <Link href="/login" className="text-[var(--surface-low)] font-bold ml-1 hover:text-[var(--on-surface)] hover:underline transition-colors">Go to User Login</Link>
+              <Link href={APP_URLS.partnerLogin} className="text-[var(--surface-low)] font-bold ml-1 hover:text-[var(--on-surface)] hover:underline transition-colors">Go to User Login</Link>
             </p>
           </div>
         </div>

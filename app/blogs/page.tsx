@@ -15,7 +15,7 @@ const posts = [
     tag: 'MSME · Credit',
   },
   {
-    slug: 'empowering-the-engine-of-india-vital-role-of-Sourcing Partners',
+    slug: 'empowering-the-engine-of-india-vital-role-of-sourcing-partners',
     title: 'Empowering the Engine of India: The Vital Role of Sourcing Partners in MSME Credit',
     excerpt:
       'Sourcing Partners are not just lead generators — they function as a last-mile credit facilitation layer. How tech-enabled Sourcing Partners are converting unserved demand into bankable opportunities.',

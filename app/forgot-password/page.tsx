@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 import theme from '../theme';
+import { APP_URLS } from '../lib/app-urls';
 
 const { colors, gradients } = theme;
 
@@ -108,7 +109,7 @@ export default function ForgotPasswordPage() {
             )}
 
             <div className="mt-auto pt-6 flex justify-center">
-              <Link href="/login" className="flex items-center gap-1.5 text-[0.82rem] font-semibold text-[#424751] hover:text-[var(--on-surface)] transition-colors">
+              <Link href={APP_URLS.partnerLogin} className="flex items-center gap-1.5 text-[0.82rem] font-semibold text-[#424751] hover:text-[var(--on-surface)] transition-colors">
                 <span className="material-symbols-outlined text-[15px]">arrow_back</span>
                 Back to secure login
               </Link>
