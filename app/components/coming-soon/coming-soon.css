@@ -1,0 +1,131 @@
+/* Coming-soon page: editorial layout, type does the work. No boxes, pills or decorative grounds.
+   Motion: the headline rises once on load, the rest fades up; the link's underline draws on hover.
+   Colours: site tokens plus the scheme accent from theme.ts, set inline on .cs. */
+
+.cs {
+  --cs-accent: var(--cs-accent-light);
+  --cs-ease: cubic-bezier(.2, .8, .2, 1);
+  --cs-ease-enter: cubic-bezier(.22, 1, .36, 1);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 140px 0 72px;
+  background: var(--bg);
+  color: var(--on-surface);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+html.dark .cs { --cs-accent: var(--cs-accent-dark); }
+
+.cs-wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+/* same container as the site header, so the type lines up with the logo */
+@media (min-width: 640px) { .cs-wrap { padding-inline: 32px; } }
+@media (min-width: 1024px) { .cs-wrap { padding-inline: 48px; } }
+
+.cs-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 28px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cs-accent);
+}
+
+.cs-title {
+  margin: 0;
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(3.5rem, 13vw, 11rem);
+  line-height: .92;
+  letter-spacing: -.055em;
+}
+.cs-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: .1em;
+  margin-bottom: -.1em;
+}
+.cs-word + .cs-word { margin-left: .2em; }
+.cs-word__in { display: inline-block; }
+
+.cs-body {
+  margin-top: 48px;
+  display: grid;
+  gap: 28px;
+  justify-items: start;
+}
+@media (min-width: 1024px) {
+  .cs-body {
+    grid-template-columns: minmax(0, 32rem) auto;
+    justify-content: space-between;
+    align-items: end;
+  }
+}
+
+.cs-lead {
+  margin: 0;
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.6;
+  color: var(--on-muted);
+  text-wrap: pretty;
+}
+
+/* Text link: underline sits as a hairline and draws in full on hover */
+.cs-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--on-surface);
+  text-decoration: none;
+}
+.cs-link::before,
+.cs-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 1px;
+}
+.cs-link::before { background: var(--outline); }
+.cs-link::after {
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 150ms var(--cs-ease);
+}
+.cs-link svg { transition: transform 150ms var(--cs-ease); }
+.cs-link:hover::after,
+.cs-link:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+.cs-link:hover svg,
+.cs-link:focus-visible svg { transform: translateX(3px); }
+.cs-link:active { transform: scale(.985); }
+.cs-link:focus-visible { outline: 2px solid var(--cs-accent); outline-offset: 4px; }
+
+/* Entrance: once on load, transform and opacity only */
+@media (prefers-reduced-motion: no-preference) {
+  .cs-word__in {
+    transform: translateY(105%);
+    animation: cs-rise 800ms var(--cs-ease-enter) forwards;
+    animation-delay: calc(100ms + var(--w) * 90ms);
+  }
+  .cs-enter {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: cs-fade-up 560ms var(--cs-ease-enter) forwards;
+    animation-delay: calc(520ms + var(--i) * 70ms);
+  }
+  .cs-eyebrow.cs-enter { animation-delay: 0ms; }
+}
+@keyframes cs-rise { to { transform: translateY(0); } }
+@keyframes cs-fade-up { to { opacity: 1; transform: translateY(0); } }

@@ -5,7 +5,6 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
-import BfcacheRefresh from "./components/BfcacheRefresh";
 import { ThemeProvider } from "./components/ThemeProvider";
 import theme from "./theme";
 import { OrganizationJsonLd, WebsiteJsonLd, ServiceJsonLd, LocalBusinessJsonLd } from "./components/JsonLd";
@@ -165,7 +164,7 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning className="min-h-screen flex flex-col transition-colors duration-300 bg-[var(--bg)] text-[var(--on-surface)]">
         <ThemeProvider
-          attribute="class"
+          attribute={["class", "data-theme"]}
           defaultTheme="light"
           disableTransitionOnChange
         >
@@ -174,9 +173,7 @@ export default function RootLayout({
           <WebsiteJsonLd siteUrl={siteUrl} />
           <ServiceJsonLd siteUrl={siteUrl} />
           <LocalBusinessJsonLd siteUrl={siteUrl} />
-          
           <Script src="/lottie/lottie-player.js" strategy="beforeInteractive" id="global-lottie-player" />
-          <BfcacheRefresh />
           <Header />
           <PageTransition>
             <main className="flex-1">{children}</main>

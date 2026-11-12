@@ -35,6 +35,18 @@ export const colors = {
     onMuted:      '#94a3b8',
     outline:      '#2d3a6c',
   },
+
+  // Brand accent (homepage palette: links, icons, labels)
+  brand: {
+    accent:     '#2f6fe0',
+    accentDark: '#4a8df8',
+  },
+
+  // Govt Scheme Discovery accent (matches the header's scheme item)
+  scheme: {
+    accent:     '#149a58',
+    accentDark: '#3ccf86',
+  },
 } as const;
 
 // ─────────────────────────────────────────────

@@ -1,906 +1,430 @@
-/* ── Lender flow: "One Platform. Multiple Lenders." ──────────────
-   A fixed-light band (like the product excerpts) reproducing the
-   3-step partner -> platform -> lenders explainer. */
+/* "Multi-Lender Eligibility. Minutes Away." as a scroll story, without cards (LenderFlow +
+   LenderFlowScenes). Desktop: a 300vh track; the pin holds the screen while three chapters pass,
+   chapter lines in large type on the left, an open stage on the right. Below 901px the chapters
+   follow one another, each with its scene inline. Transform/opacity motion; scenes play only while
+   active, everything pauses off screen (.is-still). Colours: homepage tokens (../styles/theme.css). */
+
 .lf {
-  --lf-navy: #16214a;
-  --lf-blue: #2144cf;
-  --lf-blue-bright: #2b62e9;
-  --lf-green: #1e6b4a;
-  --lf-purple: #5b4bc4;
-  --lf-ink: #14204a;
-  --lf-mid: #33406b;
-  --lf-border: #e4e9f5;
-  /* Reserves the fixed site header's tallest state (py-4 + logo) so the
-     section's own height budget never has to guess where the header ends. */
-  --lf-header-h: 88px;
-
-  background: #ffffff;
-  color-scheme: light;
-  color: var(--lf-ink);
-  font-family: 'Inter', system-ui, sans-serif;
-
-  /* The whole point: the section's box is exactly one screen tall, with
-     padding-top reserving space for the fixed header (mirrors .hero — a
-     real, ordinary scroll stopping anywhere near this section must clear
-     the header on its own; scroll-margin-top only helps for anchor/
-     scrollIntoView jumps, not everyday wheel scrolling). Every block
-     below is a flex item sharing what's left of that budget, so it fits
-     on any viewport height without per-screen tuning. min-height is a
-     hard floor for degenerate viewports (shorter than the header plus
-     ~560px of content), where it gracefully reverts to needing a scroll
-     rather than crushing the content unreadably. */
-  height: 100vh;
-  min-height: calc(560px + var(--lf-header-h));
-  max-height: calc(1080px + var(--lf-header-h));
-  padding-top: var(--lf-header-h);
-  padding-bottom: clamp(10px, 2.4vh, 28px);
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  overflow: hidden;
-  scroll-margin-top: var(--lf-header-h);
-}
-
-.lf > .container {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-/* ── Head ── */
-.lf__head {
+  --lb: var(--accent);
+  --lg: var(--success);
+  --l-ease: cubic-bezier(.2, .8, .2, 1);
+  --l-ease-enter: cubic-bezier(.22, 1, .36, 1);
+  --lf-header-h: 84px;
   position: relative;
-  text-align: center;
-  flex: 0 0 auto;
-  padding-top: clamp(4px, 1.5vh, 14px);
-  padding-bottom: clamp(4px, 1.2vh, 12px);
-}
-
-.lf__title {
+  background: var(--surface);
+  color: var(--text);
   font-family: var(--font-display);
-  font-size: clamp(18px, 1.9vw, 24px);
-  line-height: 1.15;
-  font-weight: 700;
-  color: var(--lf-navy);
 }
 
-.lf__title span {
-  display: block;
-  color: var(--lf-blue);
-}
-
-.lf__logo {
-  height: 52px;
-  width: auto;
-  margin-top: 16px;
-}
-
-.lf__rule {
-  position: absolute;
-  height: 2px;
-  width: min(12%, 130px);
-}
-
-.lf__rule--l {
-  left: 0;
-  top: 18px;
-  background: var(--lf-navy);
-}
-
-.lf__rule--l::after {
-  content: '';
-  position: absolute;
-  right: -4px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--lf-blue-bright);
-}
-
-.lf__rule--r {
-  right: 0;
-  top: 40px;
-  background: var(--lf-green);
-}
-
-.lf__rule--r::before {
-  content: '';
-  position: absolute;
-  left: -4px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #1f9d55;
-}
-
-/* ── Step cards row ──
-   This row is the flexible middle: it takes whatever height is left over
-   after the head/help/base blocks claim their (small, ~fixed) space, and
-   each card stretches to fill it via grid's default align-items: stretch. */
-.lf__steps {
-  flex: 1 1 auto;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: 1fr 36px 1.3fr 36px 1fr;
-  gap: 10px;
-  align-items: stretch;
-}
-
-.lf__card {
+/* scroll length of the pinned story: about one and a third screens of scroll per chapter */
+.lf__track { position: relative; height: 500vh; }
+.lf__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 620px;
+  padding-top: var(--lf-header-h);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  min-height: 0;
-  background: #ffffff;
-  border: 1px solid var(--lf-border);
-  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 12px 28px -20px rgba(16, 30, 70, 0.35);
 }
-
-.lf__card-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 14px;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.005em;
-}
-
-.lf__card-head--navy { background: #17255c; }
-.lf__card-head--blue { background: var(--lf-blue-bright); }
-.lf__card-head--green { background: var(--lf-green); }
-
-.lf__num {
-  flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12.5px;
-  font-weight: 800;
-}
-
-.lf__card-head--navy .lf__num { color: #17255c; }
-.lf__card-head--blue .lf__num { color: var(--lf-blue-bright); }
-.lf__card-head--green .lf__num { color: var(--lf-green); }
-
-/* ── Step 1: onboarding ── */
-.lf__photo {
-  display: block;
+.lf__wrap {
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  flex: 1 1 0;
-  min-height: 0;
-  object-fit: cover;
-}
-
-.lf__duo {
-  flex: 0 0 auto;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 16px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--lf-border);
-}
-
-.lf__duo-item {
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
   align-items: center;
-  gap: 6px;
-  text-align: center;
-  padding: 10px 10px;
-  font-size: 12px;
+  gap: clamp(32px, 5vw, 96px);
+}
+@media (min-width: 640px) { .lf__wrap { padding-inline: 32px; } }
+@media (min-width: 1024px) { .lf__wrap { padding-inline: 48px; } }
+
+/* ── Story column ── */
+.lf__title {
+  margin: 0 0 clamp(28px, 6vh, 64px);
+  font-family: var(--font-display);
+  font-size: clamp(32px, min(3.6vw, 6vh), 60px);
+  line-height: 1;
   font-weight: 700;
-  line-height: 1.25;
-  color: var(--lf-ink);
+  letter-spacing: -0.04em;
 }
+.lf__title .lf__accent { display: block; color: var(--lb); }
 
-.lf__duo-item + .lf__duo-item {
-  border-left: 1px solid var(--lf-border);
+.lf__chapters { position: relative; list-style: none; margin: 0; padding: 0 0 0 28px; display: grid; gap: clamp(14px, 3vh, 30px); }
+.lf__progress { position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; border-radius: 1px; background: var(--outline); overflow: hidden; }
+.lf__progress i { position: absolute; inset: 0; background: var(--text); transform-origin: top; transform: scaleY(var(--p, 0)); }
+
+.lf__chapter { display: grid; grid-template-columns: 38px minmax(0, 1fr); align-items: baseline; transition: opacity 500ms var(--l-ease); opacity: .32; }
+.lf__chapter.is-on { opacity: 1; }
+.lf__chapter-n { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--muted); font-variant-numeric: tabular-nums; }
+.lf__chapter.is-on .lf__chapter-n { color: var(--lb); }
+.lf__chapter-copy h3 { margin: 0; font-size: clamp(19px, min(1.7vw, 2.9vh), 27px); line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; }
+.lf__chapter-copy p {
+  margin: 0;
+  max-width: 28rem;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 500ms var(--l-ease), opacity 400ms var(--l-ease), margin 500ms var(--l-ease);
 }
+.lf__chapter.is-on .lf__chapter-copy p { grid-template-rows: 1fr; opacity: 1; margin-top: 8px; }
+.lf__inline-scene { display: none; }
 
-.lf__duo-item svg {
-  width: 21px;
-  height: 21px;
+/* ── Stage: an open composition, no frame ── */
+.lf__stage { position: relative; height: clamp(320px, calc(100vh - 250px), 600px); }
+.lf__glow {
+  position: absolute;
+  inset: 8% 6%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--lb) 16%, transparent), transparent);
+  filter: blur(20px);
+  pointer-events: none;
 }
-
-/* ── Step 2: data pool ── */
-.lf__pool {
-  position: relative;
-  flex: 1 1 0;
-  min-height: 0;
-}
-
-.lf__pool-links {
+.lf__scene {
   position: absolute;
   inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: translateY(28px) scale(.97);
+  transition: opacity 600ms var(--l-ease), transform 800ms var(--l-ease-enter);
+  pointer-events: none;
+}
+.lf__scene.is-on { opacity: 1; transform: none; }
+
+/* ── Scene 1: consent on the client's phone ── */
+.lfs { position: relative; width: 100%; }
+.lfs--onboard { display: grid; place-items: center; height: 100%; }
+.lfs-phone {
+  --ph-w: 280px;
+  position: relative;
+  z-index: 1;
+  width: var(--ph-w);
+  height: clamp(450px, calc(100vh - 290px), 590px);
+  padding: 10px;
+  border-radius: 44px;
+  background: var(--bezel);
+  box-shadow: 0 40px 80px -30px color-mix(in oklab, var(--bezel) 60%, transparent), 0 0 0 1px color-mix(in oklab, var(--on-bezel) 10%, transparent) inset;
+}
+/* hardware buttons on the frame: mute switch and volume up/down on the left, power on the right */
+.lfs-phone__btn {
+  position: absolute;
+  width: 4px;
+  background: var(--bezel);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--on-bezel) 14%, transparent);
+}
+.lfs-phone__btn--mute,
+.lfs-phone__btn--up,
+.lfs-phone__btn--down { left: -3px; border-radius: 3px 0 0 3px; }
+.lfs-phone__btn--power { right: -3px; border-radius: 0 3px 3px 0; }
+.lfs-phone__btn--mute { top: 15%; height: 4.5%; }
+.lfs-phone__btn--up { top: 22%; height: 8%; }
+.lfs-phone__btn--down { top: 32%; height: 8%; }
+.lfs-phone__btn--power { top: 27%; height: 12%; }
+.lfs-phone__screen { position: relative; height: 100%; display: flex; flex-direction: column; border-radius: 35px; background: var(--bg); text-align: left; overflow: hidden; }
+.lfs-phone__notch { position: absolute; top: 9px; left: 50%; z-index: 1; width: 82px; height: 22px; translate: -50% 0; border-radius: 12px; background: var(--bezel); }
+.lfs-phone__status { flex: none; display: flex; align-items: center; justify-content: space-between; padding: 12px 22px 0 24px; font-size: 12px; font-weight: 700; }
+.lfs-phone__status-ico { display: inline-flex; align-items: center; gap: 5px; }
+.lfs-phone__status-ico svg:first-child { width: 14px; height: 9px; }
+.lfs-phone__status-ico svg:last-child { width: 21px; height: 10px; }
+.lfs-phone__body { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; padding: 16px 18px 6px; }
+.lfs-phone__brand { display: flex; align-items: center; gap: 7px; margin: 0; font-size: 13px; font-weight: 700; }
+.lfs-phone__brand img { width: 18px; height: auto; }
+html.dark .lfs-phone__brand img,
+html[data-theme='dark'] .lfs-phone__brand img { filter: invert(1); }
+.lfs-phone__title { margin: 0; font-size: 19px; line-height: 1.22; font-weight: 700; letter-spacing: -0.02em; }
+.lfs-phone__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--outline); }
+.lfs-phone__list li { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--outline); font-size: 13px; font-weight: 500; color: var(--text); }
+.lfs-phone__list svg { flex: none; width: 16px; height: 16px; padding: 3px; border-radius: 50%; background: var(--success-dim); color: var(--lg); }
+.lfs-phone__otpbox { padding: 12px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--outline); }
+.lfs-phone__label { margin: 0 0 8px; font-size: 11.5px; color: var(--muted); }
+.lfs-phone__otp { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.lfs-phone__otp span { height: 38px; display: grid; place-items: center; border-radius: 10px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--outline); font-size: 16px; font-weight: 700; }
+.lfs-phone__otp span:last-child { box-shadow: inset 0 0 0 1.5px var(--lb); }
+.lfs-phone__done { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 0; padding: 13px; border-radius: 14px; background: var(--lg); color: var(--surface); font-size: 13.5px; font-weight: 700; }
+.lfs-phone__done svg { width: 14px; height: 14px; }
+.lfs-phone__home { flex: none; width: 96px; height: 4px; margin: 6px auto 8px; border-radius: 2px; background: var(--text); opacity: .85; }
+
+.lfs-note {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.lfs-note__tick { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: var(--lg); color: var(--surface); }
+.lfs-note__tick svg { width: 13px; height: 13px; }
+.lfs-note__lead { display: block; width: 56px; height: 1px; background: var(--text); opacity: .35; }
+.lfs-note--a { top: 26%; right: calc(50% + 160px); }
+.lfs-note--b { bottom: 22%; right: calc(50% + 160px); }
+
+/* shorter laptop screens: the same phone, a little tighter so every row fits */
+@media (min-width: 901px) and (max-height: 800px) {
+  .lfs-phone__status { padding-top: 10px; }
+  .lfs-phone__body { gap: 6px; padding-top: 10px; }
+  .lfs-phone__title { font-size: 17px; }
+  .lfs-phone__list li { padding: 4px 0; font-size: 12.5px; }
+  .lfs-phone__otpbox { padding: 9px 10px; }
+  .lfs-phone__label { margin-bottom: 6px; }
+  .lfs-phone__otp span { height: 32px; }
+  .lfs-phone__done { padding: 10px; font-size: 13px; }
+  .lfs-phone__home { margin: 4px auto 6px; }
 }
 
-.lf__link {
-  fill: none;
-  stroke: #8fa8e8;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-dasharray: 1.5 6;
-  animation: lf-dash 0.6s linear infinite;
-}
-
-@keyframes lf-dash {
-  to { stroke-dashoffset: -7.5; }
-}
-
-.lf__vault {
+/* ── Scene 2: sources in orbit around the engine ── */
+.lfs--pool { display: grid; justify-items: center; gap: clamp(12px, 2.4vh, 24px); }
+.lfs-orbit { --R: min(170px, 23vh); position: relative; width: calc(var(--R) * 2.4); height: calc(var(--R) * 2.4); }
+.lfs-orbit__ring { position: absolute; left: 50%; top: 50%; translate: -50% -50%; border-radius: 50%; border: 1px solid var(--outline); }
+.lfs-orbit__ring--1 { width: 38%; height: 38%; border-color: color-mix(in oklab, var(--lb) 40%, var(--outline)); }
+.lfs-orbit__ring--2 { width: 66%; height: 66%; border-style: dashed; }
+.lfs-orbit__ring--3 { width: 96%; height: 96%; opacity: .6; }
+.lfs-core {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  height: 80%;
-  max-height: 260px;
-  width: auto;
-}
-
-/* Positioned by percentage of the (fluid) pool height, rather than a
-   pixel value tuned for one screen, so chips stay put proportionally as
-   the section grows or shrinks to fit the viewport. PoolLinks mirrors
-   these same fractions in JS to keep the connector lines anchored. */
-.lf__chip {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  width: 92px;
-  padding: 6px 8px;
-  background: #ffffff;
-  border: 1px solid var(--lf-border);
-  border-radius: 10px;
-  box-shadow: 0 6px 14px -10px rgba(16, 30, 70, 0.4);
-  font-size: 10.5px;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--lf-ink);
-}
-
-.lf__chip svg {
-  flex-shrink: 0;
-  width: 17px;
-  height: 17px;
-}
-
-.lf__chip--gst { left: 14px; top: 7%; }
-.lf__chip--pan { left: 14px; top: 40%; }
-.lf__chip--itr { left: 14px; top: 72%; }
-.lf__chip--bank { right: 14px; top: 22%; }
-.lf__chip--bureau { right: 14px; top: 57%; }
-
-.lf__feats {
-  flex: 0 0 auto;
-  list-style: none;
+  width: calc(var(--R) * .6);
+  height: calc(var(--R) * .6);
+  translate: -50% -50%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--lf-border);
+  place-items: center;
+  border-radius: 50%;
+  background: var(--bezel);
+  box-shadow: 0 0 0 10px color-mix(in oklab, var(--lb) 10%, transparent), 0 20px 50px -14px color-mix(in oklab, var(--lb) 75%, transparent);
 }
-
-.lf__feats li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  text-align: center;
-  padding: 8px 4px;
-  font-size: 10.5px;
-  font-weight: 700;
-  line-height: 1.25;
-  color: var(--lf-ink);
-}
-
-.lf__feats li + li {
-  border-left: 1px solid var(--lf-border);
-}
-
-.lf__feats svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* ── Step 3: eligible lenders ── */
-.lf__offers {
-  flex: 1 1 0;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 10px 12px 0;
-}
-
-.lf__offers-top {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-/* Fills whatever room is left in the card; if a very short viewport can't
-   fit every row it scrolls internally here rather than pushing the card
-   (and the section) past the viewport. padding-top (plus a matching
-   negative margin so layout doesn't shift) gives the first row's "Best
-   Match" tag — which pokes above the row via a negative `top` — room to
-   render instead of being clipped by this scroll container's own edge. */
-.lf__offer-list {
-  flex: 1 1 0;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  padding-top: 10px;
-  margin-top: -10px;
-}
-
-.lf__offers-top h3 {
-  font-size: 14.5px;
-  font-weight: 800;
-  color: var(--lf-navy);
-  white-space: nowrap;
-}
-
-.lf__sort {
+.lfs-core img { width: 46%; height: auto; filter: brightness(0) invert(1); }
+.lfs-src { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+.lfs-src__label {
+  position: absolute;
+  left: calc(var(--x) * var(--R));
+  top: calc(var(--y) * var(--R));
+  translate: -50% -50%;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  background: #edf1fc;
-  color: var(--lf-blue);
-  font-size: 10px;
-  font-weight: 700;
-  padding: 4px 8px;
-  border-radius: 8px;
-  white-space: nowrap;
-}
-
-.lf__sort svg {
-  width: 10px;
-  height: 10px;
-}
-
-/* Each row is a distinct rank in a best-match-sorted list — the top row
-   gets a corner tag and a tinted border so that claim is visible, not
-   just stated in the header pill above. The tag is absolutely positioned
-   so it doesn't compete with the name/terms columns for the row's (tight)
-   horizontal space. */
-.lf__offer {
-  position: relative;
-  flex: 0 0 auto;
-  display: grid;
-  grid-template-columns: 30px 1fr auto 14px;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #e8edf6;
-  border-radius: 12px;
-  padding: 7px 12px;
-  transition: border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
-}
-
-.lf__offer:hover {
-  border-color: var(--lf-blue-bright);
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px -16px rgba(16, 30, 70, 0.35);
-}
-
-.lf__offer--top {
-  border-color: #c9d9fb;
-  background: #f7f9ff;
-}
-
-.lf__offer--top::after {
-  content: 'Best Match';
-  position: absolute;
-  top: -8px;
-  right: 14px;
-  font-size: 8.5px;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #ffffff;
-  background: var(--lf-blue-bright);
-  padding: 2.5px 8px;
-  border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(43, 98, 233, 0.35);
-}
-
-.lf__offer-bank {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  background: #e7f3ec;
-  color: var(--lf-green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lf__offer-bank svg {
-  width: 16px;
-  height: 16px;
-}
-
-.lf__offer-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
-}
-
-.lf__offer-name {
-  font-size: 12.5px;
-  font-weight: 800;
-  color: var(--lf-ink);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.lf__offer-tags {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.lf__offer-badge {
-  font-style: normal;
-  background: #e8f5ee;
-  color: var(--lf-green);
-  font-size: 9.5px;
-  font-weight: 700;
-  padding: 3px 7px;
-  border-radius: 6px;
-  white-space: nowrap;
-}
-
-.lf__offer-product {
-  font-style: normal;
-  font-size: 11px;
+  gap: 7px;
+  font-size: 15px;
   font-weight: 600;
-  color: var(--lf-blue);
   white-space: nowrap;
 }
+.lfs-src__label svg { width: 18px; height: 18px; color: var(--lb); }
+/* curved dashed lines from each source into the core (LenderFlowScenes: .lfs-wires) */
+.lfs-wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; color: var(--text); }
+.lfs-wire { fill: none; stroke: currentColor; stroke-width: 1.6px; stroke-linecap: round; stroke-dasharray: 6px 6px; opacity: .75; vector-effect: non-scaling-stroke; }
+.lfs-wire-tip { fill: currentColor; opacity: .75; }
+.lfs-pool__caption { display: flex; align-items: baseline; gap: 10px; margin: 0; font-size: 17px; }
+.lfs-pool__arrow { color: var(--lb); }
+.lfs-pool__state { margin-left: 8px; min-width: 9rem; font-size: 14px; color: var(--muted); }
 
-.lf__offer-product.is-risk {
-  color: #d64545;
-}
-
-.lf__offer-terms {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-  min-width: 62px;
-}
-
-.lf__offer-term {
-  display: flex;
+/* ── Scene 3: the ranked list ── */
+.lfs--lenders { width: min(100%, 560px); }
+.lfs-rank__head { display: flex; justify-content: space-between; margin: 0 0 6px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.lfs-rank__head span:last-child { color: var(--lb); }
+.lfs-rank { list-style: none; margin: 0; padding: 0; }
+.lfs-rank li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto auto;
   align-items: baseline;
-  gap: 4px;
-  line-height: 1.2;
+  gap: 18px;
+  padding: 22px 0 22px 14px;
+  border-bottom: 1px solid var(--outline);
 }
+.lfs-rank li.is-best::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 3px; border-radius: 2px; background: var(--lb); }
+.lfs-rank__n { font-size: 14px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.lfs-rank__name { display: flex; align-items: baseline; gap: 10px; font-size: clamp(22px, 2vw, 30px); font-weight: 700; letter-spacing: -0.02em; }
+.lfs-rank__name em { font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--lb); }
+.lfs-rank__amt,
+.lfs-rank__rate { display: inline-flex; align-items: baseline; gap: 5px; font-size: clamp(20px, 1.8vw, 26px); font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
+.lfs-rank__amt small,
+.lfs-rank__rate small { font-size: 12px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+.lfs-rank__rate { color: var(--lg); }
+.lfs-rank__foot { margin: 16px 0 0; font-size: 14px; font-weight: 600; color: var(--lb); }
 
-.lf__offer-term small {
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--lf-mid);
-  white-space: nowrap;
-}
-
-.lf__offer-term b {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--lf-ink);
-  white-space: nowrap;
-}
-
-.lf__chev {
-  width: 14px;
-  height: 14px;
-}
-
-.lf__viewall {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  width: calc(100% + 22px);
-  margin-left: -11px;
-  margin-right: -11px;
-  border: none;
-  border-top: 1px solid var(--lf-border);
-  background: transparent;
-  padding: 9px 10px;
-  color: var(--lf-blue);
-  font-size: 12.5px;
-  font-weight: 700;
-}
-
-.lf__viewall svg {
-  width: 15px;
-  height: 15px;
-}
-
-/* ── Arrows between steps ── */
-.lf__arrow {
-  align-self: center;
-  width: 36px;
-  height: 30px;
-}
-
-.lf__arrow svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.lf__arrow--blue { color: var(--lf-blue-bright); }
-.lf__arrow--green { color: var(--lf-green); }
-
-/* ── How It Helps Everyone ── */
+/* ── How it helps everyone: a compact row along the foot of the pinned view ── */
 .lf__help {
-  position: relative;
-  flex: 0 0 auto;
-  margin-top: clamp(18px, 2.4vh, 26px);
-  background: #ffffff;
-  border: 1px solid var(--lf-border);
-  border-radius: 14px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: clamp(8px, 1.6vh, 16px) 4px clamp(6px, 1.2vh, 12px);
-}
-
-.lf__help-title {
-  position: absolute;
-  top: -9px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ffffff;
-  padding: 0 16px;
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--lf-navy);
-  white-space: nowrap;
-}
-
-.lf__help-cell {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  padding: 0 18px;
-}
-
-.lf__help-cell + .lf__help-cell {
-  border-left: 1px solid #e9eef7;
-}
-
-.lf__help-cell h4 {
-  font-size: 12.5px;
-  font-weight: 800;
-  margin-bottom: 6px;
-  padding-top: 2px;
-}
-
-.tone-blue h4 { color: var(--lf-blue); }
-.tone-green h4 { color: var(--lf-green); }
-.tone-purple h4 { color: var(--lf-blue); }
-.tone-secure h4 { color: var(--lf-blue); }
-
-.lf__help-cell ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.lf__help-cell li {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--lf-ink);
-}
-
-.lf__help-cell li svg {
-  flex-shrink: 0;
-  width: 12px;
-  height: 12px;
-}
-
-.lf__help-cell p {
-  font-size: 11.5px;
-  font-weight: 500;
-  line-height: 1.45;
-  color: var(--lf-ink);
-  max-width: 220px;
-}
-
-.lf__help-icon {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lf__help-icon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.lf__help-icon--blue { background: var(--lf-blue-bright); }
-.lf__help-icon--green { background: var(--lf-green); }
-.lf__help-icon--purple { background: var(--lf-purple); }
-
-.lf__help-shield {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-}
-
-.lf__help-shield svg {
+  flex: none;
   width: 100%;
-  height: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 16px clamp(12px, 2.4vh, 26px);
 }
-
-/* ── Dark mode ──────────────────────────────────────────────────
-   The onboarding photo (.lf__photo) and vault illustration (.lf__vault,
-   which has real alpha transparency) fill their frames naturally and
-   need no special handling. Everything else here — card chrome, chip
-   labels, offer rows, "How It Helps Everyone", and the outer band
-   background — is plain marketing UI, so it follows the site's real
-   theme instead of being stuck light regardless of it. */
-[data-theme='dark'] .lf {
-  background: var(--bg);
+@media (min-width: 640px) { .lf__help { padding-inline: 32px; } }
+@media (min-width: 1024px) { .lf__help { padding-inline: 48px; } }
+.lf__help-title { margin: 0 0 10px; font-size: 13px; font-weight: 700; letter-spacing: .02em; color: var(--text); }
+.lf__help-cols {
+  list-style: none;
+  margin: 0;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--outline);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
 }
+.lf__help-name { margin: 0 0 4px; font-size: 13.5px; font-weight: 700; }
+.lf__help-cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 14px; }
+.lf__help-cols ul li { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+.lf__help-cols ul li::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--lg); flex: none; }
+.lf__help-cols li:last-child ul li::before { display: none; }
 
-[data-theme='dark'] .lf__title {
-  color: var(--text);
+/* ── Motion (scenes play while active) ── */
+@media (prefers-reduced-motion: no-preference) {
+  .lfs--onboard[data-active] .lfs-phone__list li { animation: lf-in 500ms var(--l-ease-enter) both; animation-delay: calc(250ms + var(--k) * 90ms); }
+  .lfs--onboard[data-active] .lfs-phone__otp b { display: inline-block; animation: lf-pop 360ms var(--l-ease-enter) both; animation-delay: calc(900ms + var(--k) * 160ms); }
+  .lfs--onboard[data-active] .lfs-phone__done { animation: lf-in 500ms var(--l-ease-enter) both 1.9s; }
+  .lfs--onboard[data-active] .lfs-note--a { animation: lf-note-l 700ms var(--l-ease-enter) both 400ms; }
+  .lfs--onboard[data-active] .lfs-note--b { animation: lf-note-l 700ms var(--l-ease-enter) both 2.1s; }
+  .lfs--onboard[data-active] .lfs-phone { animation: lf-float 6s ease-in-out infinite 1s; }
+
+  .lfs--pool[data-active] .lfs-orbit__ring--2 { animation: lf-spin 40s linear infinite; }
+  .lfs--pool[data-active] .lfs-src__label { animation: lf-in 600ms var(--l-ease-enter) both; animation-delay: calc(150ms + var(--k) * 110ms); }
+  .lfs--pool[data-active] .lfs-wire { animation: lf-wire 1.2s linear infinite; }
+  .lfs--pool[data-active] .lfs-wires { animation: lf-in 700ms var(--l-ease-enter) both 500ms; }
+  .lfs--pool[data-active] .lfs-core { animation: lf-pulse 2.6s ease-in-out infinite 1s; }
+
+  .lfs--lenders[data-active] .lfs-rank li { animation: lf-rise 700ms var(--l-ease-enter) both; animation-delay: calc(150ms + var(--k) * 140ms); }
+  .lfs--lenders[data-active] .lfs-rank li.is-best::before { animation: lf-grow 600ms var(--l-ease-enter) both 700ms; }
 }
+.lf.is-still * { animation-play-state: paused; }
 
-[data-theme='dark'] .lf__title span {
-  color: var(--accent);
+@keyframes lf-in { from { opacity: 0; transform: translateY(10px); } }
+@keyframes lf-rise { from { opacity: 0; transform: translateY(26px); } }
+@keyframes lf-pop { from { opacity: 0; transform: translateY(8px) scale(.6); } }
+@keyframes lf-note-l { from { opacity: 0; transform: translateX(-20px); } }
+@keyframes lf-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes lf-spin { to { rotate: 360deg; } }
+@keyframes lf-grow { from { transform: scaleY(0); } }
+@keyframes lf-pulse { 0%, 100% { scale: 1; } 50% { scale: 1.05; } }
+@keyframes lf-wire { to { stroke-dashoffset: -12px; } }
+
+/* ── Wide screens: PartnerWorkspace rises over the pinned story (home.css pulls it up by 100vh).
+   One extra screen of track for it, and as it covers, the story settles back and dims a little
+   (--out from LenderFlow.tsx; transform and opacity only). ── */
+@media (min-width: 1121px) {
+  .lf__track { height: 600vh; }
 }
-
-[data-theme='dark'] .lf__rule--l,
-[data-theme='dark'] .lf__rule--r {
-  background: var(--outline);
-}
-
-[data-theme='dark'] .lf__card {
-  background: var(--surface);
-  border-color: var(--outline);
-  box-shadow: 0 12px 28px -20px rgba(0, 0, 0, 0.6);
-}
-
-[data-theme='dark'] .lf__duo {
-  border-top-color: var(--outline);
-}
-
-[data-theme='dark'] .lf__duo-item {
-  color: var(--text);
-}
-
-[data-theme='dark'] .lf__duo-item + .lf__duo-item {
-  border-left-color: var(--outline);
-}
-
-[data-theme='dark'] .lf__chip {
-  background: var(--surface);
-  border-color: var(--outline);
-  color: var(--text);
-  box-shadow: 0 6px 14px -10px rgba(0, 0, 0, 0.5);
-}
-
-[data-theme='dark'] .lf__feats {
-  border-top-color: var(--outline);
-}
-
-[data-theme='dark'] .lf__feats li {
-  color: var(--text);
-}
-
-[data-theme='dark'] .lf__feats li + li {
-  border-left-color: var(--outline);
-}
-
-[data-theme='dark'] .lf__offers-top h3 {
-  color: var(--text);
-}
-
-[data-theme='dark'] .lf__sort {
-  background: color-mix(in srgb, var(--lf-blue) 20%, transparent);
-  color: var(--accent);
-}
-
-[data-theme='dark'] .lf__offer {
-  border-color: var(--outline);
-}
-
-[data-theme='dark'] .lf__offer--top {
-  border-color: color-mix(in srgb, var(--lf-blue-bright) 55%, var(--outline));
-  background: color-mix(in srgb, var(--lf-blue-bright) 10%, transparent);
-}
-
-[data-theme='dark'] .lf__offer-bank {
-  background: color-mix(in srgb, var(--lf-green) 20%, transparent);
-  color: var(--success);
-}
-
-[data-theme='dark'] .lf__offer-name {
-  color: var(--text);
-}
-
-[data-theme='dark'] .lf__offer-badge {
-  background: color-mix(in srgb, var(--lf-green) 20%, transparent);
-  color: var(--success);
-}
-
-[data-theme='dark'] .lf__offer-term small {
-  color: var(--muted);
-}
-
-[data-theme='dark'] .lf__offer-term b {
-  color: var(--text);
-}
-
-[data-theme='dark'] .lf__viewall {
-  border-top-color: var(--outline);
-}
-
-[data-theme='dark'] .lf__help {
-  background: var(--surface);
-  border-color: var(--outline);
-}
-
-[data-theme='dark'] .lf__help-title {
-  background: var(--surface);
-  color: var(--text);
-}
-
-[data-theme='dark'] .lf__help-cell + .lf__help-cell {
-  border-left-color: var(--outline);
-}
-
-[data-theme='dark'] .lf__help-cell li {
-  color: var(--text);
-}
-
-[data-theme='dark'] .lf__help-cell p {
-  color: var(--text);
-}
-
-[data-theme='dark'] .lf__help-cell.tone-secure p {
-  color: #ffffff;
-}
-
-/* ── Bottom accent bar ── */
-.lf__base {
-  flex: 0 0 auto;
-  margin-top: clamp(6px, 1.2vh, 12px);
-  height: 6px;
-  background: var(--lf-navy);
-}
-
-/* ── Responsive ──
-   Below this width the steps stack into a single column, which is
-   naturally taller than one screen — so the viewport-fit sizing above
-   (fixed section height, flex-filled panels) is turned back into normal
-   auto-height content that the page scrolls to reach, same as any other
-   section. */
-@media (max-width: 1120px) {
-  .lf {
-    height: auto;
-    min-height: 0;
-    max-height: none;
-    overflow: visible;
-  }
-
-  .lf > .container {
-    display: block;
-  }
-
-  .lf__head,
-  .lf__steps,
-  .lf__help,
-  .lf__base {
-    flex: none;
-  }
-
-  .lf__steps {
-    grid-template-columns: 1fr;
-  }
-
-  .lf__card {
-    min-height: 0;
-  }
-
-  .lf__arrow {
-    justify-self: center;
-    transform: rotate(90deg);
-    height: 32px;
-    width: 40px;
-  }
-
-  .lf__photo {
-    flex: none;
-    min-height: 260px;
-    max-height: 340px;
-  }
-
-  .lf__pool {
-    flex: none;
-    min-height: 260px;
-  }
-
-  .lf__offers {
-    flex: none;
-  }
-
-  .lf__offer-list {
-    flex: none;
-    overflow: visible;
-  }
-
+@media (min-width: 1121px) and (prefers-reduced-motion: no-preference) {
+  .lf__wrap,
   .lf__help {
-    grid-template-columns: 1fr 1fr;
-    row-gap: 24px;
-  }
-
-  .lf__help-cell:nth-child(4) {
-    border-left: none;
-  }
-
-  .lf__rule {
-    display: none;
+    transform-origin: 50% 0;
+    transform: scale(calc(1 - var(--out, 0) * .05));
+    opacity: calc(1 - var(--out, 0) * .45);
   }
 }
 
+/* ── Below 901px: no pin; each chapter with its scene inline ── */
+@media (max-width: 900px) {
+  .lf__track { height: auto; }
+  .lf__pin { position: static; height: auto; min-height: 0; padding-top: calc(var(--lf-header-h) + 24px); overflow: visible; }
+  .lf__wrap { grid-template-columns: 1fr; }
+  .lf__stage,
+  .lf__progress { display: none; }
+  .lf__chapters { padding-left: 0; gap: 56px; }
+  .lf__chapter { opacity: 1; grid-template-columns: 34px minmax(0, 1fr); }
+  .lf__chapter-copy p { grid-template-rows: 1fr; opacity: 1; margin-top: 8px; }
+  .lf__inline-scene { display: block; grid-column: 1 / -1; margin-top: 24px; }
+  .lf__inline-scene .lfs--onboard { padding: 8px 0; }
+  .lfs-phone { --ph-w: 262px; height: auto; }
+  .lfs-phone__screen { height: auto; }
+  .lfs-phone__body { gap: 14px; }
+  .lfs-note { position: static; justify-self: start; margin: 0 0 12px; font-size: 14px; }
+  .lfs-note__lead { display: none; }
+  .lfs--onboard { grid-template-columns: 1fr; justify-items: center; }
+  .lfs-note--b { order: 3; margin: 14px 0 0; }
+  .lfs-orbit { --R: 112px; }
+  .lfs-src__label { font-size: 12.5px; gap: 5px; }
+  .lfs-src__label svg { width: 15px; height: 15px; }
+  .lfs-pool__caption { flex-wrap: wrap; justify-content: center; font-size: 15px; }
+  .lfs-rank li { grid-template-columns: 30px minmax(0, 1fr) auto; gap: 12px; padding: 16px 0 16px 12px; }
+  .lfs-rank__rate { grid-column: 2 / -1; justify-self: start; font-size: 16px; }
+  .lfs-rank__name { font-size: 20px; }
+  .lfs-rank__amt { font-size: 18px; }
+  .lf__help { padding-top: 48px; padding-bottom: 56px; }
+  .lf__help-title { font-size: 20px; letter-spacing: -0.01em; margin-bottom: 14px; }
+  .lf__help-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+}
+/* ── Phones: compact story ── */
 @media (max-width: 640px) {
-  .lf {
-    padding-top: 36px;
-  }
+  .lf__pin { padding-top: calc(80px + 16px); }
+  .lf__title { font-size: clamp(28px, 8vw, 36px); margin-bottom: 24px; }
+  .lf__chapters { gap: 36px; }
+  .lf__chapter { grid-template-columns: 28px minmax(0, 1fr); }
+  .lf__chapter-n { font-size: 12px; }
+  .lf__chapter-copy h3 { font-size: 18px; }
+  .lf__chapter-copy p { font-size: 14px; line-height: 1.5; margin-top: 4px; }
+  .lf__inline-scene { margin-top: 16px; }
 
-  .lf__help {
-    grid-template-columns: 1fr;
+  /* 1 · a smaller phone with the two checkpoints on their own lines underneath */
+  .lf__inline-scene .lfs--onboard { padding: 0; }
+  .lfs--onboard {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    justify-content: center;
+    align-content: center;
+    row-gap: 12px;
+    justify-items: start;
   }
+  .lfs-note { margin: 0; align-items: center; gap: 9px; font-size: 14px; line-height: 1.3; white-space: nowrap; }
+  .lfs-note__tick { flex: none; width: 20px; height: 20px; }
+  .lfs-note--a { grid-column: 1; grid-row: 2; align-self: start; }
+  .lfs-note--b { order: 0; grid-column: 1; grid-row: 3; align-self: start; margin: 0; }
+  .lfs-phone { --ph-w: 216px; grid-column: 1; grid-row: 1; justify-self: center; margin-bottom: 8px; padding: 7px; border-radius: 32px; }
+  .lfs-phone__screen { border-radius: 26px; }
+  .lfs-phone__notch { top: 7px; width: 56px; height: 15px; }
+  .lfs-phone__status { padding: 8px 14px 0 16px; font-size: 9px; }
+  .lfs-phone__status-ico { gap: 3px; }
+  .lfs-phone__status-ico svg:first-child { width: 10px; height: 7px; }
+  .lfs-phone__status-ico svg:last-child { width: 15px; height: 8px; }
+  .lfs-phone__body { gap: 9px; padding: 12px 12px 4px; }
+  .lfs-phone__brand { font-size: 10.5px; gap: 5px; }
+  .lfs-phone__brand img { width: 13px; }
+  .lfs-phone__title { font-size: 13.5px; }
+  .lfs-phone__list li { gap: 6px; padding: 4px 0; font-size: 10.5px; }
+  .lfs-phone__list svg { width: 12px; height: 12px; padding: 2px; }
+  .lfs-phone__otpbox { padding: 8px; border-radius: 11px; }
+  .lfs-phone__label { margin-bottom: 6px; font-size: 9.5px; }
+  .lfs-phone__otp { gap: 4px; }
+  .lfs-phone__otp span { height: 26px; border-radius: 6px; font-size: 12.5px; }
+  .lfs-phone__done { padding: 8px 4px; border-radius: 10px; font-size: 10px; gap: 5px; white-space: nowrap; }
+  .lfs-phone__done svg { width: 11px; height: 11px; }
+  .lfs-phone__home { width: 64px; height: 3px; margin: 4px auto 6px; }
 
-  .lf__help-cell {
-    border-left: none !important;
-  }
+  /* 2 · orbit */
+  .lfs--pool { gap: 10px; }
+  .lfs-orbit { --R: min(100px, 27vw); }
+  .lfs-src__label { font-size: 11.5px; gap: 4px; }
+  .lfs-src__label svg { width: 13px; height: 13px; }
+  .lfs-pool__caption { gap: 6px; font-size: 14px; }
+  .lfs-pool__state { flex-basis: 100%; margin: 0; text-align: center; font-size: 12.5px; }
 
-  .lf__offer {
-    grid-template-columns: 32px 1fr auto 12px;
-    gap: 8px;
-    padding: 9px 10px;
-  }
+  /* 3 · one line per lender */
+  .lfs-rank__head { font-size: 12px; }
+  .lfs-rank li { grid-template-columns: 22px minmax(0, 1fr) auto auto; align-items: center; gap: 10px; padding: 12px 0 12px 10px; }
+  .lfs-rank li.is-best::before { top: 12px; bottom: 12px; }
+  .lfs-rank__n { font-size: 11px; }
+  .lfs-rank__name { flex-direction: column; align-items: flex-start; gap: 0; font-size: 17px; }
+  .lfs-rank__name em { font-size: 9.5px; }
+  .lfs-rank__rate { grid-column: auto; justify-self: end; font-size: 15px; }
+  .lfs-rank__amt { font-size: 15px; }
+  .lfs-rank__amt small,
+  .lfs-rank__rate small { font-size: 10px; }
+  .lfs-rank__foot { margin-top: 10px; font-size: 12.5px; }
 
-  .lf__chip--bank,
-  .lf__chip--bureau {
-    right: 8px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lf__link {
-    animation: none;
-  }
+  /* how it helps: two compact columns */
+  .lf__help { padding-top: 36px; padding-bottom: 40px; }
+  .lf__help-title { font-size: 18px; margin-bottom: 10px; }
+  .lf__help-cols { gap: 16px 14px; padding-top: 14px; }
+  .lf__help-name { font-size: 13px; }
+  .lf__help-cols ul { flex-direction: column; gap: 1px; }
+  .lf__help-cols ul li { font-size: 12px; }
 }
