@@ -1,170 +1,440 @@
-/* "Your Entire Business. One Powerful Workspace." (PartnerWorkspace).
-   No cards: a numbered module list on the left, the workspace screenshot as the centrepiece. One screen
-   tall on desktop (third layer of the sticky stack in home.css); stacked below 1121px.
-   Transform/opacity motion; .is-still pauses it off screen. Homepage tokens, light and dark. */
-
+/* ── Partner workspace: "Your Entire Business. One Powerful Workspace." ──
+   Fixed-light showcase band (like the lender-flow section): hero copy,
+   laptop dashboard mockup with floating feature cards, and a 6-up
+   feature strip underneath. */
 .pw {
-  --wb: var(--accent);
-  --wg: var(--success);
-  --w-ease: cubic-bezier(.2, .8, .2, 1);
-  --w-ease-enter: cubic-bezier(.22, 1, .36, 1);
-  --pw-header-h: 84px;
+  /* Reserves the fixed site header's tallest state, same as .hero / .lf —
+     this is the third layer of the sticky scroll-stack (see .stack-item
+     in home.css), so it needs the same "one screen, header cleared by
+     padding-top rather than scroll position" sizing they use. */
+  --pw-header-h: 88px;
+
+  background: var(--bg);
+  color-scheme: light dark;
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
 
   height: 100vh;
-  min-height: 640px;
-  max-height: 1100px;
-  padding: calc(var(--pw-header-h) + clamp(8px, 2.4vh, 28px)) 0 clamp(16px, 3vh, 36px);
+  min-height: calc(560px + var(--pw-header-h));
+  max-height: calc(1080px + var(--pw-header-h));
+  padding-top: var(--pw-header-h);
+  padding-bottom: clamp(10px, 2.4vh, 28px);
   box-sizing: border-box;
   display: flex;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-display);
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.pw__wrap {
-  flex: 1;
+.pw > .container {
+  flex: 1 1 auto;
   min-height: 0;
-  width: 100%;
-  max-width: 1440px;
-  margin-inline: auto;
-  padding-inline: 16px;
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 4vh, 48px);
+  justify-content: center;
 }
-@media (min-width: 640px) { .pw__wrap { padding-inline: 32px; } }
-@media (min-width: 1024px) { .pw__wrap { padding-inline: 48px; } }
 
-/* ── Top: copy + screenshot ── */
-.pw__top { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: clamp(24px, 4vw, 72px); }
-.pw__eyebrow { margin: 0 0 14px; font-size: 15px; font-weight: 500; color: var(--wb); }
-.pw__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(32px, min(3.6vw, 6vh), 60px);
-  line-height: 1;
+[data-theme='light'] .pw {
+  --pw-ink: #0a1628;
+  --pw-gray: #5c6577;
+  --pw-purple: #5b45e0;
+  --pw-purple-deep: #4c37cf;
+  --pw-border: #e9ecf5;
+}
+
+[data-theme='dark'] .pw,
+.pw {
+  --pw-ink: #e6edf7;
+  --pw-gray: #8b9bb8;
+  --pw-purple: #4a8df8;
+  --pw-purple-deep: #2b62e9;
+  --pw-border: #24315f;
+}
+
+/* ── Hero row ──
+   The flexible middle: takes whatever height head/features leave over,
+   capped so it doesn't bulk up on tall screens (mirrors .hero__flow-wrap
+   — .pw > .container's justify-content: center turns extra room into
+   balanced space instead). */
+.pw__hero {
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 460px;
+  display: grid;
+  grid-template-columns: minmax(340px, 500px) 1fr;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: clamp(16px, 3vh, 36px);
+}
+
+.pw__copy,
+.pw__stage {
+  height: 100%;
+  min-height: 0;
+}
+
+.pw__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.pw__pill {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 12.5px;
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
-.pw__title .pw__accent { display: block; color: var(--wb); }
-.pw__lead { margin: clamp(14px, 2.4vh, 24px) 0 clamp(18px, 3vh, 30px); max-width: 30rem; font-size: clamp(15px, 1.15vw, 18px); line-height: 1.6; color: var(--muted); }
-.pw__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 
-.pw .pw__btn {
+.pw__title {
+  margin: 22px 0 20px;
+  font-size: clamp(28px, 2.75vw, 39px);
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.pw__title span {
+  display: block;
+  color: var(--accent);
+}
+
+.pw__sub {
+  max-width: 40ch;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.pw__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+/* The copy column is capped at 500-560px (.pw__hero's grid-template-columns),
+   which isn't wide enough to hold all three CTAs on one line at this size —
+   forcing them into one row made each button's own label wrap to two lines
+   instead, nearly doubling every button's height. flex-wrap above lets the
+   group itself wrap (third button drops to its own row) while nowrap here
+   keeps every individual button's text — and so its height — single-line
+   and consistent. */
+.pw__btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  min-height: 46px;
-  padding: 0 20px;
-  border-radius: 12px;
-  border: 1px solid transparent;
-  font: inherit;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 120ms var(--w-ease), background-color 120ms var(--w-ease), border-color 120ms var(--w-ease);
-}
-.pw .pw__btn--primary { background: var(--text); color: var(--bg); }
-.pw .pw__btn--ghost { background: var(--surface); color: var(--text); border-color: var(--outline); }
-.pw__btn-arrow { width: 16px; height: 16px; transition: transform 120ms var(--w-ease); }
-.pw__play-dot {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--wb);
-  position: relative;
-}
-.pw__play-dot::after {
-  content: "";
-  position: absolute;
-  left: 8.5px;
-  top: 6.5px;
-  border-left: 7px solid var(--surface);
-  border-top: 4.5px solid transparent;
-  border-bottom: 4.5px solid transparent;
-}
-@media (hover: hover) and (pointer: fine) {
-  .pw .pw__btn:hover { transform: translateY(-1px); }
-  .pw .pw__btn--primary:hover { background: color-mix(in oklab, var(--text) 86%, var(--bg)); }
-  .pw .pw__btn--ghost:hover { border-color: color-mix(in oklab, var(--text) 35%, var(--outline)); }
-  .pw__btn:hover .pw__btn-arrow { transform: translateX(3px); }
-}
-.pw .pw__btn:active { transform: translateY(1px) scale(.985); }
-.pw__btn:focus-visible,
-.pw__shot:focus-visible { outline: 2px solid var(--wb); outline-offset: 3px; }
-
-/* ── The six modules: one numbered row ── */
-.pw__list { flex: none; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1px solid var(--outline); }
-.pw__item { display: grid; align-content: start; gap: 2px; padding: clamp(12px, 2vh, 18px) 18px 0 0; }
-.pw__item + .pw__item { padding-left: 18px; border-left: 1px solid var(--outline); }
-.pw__item-n { font-size: 12px; font-weight: 600; color: var(--wb); font-variant-numeric: tabular-nums; }
-.pw__item-title { font-size: clamp(15px, 1.2vw, 18px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
-.pw__item-sub { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
-
-/* the screenshot */
-.pw__stage { position: relative; min-height: 0; display: grid; place-items: center; }
-.pw__glow {
-  position: absolute;
-  inset: 6% 8% 0;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, color-mix(in oklab, var(--wb) 30%, transparent), transparent);
-  filter: blur(30px);
-  pointer-events: none;
-}
-.pw__shot {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-height: calc(100vh - 330px);
-  aspect-ratio: 2400 / 1322;
-  padding: 0;
+  padding: 14px 24px;
+  border-radius: 9px;
+  font-size: 15.5px;
+  font-weight: 700;
+  white-space: nowrap;
   border: 0;
-  background: none;
-  cursor: pointer;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
-.pw__shot img {
-  display: block;
+
+.pw__btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+.pw__btn--primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 10px 22px -10px var(--accent-dim);
+}
+
+.pw__btn--primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.pw__btn--ghost {
+  background: var(--surface);
+  color: var(--text);
+  border: 1.5px solid var(--outline);
+}
+
+.pw__btn--ghost:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px -12px rgba(16, 24, 46, 0.4);
+}
+
+.pw__btn--ghost svg {
+  width: 21px;
+  height: 21px;
+}
+
+/* ── Stage: laptop ── */
+.pw__stage {
+  position: relative;
+  padding: 12px 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pw__stage-interactive {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 40px 60px color-mix(in oklab, var(--text) 22%, transparent));
 }
-/* ── Motion ── */
-@media (prefers-reduced-motion: no-preference) {
-  .pw__shot img { animation: pw-float 7s ease-in-out infinite; }
-  .pw__glow { animation: pw-breathe 7s ease-in-out infinite; }
-}
-@keyframes pw-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-@keyframes pw-breathe { 0%, 100% { opacity: .8; } 50% { opacity: 1; } }
 
-/* ── The video section slides over this one: the content settles back and dims (--out from useCoverDepth) ── */
-@media (min-width: 1121px) and (min-height: 680px) and (prefers-reduced-motion: no-preference) {
-  .pw__wrap {
-    transform-origin: 50% 0;
-    transform: scale(calc(1 - var(--out, 0) * .05));
-    opacity: calc(1 - var(--out, 0) * .45);
+.pw__stage-play {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: rgba(10, 22, 40, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, box-shadow 0.25s ease;
+}
+
+.pw__stage-play-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pw__stage-play-icon svg {
+  width: 12px;
+  height: 12px;
+  margin-left: 2px;
+  fill: currentColor;
+}
+
+.pw__stage-interactive:hover .pw__stage-play {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(10, 22, 40, 0.98);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.65);
+}
+
+/* ── Laptop image ──
+   max-height (rather than a fixed width%) so it scales down to fit
+   whatever height .pw__hero ends up with instead of forcing the row
+   taller than its cap — object-fit: contain keeps the mockup's own
+   aspect ratio intact instead of cropping it. */
+.pw__laptop-image {
+  position: relative;
+  z-index: 1;
+  width: 110%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  margin-left: -5%;
+}
+
+/* ── Feature strip ── */
+.pw__features {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  border-radius: 16px;
+  padding: clamp(12px, 2.2vh, 22px) 8px;
+  box-shadow: 0 26px 50px -34px rgba(74, 141, 248, 0.15);
+}
+
+.pw__feature {
+  text-align: center;
+  padding: 0 12px;
+  border-right: 1px solid #edeff6;
+}
+
+.pw__feature:last-child {
+  border-right: 0;
+}
+
+.pw__feature-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 10px;
+  border-radius: 14px;
+  font-size: 0;
+}
+
+.pw__feature-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pw__feature-icon.tone-lavender { background: rgba(109, 77, 242, 0.12); color: #6d4df2; }
+.pw__feature-icon.tone-mint { background: rgba(20, 163, 92, 0.12); color: #14a35c; }
+.pw__feature-icon.tone-amber { background: rgba(224, 139, 0, 0.12); color: #e08b00; }
+.pw__feature-icon.tone-blue { background: rgba(43, 98, 233, 0.12); color: #2b62e9; }
+.pw__feature-icon.tone-pink { background: rgba(214, 51, 125, 0.12); color: #d6337d; }
+.pw__feature-icon.tone-violet { background: rgba(122, 77, 232, 0.12); color: #7a4de8; }
+
+.pw__feature h3 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.pw__feature p {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 18ch;
+  margin: 0 auto;
+}
+
+/* ── Responsive ──
+   Below 1120px the stack-item wrapper (home.css) drops back to normal
+   (non-sticky) flow, same threshold as .hero / .lf — so this section's
+   own viewport-fit sizing is turned back into ordinary auto-height
+   content the page scrolls to reach. */
+@media (max-width: 1120px) {
+  .pw {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-top: 34px;
+    padding-bottom: 44px;
+    overflow: visible;
+  }
+
+  .pw > .container {
+    flex: none;
+    display: block;
+  }
+
+  .pw__hero {
+    flex: none;
+    max-height: none;
+  }
+
+  .pw__copy,
+  .pw__stage {
+    height: auto;
+  }
+
+  .pw__laptop-image {
+    height: auto;
+    max-height: none;
+  }
+
+  .pw__features {
+    flex: none;
   }
 }
 
-/* ── Below the sticky stack: stacked ── */
-@media (max-width: 1120px) {
-  .pw { height: auto; min-height: 0; max-height: none; padding-bottom: 56px; }
-  .pw__top { grid-template-columns: 1fr; gap: 28px; }
-  .pw__shot { max-height: none; }
-  .pw__list { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 18px; }
-  .pw__item:nth-child(4) { padding-left: 0; border-left: 0; }
+@media (max-width: 1180px) {
+  .pw__hero {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .pw__copy {
+    align-items: center;
+    text-align: center;
+    justify-self: center;
+    max-width: 560px;
+  }
+
+  .pw__sub {
+    margin: 0 auto;
+  }
+
+  .pw__actions {
+    justify-content: center;
+  }
 }
 
-@media (max-width: 640px) {
-  .pw { --pw-header-h: 80px; padding-top: calc(var(--pw-header-h) + 20px); padding-bottom: 40px; }
-  .pw__wrap { gap: 28px; }
-  .pw__title { font-size: clamp(28px, 8vw, 36px); }
-  .pw .pw__btn { flex: 1 1 100%; justify-content: center; min-height: 44px; }
-  .pw__list { grid-template-columns: 1fr 1fr; column-gap: 0; row-gap: 0; }
-  .pw__item,
-  .pw__item + .pw__item { padding: 12px 12px 12px 0; border-left: 0; border-bottom: 1px solid var(--outline); }
-  .pw__item:nth-child(even) { padding-left: 14px; border-left: 1px solid var(--outline); }
-  .pw__item-title { font-size: 14.5px; }
-  .pw__item-sub { font-size: 11.5px; line-height: 1.35; }
+@media (max-width: 900px) {
+  .pw__features {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 22px;
+  }
+
+  .pw__feature:nth-child(3n) {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .pw {
+    padding: 40px 0 36px;
+  }
+
+  .pw__features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pw__feature {
+    border-right: 0;
+  }
+
+  .pw__feature:nth-child(odd) {
+    border-right: 1px solid #edeff6;
+  }
+
+  .pw__side {
+    display: none;
+  }
+
+  /* Shrinking the desktop side-by-side CTAs to fit this width still left
+     each label wrapping to two lines below ~400px (e.g. "Explore
+     Workspace" and "Request Demo" both broke), giving the pair mismatched
+     heights and a cramped, broken-looking tap target. Stacking them full
+     width instead guarantees a single text line and one consistent,
+     properly sized (44px+) button at every mobile width. */
+  .pw__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 24px;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .pw__btn {
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+  }
+
+  .pw__btn svg,
+  .pw__btn--ghost svg {
+    width: 18px;
+    height: 18px;
+  }
 }

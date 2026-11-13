@@ -1,257 +1,411 @@
-/* "Cred2Tech Virtual Workspace" walkthrough (WorkspaceVideoSection). Same open language as the
-   sections above: eyebrow + large title on the left, lead on the right, the video in a device frame
-   over a soft brand glow, the three highlights as one numbered row. No cards. Ordinary flow content
-   after the sticky stack. Transform/opacity motion only, nothing loops. Homepage tokens, light and dark. */
-
+/* ── Workspace video section ──
+   Walkthrough video showcase for the Sourcing Partner Virtual Workspace.
+   Flows naturally after the sticky section stack. */
 .wvs {
-  --wb: var(--accent);
-  --wg: var(--success);
-  --v-ease: cubic-bezier(.2, .8, .2, 1);
-
-  position: relative;
-  padding: clamp(48px, 8vh, 88px) 0 clamp(40px, 7vh, 80px);
-  background: var(--surface);
+  background: var(--bg);
   color: var(--text);
   font-family: var(--font-display);
+  padding: clamp(48px, 8vh, 96px) 0;
+  border-top: 1px solid var(--outline);
+  border-bottom: 1px solid var(--outline);
+  position: relative;
   overflow: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-.wvs__wrap {
+.wvs .container {
   width: 100%;
-  max-width: 1440px;
-  margin-inline: auto;
-  padding-inline: 16px;
+  max-width: var(--container, 1280px);
+  margin: 0 auto;
+  padding: 0 24px;
 }
-@media (min-width: 640px) { .wvs__wrap { padding-inline: 32px; } }
-@media (min-width: 1024px) { .wvs__wrap { padding-inline: 48px; } }
 
-/* ── Two columns: video left, copy + highlights right (stacked below 1121px) ── */
-.wvs__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  grid-template-areas: "stage copy" "stage list";
-  grid-template-rows: auto auto;
-  align-content: center;
-  align-items: start;
-  column-gap: clamp(24px, 4vw, 72px);
-  row-gap: clamp(20px, 3.4vh, 36px);
+.wvs__head {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto clamp(24px, 4vh, 44px);
 }
-.wvs__copy { grid-area: copy; align-self: end; }
-.wvs__eyebrow { margin: 0 0 14px; font-size: 15px; font-weight: 500; color: var(--wb); }
-.wvs__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(30px, min(3.2vw, 5.4vh), 52px);
-  line-height: 1;
+
+.wvs__pill {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.wvs__title {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 2.8vw, 42px);
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+  color: var(--text);
 }
-.wvs__title .wvs__accent {
+
+.wvs__title span {
   display: block;
-  margin-top: .3em;
-  font-size: .5em;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--wb);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.8em;
+  margin-top: 4px;
 }
-.wvs__lead {
-  margin: clamp(12px, 2vh, 20px) 0 0;
-  max-width: 30rem;
-  font-size: clamp(14.5px, 1.1vw, 17px);
-  text-wrap: pretty;
+
+.wvs__sub {
+  font-size: clamp(14px, 1.1vw, 16.5px);
   line-height: 1.6;
   color: var(--muted);
+  margin: 0 auto;
+  max-width: 62ch;
 }
 
-/* ── Stage: the video in a device frame over the glow ── */
-.wvs__stage { grid-area: stage; align-self: center; position: relative; width: 100%; }
-.wvs__glow {
+.wvs__player-wrap {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.wvs__player-glow {
   position: absolute;
-  inset: 6% 6% -8%;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, color-mix(in oklab, var(--wb) 30%, transparent), transparent);
-  filter: blur(34px);
+  inset: -8px;
+  border-radius: 28px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  opacity: 0.15;
+  filter: blur(24px);
   pointer-events: none;
 }
-.wvs__device {
-  position: relative;
-  padding: 9px;
-  border-radius: 26px;
-  background: var(--bezel);
-  box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--wb) 25%, transparent),
-    0 40px 100px -30px color-mix(in oklab, var(--wb) 60%, transparent);
-}
 
-/* slim bar above the picture: quality tag left, YouTube link right */
-.wvs__bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 4px 12px 11px;
-  color: var(--on-bezel);
-  font-size: 12.5px;
-  font-weight: 600;
-}
-.wvs__tag { display: inline-flex; align-items: center; gap: 8px; letter-spacing: .02em; }
-.wvs__tag-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--wg); }
-/* `.wvs` prefix: home.css's `.home-v2 a { color: inherit }` would otherwise win */
-.wvs .wvs__yt {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: color-mix(in oklab, var(--on-bezel) 78%, transparent);
-  text-decoration: none;
-  transition: color 120ms var(--v-ease);
-}
-.wvs__yt-arrow { width: 14px; height: 14px; transition: transform 120ms var(--v-ease); }
-@media (hover: hover) and (pointer: fine) {
-  .wvs .wvs__yt:hover { color: var(--on-bezel); }
-  .wvs__yt:hover .wvs__yt-arrow { transform: translateX(3px); }
-}
-
-.wvs__screen {
+.wvs__player {
   position: relative;
+  width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 18px;
+  border-radius: 20px;
   overflow: hidden;
-  background: var(--bezel);
+  background: #000;
+  border: 1px solid var(--outline);
+  box-shadow: 0 24px 60px -20px rgba(11, 33, 71, 0.25);
 }
-.wvs__screen iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+.wvs__player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
 
 .wvs__thumb {
   position: relative;
-  display: block;
   width: 100%;
   height: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--on-bezel);
-  text-align: left;
   cursor: pointer;
   overflow: hidden;
 }
+
 .wvs__thumb-img {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 600ms var(--v-ease);
-}
-.wvs__shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 45%, color-mix(in oklab, var(--bezel) 85%, transparent) 100%),
-    color-mix(in oklab, var(--bezel) 22%, transparent);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* play control, same pill as the workspace screenshot above */
-.wvs__play {
+.wvs__thumb:hover .wvs__thumb-img {
+  transform: scale(1.04);
+}
+
+.wvs__overlay {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  translate: -50% -50%;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.75) 100%);
+  transition: opacity 0.3s ease;
+}
+
+.wvs__thumb:hover .wvs__overlay {
+  opacity: 0.9;
+}
+
+.wvs__badge-bar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.wvs__hd-tag {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 18px 8px 8px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--bezel) 82%, transparent);
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(8px);
-  color: var(--on-bezel);
-  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wvs__hd-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+/* `.wvs` prefix: home.css's `.home-v2 a { color: inherit }` would otherwise win and make this label dark on a dark pill. */
+.wvs .wvs__yt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 11.5px;
   font-weight: 600;
-  white-space: nowrap;
-  box-shadow: 0 16px 40px -14px color-mix(in oklab, var(--bezel) 80%, transparent);
-  transition: transform 150ms var(--v-ease);
+  text-decoration: none;
+  transition: background 0.2s ease;
 }
-.wvs__play-icon { position: relative; width: 34px; height: 34px; border-radius: 50%; background: var(--wb); }
-.wvs__play-icon::after {
-  content: "";
-  position: absolute;
-  left: 13px;
-  top: 10px;
-  border-left: 11px solid var(--on-bezel);
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
+
+.wvs .wvs__yt-link:hover {
+  background: rgba(0, 0, 0, 0.85);
 }
-.wvs__caption {
+
+.wvs__play-btn-wrap {
   position: absolute;
-  left: 20px;
-  right: 20px;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.wvs__play-btn {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #0a1628;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wvs__thumb:hover .wvs__play-btn {
+  transform: scale(1.12);
+}
+
+.wvs__play-btn svg {
+  width: 30px;
+  height: 30px;
+  margin-left: 3px;
+  fill: currentColor;
+}
+
+.wvs__bottom-bar {
+  position: absolute;
   bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 2;
+}
+
+.wvs__bottom-content {
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.wvs__video-title {
+  color: #fff;
   font-size: 13.5px;
-  font-weight: 600;
+  font-weight: 700;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: color-mix(in oklab, var(--on-bezel) 85%, transparent);
 }
-@media (hover: hover) and (pointer: fine) {
-  .wvs__thumb:hover .wvs__thumb-img { transform: scale(1.03); }
-  .wvs__thumb:hover .wvs__play { transform: translateY(-1px) scale(1.03); }
-}
-.wvs__thumb:active .wvs__play { transform: scale(.985); }
-.wvs__thumb:focus-visible,
-.wvs__yt:focus-visible { outline: 2px solid var(--wb); outline-offset: 3px; }
 
-/* ── The three highlights: a numbered list under the copy ── */
-.wvs__list { grid-area: list; list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--outline); }
-.wvs__item {
+.wvs__video-hint {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  margin: 2px 0 0;
+}
+
+.wvs__highlights {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
-  column-gap: 4px;
-  padding: clamp(10px, 1.8vh, 16px) 0;
-  border-bottom: 1px solid var(--outline);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 960px;
+  margin: 28px auto 0;
 }
-.wvs__item-n { grid-row: 1 / 3; padding-top: 3px; font-size: 12px; font-weight: 600; color: var(--wb); font-variant-numeric: tabular-nums; }
-.wvs__item-title { font-size: clamp(15px, 1.15vw, 18px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
-.wvs__item-sub { margin-top: 2px; max-width: 28rem; font-size: 13px; line-height: 1.45; color: var(--muted); }
 
-/* ── Wide screens: one screen tall, held while the scheme section slides over it ── */
-@media (min-width: 1121px) and (min-height: 680px) {
-  .wvs {
-    box-sizing: border-box;
-    height: 100vh;
-    padding: calc(84px + clamp(8px, 2vh, 24px)) 0 clamp(16px, 3vh, 36px);
-    display: flex;
-    align-items: center;
+.wvs__highlight {
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  box-shadow: 0 4px 16px -8px rgba(16, 24, 46, 0.08);
+}
+
+.wvs__highlight h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--text);
+}
+
+.wvs__highlight p {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .wvs__highlights {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
-  .wvs__wrap { flex: 1; }
-}
-@media (min-width: 1121px) and (min-height: 680px) and (prefers-reduced-motion: no-preference) {
-  .wvs__wrap {
-    transform-origin: 50% 0;
-    transform: scale(calc(1 - var(--out, 0) * .05));
-    opacity: calc(1 - var(--out, 0) * .45);
+
+  .wvs__play-btn {
+    width: 60px;
+    height: 60px;
+  }
+
+  .wvs__play-btn svg {
+    width: 24px;
+    height: 24px;
   }
 }
 
-/* ── Stacked: copy, video, then the list ── */
-@media (max-width: 1120px) {
-  .wvs__grid { grid-template-columns: 1fr; grid-template-areas: "copy" "stage" "list"; row-gap: 28px; }
-  .wvs__copy { align-self: start; }
-  .wvs__stage { max-width: 820px; justify-self: center; }
-}
-
-/* ── Phones ── */
+/* ── Phones ──
+   The player is only ~175px tall here, so the desktop overlay (two-line title
+   card + hint + labelled link + big play button) collides with itself. Keep the
+   essentials: HD tag, icon-only YouTube link, a centred play button, and a
+   one-line title strip that sits clear of it. */
 @media (max-width: 640px) {
-  .wvs { padding: 48px 0 40px; }
-  .wvs__grid { row-gap: 24px; }
-  .wvs__title { font-size: clamp(28px, 8vw, 36px); }
-  .wvs__lead { font-size: 14.5px; }
-  .wvs__device { padding: 6px; border-radius: 20px; }
-  .wvs__bar { padding: 2px 8px 8px; font-size: 11px; }
-  .wvs__screen { border-radius: 14px; }
-  /* label hidden, arrow stays; the link keeps its aria-label */
-  .wvs__yt span { display: none; }
-  .wvs__yt-arrow { width: 16px; height: 16px; }
-  .wvs__play { padding: 6px 12px 6px 6px; font-size: 11.5px; gap: 7px; }
-  .wvs__play-icon { width: 24px; height: 24px; }
-  .wvs__play-icon::after { left: 9px; top: 7px; border-left-width: 8px; border-top-width: 5px; border-bottom-width: 5px; }
-  .wvs__caption { display: none; }
-  .wvs__item-sub { font-size: 13px; max-width: none; }
+  .wvs {
+    padding: 44px 0 48px;
+  }
+
+  .wvs .container {
+    padding: 0 16px;
+  }
+
+  .wvs__head {
+    margin-bottom: 24px;
+  }
+
+  /* One tidy line instead of a wrapped, wide-tracked blob. */
+  .wvs__pill {
+    padding: 6px 12px;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    margin-bottom: 12px;
+  }
+
+  .wvs__title {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+
+  .wvs__sub {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .wvs__player {
+    border-radius: 16px;
+  }
+
+  .wvs__badge-bar {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .wvs__hd-tag {
+    padding: 4px 9px;
+    font-size: 10px;
+  }
+
+  /* Label hidden, icon stays; the link keeps its aria-label. 36px square tap target. */
+  .wvs .wvs__yt-link {
+    justify-content: center;
+    width: 36px;
+    height: 28px;
+    padding: 0;
+  }
+
+  .wvs__yt-link span {
+    display: none;
+  }
+
+  .wvs__play-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .wvs__play-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .wvs__bottom-bar {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .wvs__bottom-content {
+    padding: 7px 12px;
+    border-radius: 10px;
+  }
+
+  .wvs__video-title {
+    font-size: 12px;
+  }
+
+  /* The play button already says this. */
+  .wvs__video-hint {
+    display: none;
+  }
+
+  .wvs__highlights {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .wvs__highlight {
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+
+  .wvs__highlight h4 {
+    font-size: 14.5px;
+    margin-bottom: 4px;
+  }
+
+  .wvs__highlight p {
+    font-size: 13px;
+  }
 }

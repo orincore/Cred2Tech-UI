@@ -1,15 +1,7 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { ScrollRevealText } from '../../ui/ScrollRevealText';
-import { useCoverDepth } from '../../ui/useCoverDepth';
-import { ArrowIcon } from './HeroIcons';
+import React, { useState } from 'react';
 import './workspace-video.css';
-
-/* "Cred2Tech Virtual Workspace. Complete Platform Overview & Walkthrough." Same open language as the
-   sections above it: eyebrow, large title and lead on the left/right of one header row, the
-   walkthrough video in a device frame over a soft brand glow, and the three highlights as one
-   numbered row underneath. No cards. */
 
 const HIGHLIGHTS = [
   {
@@ -24,107 +16,115 @@ const HIGHLIGHTS = [
     title: 'Payouts, Invoices & Team Control',
     desc: 'Complete commission tracking, automated billing, and role-based agent management.',
   },
-] as const;
-
-const VIDEO_ID = 'BYADQeKFvqE';
-const VIDEO_TITLE = 'Cred2Tech Virtual Workspace | Complete Platform Overview & Walkthrough';
-const YOUTUBE_URL = `https://www.youtube.com/watch?v=${VIDEO_ID}`;
+];
 
 export function WorkspaceVideoSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [imgError, setImgError] = useState(false);
-  const ref = useRef<HTMLElement>(null);
-  useCoverDepth(ref, '#scheme-engine');
+
+  const videoId = 'BYADQeKFvqE';
+  const videoTitle = 'Cred2Tech Virtual Workspace | Complete Platform Overview & Walkthrough';
+  const youtubeUrl = 'https://www.youtube.com/watch?v=BYADQeKFvqE';
 
   const thumbnailUrl = imgError
-    ? `https://img.youtube.com/vi/${VIDEO_ID}/hqdefault.jpg`
-    : `https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`;
+    ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+    : `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
   return (
-    <section ref={ref} id="workspace-video" className="wvs" aria-label="Cred2Tech Virtual Workspace walkthrough">
-      <div className="wvs__wrap">
-        <div className="wvs__grid">
-          <div className="wvs__copy">
-            <p className="wvs__eyebrow">Platform Overview &amp; Walkthrough</p>
-            <ScrollRevealText
-              as="h2"
-              className="wvs__title"
-              parts={[
-                { text: 'Cred2Tech Virtual Workspace' },
-                { text: 'Complete Platform Overview & Walkthrough', className: 'wvs__accent' },
-              ]}
-            />
-            <p className="wvs__lead">
-              Take a deep-dive tour into the Cred2Tech Virtual Workspace. See how Sourcing Partners
-              manage pipelines, track multi-lender credit applications, and automate operations in
-              real time.
-            </p>
-          </div>
+    <section id="workspace-video" className="wvs">
+      <div className="container">
+        <header className="wvs__head">
+          <span className="wvs__pill">Platform Overview &amp; Walkthrough</span>
+          <h2 className="wvs__title">
+            Cred2Tech Virtual Workspace
+            <span>Complete Platform Overview &amp; Walkthrough</span>
+          </h2>
+          <p className="wvs__sub">
+            Take a deep-dive tour into the Cred2Tech Virtual Workspace. See how Sourcing Partners manage pipelines, track multi-lender credit applications, and automate operations in real time.
+          </p>
+        </header>
 
-          <div className="wvs__stage">
-            <span className="wvs__glow" aria-hidden="true" />
-            <div className="wvs__device">
-              <div className="wvs__bar">
-                <span className="wvs__tag">
-                  <span className="wvs__tag-dot" aria-hidden="true" />
-                  HD Video
-                </span>
-                <a
-                  href={YOUTUBE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="wvs__yt"
-                  aria-label="Watch on YouTube"
-                >
-                  <span>Watch on YouTube</span>
-                  <ArrowIcon className="wvs__yt-arrow" />
-                </a>
-              </div>
+        <div className="wvs__player-wrap">
+          <div className="wvs__player-glow" aria-hidden="true" />
+          <div className="wvs__player">
+            {isPlaying ? (
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+                title={videoTitle}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            ) : (
+              <div
+                role="button"
+                tabIndex={0}
+                aria-label={`Play video: ${videoTitle}`}
+                onClick={() => setIsPlaying(true)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setIsPlaying(true);
+                  }
+                }}
+                className="wvs__thumb"
+              >
+                <img
+                  src={thumbnailUrl}
+                  alt={videoTitle}
+                  onError={() => setImgError(true)}
+                  className="wvs__thumb-img"
+                  loading="lazy"
+                />
+                <div className="wvs__overlay" />
 
-              <div className="wvs__screen">
-                {isPlaying ? (
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
-                    title={VIDEO_TITLE}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
-                ) : (
-                  <button
-                    type="button"
-                    className="wvs__thumb"
-                    onClick={() => setIsPlaying(true)}
-                    aria-label={`Play video: ${VIDEO_TITLE}`}
+                <div className="wvs__badge-bar">
+                  <span className="wvs__hd-tag">
+                    <span className="wvs__hd-dot" />
+                    HD Video
+                  </span>
+                  <a
+                    href={youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="wvs__yt-link"
+                    aria-label="Watch on YouTube"
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={thumbnailUrl}
-                      alt=""
-                      onError={() => setImgError(true)}
-                      className="wvs__thumb-img"
-                      loading="lazy"
-                    />
-                    <span className="wvs__shade" aria-hidden="true" />
-                    <span className="wvs__play" aria-hidden="true">
-                      <span className="wvs__play-icon" />
-                      Watch walkthrough
-                    </span>
-                    <span className="wvs__caption">{VIDEO_TITLE}</span>
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
+                    <span>Watch on YouTube</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                </div>
 
-          <ol className="wvs__list" aria-label="What the walkthrough covers">
-            {HIGHLIGHTS.map((h, i) => (
-              <li key={h.title} className="wvs__item">
-                <span className="wvs__item-n">0{i + 1}</span>
-                <span className="wvs__item-title">{h.title}</span>
-                <span className="wvs__item-sub">{h.desc}</span>
-              </li>
-            ))}
-          </ol>
+                <div className="wvs__play-btn-wrap">
+                  <div className="wvs__play-btn" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <polygon points="5 3 19 12 5 21 5 3" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="wvs__bottom-bar">
+                  <div className="wvs__bottom-content">
+                    <p className="wvs__video-title">{videoTitle}</p>
+                    <p className="wvs__video-hint">Click to play platform video walkthrough</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="wvs__highlights">
+          {HIGHLIGHTS.map((h) => (
+            <div className="wvs__highlight" key={h.title}>
+              <h4>{h.title}</h4>
+              <p>{h.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -12,9 +12,6 @@
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
-  /* keep mobile browsers from boosting font sizes inside the product mock-ups */
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
 }
 
 .home-v2 a {
@@ -73,38 +70,10 @@
 
 .home-v2 .stack-item--2 {
   z-index: 11;
-  /* the Lender-flow story pins its own stage over a tall track, so it scrolls as ordinary content
-     here rather than pinning as a whole (a sticky block taller than the screen hides its end) */
-  position: relative;
 }
 
 .home-v2 .stack-item--3 {
   z-index: 12;
-}
-
-/* The video section fits one screen, so it stacks too; the scheme section after it is taller than a
-   screen, so it is not sticky: it just slides over the held video section. */
-.home-v2 .stack-item--4 {
-  z-index: 13;
-}
-
-.home-v2 .stack-item--5 {
-  position: relative;
-  z-index: 14;
-}
-
-@media (max-height: 679px) {
-  .home-v2 .stack-item--4 {
-    position: static;
-  }
-}
-
-/* The pinned Lender-flow story ends with one spare screen of track; the workspace is pulled up over
-   it so it slides over the still-pinned story, the same cover as hero -> lender flow. */
-@media (min-width: 1121px) {
-  .home-v2 .stack-item--3 {
-    margin-top: -100vh;
-  }
 }
 
 /* Placed after every stacked item. Height is 0 so each section covers
