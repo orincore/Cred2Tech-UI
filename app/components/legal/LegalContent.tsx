@@ -1,27 +1,56 @@
 import React from 'react';
 
+type SectionLevel = 'default' | 'main' | 'sub';
+
+const SECTION_STYLES: Record<SectionLevel, { section: string; heading: string; index: string; Tag: 'h2' | 'h3' }> = {
+  default: {
+    section: 'py-8 sm:py-10 border-b border-[var(--outline)] last:border-b-0',
+    heading: 'font-bold text-base sm:text-lg mb-3',
+    index: 'text-xs sm:text-sm text-[var(--on-surface)]/40',
+    Tag: 'h2',
+  },
+  // A top-level clause ("1.", "2."): large heading that opens a group of sub-clauses
+  main: {
+    section: 'pt-10 sm:pt-14 pb-4 sm:pb-5 border-t border-[var(--outline)] first:border-t-0 first:pt-0',
+    heading: 'font-bold text-2xl sm:text-[28px] leading-tight tracking-tight mb-4',
+    index: 'text-lg sm:text-xl text-[var(--on-surface)]/35',
+    Tag: 'h2',
+  },
+  // A sub-clause ("1.1", "1.2"): indented under its main clause on a guide rule
+  sub: {
+    section: 'ml-1 sm:ml-2 pl-4 sm:pl-6 py-5 sm:py-6 border-l-2 border-[var(--outline)]',
+    heading: 'font-semibold text-[15px] sm:text-base mb-2.5',
+    index: 'text-xs sm:text-sm text-[var(--on-surface)]/45',
+    Tag: 'h3',
+  },
+};
+
 export function LegalSection({
   id,
   index,
   title,
+  level = 'default',
   children,
 }: {
   id: string;
   index?: string;
   title?: string;
+  level?: SectionLevel;
   children: React.ReactNode;
 }) {
+  const styles = SECTION_STYLES[level];
+  const Heading = styles.Tag;
   return (
-    <section id={id} className="scroll-mt-28 py-8 sm:py-10 border-b border-[var(--outline)] last:border-b-0">
+    <section id={id} className={`scroll-mt-28 ${styles.section}`}>
       {title && (
-        <h2 className="font-(family-name:--font-outfit) font-bold text-base sm:text-lg text-[var(--on-surface)] mb-3 flex items-baseline gap-2">
+        <Heading className={`font-(family-name:--font-outfit) text-[var(--on-surface)] flex items-baseline gap-2.5 ${styles.heading}`}>
           {index && (
-            <span className="font-(family-name:--font-jb-mono) text-xs sm:text-sm font-bold text-[var(--on-surface)]/40 shrink-0">
+            <span className={`font-(family-name:--font-jb-mono) font-bold shrink-0 ${styles.index}`}>
               {index}
             </span>
           )}
           <span>{title}</span>
-        </h2>
+        </Heading>
       )}
       <div className="space-y-3.5 text-[var(--on-muted)]">{children}</div>
     </section>

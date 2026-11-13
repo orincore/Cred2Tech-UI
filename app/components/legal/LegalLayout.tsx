@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-export type TocItem = { id: string; label: string };
+/** `sub` entries are indented under the preceding main entry. */
+export type TocItem = { id: string; label: string; sub?: boolean };
 
 export function LegalHero({
   badge,
@@ -88,7 +89,9 @@ export function LegalLayout({
                   <a
                     key={item.id}
                     href={`#${item.id}`}
-                    className={`block pl-3.5 py-1.5 -ml-px border-l-2 text-[13px] leading-snug transition-colors ${
+                    className={`block py-1.5 -ml-px border-l-2 leading-snug transition-colors ${
+                      item.sub ? 'pl-6 text-[12.5px]' : 'pl-3.5 text-[13px] font-semibold mt-2 first:mt-0'
+                    } ${
                       active === item.id
                         ? 'border-[var(--on-surface)] text-[var(--on-surface)] font-semibold'
                         : 'border-transparent text-[var(--on-muted)] hover:text-[var(--on-surface)]'
